@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SoCal Alliance • About</title>
+  <link rel="icon" href="images/logo.png" type="image/png"/>
+  <style>
+    /* — Reset & Base — */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Instrument Sans', sans-serif;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* — Sticky Nav — */
+    .top-bar {
+      position: sticky; top: 0; left: 0;
+      width: 100%; height: 100px;
+      background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      display: flex; align-items: center; padding: 0 50px;
+      font-family: 'Tilt Warp', sans-serif; font-size: 28px;
+      z-index: 10;
+      transition: transform 0.3s ease;
+    }
+    
+    .top-bar.hidden {
+  transform: translateY(-100%);
+}
+    .logo {
+      width: 81px; height: 73px;
+      background: url('images/logo.png') center/cover no-repeat;
+      margin-right: 60px;
+    }
+    nav { display: flex; gap: 40px; }
+    nav a:hover { opacity: .7; }
+
+    /* — Mission Section — */
+    .mission-section {
+      position: relative;
+      width: 100%;
+      height: 500px;         /* adjust overall height */
+      overflow: hidden;
+      margin-bottom: 4rem;
+    }
+    /* adjustable GIF on left */
+    .mission-bg {
+      position: absolute;
+      top: 50%; left: 5%;     /* tweak left offset here */
+      transform: translateY(-50%);
+      width: 300px;           /* tweak width */
+      height: auto;
+      background: url('images/mission.gif') center/contain no-repeat;
+      opacity: 0.5;
+      filter: blur(12px);     /* tweak blur strength */
+      pointer-events: none;
+    }
+    /* mission text on right */
+    .mission-copy {
+      position: absolute;
+      top: 50%; right: 10%;   /* tweak right offset here */
+      transform: translateY(-50%);
+      max-width: 45%;         /* tweak text container width */
+      text-align: left;
+    }
+    .mission-copy h1 {
+      font-family: 'Tilt Warp', sans-serif;
+      font-size: 60px;        /* tweak heading size */
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .mission-copy p {
+      font-size: 24px;        /* tweak paragraph size */
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+    }
+    /* donate button graphic */
+    .donate-btn img {
+      display: block;
+      width: auto;
+      height: 48px;           /* tweak button height */
+      cursor: pointer;
+    }
+
+    /* — Description Text — */
+    .description {
+      padding: 4rem 10%;
+      text-align: center;
+      font-size: 24px; line-height: 29px;
+      max-width: 900px; margin: 0 auto;
+    }
+
+    /* — Image Pair with Overlay — */
+    .image-section {
+      display: flex; flex-wrap: wrap;
+      gap: 2rem; justify-content: center;
+      padding: 2rem 0;
+    }
+    .image-section .img-box {
+      flex: 1 1 300px; max-width: 350px;
+      height: 200px; background: #333 center/cover no-repeat;
+      position: relative;
+    }
+    .image-section .img-box::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        270deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.8) 50%,
+        #000 100%
+      );
+    }
+
+    /* — “Integrated Approach” Title — */
+    .section-title {
+      font-family: 'Tilt Warp', sans-serif;
+      font-size: 60px; line-height: 76px;
+      text-align: center; margin: 4rem 0 1rem;
+    }
+
+    .label {
+        position: absolute;
+        font-weight: bold;
+        font-size: 1.5rem;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .description-text {
+      position: absolute;
+      font-size: 1rem;
+      color: #666;
+      max-width: 240px; /* Widened text box */
+      line-height: 1.3;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+      pointer-events: none;
+    }
+
+    .description-text.visible {
+      opacity: 1;
+    }
+
+    #arrow-container {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 11rem;
+      pointer-events: auto;
+      z-index: 5;
+      transition: gap 0.5s ease;
+    }
+
+    .arrow {
+      cursor: pointer;
+      font-size: 1.75rem;
+      color: #fff;
+      text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+
+    /* — Team Cards — */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+      gap: 2rem; padding: 0 10%;
+    }
+    .team-card {
+      background: #111; border-radius: 10px;
+      overflow: hidden; position: relative;
+    }
+    .team-card img {
+      width: 100%; height: 200px; object-fit: cover;
+    }
+    .team-card .card-content {
+      padding: 1rem;
+    }
+    .team-card .card-content h3 {
+      font-family: 'Tilt Warp', sans-serif;
+      font-size: 40px; margin-bottom: .5rem;
+    }
+    .team-card .card-content p {
+      font-size: 18px; line-height: 22px;
+    }
+
+    /* — Contact Section — */
+    .contact {
+      text-align: center; padding: 4rem 10%;
+    }
+    .contact h2 {
+      font-family: 'Tilt Warp', sans-serif;
+      font-size: 60px; margin-bottom: 1rem;
+    }
+    .contact .icons {
+      display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;
+    }
+    .contact .icons a {
+      width: 60px; height: 60px;
+      background: #222 center/contain no-repeat;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .contact p {
+      font-size: 18px; line-height: 22px;
+    }
+.site-footer {
+  /* same gradient as nav bar */
+  background: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 10%,
+    #F0115F 60%,
+    #EF7616 100%
+  );
+  color: #fff;
+  padding: 2rem 10%;
+  font-family: 'Instrument Sans', sans-serif;
+}
+    /* Flex container: left+center columns */
+.footer-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;            /* space between columns */
+}
+
+/* — Left Column — */
+.footer-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex: 1 1 400px;
+}
+/* Logo size */
+.footer-logo {
+  width: 100px;          /* ADJUST: logo width */
+  height: auto;
+}
+/* Main copy size */
+.footer-copy {
+  margin: 0;
+  width: 100%;
+  font-size: 1.5rem;      /* existing size */
+  font-weight: bold;    /* make it bold */
+}
+/* Subtext size */
+.footer-sub {
+  display: block;
+  max-width: 600px;   /* adjust wrap width */
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* — Center Column — */
+.footer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;            /* space between button & icons */
+  flex: 0 0 auto;
+}
+/* Donate image size */
+.donate-img {
+  width: auto;
+  height: 48px;         /* ADJUST: donate button height */
+  cursor: pointer;
+}
+
+/* — Social Icons under button — */
+.footer-social {
+  display: flex;
+  gap: 1rem;            /* ADJUST: space between icons */
+}
+/* Icon sizes */
+.footer-social img {
+  width: 60px;          /* ADJUST: icon width */
+  height: 60px;
+  filter: brightness(200%);
+  transition: filter 0.2s;
+}
+.footer-social a:hover img {
+  filter: brightness(100%);
+}
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Nav -->
+  <header class="top-bar">
+    <div class="logo"></div>
+    <nav>
+      <a href="index.html">ABOUT</a>
+      <a href="community.html">COMMUNITY</a>
+      <a href="projects.html">PROJECTS</a>
+      <a href="support.html">SUPPORT</a>
+    </nav>
+  </header>
+
+  <!-- Mission Section -->
+  <section class="mission-section">
+    <div class="mission-bg"></div>
+    <div class="mission-copy">
+      <h1>OUR MISSION</h1>
+      <p>
+        Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
+      </p>
+      <a href="#donate" class="donate-btn">
+        <img src="images/Donate.png" alt="Donate Now">
+      </a>
+    </div>
+  </section>
+
+  <!-- Short Description -->
+  <div class="description">
+    Our organization is structured in a way where each of the three main branches benefit from and help support the other two. Here’s how it works:
+  </div>
+
+  <!-- Image Pair Section -->
+  <div class="image-section">
+    <div class="img-box" style="background-image:url('images/spectators.png');"></div>
+    <div class="img-box" style="background-image:url('images/teaching.png');"></div>
+  </div>
+
+  <!-- Integrated Approach -->
+  <div class="section-title">AN INTEGRATED APPROACH</div>
+<div class="triangle-container" style="margin: 5rem auto; width: 600px; position: relative; text-align: center; font-family: sans-serif; height: 480px;">
+  <!-- SVG Triangle -->
+  <svg viewBox="0 0 300 240" style="width: 100%; height: auto;">
+    <defs>
+      <linearGradient id="triangleStrokeGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#F9CB22"/>
+        <stop offset="50%" stop-color="#EF7616"/>
+        <stop offset="100%" stop-color="#F0115F"/>
+      </linearGradient>
+    </defs>
+    <polygon
+      points="150,20 40,200 260,200"
+      fill="none"
+      stroke="url(#triangleStrokeGradient)"
+      stroke-width="6"
+      stroke-linejoin="round"
+    />
+  </svg>
+
+  <!-- Labels -->
+  <div id="labels" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+    <div class="label">
+      <div class="label-text">NONPROFIT</div>
+    </div>
+    <div class="label">
+      <div class="label-text">VEXU TEAM</div>
+    </div>
+    <div class="label">
+      <div class="label-text">SOCAL ALLIANCE</div>
+    </div>
+  </div>
+
+  <!-- Descriptions -->
+  <div id="description-left" class="description-text"></div>
+  <div id="description-right" class="description-text"></div>
+
+  <!-- Arrows -->
+  <div id="arrow-container">
+      <div class="arrow" data-dir="-1">&#9664;</div>
+      <div class="arrow" data-dir="1">&#9654;</div>
+  </div>
+</div>
+
+<script>
+  // --- Configuration ---
+  const roles = [
+    {
+      label: 'NONPROFIT',
+      descriptions: {
+        VEXU_TEAM: 'Provides funding and resources to the VEXU team, enabling them to compete and innovate.',
+        SOCAL_ALLIANCE: 'Acts as the fiscal sponsor for the SoCal Alliance, handling donations and financial oversight.'
+      }
+    },
+    {
+      label: 'VEXU TEAM',
+      descriptions: {
+        NONPROFIT: 'Team members volunteer and provide technical expertise to support the nonprofit\'s outreach programs.',
+        SOCAL_ALLIANCE: 'Serves as a model team and contributes to the Alliance\'s knowledge base and community events.'
+      }
+    },
+    {
+      label: 'SOCAL ALLIANCE',
+      descriptions: {
+        NONPROFIT: 'Organizes fundraising events and connects the nonprofit with potential sponsors and partners.',
+        VEXU_TEAM: 'Offers mentorship, shared resources, and a collaborative community for the VEXU team.'
+      }
+    }
+  ];
+
+  // Adjusted positions for better layout
+  const positions = [
+    {x: 300, y: 10},   // Top vertex
+    {x: -40, y: 440},  // Bottom-left vertex
+    {x: 640, y: 440}   // Bottom-right vertex
+  ];
+
+  // --- Global State ---
+  let rotation = 0; 
+  let isAnimating = false;
+  const labelEls = document.querySelectorAll('#labels .label');
+  const descriptionLeftEl = document.getElementById('description-left');
+  const descriptionRightEl = document.getElementById('description-right');
+
+  const arrowContainer = document.getElementById('arrow-container');
+  function updateArrowGap() {
+  // Calculate which role is currently at the top based on rotation
+  const topRoleIndex = (3 - rotation) % 3;
+  const topRoleLabel = roles[topRoleIndex].label;
+
+  if (topRoleLabel === 'SOCAL ALLIANCE') {
+    arrowContainer.style.gap = '15rem';  // wider gap when SOCAL ALLIANCE is on top
+  } else {
+    arrowContainer.style.gap = '11rem';  // default gap otherwise
+  }
+}
+  // --- Animation & Positioning Logic ---
+
+  const circumcircle = (function getCircumcircle(points) {
+    const [p1, p2, p3] = points;
+    const d = 2 * (p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y));
+    if (Math.abs(d) < 1e-6) return null;
+    const ux = ((p1.x * p1.x + p1.y * p1.y) * (p2.y - p3.y) + (p2.x * p2.x + p2.y * p2.y) * (p3.y - p1.y) + (p3.x * p3.x + p3.y * p3.y) * (p1.y - p2.y)) / d;
+    const uy = ((p1.x * p1.x + p1.y * p1.y) * (p3.x - p2.x) + (p2.x * p2.x + p2.y * p2.y) * (p1.x - p3.x) + (p3.x * p3.x + p3.y * p3.y) * (p2.x - p1.x)) / d;
+    const center = { x: ux, y: uy };
+    const radius = Math.sqrt(Math.pow(center.x - p1.x, 2) + Math.pow(center.y - p1.y, 2));
+    return { center, radius };
+  })(positions);
+
+  function getAngle(point) {
+    return Math.atan2(point.y - circumcircle.center.y, point.x - circumcircle.center.x);
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function updateDescriptions() {
+    const topRoleIndex = (3 - rotation) % 3;
+    const leftRoleIndex = (4 - rotation) % 3;
+    const rightRoleIndex = (5 - rotation) % 3;
+
+    const topRole = roles[topRoleIndex];
+    const leftRole = roles[leftRoleIndex];
+    const rightRole = roles[rightRoleIndex];
+
+    const leftKey = leftRole.label.replace(' ', '_');
+    const rightKey = rightRole.label.replace(' ', '_');
+
+    descriptionLeftEl.textContent = topRole.descriptions[leftKey];
+    descriptionRightEl.textContent = topRole.descriptions[rightKey];
+
+    // Position the descriptions
+    const leftVertex = positions[1];
+    const rightVertex = positions[2];
+    descriptionLeftEl.style.left = `${leftVertex.x + 20}px`; // Adjusted position
+    descriptionLeftEl.style.top = `${leftVertex.y - 400}px`; // Moved up
+    descriptionLeftEl.style.width = '350px';
+    descriptionLeftEl.style.textAlign = "left";
+    descriptionRightEl.style.left = `${rightVertex.x - 250}px`; // Adjusted position
+    descriptionRightEl.style.top = `${rightVertex.y - 400}px`; // Moved up
+    descriptionRightEl.style.width = '350px';
+    descriptionRightEl.style.textAlign = "right";
+
+    setTimeout(() => {
+      descriptionLeftEl.classList.add('visible');
+      descriptionRightEl.classList.add('visible');
+    }, 10);
+  }
+
+  function animateRotation(direction) {
+  if (isAnimating || !circumcircle) return;
+  isAnimating = true;
+
+  descriptionLeftEl.classList.remove('visible');
+  descriptionRightEl.classList.remove('visible');
+
+  const fromRotation = rotation;
+  const toRotation = (rotation + direction + 3) % 3;
+
+  const startTime = performance.now();
+  const duration = 800;
+
+  const animParams = Array.from(labelEls).map((_, i) => {
+    const startPos = positions[(i + fromRotation) % 3];
+    const endPos = positions[(i + toRotation) % 3];
+    const startAngle = getAngle(startPos);
+    let endAngle = getAngle(endPos);
+    let delta = endAngle - startAngle;
+
+    if (direction > 0) { // Clockwise
+      if (delta > 0) delta -= 2 * Math.PI;
+    } else { // Counter-clockwise
+      if (delta < 0) delta += 2 * Math.PI;
+    }
+    return { startAngle, delta };
+  });
+
+  // Trigger arrow gap change at 40% animation progress (~320ms)
+  const gapChangeDelay = duration * 0.2;
+  let gapChanged = false;
+
+  function animationStep(timestamp) {
+    const elapsed = timestamp - startTime;
+    const t = Math.min(elapsed / duration, 1);
+    const easedT = easeInOutCubic(t);
+
+    labelEls.forEach((el, i) => {
+      const { startAngle, delta } = animParams[i];
+      const angle = startAngle + delta * easedT;
+      const x = circumcircle.center.x + circumcircle.radius * Math.cos(angle);
+      const y = circumcircle.center.y + circumcircle.radius * Math.sin(angle);
+      el.style.left = `${x}px`;
+      el.style.top = `${y}px`;
+    });
+
+    // Start arrow gap animation early (once elapsed > gapChangeDelay)
+    if (!gapChanged && elapsed >= gapChangeDelay) {
+      rotation = toRotation; // update rotation here so updateArrowGap uses new rotation
+      updateArrowGap();
+      gapChanged = true;
+    }
+
+    if (t < 1) {
+      requestAnimationFrame(animationStep);
+    } else {
+      // Finish rotation update in case it wasn’t updated earlier
+      rotation = toRotation;
+      updateDescriptions();
+      isAnimating = false;
+    }
+  }
+
+  requestAnimationFrame(animationStep);
+}
+
+  function initialize() {
+    labelEls.forEach((el, i) => {
+      el.querySelector('.label-text').textContent = roles[i].label;
+      const pos = positions[(i + rotation) % 3];
+      el.style.left = `${pos.x}px`;
+      el.style.top = `${pos.y}px`;
+    });
+
+    updateDescriptions();
+
+    document.querySelectorAll('.arrow').forEach(arrow => {
+      arrow.addEventListener('click', () => {
+        const direction = parseInt(arrow.dataset.dir, 10);
+        animateRotation(direction);
+      });
+    });
+  }
+
+  initialize();
+
+</script>
+
+  <!-- Three Team Cards -->
+  <div class="team-grid">
+    <div class="team-card">
+      <img src="images/team1.jpg" alt="VEXU Team">
+      <div class="card-content">
+        <h3>VEXU TEAM</h3>
+        <p>Provides educational help and tournament hosting capabilities through volunteer work.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="images/team2.jpg" alt="SoCal Alliance">
+      <div class="card-content">
+        <h3>SoCal ALLIANCE</h3>
+        <p>Provides crucial funding for parts, tooling, travel, and event fees for teams to perform.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="images/team3.jpg" alt="Nonprofit">
+      <div class="card-content">
+        <h3>NONPROFIT</h3>
+        <p>Offers community outreach, mentorship, and sponsorship to schools in need.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Meet the Team -->
+  <div class="section-title" style="margin-top:4rem">MEET THE TEAM</div>
+  <div class="team-grid">
+    <!-- Repeat team-card blocks as needed -->
+  </div>
+
+  <!-- Contact Section -->
+  <div class="contact">
+    <h2>CONTACT US</h2>
+    <div class="icons">
+      <a href="#" style="background-image:url('images/SCA_INSTA.png');"></a>
+      <a href="#" style="background-image:url('images/SCA_EMAIL.png');"></a>
+      <a href="#" style="background-image:url('images/SCA_TIKTOK.png');"></a>
+      <a href="#" style="background-image:url('images/SCA_YOUTUBE.png');"></a>
+    </div>
+    <p>
+      SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.<br>
+      &copy; 2025 SoCal Alliance Robotics. All rights reserved.
+    </p>
+  </div>
+
+ <!-- ========= Footer ========= -->
+<footer class="site-footer">
+  <div class="footer-content">
+
+    <!-- Left: Logo + stacked text -->
+    <div class="footer-left">
+      <img src="images/logo.png" alt="SoCal Alliance Logo" class="footer-logo">
+      <div class="footer-text">
+        <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+        <p class="footer-sub">
+          SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.
+        </p>
+      </div>
+    </div>
+
+    <!-- Center: Donate + icons below -->
+    <div class="footer-center">
+      <a href="#donate" class="donate-link">
+        <img src="images/Donatewhite.png" alt="Donate Now" class="donate-img">
+      </a>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><img src="images/SCA_INSTwhite.png" alt="Instagram"></a>
+        <a href="#" aria-label="Email"><img src="images/SCA_EMAILwhite.png" alt="Email"></a>
+        <a href="#" aria-label="TikTok"><img src="images/SCA_INSTwhite.png" alt="TikTok"></a>
+        <a href="#" aria-label="YouTube"><img src="images/SCA_YOUTUBEwhite.png" alt="YouTube"></a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+<script>
+  (function() {
+    let lastScrollY = window.pageYOffset;
+    const nav = document.querySelector('.top-bar');
+
+    window.addEventListener('scroll', () => {
+      const currentY = window.pageYOffset;
+      if (currentY > lastScrollY && currentY > 100) {
+        // Scrolling down, hide nav
+        nav.classList.add('hidden');
+      } else {
+        // Scrolling up, show nav
+        nav.classList.remove('hidden');
+      }
+      lastScrollY = currentY;
+    });
+  })();
+</script>
+</body>
+</html>
