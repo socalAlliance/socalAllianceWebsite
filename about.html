@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title>SoCal Alliance • About</title>
   <link rel="icon" href="images/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
   <style>
     /* — Reset & Base — */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -123,10 +126,61 @@
       text-align: center; margin: 4rem 0 1rem;
     }
 
+    .integrated-approach {
+      position: relative;
+      padding: 2rem 0;
+      overflow: hidden;
+    }
+
+    .integrated-approach .section-title,
+    .integrated-approach .triangle-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .integrated-approach::before,
+    .integrated-approach::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+    }
+
+    .integrated-approach::before {
+      left: 0;
+      background-image: url('images/spectators.png');
+    }
+
+    .integrated-approach::after {
+      right: 0;
+      background-image: url('images/teaching.png');
+    }
+
+    .background-effects {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right,
+        rgba(0,0,0,0.2) 0%,
+        #000 40%,
+        #000 50%,
+        #000 60%,
+        rgba(0,0,0,0.2) 100%
+      );
+      z-index: -1;
+    }
+
     .label {
         position: absolute;
         font-weight: bold;
-        font-size: 1.5rem;
+        font-family: 'Tilt Warp', sans-serif;
+        font-size: 2.75rem;
         transform: translate(-50%, -50%);
         white-space: nowrap;
         text-align: center;
@@ -134,8 +188,8 @@
 
     .description-text {
       position: absolute;
-      font-size: 1rem;
-      color: #666;
+      font-size: 1.5rem;
+      color: #fff;
       max-width: 240px; /* Widened text box */
       line-height: 1.3;
       text-align: center;
@@ -150,11 +204,11 @@
 
     #arrow-container {
       position: absolute;
-      top: -10px;
+      top: -24px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 11rem;
+      gap: 16.5rem;
       pointer-events: auto;
       z-index: 5;
       transition: gap 0.5s ease;
@@ -325,56 +379,55 @@
     Our organization is structured in a way where each of the three main branches benefit from and help support the other two. Here’s how it works:
   </div>
 
-  <!-- Image Pair Section -->
-  <div class="image-section">
-    <div class="img-box" style="background-image:url('images/spectators.png');"></div>
-    <div class="img-box" style="background-image:url('images/teaching.png');"></div>
-  </div>
+  
 
   <!-- Integrated Approach -->
   <div class="section-title">AN INTEGRATED APPROACH</div>
-<div class="triangle-container" style="margin: 5rem auto; width: 600px; position: relative; text-align: center; font-family: sans-serif; height: 480px;">
-  <!-- SVG Triangle -->
-  <svg viewBox="0 0 300 240" style="width: 100%; height: auto;">
-    <defs>
-      <linearGradient id="triangleStrokeGradient" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#F9CB22"/>
-        <stop offset="50%" stop-color="#EF7616"/>
-        <stop offset="100%" stop-color="#F0115F"/>
-      </linearGradient>
-    </defs>
-    <polygon
-      points="150,20 40,200 260,200"
-      fill="none"
-      stroke="url(#triangleStrokeGradient)"
-      stroke-width="6"
-      stroke-linejoin="round"
-    />
-  </svg>
+  <div class="integrated-approach">
+    <div class="background-effects"></div>
+    <div class="triangle-container" style="margin: 5rem auto; width: 900px; position: relative; text-align: center; font-family: sans-serif; height: 720px;">
+      <!-- SVG Triangle -->
+      <svg viewBox="0 0 300 240" style="width: 100%; height: auto;">
+        <defs>
+          <linearGradient id="triangleStrokeGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F9CB22"/>
+            <stop offset="50%" stop-color="#EF7616"/>
+            <stop offset="100%" stop-color="#F0115F"/>
+          </linearGradient>
+        </defs>
+        <polygon
+          points="150,20 40,200 260,200"
+          fill="none"
+          stroke="url(#triangleStrokeGradient)"
+          stroke-width="6"
+          stroke-linejoin="round"
+        />
+      </svg>
 
-  <!-- Labels -->
-  <div id="labels" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
-    <div class="label">
-      <div class="label-text">NONPROFIT</div>
-    </div>
-    <div class="label">
-      <div class="label-text">VEXU TEAM</div>
-    </div>
-    <div class="label">
-      <div class="label-text">SOCAL ALLIANCE</div>
+      <!-- Labels -->
+      <div id="labels" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+        <div class="label">
+          <div class="label-text">NONPROFIT</div>
+        </div>
+        <div class="label">
+          <div class="label-text">VEXU TEAM</div>
+        </div>
+        <div class="label">
+          <div class="label-text">SOCAL ALLIANCE</div>
+        </div>
+      </div>
+
+      <!-- Descriptions -->
+      <div id="description-left" class="description-text"></div>
+      <div id="description-right" class="description-text"></div>
+
+      <!-- Arrows -->
+      <div id="arrow-container">
+          <div class="arrow" data-dir="-1">&#9664;</div>
+          <div class="arrow" data-dir="1">&#9654;</div>
+      </div>
     </div>
   </div>
-
-  <!-- Descriptions -->
-  <div id="description-left" class="description-text"></div>
-  <div id="description-right" class="description-text"></div>
-
-  <!-- Arrows -->
-  <div id="arrow-container">
-      <div class="arrow" data-dir="-1">&#9664;</div>
-      <div class="arrow" data-dir="1">&#9654;</div>
-  </div>
-</div>
 
 <script>
   // --- Configuration ---
@@ -404,9 +457,9 @@
 
   // Adjusted positions for better layout
   const positions = [
-    {x: 300, y: 10},   // Top vertex
-    {x: -40, y: 440},  // Bottom-left vertex
-    {x: 640, y: 440}   // Bottom-right vertex
+    {x: 450, y: -5},   // Top vertex
+    {x: -40, y: 640},  // Bottom-left vertex
+    {x: 940, y: 640}   // Bottom-right vertex
   ];
 
   // --- Global State ---
@@ -423,9 +476,9 @@
   const topRoleLabel = roles[topRoleIndex].label;
 
   if (topRoleLabel === 'SOCAL ALLIANCE') {
-    arrowContainer.style.gap = '15rem';  // wider gap when SOCAL ALLIANCE is on top
+    arrowContainer.style.gap = '24rem';  // wider gap when SOCAL ALLIANCE is on top
   } else {
-    arrowContainer.style.gap = '11rem';  // default gap otherwise
+    arrowContainer.style.gap = '16.5rem';  // default gap otherwise
   }
 }
   // --- Animation & Positioning Logic ---
@@ -467,6 +520,7 @@
     // Position the descriptions
     const leftVertex = positions[1];
     const rightVertex = positions[2];
+
     descriptionLeftEl.style.left = `${leftVertex.x + 20}px`; // Adjusted position
     descriptionLeftEl.style.top = `${leftVertex.y - 400}px`; // Moved up
     descriptionLeftEl.style.width = '350px';
