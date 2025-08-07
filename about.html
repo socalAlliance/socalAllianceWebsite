@@ -6,7 +6,7 @@
   <link rel="icon" href="images/logo.png" type="image/png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet">
   <style>
     /* — Reset & Base — */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +26,7 @@
       width:100%; height:100px;
       background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
       display:flex; align-items:center; padding:0 50px;
-      font-family:'Tilt Warp',sans-serif; font-size:28px;
+            font-family: 'Tilt Warp', sans-serif; font-size:28px;
       z-index:10; transition:transform .3s ease;
     }
     .top-bar.hidden { transform:translateY(-100%); }
@@ -84,7 +84,9 @@
 /* Button row stays inside */
 .mission-copy .btn-row {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-start;
   margin-top: 1rem;
 }
     .mission-copy h1 {
@@ -98,7 +100,52 @@
       line-height: 1.4;
       margin-bottom: 1.5rem;
     }
-   
+
+.btn-outline {
+    position: relative;
+    font-family: 'Tilt Warp', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 4px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    --btn-gradient: linear-gradient(90deg, #F0115F, #EF7616); /* Default gradient */
+    color: #fff;  /* Default text color */
+    border-radius: 8px;
+    display: inline-block;
+    background: transparent;  /* Keep the background transparent */
+    border: 2px solid transparent;  /* Outline border is handled by the pseudo-element */
+  }
+
+  .btn-outline::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 4px;
+    background: var(--btn-gradient);  /* Gradient background */
+    mask: 
+      linear-gradient(#000 0 0) content-box, 
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    z-index: -1;  /* Ensure the background stays behind the text */
+    transition: filter 0.3s ease;
+  }
+
+  /* Hover effect for grayscale */
+  .btn-outline.hover-grayscale:hover::before {
+    filter: grayscale(100%); /* Apply grayscale to the outline background */
+  }
+
+  /* Hover effect for scaling */
+  .btn-outline.hover-scale:hover {
+    transform: scale(1.05);  /* Apply scale effect to the button itself */
+    color: #fff; /* Optional: Change text color on hover */
+  }
+
 /* override the scaling on the donate button */
 .donate-img {
   /* only animate the filter, never transform */
@@ -171,7 +218,7 @@
   border-radius: var(--integrated-bar-radius);
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.3),
               0 2px 6px rgba(0,0,0,0.4);
-  font-family: 'Krona One', sans-serif;
+  font-family: 'Tilt Warp', sans-serif;
   font-size: 48px;
   color: #000;
   text-transform: none;
@@ -219,7 +266,7 @@
     );
   border-radius: var(--integrated-bar-radius);
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.4);
-  font-family: 'Krona One', sans-serif;
+  font-family: 'Tilt Warp', sans-serif;
   font-size: 48px;
   color: #000;
   text-transform: none;
@@ -360,6 +407,9 @@
     }
     .footer-social a:hover img { filter:brightness(100%); }
     /* Gray-out donate button & social icons on hover */
+    .site-footer .logo {
+  background-image: url('images/logowhite.png') !important;
+}
 .donate-img:hover,
 .footer-social a:hover img {
   filter: grayscale(100%) brightness(80%);
@@ -381,6 +431,19 @@
   display: block;
   transition: transform 0.3s ease;
 }
+
+.mission-line {
+    height: 6px;  /* Set the height of the line */
+    background-image: linear-gradient(
+      90deg,
+      rgba(249,203,34,0.9) 0%,
+      rgba(239,118,22,0.9) 50%,
+      rgba(240,17,95,0.9) 100%
+    );  /* Gradient from one color to another */
+    border-radius: 3px;  /* Rounded edges */
+    margin-top: 20px;  /* Space above the line */
+    margin-bottom: 20px;  /* Space below the line */
+  }
   </style>
 </head>
 <body>
@@ -406,17 +469,14 @@
 
   <div class="mission-copy">
     <h1>OUR MISSION</h1>
+    <div class="mission-line"></div>
     <p>
       Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
     </p>
 
     <div class="btn-row">
-      <a href="vex.html" class="btn-img donate-btn">
-        <img src="images/Whatsvex.png" alt="What’s VEX">
-      </a>
-      <a href="vex.html" class="btn-img donate-btn">
-        <img src="images/Donate.png" alt="Donate Now">
-      </a>
+      <a href="vex.html" class="btn-outline hover-scale">whatsvex?</a>
+      <a href="support.html" class="btn-outline hover-scale">donate</a>
     </div>
 
     <!-- any extra paragraphs… -->
@@ -690,6 +750,7 @@
 
  <!-- FOOTER (UNCHANGED) -->
   <footer class="site-footer">
+    
     <div class="footer-content">
       <div class="footer-left">
         <a href="index.html" class="logo-link">
@@ -701,7 +762,7 @@
         </div>
       </div>
       <div class="footer-center">
-        <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+        <a href="#donate" class="btn-outline hover-grayscale" style="--btn-gradient: white">Donate now</a>
         <div class="footer-social">
           <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener">
   <img src="images/SCA_INSTwhite.png" alt="Instagram">
