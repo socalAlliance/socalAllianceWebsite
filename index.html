@@ -4,22 +4,34 @@
   <meta charset="UTF-8"/>
   <title>SoCalAlliance</title>
   <link rel="icon" href="images/logo.png" type="image/png"/>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
   <style>
     /* — CONFIGURATION VARIABLES — */
     :root {
       /* BAR HEIGHTS */
       --stats-bar-height:    80px;             /* ← stats bar height */
-      --partners-bar-height: var(--stats-bar-height); /* ← partnerships bar height */
+      
 
       /* TEXT SIZES */
       --hero-text-size:      72px;             /* ← “FOUNDED BY COMPETITORS” */
-      --partners-text-size:  var(--hero-text-size); /* ← “PARTNERSHIPS” */
+     
 
       /* CORNERS & SHADOWS */
       --bar-radius:          12px;
       --inset-shadow:        inset 0 2px 5px rgba(0,0,0,0.3);
       --drop-shadow:         0 2px 6px rgba(0,0,0,0.4);
+        /* …other vars… */
+
+  /* width of the partnerships banner */
+  --partnerships-img-width: 90%;    
+
+  /* space between banner and logos */
+  --banner-logo-gap: 2rem;           
+
+  /* spacing between each logo */
+  --partner-logo-gap: 2rem;    
     }
 
     /* — Reset & Base — */
@@ -60,7 +72,7 @@
  .hero-text {
   /* existing positioning & font */
   white-space: nowrap;
-  position: absolute; top:15%; left:50%;
+  position: absolute; top:15%; left:55%;
   transform: translate(-12%,-70%);
   font: 200 var(--hero-text-size) 'Tilt Warp', sans-serif;
   text-align: center; 
@@ -143,42 +155,45 @@
     .name { font-size:24px; font-weight:700; }
 
     /* — PARTNERSHIPS BAR — */
-    .partnerships { position:relative; }
-    .partners-bar {
-  width:100%; max-width:1200px;
-  height:var(--partners-bar-height);
-  margin:1.5rem auto; padding:0 1rem;
-  display:flex; justify-content:center; align-items:center;
-  background:
-    linear-gradient(90deg,
-      rgba(240,17,95,0.9) 23%,
-      rgba(239,118,22,0.9) 50%,
-      rgba(249,203,34,0.9) 77%
-    );
-  border-radius:var(--bar-radius);
-  box-shadow: var(--inset-shadow), var(--drop-shadow);
+   :root {
+  /* …existing vars… */
 
-  /* ← partners label styling now matches stats numbers */
-  font-family: 'Krona One', sans-serif;
-  font-size: 48px;
-  color: #000;
-  text-transform: none;
+  /* tweak the featured banner’s width */
+  --partnerships-img-width: 100%;    /* try 80%, 1200px, etc */
+
+  /* tweak each partner-logo width */
+  --partner-logo-width: 120px;       /* adjust to taste */
 }
-    .partners-grid {
-      position:relative; display:flex; flex-wrap:wrap;
-      justify-content:center; gap:2rem; padding:2rem 1rem;
-      background:#000;
-    }
-    .partners-grid::before {
-      content:''; position:absolute; inset:0;
-      background:rgba(0,0,0,0.5); pointer-events:none;
-    }
-    .partners-grid img {
-      position:relative; max-width:150px; width:100%; height:auto;
-      object-fit:contain; transition:transform .3s;
-    }
-    .partners-grid img:hover { transform:scale(1.05); }
 
+/* full-width (or controlled) partnerships image */
+.partners-image {
+  display: block;
+  width: var(--partnerships-img-width);
+  max-width: 850px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.partners-logos {
+  display: flex;
+  justify-content: center;          /* center all logos */
+  align-items: center;
+  gap: var(--partner-logo-gap);      /* horizontal spacing */
+  margin: var(--banner-logo-gap) auto 0;  /* space above, auto-left/right */
+  padding: 1rem 0;                   /* optional vertical padding */
+}
+
+.partners-logos a img {
+  width: var(--partner-logo-width);  /* already defined elsewhere */
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.partners-logos a img:hover {
+  transform: scale(1.05);
+  filter: none;
+}
     /* — FOOTER (UNCHANGED) — */
     .site-footer {
       background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
@@ -236,7 +251,6 @@
     <nav>
         <a href="about.html" target="_blank" rel="noopener">ABOUT</a>
       <a href="#">COMMUNITY</a>
-      <a href="#">EVENTS</a>
       <a href="#">PROJECTS</a>
       <a href="#">SUPPORT</a>
     </nav>
@@ -247,9 +261,9 @@
     <div class="hero-text">FOUNDED BY COMPETITORS</div>
     <div class="subhead">
       <p>See how we’re empowering the next generation of engineers through collaboration, resource-sharing, and mutual growth.</p>
-      <a href="about.html" target="_blank" rel="noopener">
-  <img src="images/Learnmore.png" alt="TikTok">
-</a>
+       <a href="about.html" class="btn-img">
+    <img src="images/Learnmore.png" alt="Learn More">
+  </a>
     </div>
   </section>
 
@@ -280,15 +294,20 @@
   </section>
 
   <!-- PARTNERSHIPS -->
-  <section class="partnerships">
-    <div class="partners-bar">PARTNERSHIPS</div>
-    <div class="partners-grid">
-      <a href="https://mcbride.lbschools.net" target="_blank" rel="noopener">
-  <img src="images/McBride-Logo.png" alt="TikTok">
-</a>
-      <!-- …other logos… -->
-    </div>
-  </section>
+ <section class="partnerships">
+  <img
+    src="images/partnerships.png"
+    alt="SoCal Alliance Partnerships"
+    class="partners-image"
+  >
+
+  <div class="partners-logos">
+    <a href="https://mcbride.lbschools.net" target="_blank" rel="noopener">
+      <img src="images/McBride-Logo.png" alt="McBride Logo">
+    </a>
+    <!-- …other logos… -->
+  </div>
+</section>
 
   <!-- FOOTER (UNCHANGED) -->
   <footer class="site-footer">

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SoCal Alliance • About</title>
+  <title>SCA • About</title>
   <link rel="icon" href="images/logo.png" type="image/png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,56 +20,73 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* — Sticky Nav — */
+        /* — Sticky Nav — */
     .top-bar {
-      position: sticky; top: 0; left: 0;
-      width: 100%; height: 100px;
+      position:sticky; top:0; left:0;
+      width:100%; height:100px;
       background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-      display: flex; align-items: center; padding: 0 50px;
-      font-family: 'Tilt Warp', sans-serif; font-size: 28px;
-      z-index: 10;
-      transition: transform 0.3s ease;
+      display:flex; align-items:center; padding:0 50px;
+      font-family:'Tilt Warp',sans-serif; font-size:28px;
+      z-index:10; transition:transform .3s ease;
     }
-    
-    .top-bar.hidden {
-  transform: translateY(-100%);
-}
-    .logo {
-      width: 81px; height: 73px;
-      background: url('images/logo.png') center/cover no-repeat;
-      margin-right: 60px;
+    .top-bar.hidden { transform:translateY(-100%); }
+    .logo { width:81px; height:73px;
+      background:url('images/logo.png') center/cover no-repeat;
+      margin-right:60px;
     }
-    nav { display: flex; gap: 40px; }
-    nav a:hover { opacity: .7; }
+    nav { display:flex; gap:40px; }
+    nav a:hover { opacity:.7; }
 
-    /* — Mission Section — */
-    .mission-section {
-      position: relative;
-      width: 100%;
-      height: 500px;         /* adjust overall height */
-      overflow: hidden;
-      margin-bottom: 4rem;
-    }
-    /* adjustable GIF on left */
-    .mission-bg {
-      position: absolute;
-      top: 50%; left: 5%;     /* tweak left offset here */
-      transform: translateY(-50%);
-      width: 300px;           /* tweak width */
-      height: auto;
-      background: url('images/mission.gif') center/contain no-repeat;
-      opacity: 0.5;
-      filter: blur(12px);     /* tweak blur strength */
-      pointer-events: none;
-    }
-    /* mission text on right */
-    .mission-copy {
-      position: absolute;
-      top: 50%; right: 10%;   /* tweak right offset here */
-      transform: translateY(-50%);
-      max-width: 45%;         /* tweak text container width */
-      text-align: left;
-    }
+
+
+    /* —— Mission Section —— */
+:root {
+  --mission-gif-offset-x: 10%;   /* move GIF more to the left */
+  /* or 15%, 30px, whatever unit you prefer */
+  --mission-copy-offset-x: 55%;   /* from the left edge */
+  --mission-copy-offset-y: 50%;   /* from the top edge */
+}
+
+.mission-section {
+  position: relative;
+  height: 550px;
+  /* allow overflow so the GIF never gets clipped */
+  overflow: visible;
+  margin-bottom: 4rem;
+}
+
+.mission-gif {
+  position: absolute;
+  top: -2%;
+  /* use the variable so you can adjust in one place */
+  left: var(--mission-gif-offset-x);
+  width: 800px;
+  height: auto;
+  filter: blur(6px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mission-copy {
+  position: absolute;
+  /* use offsets instead of hard-coding top/right */
+  top: var(--mission-copy-offset-y);
+  left: var(--mission-copy-offset-x);
+  /* center vertically by translating half its own height */
+  transform: translate(-50%, -50%);
+  
+  z-index: 2;
+  max-width: 45%;
+  color: #fff;
+}
+
+/* Button row stays inside */
+.mission-copy .btn-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
     .mission-copy h1 {
       font-family: 'Tilt Warp', sans-serif;
       font-size: 60px;        /* tweak heading size */
@@ -81,21 +98,19 @@
       line-height: 1.4;
       margin-bottom: 1.5rem;
     }
-    /* donate button graphic */
-    .donate-btn img {
-      display: block;
-      width: auto;
-      height: 48px;           /* tweak button height */
-      cursor: pointer;
-    }
+   
+/* override the scaling on the donate button */
+.donate-img {
+  /* only animate the filter, never transform */
+  transition: filter 0.3s ease;
+  transform: none !important;
+}
 
-    /* — Description Text — */
-    .description {
-      padding: 4rem 10%;
-      text-align: center;
-      font-size: 24px; line-height: 29px;
-      max-width: 900px; margin: 0 auto;
-    }
+.donate-img:hover {
+  filter: grayscale(100%) brightness(80%);
+  /* ensure it doesn’t pick up the .btn-img transform */
+  transform: none !important;
+}
 
     /* — Image Pair with Overlay — */
     .image-section {
@@ -137,7 +152,30 @@
       position: relative;
       z-index: 1;
     }
-
+/* Shared bar styling */
+.section-bar {
+  max-width: 1200px;
+  margin: 4rem auto 1rem;      /* adjust top / bottom as needed */
+  padding: 0 1rem;
+  height: var(--integrated-bar-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(249,203,34,0.9) 23%,
+      rgba(239,118,22,0.9) 50%,
+      rgba(240,17,95,0.9) 77%
+    );
+  border-radius: var(--integrated-bar-radius);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3),
+              0 2px 6px rgba(0,0,0,0.4);
+  font-family: 'Krona One', sans-serif;
+  font-size: 48px;
+  color: #000;
+  text-transform: none;
+}
     .integrated-approach::before,
     .integrated-approach::after {
       content: '';
@@ -159,7 +197,44 @@
       right: 0;
       background-image: url('images/teaching.png');
     }
+/* — Integrated Approach Bar — */
+:root {
+  --integrated-bar-height: 80px;
+  --integrated-bar-radius: 12px;
+}
+.integrated-bar {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+  height: var(--integrated-bar-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 
+    linear-gradient(
+      90deg,
+      rgba(249,203,34,0.9) 23%,
+      rgba(239,118,22,0.9) 50%,
+      rgba(240,17,95,0.9) 77%
+    );
+  border-radius: var(--integrated-bar-radius);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.4);
+  font-family: 'Krona One', sans-serif;
+  font-size: 48px;
+  color: #000;
+  text-transform: none;
+}
 
+/* — Integrated Description — */
+.integrated-desc {
+  max-width: 900px;
+  margin: 1rem auto 3rem;
+  padding: 0 1rem;
+  text-align: center;
+  font-size: 24px;
+  line-height: 1.4;
+  color: #fff;
+}
     .background-effects {
       position: absolute;
       top: 0;
@@ -220,7 +295,14 @@
       color: #fff;
       text-shadow: 0 0 5px rgba(0,0,0,0.5);
     }
+.arrow {
+  display: inline-block;             /* ensure transform works predictably */
+  transition: transform 0.3s ease;    /* animate the scale */
+}
 
+.arrow:hover {
+  transform: scale(1.1);             /* pop-out effect on hover */
+}
     /* — Team Cards — */
     .team-grid {
       display: grid;
@@ -244,146 +326,116 @@
     .team-card .card-content p {
       font-size: 18px; line-height: 22px;
     }
-
-    /* — Contact Section — */
-    .contact {
-      text-align: center; padding: 4rem 10%;
-    }
-    .contact h2 {
-      font-family: 'Tilt Warp', sans-serif;
-      font-size: 60px; margin-bottom: 1rem;
-    }
-    .contact .icons {
-      display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;
-    }
-    .contact .icons a {
-      width: 60px; height: 60px;
-      background: #222 center/contain no-repeat;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .contact p {
-      font-size: 18px; line-height: 22px;
-    }
-.site-footer {
-  /* same gradient as nav bar */
-  background: linear-gradient(
-    90deg,
-    #000 0%,
-    #000 10%,
-    #F0115F 60%,
-    #EF7616 100%
-  );
-  color: #fff;
-  padding: 2rem 10%;
-  font-family: 'Instrument Sans', sans-serif;
-}
-    /* Flex container: left+center columns */
-.footer-content {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;            /* space between columns */
+/* — Reuse integrated-bar styling for Meet The Team — */
+.meet-bar {
+  margin: 4rem auto 1rem;   /* push it further down, tighten bottom */
 }
 
-/* — Left Column — */
-.footer-left {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  flex: 1 1 400px;
+/* If you want a slightly different font size: */
+.meet-bar {
+  font-size: 48px;          /* same as the others */
 }
-/* Logo size */
-.footer-logo {
-  width: 100px;          /* ADJUST: logo width */
-  height: auto;
-}
-/* Main copy size */
-.footer-copy {
-  margin: 0;
-  width: 100%;
-  font-size: 1.5rem;      /* existing size */
-  font-weight: bold;    /* make it bold */
-}
-/* Subtext size */
-.footer-sub {
-  display: block;
-  max-width: 600px;   /* adjust wrap width */
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  opacity: 0.9;
-}
-
-/* — Center Column — */
-.footer-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;            /* space between button & icons */
-  flex: 0 0 auto;
-}
-/* Donate image size */
-.donate-img {
-  width: auto;
-  height: 48px;         /* ADJUST: donate button height */
-  cursor: pointer;
-}
-
-/* — Social Icons under button — */
-.footer-social {
-  display: flex;
-  gap: 1rem;            /* ADJUST: space between icons */
-}
-/* Icon sizes */
-.footer-social img {
-  width: 60px;          /* ADJUST: icon width */
-  height: 60px;
-  filter: brightness(200%);
-  transition: filter 0.2s;
-}
+   
+/* — FOOTER (UNCHANGED) — */
+    .site-footer {
+      background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      color:#fff; padding:2rem 10%; font-family:'Instrument Sans',sans-serif;
+    }
+    .footer-content {
+      display:flex; align-items:flex-start;
+      justify-content:space-between; flex-wrap:wrap; gap:5rem;
+    }
+    .footer-left {
+      display:flex; align-items:flex-start; gap:1rem; flex:1 1 400px;
+    }
+    .footer-logo { width:500px; height:auto; }
+    .footer-copy { margin:0; font-size:1.5rem; font-weight:bold; }
+    .footer-sub { margin-top:.5rem; font-size:1rem; opacity:.9; max-width: 400px;   /* ← adjust this to wrap sooner or later */ }
+    .footer-center { display:flex; flex-direction:column; align-items:center; gap:1rem; }
+    .donate-img { height:48px; cursor:pointer; }
+    .footer-social { display:flex; gap:1rem; }
+    .footer-social img {
+      width:60px; height:60px; filter:brightness(200%);
+      transition:filter .2s;
+    }
+    .footer-social a:hover img { filter:brightness(100%); }
+    /* Gray-out donate button & social icons on hover */
+.donate-img:hover,
 .footer-social a:hover img {
-  filter: brightness(100%);
+  filter: grayscale(100%) brightness(80%);
+}
+/* Pop-up on hover for the Learn More image */
+.btn-img:hover img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+.logo-link .logo {
+  transition: transform 0.3s ease;
+}
+
+.logo-link:hover .logo {
+  transform: scale(1.05);
+}
+/* Ensure you reset any default transition */
+.btn-img img {
+  display: block;
+  transition: transform 0.3s ease;
 }
   </style>
 </head>
 <body>
 
-  <!-- Sticky Nav -->
+    <!-- NAV -->
   <header class="top-bar">
+    <a href="index.html" class="logo-link">
     <div class="logo"></div>
+  </a>
     <nav>
-      <a href="index.html">ABOUT</a>
-      <a href="community.html">COMMUNITY</a>
-      <a href="projects.html">PROJECTS</a>
-      <a href="support.html">SUPPORT</a>
+        <a href="about.html" target="_blank" rel="noopener">ABOUT</a>
+      <a href="#">COMMUNITY</a>
+    
+      <a href="#">PROJECTS</a>
+      <a href="#">SUPPORT</a>
     </nav>
   </header>
 
+
   <!-- Mission Section -->
   <section class="mission-section">
-    <div class="mission-bg"></div>
-    <div class="mission-copy">
-      <h1>OUR MISSION</h1>
-      <p>
-        Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
-      </p>
-      <a href="#donate" class="donate-btn">
+  <img src="images/mission.gif" alt="" class="mission-gif">
+
+  <div class="mission-copy">
+    <h1>OUR MISSION</h1>
+    <p>
+      Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
+    </p>
+
+    <div class="btn-row">
+      <a href="vex.html" class="btn-img donate-btn">
+        <img src="images/Whatsvex.png" alt="What’s VEX">
+      </a>
+      <a href="vex.html" class="btn-img donate-btn">
         <img src="images/Donate.png" alt="Donate Now">
       </a>
     </div>
-  </section>
 
-  <!-- Short Description -->
-  <div class="description">
-    Our organization is structured in a way where each of the three main branches benefit from and help support the other two. Here’s how it works:
+    <!-- any extra paragraphs… -->
   </div>
+</section>
+
+ 
 
   
 
   <!-- Integrated Approach -->
-  <div class="section-title">AN INTEGRATED APPROACH</div>
+    <div class="integrated-bar">AN INTEGRATED APPROACH</div>
+  <div class="integrated-desc">
+   
+  </div>
+
+
   <div class="integrated-approach">
+    
     <div class="background-effects"></div>
     <div class="triangle-container" style="margin: 5rem auto; width: 900px; position: relative; text-align: center; font-family: sans-serif; height: 720px;">
       <!-- SVG Triangle -->
@@ -624,99 +676,61 @@
 
 </script>
 
-  <!-- Three Team Cards -->
+  
+
+ <!-- Meet the Team Bar -->
+  <div class="integrated-bar meet-bar">MEET THE TEAM</div>
+
+  <!-- Meet the Team Content -->
   <div class="team-grid">
-    <div class="team-card">
-      <img src="images/team1.jpg" alt="VEXU Team">
-      <div class="card-content">
-        <h3>VEXU TEAM</h3>
-        <p>Provides educational help and tournament hosting capabilities through volunteer work.</p>
-      </div>
-    </div>
-    <div class="team-card">
-      <img src="images/team2.jpg" alt="SoCal Alliance">
-      <div class="card-content">
-        <h3>SoCal ALLIANCE</h3>
-        <p>Provides crucial funding for parts, tooling, travel, and event fees for teams to perform.</p>
-      </div>
-    </div>
-    <div class="team-card">
-      <img src="images/team3.jpg" alt="Nonprofit">
-      <div class="card-content">
-        <h3>NONPROFIT</h3>
-        <p>Offers community outreach, mentorship, and sponsorship to schools in need.</p>
-      </div>
-    </div>
+    <!-- …cards… -->
   </div>
 
-  <!-- Meet the Team -->
-  <div class="section-title" style="margin-top:4rem">MEET THE TEAM</div>
-  <div class="team-grid">
-    <!-- Repeat team-card blocks as needed -->
-  </div>
+ 
 
-  <!-- Contact Section -->
-  <div class="contact">
-    <h2>CONTACT US</h2>
-    <div class="icons">
-      <a href="#" style="background-image:url('images/SCA_INSTA.png');"></a>
-      <a href="#" style="background-image:url('images/SCA_EMAIL.png');"></a>
-      <a href="#" style="background-image:url('images/SCA_TIKTOK.png');"></a>
-      <a href="#" style="background-image:url('images/SCA_YOUTUBE.png');"></a>
-    </div>
-    <p>
-      SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.<br>
-      &copy; 2025 SoCal Alliance Robotics. All rights reserved.
-    </p>
-  </div>
-
- <!-- ========= Footer ========= -->
-<footer class="site-footer">
-  <div class="footer-content">
-
-    <!-- Left: Logo + stacked text -->
-    <div class="footer-left">
-      <img src="images/logo.png" alt="SoCal Alliance Logo" class="footer-logo">
-      <div class="footer-text">
-        <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
-        <p class="footer-sub">
-          SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.
-        </p>
+ <!-- FOOTER (UNCHANGED) -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <a href="index.html" class="logo-link">
+    <div class="logo"></div>
+  </a>
+        <div>
+          <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+          <p class="footer-sub">SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.</p>
+        </div>
+      </div>
+      <div class="footer-center">
+        <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener">
+  <img src="images/SCA_INSTwhite.png" alt="Instagram">
+</a>
+<a href="mailto:you@domain.com">
+  <img src="images/SCA_EMAILwhite.png" alt="Email">
+</a>
+<a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener">
+  <img src="images/SCA_TIKTOKwhite.png" alt="TikTok">
+</a>
+<a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener">
+  <img src="images/SCA_YOUTUBEwhite.png" alt="YouTube">
+</a>
+        </div>
       </div>
     </div>
+  </footer>
 
-    <!-- Center: Donate + icons below -->
-    <div class="footer-center">
-      <a href="#donate" class="donate-link">
-        <img src="images/Donatewhite.png" alt="Donate Now" class="donate-img">
-      </a>
-      <div class="footer-social">
-        <a href="#" aria-label="Instagram"><img src="images/SCA_INSTwhite.png" alt="Instagram"></a>
-        <a href="#" aria-label="Email"><img src="images/SCA_EMAILwhite.png" alt="Email"></a>
-        <a href="#" aria-label="TikTok"><img src="images/SCA_INSTwhite.png" alt="TikTok"></a>
-        <a href="#" aria-label="YouTube"><img src="images/SCA_YOUTUBEwhite.png" alt="YouTube"></a>
-      </div>
-    </div>
-
-  </div>
-</footer>
-<script>
-  (function() {
-    let lastScrollY = window.pageYOffset;
-    const nav = document.querySelector('.top-bar');
-
-    window.addEventListener('scroll', () => {
-      const currentY = window.pageYOffset;
-      if (currentY > lastScrollY && currentY > 100) {
-        // Scrolling down, hide nav
-        nav.classList.add('hidden');
-      } else {
-        // Scrolling up, show nav
-        nav.classList.remove('hidden');
-      }
-      lastScrollY = currentY;
-    });
-  })();
-</script>
+  <!-- Hide-on-scroll Nav Script -->
+  <script>
+    (function(){
+      let lastY = window.scrollY;
+      const nav = document.querySelector('.top-bar');
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        nav.classList.toggle('hidden', y > lastY && y > 100);
+        lastY = y;
+      });
+    })();
+  </script>
 </body>
 </html>
