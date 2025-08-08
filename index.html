@@ -4,16 +4,36 @@
   <meta charset="UTF-8"/>
   <title>SoCalAlliance</title>
   <link rel="icon" href="images/logo.png" type="image/png"/>
+  
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
   <style>
+    
     /* — CONFIGURATION VARIABLES — */
     :root {
-      /* BAR HEIGHTS */
-      --stats-bar-height:    80px;             /* ← stats bar height */
-      
+     /* …other vars… */
 
+  /* STATS-BAR CONTROLS */
+  --stats-bar-width:        100%;    /* overall width */
+  --stats-bar-max-width:    900px;  /* maximum width */
+  --stats-bar-height:       150px;   /* fixed height */
+  --stats-bar-gap:          2rem;    /* spacing between each stat item */
+
+  /* (Existing number/label vars can stay or be added too) */
+  --stats-number-size:      48px;
+  --stats-label-size:       18px;
+  --stats-item-gap:         0.5rem;  /* gap between number & label */
+--stats-bar-radius: 50px;       /* roundness of the bar */
+  --stats-number-color: #000;  
+   --stats-label-color:  #000;    /* label text color */
+  /* if you ever want to tweak the gradient stops, you can too: */
+  --stats-gradient: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
       /* TEXT SIZES */
       --hero-text-size:      72px;             /* ← “FOUNDED BY COMPETITORS” */
      
@@ -24,8 +44,15 @@
       --drop-shadow:         0 2px 6px rgba(0,0,0,0.4);
         /* …other vars… */
 
-  /* width of the partnerships banner */
-  --partnerships-img-width: 90%;    
+    /* text */
+  --partnerships-text-size: 72px;    /* controls font-size */
+  --partnerships-text-weight: 100;   /* controls font-weight */
+
+  /* underline */
+  --partnerships-underline-height: 10px;  /* thickness */
+  --partnerships-underline-radius: 1000px;  /* corner-rounding */
+  --partnerships-underline-offset: 0.5rem; /* padding-bottom on the h2 */
+    --partnerships-underline-overhang: 5rem;
 
   /* space between banner and logos */
   --banner-logo-gap: 2rem;           
@@ -38,6 +65,7 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html,body { width:100%; }
     body {
+       
       background:#000; color:#fff;
       font-family:'Instrument Sans',sans-serif;
       line-height:1.4; overflow-x:hidden;
@@ -95,29 +123,52 @@
 
     /* — STATS BAR — */
     .stats-bar {
-      width:150%; max-width:1200px;
-       
-      margin:1.5rem auto; padding:0 1rem;
-      display:flex; justify-content:space-around; align-items:center;
-      background:
-        linear-gradient(90deg,
-          rgba(249,203,34,0.9) 23%,
-          rgba(239,118,22,0.9) 50%,
-          rgba(240,17,95,0.9) 77%
-        );
-      border-radius:var(--bar-radius);
-      box-shadow: var(--inset-shadow), var(--drop-shadow);
-    }
-    .stats-bar > div {
-      display:flex; flex-direction:column; align-items:center; text-align:center;
-    }
-    .stats-bar .number {
-      font-family:'Krona One',sans-serif; font-size:48px; color:#000;
-    }
-    .stats-bar .label {
-      font-family:'Instrument Sans',sans-serif; font-size:18px; color:#000;
-    }
-    
+  width: var(--stats-bar-width);
+  border-radius: var(--stats-bar-radius);
+  max-width: var(--stats-bar-max-width);
+  height: var(--stats-bar-height);
+  margin: 1.5rem auto;
+  padding: 0 1rem;  /* horizontal padding only */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+.stats-bar .number {
+  /* force black (or whatever you choose) */
+  color: var(--stats-number-color);
+  font-size: var(--stats-number-size);
+  font-family: 'Krona One', 'Instrument Sans';
+}
+  /* gap between items */
+  gap: var(--stats-bar-gap);
+
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: var(--bar-radius);
+  box-shadow: var(--inset-shadow), var(--drop-shadow);
+}
+
+.stats-bar > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--stats-item-gap);
+}
+
+.stats-bar .number {
+  font-family: 'Krona One', sans-serif;
+  font-size: var(--stats-number-size);
+  color: var(--stats-number-color);         /* now applied correctly */
+}
+
+.stats-bar .label {
+  font-size: var(--stats-label-size);
+  color: var(--stats-label-color);
+}
+
 
     /* — Hero 2 + About Overlay — */
     .hero-2 {
@@ -165,40 +216,77 @@
   --partner-logo-width: 120px;       /* adjust to taste */
 }
 
-/* full-width (or controlled) partnerships image */
-.partners-image {
-  display: block;
-  width: var(--partnerships-img-width);
-  max-width: 850px;
-  height: auto;
-  margin: 0 auto;
+ .partnerships-banner {
+      width:100%; max-width:1200px;
+      margin:2rem auto var(--banner-logo-gap);
+      text-align:center;
+      position: relative;
+    }
+    .partnerships-banner h2 {
+  display: inline-block;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: var(--partnerships-text-size);
+  font-weight: var(--partnerships-text-weight);
+  color: #fff;
+  margin: 0;
+  position: relative;
+  padding-bottom: var(--partnerships-underline-offset);
 }
 
-.partners-logos {
-  display: flex;
-  justify-content: center;          /* center all logos */
-  align-items: center;
-  gap: var(--partner-logo-gap);      /* horizontal spacing */
-  margin: var(--banner-logo-gap) auto 0;  /* space above, auto-left/right */
-  padding: 1rem 0;                   /* optional vertical padding */
+.partnerships-banner h2::after {
+  content: '';
+  position: absolute;
+  /* pull the bar out beyond the text by the overhang amount */
+  left: calc(-1 * var(--partnerships-underline-overhang));
+  right: calc(-1 * var(--partnerships-underline-overhang));
+  bottom: 0;
+  height: var(--partnerships-underline-height);
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: var(--partnerships-underline-radius);
 }
 
-.partners-logos a img {
-  width: var(--partner-logo-width);  /* already defined elsewhere */
-  height: auto;
-  object-fit: contain;
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.partners-logos a img:hover {
-  transform: scale(1.05);
-  filter: none;
-}
+    /* — Partner Logos Row — */
+    .partners-logos {
+      display:flex; justify-content:center; align-items:center;
+      gap: var(--partner-logo-gap);
+      margin:0 auto 2rem;
+    }
+    .partners-logos a img {
+      width: var(--partner-logo-width);
+      height:auto;
+      object-fit:contain;
+      transition:transform .3s ease;
+    }
+    .partners-logos a img:hover {
+      transform:scale(1.05);
+    }
+      /* Centered donate button below partnerships */
+  .partners-donate {
+    text-align: center;
+    margin: 2rem 0;      /* vertical spacing above/below */
+  }
+  .partners-donate .donate-btn img {
+    width: 160px;        /* adjust size as needed */
+    height: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .partners-donate .donate-btn:hover img {
+    transform: scale(1.05);
+    filter: grayscale(20%);
+  }
     /* — FOOTER (UNCHANGED) — */
     .site-footer {
       background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
       color:#fff; padding:2rem 10%; font-family:'Instrument Sans',sans-serif;
     }
+    .site-footer .logo {
+  background-image: url('images/logowhite.png') !important;
+}
     .footer-content {
       display:flex; align-items:flex-start;
       justify-content:space-between; flex-wrap:wrap; gap:5rem;
@@ -250,7 +338,7 @@
   </a>
     <nav>
         <a href="about.html" target="_blank" rel="noopener">ABOUT</a>
-      <a href="#">COMMUNITY</a>
+      <a href="#">VEX</a>
       <a href="#">PROJECTS</a>
       <a href="#">SUPPORT</a>
     </nav>
@@ -293,22 +381,21 @@
     </div>
   </section>
 
-  <!-- PARTNERSHIPS -->
- <section class="partnerships">
-  <img
-    src="images/partnerships.png"
-    alt="SoCal Alliance Partnerships"
-    class="partners-image"
-  >
-
+    <section class="partnerships-banner">
+    <h2>PARTNERSHIPS</h2>
+  </section>
   <div class="partners-logos">
     <a href="https://mcbride.lbschools.net" target="_blank" rel="noopener">
       <img src="images/McBride-Logo.png" alt="McBride Logo">
     </a>
-    <!-- …other logos… -->
+    <!-- …other partner logos… -->
   </div>
-</section>
-
+ <!-- Donate Button Centered Below Logos -->
+  <div class="partners-donate">
+    <a href="#donate" class="donate-btn">
+      <img src="images/Donate.png" alt="Donate Now">
+    </a>
+  </div>
   <!-- FOOTER (UNCHANGED) -->
   <footer class="site-footer">
     <div class="footer-content">

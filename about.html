@@ -45,6 +45,17 @@
   /* or 15%, 30px, whatever unit you prefer */
   --mission-copy-offset-x: 55%;   /* from the left edge */
   --mission-copy-offset-y: 50%;   /* from the top edge */
+    --animated-gradient: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  --partnerships-underline-height:   10px;
+  --partnerships-underline-radius:   1000px;
+  --partnerships-underline-overhang: 5rem;
+  --partnerships-underline-offset:   0.5rem;
+   --team-shift: 1400px;    /* start here, then adjust up/down */
 }
 
 .mission-section {
@@ -104,10 +115,10 @@
 .btn-outline {
     position: relative;
     font-family: 'Tilt Warp', sans-serif;
-    font-size: 18px;
+    font-size: 30px;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 4px;
+    padding: 3px;
     transition: transform 0.3s ease, color 0.3s ease;
     --btn-gradient: linear-gradient(90deg, #F0115F, #EF7616); /* Default gradient */
     color: #fff;  /* Default text color */
@@ -187,7 +198,32 @@
       font-size: 60px; line-height: 76px;
       text-align: center; margin: 4rem 0 1rem;
     }
+.partnerships-banner h2 {
+  display: inline-block;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: var(--partners-text-size);
+  font-weight: var(--partnerships-text-weight, 100);
+  color: #000;           /* or whatever text color you need */
+  margin: 0;
+  position: relative;
+  padding-bottom: var(--partnerships-underline-offset);
+}
 
+.partnerships-banner h2::after {
+  content: '';
+  position: absolute;
+  left:  calc(-1 * var(--partnerships-underline-overhang));
+  right: calc(-1 * var(--partnerships-underline-overhang));
+  bottom: 0;
+  height: var(--partnerships-underline-height);
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: var(--partnerships-underline-radius);
+}
     .integrated-approach {
       position: relative;
       padding: 2rem 0;
@@ -200,29 +236,7 @@
       z-index: 1;
     }
 /* Shared bar styling */
-.section-bar {
-  max-width: 1200px;
-  margin: 4rem auto 1rem;      /* adjust top / bottom as needed */
-  padding: 0 1rem;
-  height: var(--integrated-bar-height);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(249,203,34,0.9) 23%,
-      rgba(239,118,22,0.9) 50%,
-      rgba(240,17,95,0.9) 77%
-    );
-  border-radius: var(--integrated-bar-radius);
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3),
-              0 2px 6px rgba(0,0,0,0.4);
-  font-family: 'Tilt Warp', sans-serif;
-  font-size: 48px;
-  color: #000;
-  text-transform: none;
-}
+
     .integrated-approach::before,
     .integrated-approach::after {
       content: '';
@@ -245,43 +259,28 @@
       background-image: url('images/teaching.png');
     }
 /* — Integrated Approach Bar — */
-:root {
-  --integrated-bar-height: 80px;
-  --integrated-bar-radius: 12px;
+
+/* 2) Make the <h2> itself white */
+.integrated-bar.partnerships-banner h2 {
+  color: #fff !important;
 }
-.integrated-bar {
-  max-width: 1200px;
-  margin: 2rem auto 0;
-  padding: 0 1rem;
-  height: var(--integrated-bar-height);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: 
-    linear-gradient(
-      90deg,
-      rgba(249,203,34,0.9) 23%,
-      rgba(239,118,22,0.9) 50%,
-      rgba(240,17,95,0.9) 77%
-    );
-  border-radius: var(--integrated-bar-radius);
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.4);
-  font-family: 'Tilt Warp', sans-serif;
-  font-size: 48px;
-  color: #000;
-  text-transform: none;
+/* Keep the bar centered but remove its background */
+.integrated-bar.partnerships-banner {
+  display: flex;                /* enable flex centering */
+  justify-content: center;      /* center horizontally */
+  align-items: center;          /* center vertically if you ever change height */
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0;                   /* remove any leftover padding */
 }
 
-/* — Integrated Description — */
-.integrated-desc {
-  max-width: 900px;
-  margin: 1rem auto 3rem;
-  padding: 0 1rem;
-  text-align: center;
-  font-size: 24px;
-  line-height: 1.4;
-  color: #fff;
+/* Force the H2 to be inline-block so its underline width matches text */
+.integrated-bar.partnerships-banner h2 {
+  display: inline-block;
+  color: #fff !important;
 }
+
+
     .background-effects {
       position: absolute;
       top: 0;
@@ -336,19 +335,27 @@
       transition: gap 0.5s ease;
     }
 
-    .arrow {
-      cursor: pointer;
-      font-size: 1.75rem;
-      color: #fff;
-      text-shadow: 0 0 5px rgba(0,0,0,0.5);
-    }
+    /* 1) Make the arrow character itself be “painted” by the gradient */
 .arrow {
-  display: inline-block;             /* ensure transform works predictably */
-  transition: transform 0.3s ease;    /* animate the scale */
+  display: inline-block;           /* ensure background-clip works predictably */
+  font-size: 1.75rem;              /* your existing size */
+  background: var(--animated-gradient);
+  background-size: 200% 200%;      /* double-wide so it can animate */
+  -webkit-background-clip: text;   /* clip the gradient to the text */
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move 3s linear infinite;
 }
 
+/* 2) Keyframes to slide the gradient left→right→left */
+@keyframes gradient-move {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* Optional: keep your hover “pop” */
 .arrow:hover {
-  transform: scale(1.1);             /* pop-out effect on hover */
+  transform: scale(1.1);
 }
     /* — Team Cards — */
     .team-grid {
@@ -375,7 +382,7 @@
     }
 /* — Reuse integrated-bar styling for Meet The Team — */
 .meet-bar {
-  margin: 4rem auto 1rem;   /* push it further down, tighten bottom */
+  margin: 2rem auto 0;    /* only 2rem above, 0 below */
 }
 
 /* If you want a slightly different font size: */
@@ -444,6 +451,53 @@
     margin-top: 20px;  /* Space above the line */
     margin-bottom: 20px;  /* Space below the line */
   }
+/* Parent container must be relative so children absolute‐position relative to it */
+  .team‐container { position: relative; width: 1200px; margin: 0 auto; }
+
+  .team‐item { position: relative; }
+
+  .gradient‐line {
+    position: absolute;
+    height: 8px;
+    background: linear-gradient(
+      90deg,
+      #F9CB22 23%,
+      #EF7616 50%,
+      #F0115F 77%
+    );
+  }
+
+  .portrait {
+    position: absolute;
+    width: 165px;
+    height: 210px;
+    background-size: cover;
+    border-radius: 10px;
+  }
+
+  .name {
+    position: absolute;
+    font-family: 'Tilt Warp', sans-serif;
+    font-size: 40px;
+    line-height: 50px;
+    color: #fff;
+  }
+
+  .role {
+    position: absolute;
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #fff;
+  }
+ 
+.team-container {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 1400px;  /* big enough to cover all your team-items */
+}
   </style>
 </head>
 <body>
@@ -455,7 +509,7 @@
   </a>
     <nav>
         <a href="about.html" target="_blank" rel="noopener">ABOUT</a>
-      <a href="#">COMMUNITY</a>
+      <a href="#">VEX</a>
     
       <a href="#">PROJECTS</a>
       <a href="#">SUPPORT</a>
@@ -488,10 +542,9 @@
   
 
   <!-- Integrated Approach -->
-    <div class="integrated-bar">AN INTEGRATED APPROACH</div>
-  <div class="integrated-desc">
-   
-  </div>
+    <div class="integrated-bar meet-bar partnerships-banner">
+  <h2>TRIANGULAR TIES</h2>
+</div>
 
 
   <div class="integrated-approach">
@@ -736,21 +789,143 @@
 
 </script>
 
+<!-- Meet the Team Bar -->
+<div class="integrated-bar meet-bar partnerships-banner">
+  <h2>MEET THE TEAM</h2>
+</div>
   
-
- <!-- Meet the Team Bar -->
-  <div class="integrated-bar meet-bar">MEET THE TEAM</div>
-
-  <!-- Meet the Team Content -->
-  <div class="team-grid">
-    <!-- …cards… -->
+<div class="team-container">
+  <!-- William Ho -->
+  <div class="team‐item">
+    <!-- Rectangle 16 -->
+    <div class="gradient‐line"
+         style="width: 596px; left: 553px; top: 199px;">
+    </div>
+    <!-- Rectangle 15 -->
+    <div class="gradient‐line"
+         style="width: 480px; left: 669px; top: 439px;">
+    </div>
+    <!-- Portrait -->
+    <div class="portrait"
+         style="left: 104px; top: 157px;
+                background-image: url('images/WILLIAMHO.png');">
+    </div>
+    <!-- Name -->
+    <div class="name" style="left: 314px; top: 168px;">
+      WILLIAM HO
+    </div>
+    <!-- Role description -->
+    <div class="role" style="left: 314px; top: 217px; width: 835px;">
+      <div class="role-title">President</div>
+      <div class="role-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+      </div>
+    </div>
   </div>
 
- 
+  <!-- Allen Suarez -->
+  <div class="team‐item">
+    <!-- Rectangle 12 -->
+    <div class="gradient‐line"
+         style="width: 583px; left: 566px; top: 679px;
+                transform: matrix(1,0,0,-1,0,0);">
+    </div>
+    <!-- Portrait -->
+    <div class="portrait"
+         style="left: 148px; top: 408px;
+                background-image: url('images/ALLENSUAREZ.png');
+                transform: rotate(-0.15deg);">
+    </div>
+    <!-- Name -->
+    <div class="name" style="left: 394px; top: 408px;">
+      ALLEN SUAREZ
+    </div>
+    <!-- Role description -->
+    <div class="role" style="left: 394px; top: 457px; width: 755px;">
+      <div class="role-title">Vice President</div>
+      <div class="role-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+      </div>
+    </div>
+  </div>
+
+  <!-- Winston Lin -->
+  <div class="team‐item">
+    <!-- Rectangle 17 -->
+    <div class="gradient‐line"
+         style="width: 478px; left: 671px; top: 919px;
+                transform: matrix(1,0,0,-1,0,0);">
+    </div>
+    <!-- Portrait -->
+    <div class="portrait"
+         style="left: 104px; top: 637px;
+                background-image: url('images/WINSTONLINE.png');">
+    </div>
+    <!-- Name -->
+    <div class="name" style="left: 314px; top: 648px;">
+      WINSTON LIN
+    </div>
+    <!-- Role description -->
+    <div class="role" style="left: 314px; top: 697px; width: 835px;">
+      <div class="role-title">Brand Manager</div>
+      <div class="role-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+      </div>
+    </div>
+  </div>
+
+  <!-- Miles Sanger -->
+  <div class="team‐item">
+    <!-- Rectangle 18 -->
+    <div class="gradient‐line"
+         style="width: 538px; left: 611px; top: 1159px;
+                transform: matrix(1,0,0,-1,0,0);">
+    </div>
+    <!-- Portrait -->
+    <div class="portrait"
+         style="left: 184px; top: 877px;
+                background-image: url('images/MILESSANGER.png');">
+    </div>
+    <!-- Name -->
+    <div class="name" style="left: 394px; top: 888px;">
+      MILES SANGER
+    </div>
+    <!-- Role description -->
+    <div class="role" style="left: 394px; top: 937px; width: 755px;">
+      <div class="role-title">Treasurer</div>
+      <div class="role-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+      </div>
+    </div>
+  </div>
+
+  <!-- Glen Bautista -->
+  <div class="team‐item">
+    <!-- Secretary bar -->
+    <div class="gradient‐line"
+         style="width: 538px; left: 611px; top: 1159px;">
+    </div>
+    <!-- Portrait -->
+    <div class="portrait"
+         style="left: 104px; top: 1117px;
+                background-image: url('images/GLENBAUTISTA.png');">
+    </div>
+    <!-- Name -->
+    <div class="name" style="left: 314px; top: 1128px;">
+      GLEN BAUTISTA
+    </div>
+    <!-- Role description -->
+    <div class="role" style="left: 349px; top: 1194px; width: 755px;">
+      <div class="role-title">Secretary</div>
+      <div class="role-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+      </div>
+    </div>
+  </div>
+</div>
 
  <!-- FOOTER (UNCHANGED) -->
   <footer class="site-footer">
-    
     <div class="footer-content">
       <div class="footer-left">
         <a href="index.html" class="logo-link">
@@ -762,7 +937,7 @@
         </div>
       </div>
       <div class="footer-center">
-        <a href="#donate" class="btn-outline hover-grayscale" style="--btn-gradient: white">Donate now</a>
+        <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
         <div class="footer-social">
           <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener">
   <img src="images/SCA_INSTwhite.png" alt="Instagram">
@@ -786,7 +961,7 @@
     (function(){
       let lastY = window.scrollY;
       const nav = document.querySelector('.top-bar');
-      window.addEventListener('scroll', () => {
+      window.addEventListener('scroll', () => { 
         const y = window.scrollY;
         nav.classList.toggle('hidden', y > lastY && y > 100);
         lastY = y;
