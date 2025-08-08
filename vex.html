@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>SCA • Vex</title>
+  <link rel="icon" href="images/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap"
+    rel="stylesheet"/>
+  <style>
+    :root {
+      /* Hero background controls */
+      --hero-bg-left:     10px;
+      --hero-bg-top:      71px;
+      --hero-bg-width:    100%;
+      --hero-bg-max-width:2000px;
+      --hero-bg-height:   690px;
+
+      /* Text & design tokens */
+      --hero-text-size:               72px;
+      --partnerships-underline-height:10px;
+      --partnerships-underline-radius:1000px;
+      --partnerships-underline-offset:0.5rem;
+      --partnerships-underline-overhang:5rem;
+      --btn-gradient:linear-gradient(90deg,#F0115F,#EF7616);
+
+      /* Headline & Copy positioning */
+  --headline-top: 75px;   /* move “WHAT IS VEX…” up/down */
+  --copy-top:     220px;   /* distance from top for the paragraph */
+
+    }
+
+    /* Reset & Base */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { width:100%; overflow-x:hidden; background:#000; color:#fff; }
+    body { font-family:'Instrument Sans',sans-serif; line-height:1.4; }
+    a { color:inherit; text-decoration:none; }
+
+    /* Sticky Nav */
+    .top-bar {
+      position:sticky; top:0; left:0;
+      width:100%; height:100px;
+      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      display:flex; align-items:center; padding:0 50px;
+      font-family:'Tilt Warp',sans-serif; font-size:28px;
+      z-index:10; transition:transform .3s ease;
+    }
+    .top-bar.hidden { transform:translateY(-100%); }
+    .logo {
+      width:81px; height:73px;
+      background:url('images/logo.png') center/cover no-repeat;
+      margin-right:60px;
+      transition:transform .3s ease;
+    }
+    .logo-link:hover .logo { transform:scale(1.05); }
+    nav { display:flex; gap:40px; }
+    nav a:hover { opacity:.7; }
+
+    /* Main Content */
+    .page-container { position:relative; }
+
+    /* HERO BACKDROP IMAGE */
+    .hero-bg {
+      position:absolute;
+      left:   var(--hero-bg-left);
+      top:    var(--hero-bg-top);
+      width:  var(--hero-bg-width);
+      max-width:var(--hero-bg-max-width);
+      height: var(--hero-bg-height);
+      background:
+        url('images/whatsex.png') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position:absolute;
+      left:   var(--hero-bg-left);
+      top:    var(--hero-bg-top);
+      width:  var(--hero-bg-width);
+      max-width:var(--hero-bg-max-width);
+      height: var(--hero-bg-height);
+      background:
+        linear-gradient(360deg,
+          rgba(0,0,0,0)   0%,
+          rgba(0,0,0,0.8)50%,
+          #000           100%
+        );
+    }
+
+    /* Headline + underline */
+    .headline {
+  position:absolute;
+  top:    var(--headline-top);
+  left:   50%;
+  transform:translateX(-50%);
+  font-family:'Tilt Warp',sans-serif;
+  font-size:var(--hero-text-size);
+  font-weight:100;
+  color:#fff;
+  padding-bottom:var(--partnerships-underline-offset);
+}
+    .headline::after {
+      content:''; position:absolute;
+      left:calc(-1 * var(--partnerships-underline-overhang));
+      right:calc(-1 * var(--partnerships-underline-overhang));
+      bottom:0; height:var(--partnerships-underline-height);
+      background:linear-gradient(90deg,
+        rgba(249,203,34,0.9) 23%,
+        rgba(239,118,22,0.9) 50%,
+        rgba(240,17,95,0.9) 77%
+      );
+      border-radius:var(--partnerships-underline-radius);
+    }
+
+    /* Body copy */
+.copy {
+  position:absolute;
+  top:    var(--copy-top);
+  left:   50%;
+  transform:translateX(-50%);
+  width:80%; max-width:938px;
+  font-size:24px;
+  line-height:1.4;
+  text-align:center;
+}
+
+    /* LEARN MORE image button */
+    .btn-img {
+      position:absolute; top:430px; left:50%;
+      transform:translateX(-50%);
+    }
+    .btn-img img {
+      height:48px; transition:transform .3s ease;
+    }
+    .btn-img:hover img {
+      transform:scale(1.05);
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top:900px;
+      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      color:#fff; padding:2rem 10%;
+      font-family:'Instrument Sans',sans-serif;
+    }
+    .footer-content {
+      display:flex; flex-wrap:wrap; justify-content:space-between; gap:5rem;
+    }
+    .footer-left {
+      display:flex; gap:1rem; align-items:flex-start; flex:1 1 400px;
+    }
+    .footer-left .logo {
+      width:81px; height:73px;
+      background:url('images/logowhite.png') center/cover no-repeat;
+      transition:transform .3s ease;
+    }
+    .logo-link:hover .logo {
+      transform:scale(1.05);
+    }
+    .footer-copy { font-size:1.5rem; font-weight:bold; margin:0; }
+    .footer-sub {
+      margin-top:.5rem; font-size:1rem; opacity:.9; max-width:400px;
+    }
+    .footer-center {
+      display:flex; flex-direction:column; align-items:center; gap:1rem;
+    }
+    .donate-img {
+      height:48px; cursor:pointer; transition:filter .3s ease;
+    }
+    .donate-img:hover {
+      filter:grayscale(100%) brightness(80%);
+    }
+    .footer-social { display:flex; gap:1rem; }
+    .footer-social img {
+      width:60px; height:60px; filter:brightness(200%);
+      transition:filter .2s ease;
+    }
+    .footer-social a:hover img {
+      filter:grayscale(100%) brightness(80%);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="top-bar">
+    <a href="index.html" class="logo-link">
+      <div class="logo"></div>
+    </a>
+    <nav>
+      <a href="about.html">ABOUT</a>
+      <a href="vex.html" target="_blank" rel="noopener">VEX</a>
+      <a href="#">PROJECTS</a>
+      <a href="#">SUPPORT</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <div class="page-container">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <h1 class="headline">WHAT IS VEX ROBOTICS?</h1>
+
+    <p class="copy">
+      VEX V5 Robotics lets students tackle open-ended engineering challenges by designing, building, and programming robots in a competitive, team-based setting. It emphasizes creative problem-solving, iterative design, and collaboration under real constraints. Through this, students gain a practical understanding of how engineers approach complex problems from concept to execution.
+    </p>
+
+    <a href="learnmore.html" class="btn-img">
+      <img src="images/learnmore.png" alt="Learn More">
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <a href="index.html" class="logo-link">
+          <div class="logo"></div>
+        </a>
+        <div>
+          <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+          <p class="footer-sub">
+            SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.
+          </p>
+        </div>
+      </div>
+      <div class="footer-center">
+        <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+        <div class="footer-social">
+          <a href="#"><img src="images/SCA_INSTwhite.png" alt="Instagram"></a>
+          <a href="#"><img src="images/SCA_EMAILwhite.png" alt="Email"></a>
+          <a href="#"><img src="images/SCA_TIKTOKwhite.png" alt="TikTok"></a>
+          <a href="#"><img src="images/SCA_YOUTUBEwhite.png" alt="YouTube"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Hide-on-scroll Nav -->
+  <script>
+    (function(){
+      let lastY = window.scrollY;
+      const nav = document.querySelector('.top-bar');
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        nav.classList.toggle('hidden', y > lastY && y > 100);
+        lastY = y;
+      });
+    })();
+  </script>
+</body>
+</html>

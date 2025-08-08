@@ -56,8 +56,29 @@
   --partnerships-underline-overhang: 5rem;
   --partnerships-underline-offset:   0.5rem;
    --team-shift: 1400px;    /* start here, then adjust up/down */
-}
 
+     --bar-left:    0px;
+  --bar-top:     0px;
+  --bar-width:   200px;
+  --bar-height:  6px;
+  --bar-radius:  3px;
+  --bar-gradient: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+
+}
+.gradient-bar {
+  position: absolute;
+  left:       var(--bar-left);
+  top:        var(--bar-top);
+  width:      var(--bar-width);
+  height:     var(--bar-height);
+  background: var(--bar-gradient);
+  border-radius: var(--bar-radius);
+}
 .mission-section {
   position: relative;
   height: 550px;
@@ -382,7 +403,7 @@
     }
 /* — Reuse integrated-bar styling for Meet The Team — */
 .meet-bar {
-  margin: 2rem auto 0;    /* only 2rem above, 0 below */
+  margin: 6rem auto 0;    /* only 2rem above, 0 below */
 }
 
 /* If you want a slightly different font size: */
@@ -498,6 +519,26 @@
   margin: 0 auto;
   padding-bottom: 1400px;  /* big enough to cover all your team-items */
 }
+/* container for mission buttons (stacked vertically) */
+.mission-copy .btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+/* common styling for image-buttons */
+.btn-img {
+  display: inline-block;
+}
+.btn-img img {
+  height: 48px;              /* adjust as needed */
+  transition: transform .3s ease;
+}
+.btn-img:hover img {
+  transform: scale(1.05);
+}
   </style>
 </head>
 <body>
@@ -509,7 +550,7 @@
   </a>
     <nav>
         <a href="about.html" target="_blank" rel="noopener">ABOUT</a>
-      <a href="#">VEX</a>
+      <a href="vex.html" target="_blank" rel="noopener">VEX</a>
     
       <a href="#">PROJECTS</a>
       <a href="#">SUPPORT</a>
@@ -517,8 +558,8 @@
   </header>
 
 
-  <!-- Mission Section -->
-  <section class="mission-section">
+  <!-- MISSION SECTION -->
+<section class="mission-section">
   <img src="images/mission.gif" alt="" class="mission-gif">
 
   <div class="mission-copy">
@@ -529,11 +570,14 @@
     </p>
 
     <div class="btn-row">
-      <a href="vex.html" class="btn-outline hover-scale">whatsvex?</a>
-      <a href="support.html" class="btn-outline hover-scale">donate</a>
+      <!-- replaced text buttons with image buttons -->
+      <a href="vex.html" class="btn-img">
+        <img src="images/whatsvex.png" alt="WhatsVEX">
+      </a>
+      <a href="support.html" class="btn-img">
+        <img src="images/Donate.png"  alt="Donate">
+      </a>
     </div>
-
-    <!-- any extra paragraphs… -->
   </div>
 </section>
 
@@ -788,6 +832,29 @@
   initialize();
 
 </script>
+  <!-- Some heading or content -->
+ 
+
+  
+
+  <!-- Bar #2: top border above an image gallery -->
+ <div class="gradient-bar"
+     style="
+       --bar-left:   00px;
+       --bar-top:    810px;
+       --bar-width:  2100px;
+       --bar-height: 20px;
+     ">
+</div>
+<!-- Bar #2: top border above an image gallery -->
+ <div class="gradient-bar"
+     style="
+       --bar-left:   00px;
+       --bar-top:    1760px;
+       --bar-width:  2100px;
+       --bar-height: 20px;
+     ">
+</div>
 
 <!-- Meet the Team Bar -->
 <div class="integrated-bar meet-bar partnerships-banner">
