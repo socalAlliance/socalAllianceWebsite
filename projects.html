@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>SoCalAlliance</title>
+  <link rel="icon" href="images/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&family=Instrument+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%}
+    body{background:#000;color:#fff;font-family:'Instrument Sans',sans-serif;line-height:1.4;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+
+    /* NAV */
+    .top-bar{
+      position:sticky;top:0;left:0;width:100%;height:100px;
+      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      display:flex;align-items:center;padding:0 50px;
+      font-family:'Tilt Warp',sans-serif;font-size:28px;z-index:10;transition:transform .3s ease;
+    }
+    .top-bar.hidden{transform:translateY(-100%)}
+    .logo{width:81px;height:73px;background:url('images/logo.png') center/cover no-repeat;margin-right:60px}
+    nav{display:flex;gap:40px}
+    nav a:hover{opacity:.7}
+
+    /* CONTENT */
+    main{background:#000}
+
+    .hero{padding:90px 8% 40px;text-align:center}
+    .hero h1{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(40px,6vw,76px);line-height:1.05}
+    .hero p{margin-top:14px;max-width:900px;margin-inline:auto;opacity:.9}
+
+    /* FEATURES — match mock: 2x2, sharp, thin gutters */
+    .features {
+  padding: 0; /* remove side padding */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0; /* no gap */
+}
+
+.feature {
+  position: relative;
+  min-height: 500px; /* adjust height as needed */
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.feature:nth-child(odd) { border-right: 0px solid #000; }
+.feature:nth-child(n+3) { border-top: 0px solid #000; }
+
+.feature img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+    .feature::before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.25));z-index:1
+    }
+    .feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.95) brightness(.85)}
+    .feature .copy{
+      position:relative;z-index:2;color:#fff;padding:26px;display:flex;flex-direction:column;gap:10px;height:100%;justify-content:flex-end
+    }
+    .feature h3{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(22px,3.2vw,30px);letter-spacing:.3px}
+    .feature p{opacity:.9;max-width:52ch}
+
+    /* TIMELINE */
+    .timeline{position:relative;background:#0b0b0b;padding:48px 8% 90px}
+    /* continuous gradient line; starts/ends at dot centers */
+    .timeline::before{
+      content:"";position:absolute;
+      top:calc(48px + 7px);                 /* center of first dot */
+      bottom:calc(90px - 7px);              /* center above last dot */
+      left:calc(8% + 61px);                 /* align with dot centers */
+      width:4px;border-radius:2px;
+      background:linear-gradient(180deg,rgba(249,203,34,0.9) 0%,rgba(239,118,22,0.9) 50%,rgba(240,17,95,0.9) 100%);
+    }
+    .tl-list{display:grid;gap:30px}
+    .tl-item{display:grid;grid-template-columns:110px 1fr;gap:26px;position:relative;padding-left:8px}
+    .tl-item::before{content:none}
+
+    .tl-dot{
+      width:110px;display:flex;align-items:center;justify-content:center;gap:10px;
+      font-weight:700;font-size:1.2rem;letter-spacing:.3px;opacity:.95
+    }
+    .tl-dot i{width:12px;height:12px;background:#fff;border-radius:50%;box-shadow:0 0 0 4px rgba(255,255,255,.15)}
+
+    .tl-body{
+      background:#111;border-radius:12px;padding:18px 20px;box-shadow:var(--drop-shadow);
+      transition:transform .3s ease;position:relative;
+    }
+    .tl-body:hover{transform:scale(1.05);z-index:2}
+    .tl-title{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(20px,3.2vw,26px);margin-bottom:6px}
+    .tl-text{opacity:.9}
+
+    /* FOOTER */
+    .site-footer{background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);color:#fff;padding:2rem 10%}
+    .site-footer .logo {background-image: url('images/logowhite.png') !important;}
+    .footer-content{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:5rem}
+    .footer-left{display:flex;align-items:flex-start;gap:1rem;flex:1 1 400px}
+    .footer-copy{font-size:1.5rem;font-weight:bold}
+    .footer-sub{margin-top:.5rem;font-size:1rem;opacity:.9;max-width:400px}
+    .footer-center{display:flex;flex-direction:column;align-items:center;gap:1rem}
+    .donate-img{height:48px;cursor:pointer}
+    .footer-social{display:flex;gap:1rem}
+    .footer-social img{width:60px;height:60px;filter:brightness(200%);transition:filter .2s}
+    .footer-social a:hover img{filter:grayscale(100%) brightness(80%)}
+  </style>
+</head>
+<body>
+
+<header class="top-bar">
+  <a href="index.html" class="logo-link"><div class="logo"></div></a>
+  <nav>
+    <a href="about.html" target="_blank">ABOUT</a>
+    <a href="#">COMMUNITY</a>
+    <a href="#">EVENTS</a>
+    <a href="#">PROJECTS</a>
+    <a href="#">SUPPORT</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>WHAT WE’RE DOING</h1>
+    <p>See how we’re working towards our mission of uplifting students through our various initiatives and programs.</p>
+  </section>
+
+  <section class="features">
+    <article class="feature">
+      <img src="images/scrimming.png" alt="">
+      <div class="copy">
+        <h3>SCRIMMING &amp; MEETUPS</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </article>
+    <article class="feature">
+      <img src="images/vexu.png" alt="">
+      <div class="copy">
+        <h3>VEX U COMP TEAM</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </article>
+    <article class="feature">
+      <img src="images/banner.png" alt="">
+      <div class="copy">
+        <h3>COMPETITION HOSTING</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </article>
+    <article class="feature">
+      <img src="images/teaching.png" alt="">
+      <div class="copy">
+        <h3>EDUCATIONAL RESOURCES</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="timeline">
+    <div class="tl-list">
+      <div class="tl-item">
+        <div class="tl-dot"><i></i> NOV&nbsp;XX</div>
+        <div class="tl-body">
+          <div class="tl-title">SOCAL SHOWDOWN</div>
+          <p class="tl-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"><i></i> SEP&nbsp;XX</div>
+        <div class="tl-body">
+          <div class="tl-title">VEX MINI-LESSONS</div>
+          <p class="tl-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"><i></i> AUG&nbsp;XX</div>
+        <div class="tl-body">
+          <div class="tl-title">FOUNDING SCA VEX U</div>
+          <p class="tl-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"><i></i> JUN&nbsp;XX</div>
+        <div class="tl-body">
+          <div class="tl-title">FOUNDING OF THE NONPROFIT</div>
+          <p class="tl-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <a href="index.html" class="logo-link"><div class="logo"></div></a>
+      <div>
+        <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+        <p class="footer-sub">SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.</p>
+      </div>
+    </div>
+    <div class="footer-center">
+      <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener"><img src="images/SCA_INSTwhite.png" alt="Instagram"></a>
+        <a href="mailto:you@domain.com"><img src="images/SCA_EMAILwhite.png" alt="Email"></a>
+        <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener"><img src="images/SCA_TIKTOKwhite.png" alt="TikTok"></a>
+        <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener"><img src="images/SCA_YOUTUBEwhite.png" alt="YouTube"></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    let lastY = window.scrollY;
+    const nav = document.querySelector('.top-bar');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      nav.classList.toggle('hidden', y > lastY && y > 100);
+      lastY = y;
+    });
+  })();
+</script>
+</body>
+</html>
