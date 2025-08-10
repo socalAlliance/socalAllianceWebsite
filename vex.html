@@ -17,7 +17,18 @@
       --hero-bg-width:    100%;
       --hero-bg-max-width:2000px;
       --hero-bg-height:   690px;
-
+  --bar-left:   0;
+  --bar-top:    0;
+  --bar-width:  100vw;
+  --bar-height: 6px;
+  --bar-radius: 3px;
+  --bar-gradient:
+    linear-gradient(
+      90deg,
+      rgba(249,203,34,0.9) 23%,
+      rgba(239,118,22,0.9) 50%,
+      rgba(240,17,95,0.9) 77%
+    );
       /* Text & design tokens */
       --hero-text-size:               72px;
       --partnerships-underline-height:10px;
@@ -25,11 +36,48 @@
       --partnerships-underline-offset:0.5rem;
       --partnerships-underline-overhang:5rem;
       --btn-gradient:linear-gradient(90deg,#F0115F,#EF7616);
+      
 
       /* Headline & Copy positioning */
+        --embed-offset-y: 55rem;  
   --headline-top: 75px;   /* move “WHAT IS VEX…” up/down */
   --copy-top:     220px;   /* distance from top for the paragraph */
+  /* controls for both embeds */
+  --embed-width:  690px;   /* adjust width here */
+  --embed-height: 445px;   /* adjust height here */
+  --embed-gap:    6rem;    /* spacing between the two boxes *
+  
 
+  /* path to your border images */
+  --border-worlds:  url('images/worldsborder.png');
+  --border-season:  url('images/seasonborder.png');
+
+ /* entire section offset */
+  --loc-sec-offset-x: 65px;
+  --loc-sec-offset-y: 0px;
+  /* image sizing & offset */
+  --loc-img-width:       800px;
+  --loc-img-offset-x:    0px;
+  --loc-img-offset-y:    0px;
+  /* text block offset */
+  --loc-text-offset-x:   00px;
+  --loc-text-offset-y:   0px;
+  /* paragraph wrap */
+  --loc-desc-wrap:       800px;
+ --compare-para-gap: 1.5rem;
+  
+   /* Comparison-bar sizing & position */
+  --compare-bar-width:     20px;                         /* thickness */
+  --compare-bar-height:    360px;                       /* length */
+  --compare-bar-offset-x:  0px;                        /* nudge left/right */
+  --compare-bar-offset-y:  0px;                        /* nudge up/down */
+  --compare-bar-gradient:  
+    linear-gradient(
+      180deg,
+      #F9CB22 23%,
+      #EF7616 50%,
+      #F0115F 77%
+    );                                                   /* same gradient */
     }
 
     /* Reset & Base */
@@ -135,10 +183,62 @@
     .btn-img:hover img {
       transform:scale(1.05);
     }
+    .gradient-bar {
+  position: absolute;
+  left:       var(--bar-left);
+  top:        var(--bar-top);
+  width:      var(--bar-width);
+  height:     var(--bar-height);
+  background: var(--bar-gradient);
+  border-radius: var(--bar-radius);
+}
+.embed-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--embed-gap);
+  margin: var(--embed-offset-y) auto 2rem;
+  /* removes the old margin:2rem 0; */
+}
 
+.embed-box {
+  position: relative;
+  width: var(--embed-width);
+  height: var(--embed-height);
+  background-color: #000;        /* fallback behind iframe */
+}
+
+.embed-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;                      /* stretch to cover entire box */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;    /* make the PNG fill the box */
+  pointer-events: none;          /* clicks pass through to iframe */
+  z-index: 2;
+}
+
+/* assign each box its own border image */
+.embed-box.worlds::before {
+  background-image: var(--border-worlds);
+}
+.embed-box.season::before {
+  background-image: var(--border-season);
+}
+
+/* inset by 10px on left and right */
+.embed-box iframe {
+  position: absolute;
+  top: 15%;
+  left: 1%;
+  right: 5%;
+  bottom: 5%;
+  border: none;
+  z-index: 1;
+  width: 98%; height: 85%;
+}
     /* Footer */
     .site-footer {
-      margin-top:900px;
+      margin-top:100px;
       background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
       color:#fff; padding:2rem 10%;
       font-family:'Instrument Sans',sans-serif;
@@ -178,7 +278,177 @@
     .footer-social a:hover img {
       filter:grayscale(100%) brightness(80%);
     }
+/* Container & positioning */
+.location-section {
+  position: relative;
+  left: var(--loc-sec-offset-x);
+  top:  var(--loc-sec-offset-y);
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  max-width: var(--hero-bg-max-width);
+}
 
+/* image side */
+.location-image img {
+  width: var(--loc-img-width);
+  height: auto;
+  position: relative;
+  left: var(--loc-img-offset-x);
+  top:  var(--loc-img-offset-y);
+}
+
+/* text side */
+.location-copy {
+  position: relative;
+  left: var(--loc-text-offset-x);
+  top:  var(--loc-text-offset-y);
+  max-width: var(--loc-desc-wrap);
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+/* headline underline */
+.location-copy .headline {
+  position: relative;         /* create a positioning context */
+  display: inline-block;      /* so ::after width matches text */
+  white-space: nowrap;        /* keep on one line */
+  padding-bottom: var(--partnerships-underline-offset);
+}
+
+.location-copy .headline::after {
+  content: "";
+  position: absolute;
+  left:    calc(-1 * var(--partnerships-underline-overhang));
+  right:   calc(-1 * var(--partnerships-underline-overhang));
+  bottom:  0;
+  height:  var(--partnerships-underline-height);
+  background: var(--bar-gradient);            /* same gradient */
+  border-radius: var(--partnerships-underline-radius);
+}
+
+/* paragraph */
+.location-copy .copy {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.4;
+  max-width: var(--loc-desc-wrap);
+  text-align: right;
+}
+.image-carousel {
+  position: relative;
+  margin: 4rem auto;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  flex: 1 1 auto;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.carousel-caption {
+  margin: 0.5rem 0 0;
+  font-size: 1.1rem;
+}
+
+.carousel-arrow {
+  background: none;
+  border: none;
+  font-size: 3rem;
+  color: var(--bar-gradient);
+  cursor: pointer;
+  padding: 0 .5rem;
+  transition: transform .2s, filter .2s;
+}
+.carousel-arrow:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+.carousel-arrow.left  { order: 0; }
+.carousel-arrow.right { order: 2; }
+
+
+
+/* Container */
+.vex-compare {
+  margin: 6rem auto;
+  max-width: 1000px;
+  color: #fff;
+}
+
+/* Headline */
+.compare-header {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 76px;
+  text-align: center;
+  white-space: nowrap;
+  margin-bottom: 3rem;
+}
+.compare-header .vs {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 40px;
+  line-height: 49px;
+  margin: 0 2rem;
+  vertical-align: middle;
+}
+
+/* Body flex row */
+/* Center the bar & columns under the header */
+.compare-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;        /* ← vertical-center bar and text */
+  gap: 4rem;
+  margin: 0 auto;             /* ensure centered horizontally */
+}
+
+/* Use the custom gap between each <p> */
+.compare-body .column p {
+  margin: var(--compare-para-gap) 0;   /* vertical spacing */
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+/* Bar stays where you placed it via vars */
+.vex-bar-vertical {
+  position: relative;
+  left: var(--compare-bar-offset-x);
+  top:  var(--compare-bar-offset-y);
+  width:  var(--compare-bar-width);
+  height: var(--compare-bar-height);
+  background: var(--compare-bar-gradient);
+}
   </style>
 </head>
 <body>
@@ -207,10 +477,104 @@
       VEX V5 Robotics lets students tackle open-ended engineering challenges by designing, building, and programming robots in a competitive, team-based setting. It emphasizes creative problem-solving, iterative design, and collaboration under real constraints. Through this, students gain a practical understanding of how engineers approach complex problems from concept to execution.
     </p>
 
-    <a href="learnmore.html" class="btn-img">
+    <a href="https://www.vexrobotics.com" class="btn-img">
       <img src="images/learnmore.png" alt="Learn More">
     </a>
   </div>
+ <div class="gradient-bar"
+     style="
+       --bar-left:   00px;
+       --bar-top:    860px;
+       --bar-width:  2100px;
+       --bar-height: 20px;
+       z-index: 9; 
+     ">
+</div>
+
+<div class="embed-container">
+  <!-- First box: Worlds -->
+  <div class="embed-box worlds">
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/5G6GLJKQf38?si=Mohzz54MYPQ_LV-B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <!-- Second box: Season -->
+  <div class="embed-box season">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ocmONiVun9M?si=vZYA92uBOjbeKY-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+</div>
+
+<section class="location-section">
+  <div class="location-image">
+    <img src="images/location.png" alt="Our regional hubs">
+  </div>
+  <div class="location-copy">
+    <h1 class="headline"> A CLOSE-KNIT COMMUNITY</h1>
+    <p class="copy">
+      What sets our community apart is our regional proximity to one another. Centered around the two major hubs of Los Angeles and San Diego, we host gatherings, scrimmages, and competitions that foster meaningful connections and accelerate learning.
+      Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals.
+    </p>
+  </div>
+</section>
+
+
+
+<section class="vex-compare">
+
+  <!-- HEADLINE -->
+  <h2 class="compare-header">
+    <span>VEX V5</span>
+    <span class="vs">vs.</span>
+    <span>VEX U</span>
+  </h2>
+
+  <!-- BODY: left column / bar / right column -->
+  <div class="compare-body">
+    <div class="column left">
+      <p>2v2 format. 1 robot per team. 10,000+ teams.</p>
+      <p>Designed for 6th through 12th grade.</p>
+      <p>Full utilization of VEX ecosystem promotes innovation under constraints.</p>
+      <p>Same engineering notebook, interview, and skills evaluation process as VEX U.</p>
+    </div>
+
+    <div class="vex-bar-vertical"></div>
+
+    <div class="column right">
+      <p>1v1 format. 2 robots per team. 300+ teams.</p>
+      <p>Designed for collegiate-level students.</p>
+      <p>Free reign over 3D-printing, plastic use, and electronics promotes unique optimizations.</p>
+      <p>Same engineering notebook, interview, and skills evaluation process as VEX V5.</p>
+    </div>
+  </div>
+
+</section>
+
+
+
+
+<!-- IMAGE CAROUSEL -->
+<section class="image-carousel">
+  <button class="carousel-arrow left" aria-label="Previous">&lsaquo;</button>
+  <div class="carousel-track-container">
+    <ul class="carousel-track">
+      <li class="carousel-slide current-slide">
+        <img src="images/slide1.png" alt="Slide 1">
+        <p class="carousel-caption">Caption for slide 1</p>
+      </li>
+      <li class="carousel-slide">
+        <img src="images/slide2.png" alt="Slide 2">
+        <p class="carousel-caption">Caption for slide 2</p>
+      </li>
+      <li class="carousel-slide">
+        <img src="images/slide3.png" alt="Slide 3">
+        <p class="carousel-caption">Caption for slide 3</p>
+      </li>
+      <!-- add more <li> as needed -->
+    </ul>
+  </div>
+  <button class="carousel-arrow right" aria-label="Next">&rsaquo;</button>
+</section>
+
+
 
   <!-- FOOTER -->
   <footer class="site-footer">
@@ -238,6 +602,7 @@
     </div>
   </footer>
 
+
   <!-- Hide-on-scroll Nav -->
   <script>
     (function(){
@@ -250,5 +615,30 @@
       });
     })();
   </script>
+  <script>
+  (function(){
+    const track   = document.querySelector('.carousel-track');
+    const slides  = Array.from(track.children);
+    const prevBtn = document.querySelector('.carousel-arrow.left');
+    const nextBtn = document.querySelector('.carousel-arrow.right');
+    let currentIndex = 0;
+
+    function updateSlide(index) {
+      const amount = -index * track.clientWidth;
+      track.style.transform = `translateX(${amount}px)`;
+      slides.forEach(s => s.classList.remove('current-slide'));
+      slides[index].classList.add('current-slide');
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlide(currentIndex);
+    });
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlide(currentIndex);
+    });
+  })();
+</script>
 </body>
 </html>
