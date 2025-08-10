@@ -58,7 +58,16 @@
   --banner-logo-gap: 2rem;           
 
   /* spacing between each logo */
-  --partner-logo-gap: 2rem;    
+  --partner-logo-gap: 2rem;    --bar-left:    0px;
+  /* if you haven’t already defined this… */
+  --bar-gradient: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  --bar-radius: 3px;
+ 
     }
 
     /* — Reset & Base — */
@@ -327,6 +336,34 @@
   display: block;
   transition: transform 0.3s ease;
 }
+.gradient-bar {
+  position: absolute;   /* or fixed if you want them to stick as you scroll */
+  left:     var(--bar-left);
+  top:      var(--bar-top);
+  width:    var(--bar-width);
+  height:   var(--bar-height);
+  background: /* solid, opaque gradient */ 
+    linear-gradient(
+      90deg,
+      #f9cb22 23%,
+      #ef7616 50%,
+      #f0115f 77%
+    );
+  border-radius: var(--bar-radius);
+  z-index: 9999;        /* force it above everything else */
+  opacity: 1;           /* ensure it’s not semi-transparent */
+}
+.stats-btn img {
+  max-width: 900px;    /* same sizing as before */
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.stats-btn:hover img {
+  transform: scale(1.05);
+}
   </style>
 </head>
 <body>
@@ -339,7 +376,7 @@
     <nav>
         <a href="about.html" target="_blank" rel="noopener">ABOUT</a>
       <a href="vex.html" target="_blank" rel="noopener">VEX</a>
-      <a href="#">PROJECTS</a>
+      <a href="projects.html" target="_blank" rel="noopener">PROJECTS</a>
       <a href="#">SUPPORT</a>
     </nav>
   </header>
@@ -355,12 +392,15 @@
     </div>
   </section>
 
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div><div class="number">30+</div><div class="label">Teams Helped</div></div>
-    <div><div class="number">180+</div><div class="label">Member Community</div></div>
-    <div><div class="number">100%</div><div class="label">Student Founded</div></div>
-  </div>
+  <!-- STATS BAR IMAGE -->
+<div style="text-align:center; margin:4rem 0;">
+  <a href="projects.html" class="stats-btn">
+    <img 
+      src="images/Statsbar.png" 
+      alt="See our projects" 
+    />
+  </a>
+</div>
 
   <!-- HERO 2 + ABOUT -->
   <section class="hero-2">
@@ -396,6 +436,37 @@
       <img src="images/Donate.png" alt="Donate Now">
     </a>
   </div>
+
+
+ <!-- first full-width bar at y=810px -->
+<div class="gradient-bar"
+     style="
+       --bar-left:   0px;
+       --bar-top:    1025px;
+       --bar-width:  100vw;   /* or 2100px if you really want that much */
+       --bar-height: 20px;
+     ">
+</div>
+
+<!-- second full-width bar at y=1760px -->
+<div class="gradient-bar"
+     style="
+       --bar-left:   0px;
+       --bar-top:    1580px;
+       --bar-width:  100vw;
+       --bar-height: 20px;
+     ">
+</div>
+<div class="gradient-bar"
+     style="
+       --bar-left:   0px;
+       --bar-top:    775px;
+       --bar-width:  100vw;
+       --bar-height: 20px;
+     ">
+</div>
+
+
   <!-- FOOTER (UNCHANGED) -->
   <footer class="site-footer">
     <div class="footer-content">

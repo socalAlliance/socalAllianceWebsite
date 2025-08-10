@@ -270,15 +270,7 @@
       z-index: -2;
     }
 
-    .integrated-approach::before {
-      left: 0;
-      background-image: url('images/spectators.png');
-    }
-
-    .integrated-approach::after {
-      right: 0;
-      background-image: url('images/teaching.png');
-    }
+  
 /* — Integrated Approach Bar — */
 
 /* 2) Make the <h2> itself white */
@@ -539,6 +531,62 @@
 .btn-img:hover img {
   transform: scale(1.05);
 }
+.bg-split {
+  position: absolute;     /* take it out of the flow */
+  top: 695px;             /* move it anywhere you like */
+  left: 0;
+  width: 100%;
+  height: 1065px;          /* whatever height you need */
+  pointer-events: none;   /* clicks pass through */
+  z-index: 0;             /* behind your content */
+}
+
+.bg-split__half {
+  float: left;            /* each half sits side by side */
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-split__left {
+  /* first layer: fade from transparent (left) → black (right center) */
+  /* second: your image */
+  background:
+    linear-gradient(to right, 
+      rgba(0,0,0,0) 0%, 
+      rgba(0,0,0,1) 100%
+    ),
+    url('images/spectators.png') center/cover no-repeat;
+}
+
+.bg-split__right {
+  /* first layer: fade from black (left center) → transparent (right) */
+  /* second: your image */
+  background:
+    linear-gradient(to right,
+      rgba(0,0,0,1)   0%,
+      rgba(0,0,0,0) 200%
+    ),
+    url('images/teaching.png') center/cover no-repeat;
+}
+
+
+.triangle-container { position: relative; z-index: 2; }
+.triangle-container {
+  position: relative;  /* you already have this, but just be sure */
+}
+
+.triangle-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -35%);
+  width: 375px;   /* adjust as needed */
+  height: auto;
+  z-index: 3;     /* above the background and SVG stroke */
+  pointer-events: none;
+}
   </style>
 </head>
 <body>
@@ -582,8 +630,10 @@
 </section>
 
  
-
-  
+  <div class="bg-split">
+  <div class="bg-split__half bg-split__left"></div>
+  <div class="bg-split__half bg-split__right"></div>
+</div>
 
   <!-- Integrated Approach -->
     <div class="integrated-bar meet-bar partnerships-banner">
@@ -612,7 +662,11 @@
           stroke-linejoin="round"
         />
       </svg>
-
+<img
+  src="images/highstakes.png"
+  alt="Logo"
+  class="triangle-logo"
+/>
       <!-- Labels -->
       <div id="labels" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
         <div class="label">
@@ -841,9 +895,10 @@
  <div class="gradient-bar"
      style="
        --bar-left:   00px;
-       --bar-top:    810px;
+       --bar-top:    675px;
        --bar-width:  2100px;
        --bar-height: 20px;
+       z-index: 9; 
      ">
 </div>
 <!-- Bar #2: top border above an image gallery -->
@@ -853,6 +908,7 @@
        --bar-top:    1760px;
        --bar-width:  2100px;
        --bar-height: 20px;
+       z-index: 9; 
      ">
 </div>
 
@@ -911,7 +967,7 @@
     <div class="role" style="left: 394px; top: 457px; width: 755px;">
       <div class="role-title">Vice President</div>
       <div class="role-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+        I'm working towards welding, metal fab, and C.A.D associates at LBCC. I’m a mcbride robotics mentor and I plan to transfer into mechanical engineering, trying to be a prototype engineer. I am now learning html, coding this website. I have been design lead and filled roles in my V5RC and VEX U career.  
       </div>
     </div>
   </div>
@@ -985,7 +1041,7 @@
     <div class="role" style="left: 349px; top: 1194px; width: 755px;">
       <div class="role-title">Secretary</div>
       <div class="role-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+        Im a B.S. Computer Science major planning to double major with a B.S. in General Applied Mathematics at UCR. I have dabbled in C++, HTML, and CSS programming and robot construction. I competed in V5RC, VEX U, and FRC competitions from two high schools and one university.
       </div>
     </div>
   </div>
