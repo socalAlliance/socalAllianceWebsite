@@ -71,34 +71,185 @@
     .feature h3{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(22px,3.2vw,30px);letter-spacing:.3px}
     .feature p{opacity:.9;max-width:52ch}
 
-    /* TIMELINE */
-    .timeline{position:relative;background:#0b0b0b;padding:48px 8% 90px}
-    /* continuous gradient line; starts/ends at dot centers */
-    .timeline::before{
-      content:"";position:absolute;
-      top:calc(48px + 7px);                 /* center of first dot */
-      bottom:calc(90px - 7px);              /* center above last dot */
-      left:calc(8% + 61px);                 /* align with dot centers */
-      width:4px;border-radius:2px;
-      background:linear-gradient(180deg,rgba(249,203,34,0.9) 0%,rgba(239,118,22,0.9) 50%,rgba(240,17,95,0.9) 100%);
-    }
-    .tl-list{display:grid;gap:30px}
-    .tl-item{display:grid;grid-template-columns:110px 1fr;gap:26px;position:relative;padding-left:8px}
-    .tl-item::before{content:none}
+/* TIMELINE SECTION */
+.timeline {
+  position: relative;
+  background: #0b0b0b;
+  padding: 48px 8% 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .tl-dot{
-      width:110px;display:flex;align-items:center;justify-content:center;gap:10px;
-      font-weight:700;font-size:1.2rem;letter-spacing:.3px;opacity:.95
-    }
-    .tl-dot i{width:12px;height:12px;background:#fff;border-radius:50%;box-shadow:0 0 0 4px rgba(255,255,255,.15)}
+/* center gradient line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: calc(48px + 7px);
+  bottom: calc(90px - 7px);
+  left: calc(8% + 61px);
+  width: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(249,203,34,0.9) 0%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 100%
+  );
+  pointer-events: none;
+}
 
-    .tl-body{
-      background:#111;border-radius:12px;padding:18px 20px;box-shadow:var(--drop-shadow);
-      transition:transform .3s ease;position:relative;
-    }
-    .tl-body:hover{transform:scale(1.05);z-index:2}
-    .tl-title{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(20px,3.2vw,26px);margin-bottom:6px}
-    .tl-text{opacity:.9}
+/* arrows */
+.tl-arrow {
+  position: absolute;
+  left: calc(8% + 61px - 1em);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  padding: .25em;
+  z-index: 2;
+}
+.tl-arrow.up { top: 0; }
+.tl-arrow.down { bottom: 0; }
+
+/* animated gradient “glow” on arrow glyph */
+.tl-arrow::before {
+  content: attr(aria-label) == "Scroll earlier" ? "❮" : "❯";
+  /* fallback if Unicode test fails: */
+  content: "▲";
+}
+.tl-arrow.up::before  { content: "▲"; }
+.tl-arrow.down::before{ content: "▼"; }
+.tl-arrow::after {
+  content: attr(aria-label) == "Scroll earlier" ? "◀" : "▶";
+}
+.tl-arrow::before {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-move 3s linear infinite;
+  transition: transform .2s, filter .2s;
+}
+.tl-arrow:hover::before {
+  transform: scale(1.2);
+  filter: brightness(1.3);
+}
+
+@keyframes gradient-move {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* viewport and list */
+.tl-viewport {
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  margin: 0;
+}
+.tl-list {
+  display: grid;
+  gap: 30px;
+  transition: transform 0.4s ease;
+}
+
+/* each item pushed right of the line */
+.tl-item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 26px;
+  padding-left: calc(8% + 61px + 10px);
+  align-items: start;
+}
+
+/* bold date */
+.tl-dot {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: .3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* keep left of line */
+}
+.tl-dot i {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255,255,255,.15);
+}
+
+/* body box */
+.tl-body {
+  display: block;
+  width: 100%;
+  text-decoration: none;    /* remove underline */
+  color: inherit;
+  background: #111;
+  padding: 18px 20px;
+  border: 4px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      rgba(249,203,34,0.9) 23%,
+      rgba(239,118,22,0.9) 50%,
+      rgba(240,17,95,0.9) 77%
+    ) 1;
+  border-radius: 12px;
+  box-shadow: var(--drop-shadow);
+  transition: background .2s, transform .2s;
+}
+.tl-body:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-2px);
+}
+
+/* gradient underline on title */
+.tl-title {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: clamp(20px,3.2vw,26px);
+  margin-bottom: 6px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+.tl-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--partnerships-underline-overhang));
+  right: calc(-1 * var(--partnerships-underline-overhang));
+  bottom: 0;
+  height: var(--partnerships-underline-height);
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: var(--partnerships-underline-radius);
+}
+
+/* text */
+.tl-text {
+  opacity: .9;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* ensure arrows are on top */
+.tl-arrow.up, .tl-arrow.down {
+  pointer-events: all;
+}
 
     /* FOOTER */
     .site-footer{background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);color:#fff;padding:2rem 10%}
@@ -167,39 +318,58 @@
     </article>
   </section>
 
+
+
+
   <section class="timeline">
-    <div class="tl-list">
-      <div class="tl-item">
-        <div class="tl-dot"><i></i> NOV&nbsp;XX</div>
-        <div class="tl-body">
-          <div class="tl-title">SOCAL SHOWDOWN</div>
-          <p class="tl-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <button class="tl-arrow up" aria-label="Scroll earlier"></button>
+    <div class="tl-viewport">
+      <div class="tl-list">
+  
+        <div class="tl-item">
+          <div class="tl-dot"><i></i> <strong>NOV XX</strong></div>
+          <a href="/showdown" class="tl-body">
+            <div class="tl-title">SOCAL SHOWDOWN</div>
+            <p class="tl-text">
+              Details about the Socal Showdown event…
+            </p>
+          </a>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"><i></i> SEP&nbsp;XX</div>
-        <div class="tl-body">
-          <div class="tl-title">VEX MINI-LESSONS</div>
-          <p class="tl-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  
+        <div class="tl-item">
+          <div class="tl-dot"><i></i> <strong>SEP XX</strong></div>
+          <a href="/mini-lessons" class="tl-body">
+            <div class="tl-title">VEX MINI-LESSONS</div>
+            <p class="tl-text">Details about mini-lessons…</p>
+          </a>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"><i></i> AUG&nbsp;XX</div>
-        <div class="tl-body">
-          <div class="tl-title">FOUNDING SCA VEX U</div>
-          <p class="tl-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="tl-item">
+          <div class="tl-dot"><i></i> <strong>IDK XX</strong></div>
+          <a href="/mini-lessons" class="tl-body">
+            <div class="tl-title">FOUNDING VEXU TEAM</div>
+            <p class="tl-text">Details about mini-lessons…</p>
+          </a>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"><i></i> JUN&nbsp;XX</div>
-        <div class="tl-body">
-          <div class="tl-title">FOUNDING OF THE NONPROFIT</div>
-          <p class="tl-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="tl-item">
+          <div class="tl-dot"><i></i> <strong>IDK XX</strong></div>
+          <a href="/mini-lessons" class="tl-body">
+            <div class="tl-title">FOUNDING NONPROFIT</div>
+            <p class="tl-text">Details about mini-lessons…</p>
+          </a>
         </div>
+        
+  
+        <!-- repeat for each item… -->
+  
       </div>
     </div>
+    <button class="tl-arrow down" aria-label="Scroll later"></button>
   </section>
-</main>
+
+
+
+
+  
 
 <footer class="site-footer">
   <div class="footer-content">
@@ -233,5 +403,28 @@
     });
   })();
 </script>
+<script>
+  (function(){
+    const list      = document.querySelector(".tl-list");
+    const items     = Array.from(list.children);
+    const upBtn     = document.querySelector(".tl-arrow.up");
+    const downBtn   = document.querySelector(".tl-arrow.down");
+    const itemHeight = items[0].getBoundingClientRect().height + 30; // +gap
+    let index = 0;
+  
+    function updateScroll() {
+      list.style.transform = `translateY(-${index * itemHeight}px)`;
+    }
+  
+    upBtn.addEventListener("click", () => {
+      index = Math.max(0, index - 1);
+      updateScroll();
+    });
+    downBtn.addEventListener("click", () => {
+      index = Math.min(items.length - 1, index + 1);
+      updateScroll();
+    });
+  })();
+  </script>
 </body>
 </html>
