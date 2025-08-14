@@ -72,11 +72,13 @@
     .feature p{opacity:.9;max-width:52ch}
 
 /* TIMELINE SECTION */
-/* 1) Choose one unified X-offset for line & arrows */
 .timeline {
-  --spine-offset: calc(8% + 120px);  /* tweak the “120px” until the line hits where you want */
   position: relative;
+  background: #0b0b0b;
   padding: 48px 8% 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* center gradient line */
@@ -95,54 +97,28 @@
     rgba(240,17,95,0.9) 100%
   );
   pointer-events: none;
-  
 }
 
 /* arrows */
 .tl-arrow {
   position: absolute;
-  left: calc(142.5px);
+  left: calc(8% + 61px - 1em);
   background: none;
   border: none;
   cursor: pointer;
   font-size: 2rem;
   padding: .25em;
   z-index: 2;
-  
 }
-.tl-arrow.up { top: 20px; }
-.tl-arrow.down { bottom: 47px; }
+.tl-arrow.up { top: 0; }
+.tl-arrow.down { bottom: 0; }
 
 /* animated gradient “glow” on arrow glyph */
-.tl-arrow::before {
-  content: attr(aria-label) == "Scroll earlier" ? "❮" : "❯";
-  /* fallback if Unicode test fails: */
-  content: "▲";
-}
-.tl-arrow.up::before  { content: "▲"; }
-.tl-arrow.down::before{ content: "▼"; }
-.tl-arrow::after {
-  content: attr(aria-label) == "Scroll earlier" ? "◀" : "▶";
-}
-.tl-arrow::before {
-  display: inline-block;
-  background: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-  background-size: 200% 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: gradient-move 3s linear infinite;
-  transition: transform .2s, filter .2s;
-}
-.tl-arrow:hover::before {
-  transform: scale(1.2);
-  filter: brightness(1.3);
-}
+.tl-arrow.up::before   { content: "▲"; }
+.tl-arrow.down::before { content: "▼"; }
+/* For horizontal timelines, you can add: */
+/* .tl-arrow.left::before  { content: "◀"; } */
+/* .tl-arrow.right::before { content: "▶"; } */
 
 @keyframes gradient-move {
   0%   { background-position: 0%   50%; }
@@ -292,28 +268,28 @@
       <img src="images/scrimming.png" alt="">
       <div class="copy">
         <h3>SCRIMMING &amp; MEETUPS</h3>
-        <p></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </div>
     </article>
     <article class="feature">
       <img src="images/vexu.png" alt="">
       <div class="copy">
         <h3>VEX U COMP TEAM</h3>
-        <p></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </div>
     </article>
     <article class="feature">
       <img src="images/banner.png" alt="">
       <div class="copy">
-        <h3>COMPETITION HOSTING</h3>  
-        <p></p>
+        <h3>COMPETITION HOSTING</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </div>
     </article>
     <article class="feature">
       <img src="images/teaching.png" alt="">
       <div class="copy">
         <h3>EDUCATIONAL RESOURCES</h3>
-        <p></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </div>
     </article>
   </section>
@@ -325,46 +301,36 @@
     <button class="tl-arrow up" aria-label="Scroll earlier"></button>
     <div class="tl-viewport">
       <div class="tl-list">
-  <div class="tl-item">
-
-          <div class="tl-dot"><i></i> <strong>JUN 09</strong></div>
-          <a href="/projects.html" class="tl-body">
-            <div class="tl-title">NOTEBOOK AND ROBOT DESIGNS</div>
-            <p class="tl-text">
-              Jesse 948J started the SCA notebook, and Tobias Nueman is leading the robot design.
-            </p>
-          </a>
-        </div>
-
+  
         <div class="tl-item">
-          <div class="tl-dot"><i></i> <strong>JUN 07</strong></div>
-          <a href="/projects.html" class="tl-body">
-            <div class="tl-title">STABILIZING THE NONPROFIT</div>
+          <div class="tl-dot"><i></i> <strong>NOV XX</strong></div>
+          <a href="/showdown" class="tl-body">
+            <div class="tl-title">SOCAL SHOWDOWN</div>
             <p class="tl-text">
-              Made Articles of Organization, got LLC, and started on graphic designs.
+              Details about the Socal Showdown event…
             </p>
           </a>
         </div>
   
         <div class="tl-item">
-          <div class="tl-dot"><i></i> <strong>JUN 01</strong></div>
-          <a href="/projects.html" class="tl-body">
-            <div class="tl-title">STARTED WEBSITE</div>
-            <p class="tl-text">Allen Suarez, Winston Lin, Dylan Byrnes, Glen Bautista, and Travis Scott are working on the website.</p>
+          <div class="tl-dot"><i></i> <strong>SEP XX</strong></div>
+          <a href="/mini-lessons" class="tl-body">
+            <div class="tl-title">VEX MINI-LESSONS</div>
+            <p class="tl-text">Details about mini-lessons…</p>
           </a>
         </div>
         <div class="tl-item">
-          <div class="tl-dot"><i></i> <strong>MAY 19</strong></div>
-          <a href="https://www.robotevents.com/teams/VURC/SCA" class="tl-body">
+          <div class="tl-dot"><i></i> <strong>IDK XX</strong></div>
+          <a href="/mini-lessons" class="tl-body">
             <div class="tl-title">FOUNDING VEXU TEAM</div>
-            <p class="tl-text">After asking friends to help there were enough to manage a team and the nonprofit. We then payed ROBOTEVENTS registration out of pocket.</p>
+            <p class="tl-text">Details about mini-lessons…</p>
           </a>
         </div>
         <div class="tl-item">
-          <div class="tl-dot"><i></i> <strong>MAY 12</strong></div>
-          <a href="/vex.html" class="tl-body">
+          <div class="tl-dot"><i></i> <strong>IDK XX</strong></div>
+          <a href="/mini-lessons" class="tl-body">
             <div class="tl-title">FOUNDING NONPROFIT</div>
-            <p class="tl-text">After William and Allen looked back on their VEXU HighStakes season, they saw how restricting being a team bounded by a school is on not only them but other teams aswell.</p>
+            <p class="tl-text">Details about mini-lessons…</p>
           </a>
         </div>
         
