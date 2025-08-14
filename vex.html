@@ -440,6 +440,30 @@
   50%  { background-position: 100% 50%; }
   100% { background-position:   0% 50%; }
 }
+/* 1) Wrap each slide in a gradient frame */
+.image-carousel .carousel-slide {
+  position: relative;
+  padding: 4px;                   /* space for border */
+  box-sizing: border-box;
+  border-radius: 12px;            /* outer rounding */
+  background: linear-gradient(
+    135deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  ) border-box;
+ 
+}
+
+/* 2) Make the image itself slightly inset */
+.image-carousel .carousel-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;            /* inner rounding so gradient shows */
+  background-clip: padding-box;
+}
+
 
 /* Container */
 .vex-compare {
@@ -496,17 +520,7 @@
 
 
 
-/* 2. Create the overlay */
-#gallery-frame {
-  position: absolute;
-  top:    var(--gallery-top);
-  left:   var(--gallery-left);
-  width:  var(--gallery-width);
-  height: var(--gallery-height);
-  background: url('images/gallery.png') no-repeat center/contain;
-  pointer-events: none;     /* clicks pass through */
-  z-index: var(--gallery-z);
-}
+
 
 /* 3. Ensure nav is always on top */
 .top-bar {

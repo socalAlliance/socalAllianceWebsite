@@ -588,6 +588,16 @@
   z-index: 3;     /* above the background and SVG stroke */
   pointer-events: none;
 }
+/* 1) Force the nav‐bar logo image */
+.top-bar .logo-link .logo {
+  background-image: url('images/logo.png') !important;
+  filter: none !important;      /* remove that grayscale/brightness hack */
+}
+
+/* 2) Ensure footer logo stays white */
+.site-footer .logo {
+  background-image: url('images/logowhite.png') !important;
+}
   </style>
 </head>
 <body>

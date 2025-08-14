@@ -322,6 +322,18 @@
       .site-footer { padding: 1rem 2vw; }
       .footer-content { flex-direction: column; gap: 0.5rem; align-self: center;}
     }
+    /* 1) Nav-bar logo stays colored */
+/* 1) Nav‐bar logo stays colored */
+/* 1) Force the nav‐bar logo image */
+.top-bar .logo-link .logo {
+  background-image: url('images/logo.png') !important;
+  filter: none !important;      /* remove that grayscale/brightness hack */
+}
+
+/* 2) Ensure footer logo stays white */
+.site-footer .logo {
+  background-image: url('images/logowhite.png') !important;
+}
   </style>
 </head>
 <body>
