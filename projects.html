@@ -27,6 +27,23 @@
     nav{display:flex;gap:40px}
     nav a:hover{opacity:.7}
 
+    /* Responsive nav for mobile */
+    @media (max-width: 900px) {
+      .top-bar {
+        flex-direction: column;
+        height: auto;
+        padding: 0 10px;
+        font-size: 18px;
+      }
+      .logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      nav {
+        gap: 20px;
+      }
+    }
+
     /* CONTENT */
     main{background:#000}
 
