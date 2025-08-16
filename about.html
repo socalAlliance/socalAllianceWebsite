@@ -1,693 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>SCA • About</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="images/logo.png" type="image/png"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet" />
   <style>
     /* — Reset & Base — */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; }
-    body {
-      background: #000;
-      color: #fff;
-      font-family: 'Instrument Sans', sans-serif;
-      line-height: 1.4;
-      overflow-x: hidden;
-    }
-    a { text-decoration: none; color: inherit; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { width:100%; }
+    body { background:#000; color:#fff; font-family:'Instrument Sans',sans-serif; line-height:1.4; overflow-x:hidden; }
+    a { color:inherit; text-decoration:none; }
 
-        /* — Sticky Nav — */
-    .top-bar {
-      position: sticky;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-      display: flex;
-      align-items: center;
-      padding: 0 50px;
-      font-family: 'Tilt Warp', sans-serif;
-      font-size: 28px;
-      z-index: 10;
-      transition: transform .3s ease;
+    /* — Sticky Nav — */
+    .top-bar{
+      position:sticky; top:0; left:0; z-index:10;
+      width:100%; height:100px;
+      display:flex; align-items:center; padding:0 50px;
+      font-family:'Tilt Warp',sans-serif; font-size:28px;
+      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      transition:transform .3s ease;
     }
-    .top-bar.hidden {
-      transform: translateY(-100%);
-    }
-    .logo {
-      width: 81px;
-      height: 73px;
-      background: url('images/logo.png') center/cover no-repeat;
-      margin-right: 60px;
-    }
-    nav {
-      display: flex;
-      gap: 40px;
-    }
-    nav a:hover {
-      opacity: .7;
-    }
-
-    /* Responsive nav for mobile */
-    @media (max-width: 900px) {
-      .top-bar {
-        flex-direction: column;
-        height: auto;
-        padding: 0 10px;
-        font-size: 18px;
-      }
-      .logo {
-        margin-right: 0;
-        margin-bottom: 10px;
-      }
-      nav {
-        gap: 20px;
-      }
-    }
+    .top-bar.hidden{ transform:translateY(-100%); }
+    .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:60px; }
+    nav{ display:flex; gap:40px; }
+    nav a:hover{ opacity:.7; }
 
     /* —— Mission Section —— */
-:root {
-  
-  --mission-gif-offset-x: 10%;   /* move GIF more to the left */
-  /* or 15%, 30px, whatever unit you prefer */
-  --mission-copy-offset-x: 55%;   /* from the left edge */
-  --mission-copy-offset-y: 50%;   /* from the top edge */
-    --animated-gradient: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-  --partnerships-underline-height:   10px;
-  --partnerships-underline-radius:   1000px;
-  --partnerships-underline-overhang: 5rem;
-  --partnerships-underline-offset:   0.5rem;
-   --team-shift: 1400px;    /* start here, then adjust up/down */
-
-     --bar-left:    0px;
-  --bar-top:     0px;
-  --bar-width:   200px;
-  --bar-height:  6px;
-  --bar-radius:  3px;
-  --bar-gradient: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-
-}
-.gradient-bar {
-  position: absolute;
-  left:       var(--bar-left);
-  top:        var(--bar-top);
-  width:      var(--bar-width);
-  height:     var(--bar-height);
-  background: var(--bar-gradient);
-  border-radius: var(--bar-radius);
-}
-.mission-section {
-  position: relative;
-  height: 550px;
-  /* allow overflow so the GIF never gets clipped */
-  overflow: visible;
-  margin-bottom: 4rem;
-}
-
-.mission-gif {
-  position: absolute;
-  top: -2%;
-  /* use the variable so you can adjust in one place */
-  left: var(--mission-gif-offset-x);
-  width: 800px;
-  height: auto;
-  filter: blur(6px);
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.mission-copy {
-  position: absolute;
-  /* use offsets instead of hard-coding top/right */
-  top: var(--mission-copy-offset-y);
-  left: var(--mission-copy-offset-x);
-  /* center vertically by translating half its own height */
-  transform: translate(-50%, -50%);
-  
-  z-index: 2;
-  max-width: 45%;
-  color: #fff;
-}
-
-/* Button row stays inside */
-.mission-copy .btn-row {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  align-items: flex-start;
-  margin-top: 1rem;
-}
-    .mission-copy h1 {
-      font-family: 'Tilt Warp', sans-serif;
-      font-size: 60px;        /* tweak heading size */
-      line-height: 1.2;
-      margin-bottom: 1rem;
+    :root{
+      --mission-gif-offset-x:10%;
+      --mission-copy-offset-x:55%;
+      --mission-copy-offset-y:50%;
+      --animated-gradient:linear-gradient(90deg, rgba(249,203,34,.9) 23%, rgba(239,118,22,.9) 50%, rgba(240,17,95,.9) 77%);
+      --partnerships-underline-height:10px;
+      --partnerships-underline-radius:1000px;
+      --partnerships-underline-overhang:5rem;
+      --partnerships-underline-offset:.5rem;
+      --bar-left:0px; --bar-top:0px; --bar-width:200px; --bar-height:6px; --bar-radius:3px;
+      --bar-gradient:linear-gradient(90deg, rgba(249,203,34,.9) 23%, rgba(239,118,22,.9) 50%, rgba(240,17,95,.9) 77%);
     }
-    .mission-copy p {
-      font-size: 24px;        /* tweak paragraph size */
-      line-height: 1.4;
-      margin-bottom: 1.5rem;
+    .gradient-bar{ position:absolute; left:var(--bar-left); top:var(--bar-top); width:var(--bar-width); height:var(--bar-height); background:var(--bar-gradient); border-radius:var(--bar-radius); }
+
+    .mission-section{ position:relative; height:550px; overflow:visible; margin-bottom:4rem; }
+    .mission-gif{ position:absolute; top:-2%; left:var(--mission-gif-offset-x); width:800px; height:auto; filter:blur(6px); opacity:.5; pointer-events:none; z-index:1; }
+    .mission-copy{ position:absolute; top:var(--mission-copy-offset-y); left:var(--mission-copy-offset-x); transform:translate(-50%,-50%); z-index:2; max-width:45%; }
+    .mission-copy .btn-row{ display:flex; flex-direction:column; gap:1.25rem; align-items:flex-start; margin-top:1rem; }
+    .mission-copy h1{ font-family:'Tilt Warp',sans-serif; font-size:60px; line-height:1.2; margin-bottom:1rem; }
+    .mission-copy p{ font-size:24px; line-height:1.4; margin-bottom:1.5rem; }
+
+    .btn-outline{
+      position:relative; font-family:'Tilt Warp',sans-serif; font-size:30px;
+      text-transform:uppercase; padding:3px; color:#fff; border-radius:8px;
+      display:inline-block; background:transparent; border:2px solid transparent;
+      --btn-gradient:linear-gradient(90deg,#F0115F,#EF7616);
+      transition:transform .3s ease,color .3s ease;
+    }
+    .btn-outline::before{
+      content:""; position:absolute; inset:-5px; border-radius:8px; padding:4px;
+      background:var(--btn-gradient);
+      mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite:exclude; z-index:-1; transition:filter .3s ease;
+      display:inline-flex; align-items:center; justify-content:center;
+    }
+    .btn-outline.hover-grayscale:hover::before{ filter:grayscale(100%); }
+    .btn-outline.hover-scale:hover{ transform:scale(1.05); }
+
+    .donate-img{ transition:filter .3s ease; transform:none!important; }
+    .donate-img:hover{ filter:grayscale(100%) brightness(80%); transform:none!important; }
+
+    /* — Partnerships / Bars — */
+    .section-title{ font-family:'Tilt Warp',sans-serif; font-size:60px; line-height:76px; text-align:center; margin:4rem 0 1rem; }
+    .partnerships-banner h2{
+      display:inline-block; font-family:'Tilt Warp',sans-serif;
+      font-size:var(--partners-text-size,60px); font-weight:var(--partnerships-text-weight,100);
+      color:#000; margin:0; position:relative; padding-bottom:var(--partnerships-underline-offset);
+    }
+    .partnerships-banner h2::after{
+      content:''; position:absolute; left:calc(-1 * var(--partnerships-underline-overhang));
+      right:calc(-1 * var(--partnerships-underline-overhang)); bottom:0;
+      height:var(--partnerships-underline-height); border-radius:var(--partnerships-underline-radius);
+      background:linear-gradient(90deg, rgba(249,203,34,.9) 23%, rgba(239,118,22,.9) 50%, rgba(240,17,95,.9) 77%);
+    }
+    .integrated-approach{ position:relative; padding:2rem 0; overflow:hidden; }
+    .integrated-approach .section-title, .integrated-approach .triangle-container{ position:relative; z-index:1; }
+    .integrated-bar.partnerships-banner h2{ color:#fff!important; }
+    .integrated-bar.partnerships-banner{ display:flex; justify-content:center; align-items:center; background:none!important; box-shadow:none!important; padding:0; }
+
+    .background-effects{
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      background:linear-gradient(to right, rgba(0,0,0,.2) 0%, #000 40%, #000 50%, #000 60%, rgba(0,0,0,.2) 100%);
+      z-index:-1;
     }
 
-.btn-outline {
-    position: relative;
-    font-family: 'Tilt Warp', sans-serif;
-    font-size: 30px;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 3px;
-    transition: transform 0.3s ease, color 0.3s ease;
-    --btn-gradient: linear-gradient(90deg, #F0115F, #EF7616); /* Default gradient */
-    color: #fff;  /* Default text color */
-    border-radius: 8px;
-    display: inline-block;
-    background: transparent;  /* Keep the background transparent */
-    border: 2px solid transparent;  /* Outline border is handled by the pseudo-element */
-  }
+    /* ===== Desktop triangle text (no fade on desktop) ===== */
+    .label{ position:absolute; font-weight:bold; font-family:'Tilt Warp',sans-serif; font-size:2.75rem; transform:translate(-50%,-50%); white-space:nowrap; text-align:center; opacity:1; }
+    .description-text{ position:absolute; font-size:1.5rem; color:#fff; max-width:240px; line-height:1.3; text-align:center; opacity:1; }
 
-  .btn-outline::before {
-    content: "";
-    position: absolute;
-    inset: -5px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    padding: 4px;
-    background: var(--btn-gradient);  /* Gradient background */
-    mask: 
-      linear-gradient(#000 0 0) content-box, 
-      linear-gradient(#000 0 0);
-    mask-composite: exclude;
-    z-index: -1;  /* Ensure the background stays behind the text */
-    transition: filter 0.3s ease;
-  }
-
-  /* Hover effect for grayscale */
-  .btn-outline.hover-grayscale:hover::before {
-    filter: grayscale(100%); /* Apply grayscale to the outline background */
-  }
-
-  /* Hover effect for scaling */
-  .btn-outline.hover-scale:hover {
-    transform: scale(1.05);  /* Apply scale effect to the button itself */
-    color: #fff; /* Optional: Change text color on hover */
-  }
-
-/* override the scaling on the donate button */
-.donate-img {
-  /* only animate the filter, never transform */
-  transition: filter 0.3s ease;
-  transform: none !important;
-}
-
-.donate-img:hover {
-  filter: grayscale(100%) brightness(80%);
-  /* ensure it doesn’t pick up the .btn-img transform */
-  transform: none !important;
-}
-
-    /* — Image Pair with Overlay — */
-    .image-section {
-      display: flex; flex-wrap: wrap;
-      gap: 2rem; justify-content: center;
-      padding: 2rem 0;
+    #arrow-container{
+      position:absolute; top:-24px; left:50%; transform:translateX(-50%);
+      display:flex; gap:16.5rem; pointer-events:auto; z-index:5; transition:gap .5s ease;
     }
-    .image-section .img-box {
-      flex: 1 1 300px; max-width: 350px;
-      height: 200px; background: #333 center/cover no-repeat;
-      position: relative;
+    .arrow{
+      display:inline-block; font-size:1.75rem; cursor:pointer;
+      background:var(--animated-gradient); background-size:200% 200%;
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:gradient-move 3s linear infinite;
     }
-    .image-section .img-box::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(
-        270deg,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0.8) 50%,
-        #000 100%
-      );
+    @keyframes gradient-move{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    .arrow:hover{ transform:scale(1.1); }
+
+    /* — Team absolute layout (desktop) — */
+    .team-container{ position:relative; width:1200px; margin:0 auto; padding-bottom:1400px; }
+    .team-item{ position:relative; }
+    .gradient-line{ position:absolute; height:8px; background:linear-gradient(90deg,#F9CB22 23%,#EF7616 50%,#F0115F 77%); }
+    .portrait{ position:absolute; width:165px; height:210px; background-size:cover; border-radius:10px; }
+    .name{ position:absolute; font-family:'Tilt Warp',sans-serif; font-size:40px; line-height:50px; color:#fff; }
+    .role{ position:absolute; font-family:'Instrument Sans',sans-serif; font-weight:700; font-size:24px; line-height:29px; color:#fff; }
+
+    /* Split background images */
+    .bg-split{ position:absolute; top:695px; left:0; width:100%; height:1065px; pointer-events:none; z-index:0; }
+    .bg-split__half{ float:left; width:50%; height:100%; background-size:cover; background-position:center; }
+    .bg-split__left{ background:linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%), url('images/spectators.png') center/cover no-repeat; }
+    .bg-split__right{ background:linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 200%), url('images/teaching.png') center/cover no-repeat; }
+
+    .triangle-container{ position:relative; z-index:2; }
+    .triangle-logo{ position:absolute; top:50%; left:50%; transform:translate(-50%,-35%); width:375px; height:auto; z-index:3; pointer-events:none; }
+
+    /* ===== Responsive helpers ===== */
+    .triangle-container{ width:min(900px,100%)!important; height:auto!important; }
+    .mission-copy h1{ font-size:clamp(34px,7vw,60px); }
+    .mission-copy p { font-size:clamp(16px,3.8vw,24px); }
+
+    @media (max-width:768px){
+      :root{
+        --mission-gif-offset-x:50%;
+        --mission-copy-offset-x:50%;
+        --mission-copy-offset-y:50%;
+      }
+      .top-bar{ height:auto; padding:12px 16px; }
+      nav{ flex-wrap:wrap; gap:12px; justify-content:center; }
+
+      .mission-section{ height:auto; padding:2rem 1rem; }
+      .mission-gif{
+        left:50%; transform:translateX(-50%);
+        width:min(120vw,780px); filter:blur(4px);
+        position:relative; top:0; margin:0 auto 1rem;
+      }
+      .mission-copy{ position:static; max-width:100%; transform:none; text-align:center; }
+      .mission-copy .btn-row{ align-items:center; }
+
+      .bg-split, .gradient-bar, .gradient-line{ display:none!important; }
+
+      .team-container{ width:100%; padding:0 16px 48px; }
+      .team-container .portrait,
+      .team-container .name,
+      .team-container .role{ position:static!important; width:100%!important; }
+      .team-container .name{ text-align:center; }
+      .team-container .role{ max-width:720px; margin:8px auto 0; }
+
+      .triangle-container{ margin-bottom:2rem!important; }
     }
 
-    /* — “Integrated Approach” Title — */
-    .section-title {
-      font-family: 'Tilt Warp', sans-serif;
-      font-size: 60px; line-height: 76px;
-      text-align: center; margin: 4rem 0 1rem;
-    }
-.partnerships-banner h2 {
-  display: inline-block;
-  font-family: 'Tilt Warp', sans-serif;
-  font-size: var(--partners-text-size);
-  font-weight: var(--partnerships-text-weight, 100);
-  color: #000;           /* or whatever text color you need */
-  margin: 0;
-  position: relative;
-  padding-bottom: var(--partnerships-underline-offset);
-}
+    /* === Mobile triangle layout & fades (<=480px) === */
+    @media (max-width: 480px) {
+      .triangle-stage { display: none !important; }
+      .triangle-container { height: auto !important; padding: 0 16px 24px !important; }
 
-.partnerships-banner h2::after {
-  content: '';
-  position: absolute;
-  left:  calc(-1 * var(--partnerships-underline-overhang));
-  right: calc(-1 * var(--partnerships-underline-overhang));
-  bottom: 0;
-  height: var(--partnerships-underline-height);
-  background: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-  border-radius: var(--partnerships-underline-radius);
-}
-    .integrated-approach {
-      position: relative;
-      padding: 2rem 0;
-      overflow: hidden;
+      .tri-mobile { display:flex; flex-direction:column; gap:12px; align-items:center; }
+      .tri-mobile .m-topline {
+        width:100%; display:flex; align-items:center; justify-content:center; gap:12px;
+        font-family: 'Tilt Warp', sans-serif; font-size:22px;
+      }
+      .tri-mobile .m-arrow {
+        font-size:22px; line-height:1; background:none; border:none; color:#fff; padding:6px 10px; cursor:pointer;
+      }
+      .tri-mobile .m-toplabel { text-transform:uppercase; white-space:nowrap; opacity:1; transition:opacity .24s ease; }
+      .tri-mobile .m-toplabel.fading { opacity:0; }
+      .tri-mobile .m-svg { width:min(92vw, 360px); height:auto; }
+      .tri-mobile .m-descs {
+        width:100%; display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px;
+        font-size:14px; line-height:1.35; text-align:left;
+      }
+      .tri-mobile .m-descs .right { text-align:right; }
+      .tri-mobile .m-descs .cell { opacity:1; transition:opacity .24s ease; }
+      .tri-mobile .m-descs .cell.fading { opacity:0; }
+
+      /* Footer tighter on phones */
+      .footer-social img { width:32px; height:32px; }
+      .footer-center { gap:0.5rem; }
     }
 
-    .integrated-approach .section-title,
-    .integrated-approach .triangle-container {
-      position: relative;
-      z-index: 1;
-    }
-/* Shared bar styling */
-
-    .integrated-approach::before,
-    .integrated-approach::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      z-index: -2;
-    }
-
-  
-/* — Integrated Approach Bar — */
-
-/* 2) Make the <h2> itself white */
-.integrated-bar.partnerships-banner h2 {
-  color: #fff !important;
-}
-/* Keep the bar centered but remove its background */
-.integrated-bar.partnerships-banner {
-  display: flex;                /* enable flex centering */
-  justify-content: center;      /* center horizontally */
-  align-items: center;          /* center vertically if you ever change height */
-  background: none !important;
-  box-shadow: none !important;
-  padding: 0;                   /* remove any leftover padding */
-}
-
-/* Force the H2 to be inline-block so its underline width matches text */
-.integrated-bar.partnerships-banner h2 {
-  display: inline-block;
-  color: #fff !important;
-}
-
-
-    .background-effects {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right,
-        rgba(0,0,0,0.2) 0%,
-        #000 40%,
-        #000 50%,
-        #000 60%,
-        rgba(0,0,0,0.2) 100%
-      );
-      z-index: -1;
-    }
-
-    .label {
-        position: absolute;
-        font-weight: bold;
-        font-family: 'Tilt Warp', sans-serif;
-        font-size: 2.75rem;
-        transform: translate(-50%, -50%);
-        white-space: nowrap;
-        text-align: center;
-    }
-
-    .description-text {
-      position: absolute;
-      font-size: 1.5rem;
-      color: #fff;
-      max-width: 240px; /* Widened text box */
-      line-height: 1.3;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 0.4s ease-in-out;
-      pointer-events: none;
-    }
-
-    .description-text.visible {
-      opacity: 1;
-    }
-
-    #arrow-container {
-      position: absolute;
-      top: -24px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 16.5rem;
-      pointer-events: auto;
-      z-index: 5;
-      transition: gap 0.5s ease;
-    }
-
-    /* 1) Make the arrow character itself be “painted” by the gradient */
-.arrow {
-  display: inline-block;           /* ensure background-clip works predictably */
-  font-size: 1.75rem;              /* your existing size */
-  background: var(--animated-gradient);
-  background-size: 200% 200%;      /* double-wide so it can animate */
-  -webkit-background-clip: text;   /* clip the gradient to the text */
-  -webkit-text-fill-color: transparent;
-  animation: gradient-move 3s linear infinite;
-}
-
-/* 2) Keyframes to slide the gradient left→right→left */
-@keyframes gradient-move {
-  0%   { background-position: 0%   50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0%   50%; }
-}
-
-/* Optional: keep your hover “pop” */
-.arrow:hover {
-  transform: scale(1.1);
-}
-    /* — Team Cards — */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-      gap: 2rem; padding: 0 10%;
-    }
-    .team-card {
-      background: #111; border-radius: 10px;
-      overflow: hidden; position: relative;
-    }
-    .team-card img {
-      width: 100%; height: 200px; object-fit: cover;
-    }
-    .team-card .card-content {
-      padding: 1rem;
-    }
-    .team-card .card-content h3 {
-      font-family: 'Tilt Warp', sans-serif;
-      font-size: 40px; margin-bottom: .5rem;
-    }
-    .team-card .card-content p {
-      font-size: 18px; line-height: 22px;
-    }
-/* — Reuse integrated-bar styling for Meet The Team — */
-.meet-bar {
-  margin: 6rem auto 0;    /* only 2rem above, 0 below */
-}
-
-/* If you want a slightly different font size: */
-.meet-bar {
-  font-size: 48px;          /* same as the others */
-}
-   
-/* — FOOTER (UNCHANGED) — */
+    /* ===== Footer (desktop + all) ===== */
     .site-footer {
       background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-      color:#fff; padding:2rem 10%; font-family:'Instrument Sans',sans-serif;
+      color:#fff; padding:2rem 10%;
+      margin-top:2rem;
     }
     .footer-content {
-      display:flex; align-items:flex-start;
-      justify-content:space-between; flex-wrap:wrap; gap:5rem;
+      display:flex; flex-wrap:wrap; gap:2rem;
+      justify-content:space-between; align-items:center;
+      max-width:1200px; margin:0 auto;
     }
-    .footer-left {
-      display:flex; align-items:flex-start; gap:1rem; flex:1 1 400px;
-    }
-    .footer-logo { width:500px; height:auto; }
-    .footer-copy { margin:0; font-size:1.5rem; font-weight:bold; }
-    .footer-sub { margin-top:.5rem; font-size:1rem; opacity:.9; max-width: 400px;   /* ← adjust this to wrap sooner or later */ }
-    .footer-center { display:flex; flex-direction:column; align-items:center; gap:1rem; }
-    .donate-img { height:48px; cursor:pointer; }
-    .footer-social { display:flex; gap:1rem; }
-    .footer-social img {
-      width:60px; height:60px; filter:brightness(200%);
-      transition:filter .2s;
-    }
+    .footer-left { display:flex; align-items:center; gap:1rem; flex:0 1 auto; }
+    .footer-copy { margin:0; font-size:1.1rem; font-weight:bold; }
+    .footer-sub { margin-top:.25rem; font-size:.95rem; opacity:.9; max-width: 520px; }
+    .footer-center { display:flex; flex-direction:column; align-items:center; gap:0.75rem; flex:0 0 auto; }
+    .donate-img { height:40px; cursor:pointer; }
+    .footer-social { display:flex; gap:.75rem; }
+    .footer-social img { width:40px; height:40px; filter:brightness(200%); transition:filter .2s; }
     .footer-social a:hover img { filter:brightness(100%); }
-    /* Gray-out donate button & social icons on hover */
-    .site-footer .logo {
-  background-image: url('images/logowhite.png') !important;
-}
-.donate-img:hover,
-.footer-social a:hover img {
-  filter: grayscale(100%) brightness(80%);
-}
-/* Pop-up on hover for the Learn More image */
-.btn-img:hover img {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-}
-.logo-link .logo {
-  transition: transform 0.3s ease;
-}
-
-.logo-link:hover .logo {
-  transform: scale(1.05);
-}
-/* Ensure you reset any default transition */
-.btn-img img {
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.mission-line {
-    height: 6px;  /* Set the height of the line */
-    background-image: linear-gradient(
-      90deg,
-      rgba(249,203,34,0.9) 0%,
-      rgba(239,118,22,0.9) 50%,
-      rgba(240,17,95,0.9) 100%
-    );  /* Gradient from one color to another */
-    border-radius: 3px;  /* Rounded edges */
-    margin-top: 20px;  /* Space above the line */
-    margin-bottom: 20px;  /* Space below the line */
-  }
-/* Parent container must be relative so children absolute‐position relative to it */
-  .team‐container { position: relative; width: 1200px; margin: 0 auto; }
-
-  .team‐item { position: relative; }
-
-  .gradient‐line {
-    position: absolute;
-    height: 8px;
-    background: linear-gradient(
-      90deg,
-      #F9CB22 23%,
-      #EF7616 50%,
-      #F0115F 77%
-    );
-  }
-
-  .portrait {
-    position: absolute;
-    width: 165px;
-    height: 210px;
-    background-size: cover;
-    border-radius: 10px;
-  }
-
-  .name {
-    position: absolute;
-    font-family: 'Tilt Warp', sans-serif;
-    font-size: 40px;
-    line-height: 50px;
-    color: #fff;
-  }
-
-  .role {
-    position: absolute;
-    font-family: 'Instrument Sans', sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 29px;
-    color: #fff;
-  }
- 
-.team-container {
-  position: relative;
-  width: 1200px;
-  margin: 0 auto;
-  padding-bottom: 1400px;  /* big enough to cover all your team-items */
-}
-/* container for mission buttons (stacked vertically) */
-.mission-copy .btn-row {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  align-items: flex-start;
-  margin-top: 1rem;
-}
-
-/* common styling for image-buttons */
-.btn-img {
-  display: inline-block;
-}
-.btn-img img {
-  height: 48px;              /* adjust as needed */
-  transition: transform .3s ease;
-}
-.btn-img:hover img {
-  transform: scale(1.05);
-}
-.bg-split {
-  position: absolute;     /* take it out of the flow */
-  top: 695px;             /* move it anywhere you like */
-  left: 0;
-  width: 100%;
-  height: 1065px;          /* whatever height you need */
-  pointer-events: none;   /* clicks pass through */
-  z-index: 0;             /* behind your content */
-}
-
-.bg-split__half {
-  float: left;            /* each half sits side by side */
-  width: 50%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-split__left {
-  /* first layer: fade from transparent (left) → black (right center) */
-  /* second: your image */
-  background:
-    linear-gradient(to right, 
-      rgba(0,0,0,0) 0%, 
-      rgba(0,0,0,1) 100%
-    ),
-    url('images/spectators.png') center/cover no-repeat;
-}
-
-.bg-split__right {
-  /* first layer: fade from black (left center) → transparent (right) */
-  /* second: your image */
-  background:
-    linear-gradient(to right,
-      rgba(0,0,0,1)   0%,
-      rgba(0,0,0,0) 200%
-    ),
-    url('images/teaching.png') center/cover no-repeat;
-}
-
-
-.triangle-container { position: relative; z-index: 2; }
-.triangle-container {
-  position: relative;  /* you already have this, but just be sure */
-}
-
-.triangle-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -35%);
-  width: 375px;   /* adjust as needed */
-  height: auto;
-  z-index: 3;     /* above the background and SVG stroke */
-  pointer-events: none;
-}
-/* 1) Force the nav‐bar logo image */
-.top-bar .logo-link .logo {
-  background-image: url('images/logo.png') !important;
-  filter: none !important;      /* remove that grayscale/brightness hack */
-}
-
-/* 2) Ensure footer logo stays white */
-.site-footer .logo {
-  background-image: url('images/logowhite.png') !important;
-}
+    .site-footer .logo { background-image:url('images/logowhite.png')!important; }
+    .donate-img:hover, .footer-social a:hover img { filter: grayscale(100%) brightness(80%); }
   </style>
 </head>
 <body>
 
-    <!-- NAV -->
+  <!-- NAV -->
   <header class="top-bar">
-    <a href="index.html" class="logo-link">
-    <div class="logo"></div>
-  </a>
+    <a href="index.html" class="logo-link"><div class="logo"></div></a>
     <nav>
-        <a href="about.html" >ABOUT</a>
-      <a href="vex.html" >VEX</a>
-    <a href="projects.html" >PROJECTS</a>
+      <a href="about.html">ABOUT</a>
+      <a href="vex.html">VEX</a>
+      <a href="projects.html">PROJECTS</a>
       <a href="#">SUPPORT</a>
     </nav>
   </header>
 
-
   <!-- MISSION SECTION -->
-<section class="mission-section">
-  <img src="images/mission.gif" alt="" class="mission-gif">
-
-  <div class="mission-copy">
-    <h1>OUR MISSION</h1>
-    <div class="mission-line"></div>
-    <p>
-      Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
-    </p>
-
-    <div class="btn-row">
-      <!-- replaced text buttons with image buttons -->
-      <a href="vex.html" class="btn-img">
-        <img src="images/whatsvex.png" alt="WhatsVEX">
-      </a>
-      <a href="support.html" class="btn-img">
-        <img src="images/Donate.png"  alt="Donate">
-      </a>
+  <section class="mission-section">
+    <img src="images/mission.gif" alt="" class="mission-gif" />
+    <div class="mission-copy">
+      <h1>OUR MISSION</h1>
+      <div class="mission-line" style="height:6px;background-image:linear-gradient(90deg,rgba(249,203,34,.9) 0%,rgba(239,118,22,.9) 50%,rgba(240,17,95,.9) 100%);border-radius:3px;margin:20px 0;"></div>
+      <p>
+        Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
+      </p>
+      <div class="btn-row">
+        <a href="vex.html" class="btn-img"><img src="images/whatsvex.png" alt="WhatsVEX" /></a>
+        <a href="support.html" class="btn-img"><img src="images/Donate.png" alt="Donate" /></a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
- 
   <div class="bg-split">
-  <div class="bg-split__half bg-split__left"></div>
-  <div class="bg-split__half bg-split__right"></div>
-</div>
+    <div class="bg-split__half bg-split__left"></div>
+    <div class="bg-split__half bg-split__right"></div>
+  </div>
 
   <!-- Integrated Approach -->
-    <div class="integrated-bar meet-bar partnerships-banner">
-  <h2>TRIANGULAR TIES</h2>
-</div>
-
+  <div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;">
+    <h2>TRIANGULAR TIES</h2>
+  </div>
 
   <div class="integrated-approach">
-    
     <div class="background-effects"></div>
-    <div class="triangle-container" style="margin: 5rem auto; width: 900px; position: relative; text-align: center; font-family: sans-serif; height: 720px;">
+    <div class="triangle-container" style="margin:5rem auto; width:900px; position:relative; text-align:center; font-family:sans-serif; height:720px;">
       <!-- SVG Triangle -->
-      <svg viewBox="0 0 300 240" style="width: 100%; height: auto;">
+      <svg viewBox="0 0 300 240" style="width:100%; height:auto;">
         <defs>
           <linearGradient id="triangleStrokeGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#F9CB22"/>
@@ -695,30 +268,15 @@
             <stop offset="100%" stop-color="#F0115F"/>
           </linearGradient>
         </defs>
-        <polygon
-          points="150,20 40,200 260,200"
-          fill="none"
-          stroke="url(#triangleStrokeGradient)"
-          stroke-width="6"
-          stroke-linejoin="round"
-        />
+        <polygon points="150,20 40,200 260,200" fill="none" stroke="url(#triangleStrokeGradient)" stroke-width="6" stroke-linejoin="round"/>
       </svg>
-<img
-  src="images/highstakes.png"
-  alt="Logo"
-  class="triangle-logo"
-/>
+      <img src="images/highstakes.png" alt="Logo" class="triangle-logo"/>
+
       <!-- Labels -->
       <div id="labels" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
-        <div class="label">
-          <div class="label-text">NONPROFIT</div>
-        </div>
-        <div class="label">
-          <div class="label-text">VEXU TEAM</div>
-        </div>
-        <div class="label">
-          <div class="label-text">SOCAL ALLIANCE</div>
-        </div>
+        <div class="label"><div class="label-text">NONPROFIT</div></div>
+        <div class="label"><div class="label-text">VEXU TEAM</div></div>
+        <div class="label"><div class="label-text">SOCAL ALLIANCE</div></div>
       </div>
 
       <!-- Descriptions -->
@@ -727,356 +285,384 @@
 
       <!-- Arrows -->
       <div id="arrow-container">
-          <div class="arrow" data-dir="-1">&#9664;</div>
-          <div class="arrow" data-dir="1">&#9654;</div>
+        <div class="arrow" data-dir="-1">&#9664;</div>
+        <div class="arrow" data-dir="1">&#9654;</div>
       </div>
     </div>
   </div>
 
-<script>
-  // --- Configuration ---
-  const roles = [
-    {
-      label: 'NONPROFIT',
-      descriptions: {
-        VEXU_TEAM: 'Provides funding and resources to the VEXU team, enabling them to compete and innovate.',
-        SOCAL_ALLIANCE: 'Acts as the fiscal sponsor for the SoCal Alliance, handling donations and financial oversight.'
+  <script>
+    /* Roles / copy */
+    const roles = [
+      {
+        label: "NONPROFIT",
+        descriptions: {
+          VEXU_TEAM: "Provides funding and resources to the VEXU team, enabling them to compete and innovate.",
+          SOCAL_ALLIANCE: "Acts as the fiscal sponsor for the SoCal Alliance, handling donations and financial oversight."
+        }
+      },
+      {
+        label: "VEXU TEAM",
+        descriptions: {
+          NONPROFIT: "Team members volunteer and provide technical expertise to support the nonprofit's outreach programs.",
+          SOCAL_ALLIANCE: "Serves as a model team and contributes to the Alliance's knowledge base and community events."
+        }
+      },
+      {
+        label: "SOCAL ALLIANCE",
+        descriptions: {
+          NONPROFIT: "Organizes fundraising events and connects the nonprofit with potential sponsors and partners.",
+          VEXU_TEAM: "Offers mentorship, shared resources, and a collaborative community for the VEXU team."
+        }
       }
-    },
-    {
-      label: 'VEXU TEAM',
-      descriptions: {
-        NONPROFIT: 'Team members volunteer and provide technical expertise to support the nonprofit\'s outreach programs.',
-        SOCAL_ALLIANCE: 'Serves as a model team and contributes to the Alliance\'s knowledge base and community events.'
+    ];
+
+    // Desktop coordinates for triangle motion
+    const positions = [
+      { x: 450, y: -5 },   // Top
+      { x: -40, y: 640 },  // Bottom-left
+      { x: 940, y: 640 }   // Bottom-right
+    ];
+
+    let rotation = 0, isAnimating = false;
+    const labelEls = document.querySelectorAll("#labels .label");
+    const descriptionLeftEl = document.getElementById("description-left");
+    const descriptionRightEl = document.getElementById("description-right");
+    const arrowContainer = document.getElementById("arrow-container");
+
+    function updateArrowGap(){
+      const topRoleIndex = (3 - rotation) % 3;
+      arrowContainer.style.gap = roles[topRoleIndex].label === "SOCAL ALLIANCE" ? "24rem" : "16.5rem";
+    }
+
+    const circumcircle = (function(points){
+      const [p1,p2,p3] = points;
+      const d = 2*(p1.x*(p2.y-p3.y)+p2.x*(p3.y-p1.y)+p3.x*(p1.y-p2.y));
+      if (Math.abs(d) < 1e-6) return null;
+      const ux = ((p1.x*p1.x+p1.y*p1.y)*(p2.y-p3.y) + (p2.x*p2.x+p2.y*p2.y)*(p3.y-p1.y) + (p3.x*p3.x+p3.y*p3.y)*(p1.y-p2.y)) / d;
+      const uy = ((p1.x*p1.x+p1.y*p1.y)*(p3.x-p2.x) + (p2.x*p2.x+p2.y*p2.y)*(p1.x-p3.x) + (p3.x*p3.x+p3.y*p3.y)*(p2.x-p1.x)) / d;
+      const center = { x: ux, y: uy };
+      const radius = Math.hypot(center.x - p1.x, center.y - p1.y);
+      return { center, radius };
+    })(positions);
+
+    function getAngle(p){ return Math.atan2(p.y - circumcircle.center.y, p.x - circumcircle.center.x); }
+    function easeInOutCubic(t){ return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2; }
+
+    function updateDescriptions(){
+      const top = (3 - rotation) % 3, left = (4 - rotation) % 3, right = (5 - rotation) % 3;
+      const topRole = roles[top], leftRole = roles[left], rightRole = roles[right];
+      const leftKey = leftRole.label.replace(" ","_");
+      const rightKey = rightRole.label.replace(" ","_");
+
+      descriptionLeftEl.textContent = topRole.descriptions[leftKey];
+      descriptionRightEl.textContent = topRole.descriptions[rightKey];
+
+      const leftVertex = positions[1], rightVertex = positions[2];
+      Object.assign(descriptionLeftEl.style, { left: (leftVertex.x + 20) + "px", top: (leftVertex.y - 400) + "px", width: "350px", textAlign: "left" });
+      Object.assign(descriptionRightEl.style, { left: (rightVertex.x - 250) + "px", top: (rightVertex.y - 400) + "px", width: "350px", textAlign: "right" });
+    }
+
+    function animateRotation(direction){
+      if (isAnimating || !circumcircle) return;
+      isAnimating = true;
+
+      // Only fade on mobile
+      if (window.matchMedia('(max-width: 480px)').matches) {
+        if (typeof window.mobileFadeOut === 'function') window.mobileFadeOut();
       }
-    },
-    {
-      label: 'SOCAL ALLIANCE',
-      descriptions: {
-        NONPROFIT: 'Organizes fundraising events and connects the nonprofit with potential sponsors and partners.',
-        VEXU_TEAM: 'Offers mentorship, shared resources, and a collaborative community for the VEXU team.'
-      }
-    }
-  ];
 
-  // Adjusted positions for better layout
-  const positions = [
-    {x: 450, y: -5},   // Top vertex
-    {x: -40, y: 640},  // Bottom-left vertex
-    {x: 940, y: 640}   // Bottom-right vertex
-  ];
+      const from = rotation, to = (rotation + direction + 3) % 3;
+      const start = performance.now(), duration = 800;
 
-  // --- Global State ---
-  let rotation = 0; 
-  let isAnimating = false;
-  const labelEls = document.querySelectorAll('#labels .label');
-  const descriptionLeftEl = document.getElementById('description-left');
-  const descriptionRightEl = document.getElementById('description-right');
-
-  const arrowContainer = document.getElementById('arrow-container');
-  function updateArrowGap() {
-  // Calculate which role is currently at the top based on rotation
-  const topRoleIndex = (3 - rotation) % 3;
-  const topRoleLabel = roles[topRoleIndex].label;
-
-  if (topRoleLabel === 'SOCAL ALLIANCE') {
-    arrowContainer.style.gap = '24rem';  // wider gap when SOCAL ALLIANCE is on top
-  } else {
-    arrowContainer.style.gap = '16.5rem';  // default gap otherwise
-  }
-}
-  // --- Animation & Positioning Logic ---
-
-  const circumcircle = (function getCircumcircle(points) {
-    const [p1, p2, p3] = points;
-    const d = 2 * (p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y));
-    if (Math.abs(d) < 1e-6) return null;
-    const ux = ((p1.x * p1.x + p1.y * p1.y) * (p2.y - p3.y) + (p2.x * p2.x + p2.y * p2.y) * (p3.y - p1.y) + (p3.x * p3.x + p3.y * p3.y) * (p1.y - p2.y)) / d;
-    const uy = ((p1.x * p1.x + p1.y * p1.y) * (p3.x - p2.x) + (p2.x * p2.x + p2.y * p2.y) * (p1.x - p3.x) + (p3.x * p3.x + p3.y * p3.y) * (p2.x - p1.x)) / d;
-    const center = { x: ux, y: uy };
-    const radius = Math.sqrt(Math.pow(center.x - p1.x, 2) + Math.pow(center.y - p1.y, 2));
-    return { center, radius };
-  })(positions);
-
-  function getAngle(point) {
-    return Math.atan2(point.y - circumcircle.center.y, point.x - circumcircle.center.x);
-  }
-
-  function easeInOutCubic(t) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
-
-  function updateDescriptions() {
-    const topRoleIndex = (3 - rotation) % 3;
-    const leftRoleIndex = (4 - rotation) % 3;
-    const rightRoleIndex = (5 - rotation) % 3;
-
-    const topRole = roles[topRoleIndex];
-    const leftRole = roles[leftRoleIndex];
-    const rightRole = roles[rightRoleIndex];
-
-    const leftKey = leftRole.label.replace(' ', '_');
-    const rightKey = rightRole.label.replace(' ', '_');
-
-    descriptionLeftEl.textContent = topRole.descriptions[leftKey];
-    descriptionRightEl.textContent = topRole.descriptions[rightKey];
-
-    // Position the descriptions
-    const leftVertex = positions[1];
-    const rightVertex = positions[2];
-
-    descriptionLeftEl.style.left = `${leftVertex.x + 20}px`; // Adjusted position
-    descriptionLeftEl.style.top = `${leftVertex.y - 400}px`; // Moved up
-    descriptionLeftEl.style.width = '350px';
-    descriptionLeftEl.style.textAlign = "left";
-    descriptionRightEl.style.left = `${rightVertex.x - 250}px`; // Adjusted position
-    descriptionRightEl.style.top = `${rightVertex.y - 400}px`; // Moved up
-    descriptionRightEl.style.width = '350px';
-    descriptionRightEl.style.textAlign = "right";
-
-    setTimeout(() => {
-      descriptionLeftEl.classList.add('visible');
-      descriptionRightEl.classList.add('visible');
-    }, 10);
-  }
-
-  function animateRotation(direction) {
-  if (isAnimating || !circumcircle) return;
-  isAnimating = true;
-
-  descriptionLeftEl.classList.remove('visible');
-  descriptionRightEl.classList.remove('visible');
-
-  const fromRotation = rotation;
-  const toRotation = (rotation + direction + 3) % 3;
-
-  const startTime = performance.now();
-  const duration = 800;
-
-  const animParams = Array.from(labelEls).map((_, i) => {
-    const startPos = positions[(i + fromRotation) % 3];
-    const endPos = positions[(i + toRotation) % 3];
-    const startAngle = getAngle(startPos);
-    let endAngle = getAngle(endPos);
-    let delta = endAngle - startAngle;
-
-    if (direction > 0) { // Clockwise
-      if (delta > 0) delta -= 2 * Math.PI;
-    } else { // Counter-clockwise
-      if (delta < 0) delta += 2 * Math.PI;
-    }
-    return { startAngle, delta };
-  });
-
-  // Trigger arrow gap change at 40% animation progress (~320ms)
-  const gapChangeDelay = duration * 0.2;
-  let gapChanged = false;
-
-  function animationStep(timestamp) {
-    const elapsed = timestamp - startTime;
-    const t = Math.min(elapsed / duration, 1);
-    const easedT = easeInOutCubic(t);
-
-    labelEls.forEach((el, i) => {
-      const { startAngle, delta } = animParams[i];
-      const angle = startAngle + delta * easedT;
-      const x = circumcircle.center.x + circumcircle.radius * Math.cos(angle);
-      const y = circumcircle.center.y + circumcircle.radius * Math.sin(angle);
-      el.style.left = `${x}px`;
-      el.style.top = `${y}px`;
-    });
-
-    // Start arrow gap animation early (once elapsed > gapChangeDelay)
-    if (!gapChanged && elapsed >= gapChangeDelay) {
-      rotation = toRotation; // update rotation here so updateArrowGap uses new rotation
-      updateArrowGap();
-      gapChanged = true;
-    }
-
-    if (t < 1) {
-      requestAnimationFrame(animationStep);
-    } else {
-      // Finish rotation update in case it wasn’t updated earlier
-      rotation = toRotation;
-      updateDescriptions();
-      isAnimating = false;
-    }
-  }
-
-  requestAnimationFrame(animationStep);
-}
-
-  function initialize() {
-    labelEls.forEach((el, i) => {
-      el.querySelector('.label-text').textContent = roles[i].label;
-      const pos = positions[(i + rotation) % 3];
-      el.style.left = `${pos.x}px`;
-      el.style.top = `${pos.y}px`;
-    });
-
-    updateDescriptions();
-
-    document.querySelectorAll('.arrow').forEach(arrow => {
-      arrow.addEventListener('click', () => {
-        const direction = parseInt(arrow.dataset.dir, 10);
-        animateRotation(direction);
+      const params = Array.from(labelEls).map((_, i) => {
+        const startPos = positions[(i + from) % 3], endPos = positions[(i + to) % 3];
+        const a0 = getAngle(startPos); let a1 = getAngle(endPos); let d = a1 - a0;
+        if (direction > 0){ if (d > 0) d -= 2*Math.PI; } else { if (d < 0) d += 2*Math.PI; }
+        return { a0, d };
       });
-    });
-  }
 
-  initialize();
+      const gapChangeDelay = duration * 0.2; let gapChanged = false;
 
-</script>
-  <!-- Some heading or content -->
- 
+      function step(ts){
+        const t = Math.min((ts - start) / duration, 1), e = easeInOutCubic(t);
+        labelEls.forEach((el,i)=>{
+          const { a0, d } = params[i];
+          const ang = a0 + d * e;
+          const x = circumcircle.center.x + circumcircle.radius * Math.cos(ang);
+          const y = circumcircle.center.y + circumcircle.radius * Math.sin(ang);
+          el.style.left = x + "px"; el.style.top = y + "px";
+        });
 
-  
+        if (!gapChanged && (ts - start) >= gapChangeDelay){ rotation = to; updateArrowGap(); gapChanged = true; }
 
-  <!-- Bar #2: top border above an image gallery -->
- <div class="gradient-bar"
-     style="
-       --bar-left:   00px;
-       --bar-top:    675px;
-       --bar-width:  2100px;
-       --bar-height: 20px;
-       z-index: 9; 
-     ">
-</div>
-<!-- Bar #2: top border above an image gallery -->
- <div class="gradient-bar"
-     style="
-       --bar-left:   00px;
-       --bar-top:    1760px;
-       --bar-width:  2100px;
-       --bar-height: 20px;
-       z-index: 9; 
-     ">
-</div>
+        if (t < 1) requestAnimationFrame(step);
+        else {
+          rotation = to;
+          updateDescriptions();
 
-<!-- Meet the Team Bar -->
-<div class="integrated-bar meet-bar partnerships-banner">
-  <h2>MEET THE TEAM</h2>
-</div>
-  
-<div class="team-container">
-  <!-- Block 1: William Ho (no extra shift) -->
-  <div class="team‐item">
-    <div class="gradient‐line" style="width: 596px; left: 553px; top: 99px;"></div>
-    <div class="gradient‐line" style="width: 480px; left: 669px; top: 339px;"></div>
-    <div class="portrait" style="left: 104px; top: 57px; background-image: url('images/WILLIAMHO.png');"></div>
-    <div class="name" style="left: 314px; top: 68px;">WILLIAM HO</div>
-    <div class="role" style="left: 314px; top: 117px; width: 835px;">
-      <div class="role-title">President</div>
-      <div class="role-text">
-        William, SCA's founder and president, has formally competed in Vex Robotics since 2016. Outside of VEX, he studies Robotics Engineering at UCR, and enjoys 3D modeling, designing, and mountain biking.
+          // Only mobile fades & text refresh
+          if (window.matchMedia('(max-width: 480px)').matches) {
+            if (typeof window.updateMobileTexts === 'function') window.updateMobileTexts();
+            if (typeof window.mobileFadeIn === 'function') window.mobileFadeIn();
+          }
+          isAnimating = false;
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    function initialize(){
+      labelEls.forEach((el,i)=>{ el.querySelector(".label-text").textContent = roles[i].label; const pos = positions[(i+rotation)%3]; el.style.left = pos.x + "px"; el.style.top = pos.y + "px"; });
+      updateDescriptions();
+      document.querySelectorAll(".arrow").forEach(a => a.addEventListener("click", () => animateRotation(parseInt(a.dataset.dir,10))));
+    }
+    initialize();
+  </script>
+
+  <!-- Decorative gradient bars -->
+  <div class="gradient-bar" style="--bar-left:0px; --bar-top:675px; --bar-width:2100px; --bar-height:20px; z-index:9;"></div>
+  <div class="gradient-bar" style="--bar-left:0px; --bar-top:1760px; --bar-width:2100px; --bar-height:20px; z-index:9;"></div>
+
+  <!-- Meet the Team -->
+  <div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;">
+    <h2>MEET THE TEAM</h2>
+  </div>
+
+  <div class="team-container">
+    <!-- (team items unchanged) -->
+    <div class="team-item">
+      <div class="gradient-line" style="width:596px; left:553px; top:99px;"></div>
+      <div class="gradient-line" style="width:480px; left:669px; top:339px;"></div>
+      <div class="portrait" style="left:104px; top:57px; background-image:url('images/WILLIAMHO.png');"></div>
+      <div class="name" style="left:314px; top:68px;">WILLIAM HO</div>
+      <div class="role" style="left:314px; top:117px; width:835px;">
+        <div class="role-title">President</div>
+        <div class="role-text">William, SCA's founder and president, has formally competed in Vex Robotics since 2016. Outside of VEX, he studies Robotics Engineering at UCR, and enjoys 3D modeling, designing, and mountain biking.</div>
+      </div>
+    </div>
+    <div class="team-item">
+      <div class="gradient-line" style="width:583px; left:566px; top:589px; transform:matrix(1,0,0,-1,0,0);"></div>
+      <div class="portrait" style="left:148px; top:318px; background-image:url('images/ALLENSUAREZ.png'); transform:rotate(-0.15deg);"></div>
+      <div class="name" style="left:394px; top:318px;">ALLEN SUAREZ</div>
+      <div class="role" style="left:394px; top:367px; width:755px;">
+        <div class="role-title">Vice President</div>
+        <div class="role-text">Allens working towards welding, metal fab, and C.A.D associates at LBCC. He's a mcbride robotics mentor and plans to transfer into mechanical engineering, trying to be a prototype engineer. Now learning HTML by coding this website, and has been design lead and filled roles in his V5RC and VEX U career.</div>
+      </div>
+    </div>
+    <div class="team-item">
+      <div class="gradient-line" style="width:478px; left:671px; top:839px; transform:matrix(1,0,0,-1,0,0);"></div>
+      <div class="portrait" style="left:104px; top:557px; background-image:url('images/WINSTONLINE.png');"></div>
+      <div class="name" style="left:314px; top:568px;">WINSTON LIN</div>
+      <div class="role" style="left:314px; top:617px; width:835px;">
+        <div class="role-title">Brand Manager</div>
+        <div class="role-text">Winston is an aspiring mechanical engineer with 5 years of VEX Robotics experience under his belt despite being a rising high school senior. Throughout his career so far, he has garnered 13 total awards, 3 of which were at States-level competitions. Outside of robotics, he also dabbles in music composition, video editing, story writing, and water polo.</div>
+      </div>
+    </div>
+    <div class="team-item">
+      <div class="gradient-line" style="width:538px; left:611px; top:1089px; transform:matrix(1,0,0,-1,0,0);"></div>
+      <div class="portrait" style="left:184px; top:807px; background-image:url('images/MILESSANGER.png');"></div>
+      <div class="name" style="left:394px; top:818px;">MILES SANGER</div>
+      <div class="role" style="left:394px; top:867px; width:755px;">
+        <div class="role-title">Treasurer</div>
+        <div class="role-text">Miles, SCA’s treasurer and resident “vex lawyer” is also a part-time VEX referee, having formally competed over four years. Outside of VEX, he is pursuing a BFA in Game Development at the USC School of Cinematic Arts, and enjoys writing poetry, watching baseball, and riding public transportation.</div>
+      </div>
+    </div>
+    <div class="team-item">
+      <div class="portrait" style="left:104px; top:1057px; background-image:url('images/GLENBAUTISTA.png');"></div>
+      <div class="name" style="left:314px; top:1068px;">GLEN BAUTISTA</div>
+      <div class="role" style="left:349px; top:1134px; width:755px;">
+        <div class="role-title">Secretary</div>
+        <div class="role-text">Glen is a B.S. Computer Science major with plans to double major with a B.S. in General Applied Mathematics at UCR. He has experience in C++, HTML, and CSS programming, as well as robot construction. He competed in V5RC, VEX U, and FRC competitions from two high schools and one university.</div>
       </div>
     </div>
   </div>
 
-  <!-- Block 2: Allen Suarez (+10px) -->
-  <div class="team‐item">
-    <div class="gradient‐line"
-         style="width: 583px; left: 566px; top: 589px; transform: matrix(1,0,0,-1,0,0);"></div>
-    <div class="portrait"
-         style="left: 148px; top: 318px; background-image: url('images/ALLENSUAREZ.png'); transform: rotate(-0.15deg);"></div>
-    <div class="name" style="left: 394px; top: 318px;">ALLEN SUAREZ</div>
-    <div class="role" style="left: 394px; top: 367px; width: 755px;">
-      <div class="role-title">Vice President</div>
-      <div class="role-text">
-        Allens working towards welding, metal fab, and C.A.D associates at LBCC. He's a mcbride robotics mentor and plans to transfer into mechanical engineering, trying to be a prototype engineer. Now learning HTML by coding this website, and has been design lead and filled roles in his V5RC and VEX U career.
-      </div>
-    </div>
-  </div>
-
-  <!-- Block 3: Winston Lin (+20px) -->
-  <div class="team‐item">
-    <div class="gradient‐line"
-         style="width: 478px; left: 671px; top: 839px; transform: matrix(1,0,0,-1,0,0);"></div>
-    <div class="portrait"
-         style="left: 104px; top: 557px; background-image: url('images/WINSTONLINE.png');"></div>
-    <div class="name" style="left: 314px; top: 568px;">WINSTON LIN</div>
-    <div class="role" style="left: 314px; top: 617px; width: 835px;">
-      <div class="role-title">Brand Manager</div>
-      <div class="role-text">
-        Winston is an aspiring mechanical engineer with 5 years of VEX Robotics experience under his belt despite being a rising high school senior. Throughout his career so far, he has garnered 13 total awards, 3 of which were at States-level competitions. Outside of robotics, he also dabbles in music composition, video editing, story writing, and water polo.
-      </div>
-    </div>
-  </div>
-
-  <!-- Block 4: Miles Sanger (+30px) -->
-  <div class="team‐item">
-    <div class="gradient‐line"
-         style="width: 538px; left: 611px; top: 1089px; transform: matrix(1,0,0,-1,0,0);"></div>
-    <div class="portrait"
-         style="left: 184px; top: 807px; background-image: url('images/MILESSANGER.png');"></div>
-    <div class="name" style="left: 394px; top: 818px;">MILES SANGER</div>
-    <div class="role" style="left: 394px; top: 867px; width: 755px;">
-      <div class="role-title">Treasurer</div>
-      <div class="role-text">
-        Miles, SCA’s treasurer and resident “vex lawyer” is also a part-time VEX referee, having formally competed over four years. Outside of VEX, he is pursuing a BFA in Game Development at the USC School of Cinematic Arts, and enjoys writing poetry, watching baseball, and riding public transportation.
-      </div>
-    </div>
-  </div>
-
-  <!-- Block 5: Glen Bautista (+40px) -->
-  <div class="team‐item">
-    
-    <div class="portrait"
-         style="left: 104px; top: 1057px; background-image: url('images/GLENBAUTISTA.png');"></div>
-    <div class="name" style="left: 314px; top: 1068px;">GLEN BAUTISTA</div>
-    <div class="role" style="left: 349px; top: 1134px; width: 755px;">
-      <div class="role-title">Secretary</div>
-      <div class="role-text">
-        Glen is a B.S. Computer Science major with plans to double major with a B.S. in General Applied Mathematics at UCR. He has experience in C++, HTML, and CSS programming, as well as robot construction. He competed in V5RC, VEX U, and FRC competitions from two high schools and one university.
-      </div>
-    </div>
-  </div>
-</div>
-
-
- <!-- FOOTER (UNCHANGED) -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-left">
-        <a href="index.html" class="logo-link">
-    <div class="logo"></div>
-  </a>
+        <a href="index.html" class="logo-link"><div class="logo"></div></a>
         <div>
           <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
           <p class="footer-sub">SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.</p>
         </div>
       </div>
       <div class="footer-center">
-        <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+        <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now" /></a>
         <div class="footer-social">
-          <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener">
-  <img src="images/SCA_INSTwhite.png" alt="Instagram">
-</a>
-<a href="mailto:you@domain.com">
-  <img src="images/SCA_EMAILwhite.png" alt="Email">
-</a>
-<a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener">
-  <img src="images/SCA_TIKTOKwhite.png" alt="TikTok">
-</a>
-<a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener">
-  <img src="images/SCA_YOUTUBEwhite.png" alt="YouTube">
-</a>
+          <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener"><img src="images/SCA_INSTwhite.png" alt="Instagram" /></a>
+          <a href="mailto:you@domain.com"><img src="images/SCA_EMAILwhite.png" alt="Email" /></a>
+          <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener"><img src="images/SCA_TIKTOKwhite.png" alt="TikTok" /></a>
+          <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener"><img src="images/SCA_YOUTUBEwhite.png" alt="YouTube" /></a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Hide-on-scroll Nav Script -->
+  <!-- Hide-on-scroll Nav -->
   <script>
     (function(){
       let lastY = window.scrollY;
       const nav = document.querySelector('.top-bar');
-      window.addEventListener('scroll', () => {
+      window.addEventListener('scroll', ()=>{
         const y = window.scrollY;
         nav.classList.toggle('hidden', y > lastY && y > 100);
         lastY = y;
       });
     })();
+  </script>
+
+  <!-- Desktop scaler + Mobile triangle layout (mobile-only fades) -->
+  <script>
+  (function () {
+    const container = document.querySelector('.triangle-container');
+    if (!container) return;
+
+    // 1) Wrap existing triangle content into a scaling stage (desktop/tablet)
+    const stage = document.createElement('div');
+    stage.className = 'triangle-stage';
+    const kids = Array.from(container.childNodes);
+    kids.forEach(n => stage.appendChild(n));
+    container.appendChild(stage);
+
+    const BASE_W = 900, BASE_H = 720;
+    Object.assign(stage.style, {
+      width: BASE_W + 'px',
+      height: BASE_H + 'px',
+      position: 'relative',
+      transformOrigin: 'top left'
+    });
+
+    function resizeDesktop() {
+      const s = Math.min(container.clientWidth / BASE_W, 1);
+      stage.style.transform = 'scale(' + s + ')';
+      container.style.paddingTop = Math.ceil(28 * s) + 'px';   // room for arrows
+      container.style.paddingBottom = Math.ceil(40 * s) + 'px';
+      container.style.height = (BASE_H * s + Math.ceil(68 * s)) + 'px';
+    }
+
+    // 2) Build a clean mobile UI (≤480px)
+    let mobileBuilt = false;
+    let mRoot, mTopLabel, mLeft, mRight;
+
+    function buildMobile() {
+      if (mobileBuilt) return;
+      mRoot = document.createElement('div');
+      mRoot.className = 'tri-mobile';
+
+      const top = document.createElement('div');
+      top.className = 'm-topline';
+
+      const btnPrev = document.createElement('button');
+      btnPrev.className = 'm-arrow';
+      btnPrev.textContent = '◀';
+      btnPrev.dataset.dir = '-1';
+
+      const btnNext = document.createElement('button');
+      btnNext.className = 'm-arrow';
+      btnNext.textContent = '▶';
+      btnNext.dataset.dir = '1';
+
+      mTopLabel = document.createElement('div');
+      mTopLabel.className = 'm-toplabel';
+
+      top.append(btnPrev, mTopLabel, btnNext);
+
+      const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      svg.setAttribute('viewBox','0 0 300 240');
+      svg.classList.add('m-svg');
+
+      const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+      const lg = document.createElementNS('http://www.w3.org/2000/svg','linearGradient');
+      lg.setAttribute('id','triGrad'); lg.setAttribute('x1','0'); lg.setAttribute('y1','0'); lg.setAttribute('x2','0'); lg.setAttribute('y2','1');
+      const s1=document.createElementNS('http://www.w3.org/2000/svg','stop'); s1.setAttribute('offset','0%'); s1.setAttribute('stop-color','#F9CB22');
+      const s2=document.createElementNS('http://www.w3.org/2000/svg','stop'); s2.setAttribute('offset','50%'); s2.setAttribute('stop-color','#EF7616');
+      const s3=document.createElementNS('http://www.w3.org/2000/svg','stop'); s3.setAttribute('offset','100%'); s3.setAttribute('stop-color','#F0115F');
+      lg.append(s1,s2,s3); defs.appendChild(lg);
+
+      const poly = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+      poly.setAttribute('points','150,20 40,200 260,200');
+      poly.setAttribute('fill','none');
+      poly.setAttribute('stroke','url(#triGrad)');
+      poly.setAttribute('stroke-width','6');
+      poly.setAttribute('stroke-linejoin','round');
+
+      svg.append(defs, poly);
+
+      const descs = document.createElement('div');
+      descs.className = 'm-descs';
+      mLeft  = document.createElement('div'); mLeft.className  = 'cell left';
+      mRight = document.createElement('div'); mRight.className = 'cell right';
+      descs.append(mLeft, mRight);
+
+      mRoot.append(top, svg, descs);
+      container.appendChild(mRoot);
+
+      // Hook to same rotation behavior
+      mRoot.querySelectorAll('.m-arrow').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const direction = parseInt(btn.dataset.dir, 10);
+          if (typeof animateRotation === 'function') {
+            animateRotation(direction);
+          } else {
+            rotation = (rotation + direction + 3) % 3;
+            window.updateMobileTexts && window.updateMobileTexts();
+          }
+        });
+      });
+
+      mobileBuilt = true;
+    }
+
+    function updateMobileTexts() {
+      const top = (3 - rotation) % 3;
+      const left = (4 - rotation) % 3;
+      const right = (5 - rotation) % 3;
+      const topRole = roles[top], leftRole = roles[left], rightRole = roles[right];
+      mTopLabel.textContent = topRole.label;
+      const leftKey  = leftRole.label.replace(' ','_');
+      const rightKey = rightRole.label.replace(' ','_');
+      mLeft.textContent  = topRole.descriptions[leftKey];
+      mRight.textContent = topRole.descriptions[rightKey];
+    }
+    window.updateMobileTexts = updateMobileTexts;
+
+    // mobile fade helpers (only used on mobile)
+    window.mobileFadeOut = function(){
+      if (!mRoot) return;
+      mTopLabel.classList.add('fading');
+      mLeft.classList.add('fading');
+      mRight.classList.add('fading');
+    };
+    window.mobileFadeIn = function(){
+      if (!mRoot) return;
+      requestAnimationFrame(()=>{
+        mTopLabel.classList.remove('fading');
+        mLeft.classList.remove('fading');
+        mRight.classList.remove('fading');
+      });
+    };
+
+    function onResize() {
+      const isMobile = window.matchMedia('(max-width: 480px)').matches;
+      if (isMobile) {
+        stage.style.display = 'none';
+        container.style.height = 'auto';
+        container.style.paddingTop = container.style.paddingBottom = '0px';
+        buildMobile();
+        updateMobileTexts();
+        if (mobileBuilt) mRoot.style.display = 'flex';
+      } else {
+        if (mobileBuilt) mRoot.style.display = 'none';
+        stage.style.display = 'block';
+        resizeDesktop();
+      }
+    }
+
+    window.addEventListener('resize', onResize);
+    onResize(); // initial
+  })();
   </script>
 </body>
 </html>
