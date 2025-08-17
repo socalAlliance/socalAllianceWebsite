@@ -4,7 +4,16 @@
   <meta charset="UTF-8"/>
   <title>SoCalAlliance</title>
   <link rel="icon" href="images/logo.png" type="image/png"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="h/* a/* animated gradient "glow" on arrow glyph */
+.tl-arrow.up::before  { content: "▲"; }
+.tl-arrow.down::before{ content: "▼"; }
+.tl-arrow::before {
+  display: inline-block;
+  background: linear-gradient(nt "glow" on arrow glyph */
+.tl-arrow.up::before  { content: "▲"; }
+.tl-arrow.down::before{ content: "▼"; }
+.tl-arrow::before {
+  display: inline-block;googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&family=Instrument+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -15,17 +24,54 @@
     body{background:#000;color:#fff;font-family:'Instrument Sans',sans-serif;line-height:1.4;overflow-x:hidden}
     a{text-decoration:none;color:inherit}
 
-    /* NAV */
+    /* — Sticky Nav — */
     .top-bar{
-      position:sticky;top:0;left:0;width:100%;height:100px;
+      position:sticky; top:0; left:0; z-index:10;
+      width:100%; height:100px;
+      display:flex; align-items:center; padding:0 50px;
+      font-family:'Tilt Warp',sans-serif; font-size:28px;
       background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-      display:flex;align-items:center;padding:0 50px;
-      font-family:'Tilt Warp',sans-serif;font-size:28px;z-index:10;transition:transform .3s ease;
+      transition:transform .3s ease;
     }
-    .top-bar.hidden{transform:translateY(-100%)}
-    .logo{width:81px;height:73px;background:url('images/logo.png') center/cover no-repeat;margin-right:60px}
-    nav{display:flex;gap:40px}
-    nav a:hover{opacity:.7}
+    .top-bar.hidden{ transform:translateY(-100%); }
+    .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
+    nav{ display:flex; gap:40px; }
+    nav a:hover{ opacity:.7; }
+
+    /* Responsive nav for mobile and tablets */
+    @media (max-width: 900px) {
+      .top-bar {
+        justify-content: space-between;
+        height: 80px;
+        padding: 0 20px;
+        font-size: 20px;
+      }
+      .logo {
+        width: 60px;
+        height: 54px;
+        margin-right: 0;
+      }
+      nav {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-bar {
+        font-size: 18px;
+        padding: 0 15px;
+      }
+      .logo {
+        width: 50px;
+        height: 45px;
+      }
+      nav {
+        gap: 10px;
+      }
+      nav a {
+        font-size: 18px;
+      }
+    }
 
     /* CONTENT */
     main{background:#000}
@@ -158,16 +204,8 @@
 }
 
 /* animated gradient “glow” on arrow glyph */
-.tl-arrow::before {
-  content: attr(aria-label) == "Scroll earlier" ? "❮" : "❯";
-  /* fallback if Unicode test fails: */
-  content: "▲";
-}
 .tl-arrow.up::before  { content: "▲"; }
 .tl-arrow.down::before{ content: "▼"; }
-.tl-arrow::after {
-  content: attr(aria-label) == "Scroll earlier" ? "◀" : "▶";
-}
 .tl-arrow::before {
   display: inline-block;
   background: linear-gradient(
@@ -313,13 +351,11 @@
 
 <!-- NAV -->
   <header class="top-bar">
-    <a href="index.html" class="logo-link">
-    <div class="logo"></div>
-  </a>
+    <a href="index.html" class="logo-link"><div class="logo"></div></a>
     <nav>
-        <a href="about.html" >ABOUT</a>
-      <a href="vex.html" >VEX</a>
-    <a href="projects.html" >PROJECTS</a>
+      <a href="about.html">ABOUT</a>
+      <a href="vex.html">VEX</a>
+      <a href="projects.html">PROJECTS</a>
       <a href="#">SUPPORT</a>
     </nav>
   </header>
@@ -446,17 +482,7 @@
   </div>
 </footer>
 
-<script>
-  (function(){
-    let lastY = window.scrollY;
-    const nav = document.querySelector('.top-bar');
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      nav.classList.toggle('hidden', y > lastY && y > 100);
-      lastY = y;
-    });
-  })();
-</script>
+
 <script>
   (function(){
     const list      = document.querySelector(".tl-list");
@@ -479,6 +505,19 @@
       updateScroll();
     });
   })();
+  </script>
+
+  <!-- Hide-on-scroll Nav -->
+  <script>
+    (function(){
+      let lastY = window.scrollY;
+      const nav = document.querySelector('.top-bar');
+      window.addEventListener('scroll', ()=>{
+        const y = window.scrollY;
+        nav.classList.toggle('hidden', y > lastY && y > 100);
+        lastY = y;
+      });
+    })();
   </script>
 </body>
 </html>
