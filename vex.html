@@ -11,15 +11,6 @@
     rel="stylesheet"/>
   <style>
     :root {
-        /* distance from top of viewport */
-  --gallery-top:    2980px;
-  /* distance from left of viewport */
-  --gallery-left:   100px;
-  /* how big (you can also set width only, and let height auto) */
-  --gallery-width:  1000px;
-  --gallery-height: 750px;
-  /* z-index just below the nav bar */
-  --gallery-z:      9;
       /* Hero background controls */
       --hero-bg-left:     10px;
       --hero-bg-top:      71px;
@@ -564,81 +555,22 @@ nav a:hover {
   font-size: 1.1rem;
 }
 
-@keyframes gradient-move {
-  0%   { background-position:   0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position:   0% 50%; }
-}
-
-/* make both arrows the same size, use background gradient & animation */
 .carousel-arrow {
-  all: unset;            /* remove all browser default button styles */
-  width: 20px;
-  height: 24px;
-  background: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-  background-size: 200% 200%;
-  animation: gradient-move 3s linear infinite;
+  background: none;
+  border: none;
+  font-size: 3rem;
+  color: var(--bar-gradient);
   cursor: pointer;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  /* clip to a triangle */
-  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
-  display: block;
-  flex-shrink: 0;
+  padding: 0 .5rem;
+  transition: transform .2s, filter .2s;
 }
-
-/* flip horizontally for the left arrow */
-.carousel-arrow.left {
-  clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
-}
-
-/* hover effect */
 .carousel-arrow:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   filter: brightness(1.2);
-}
-
-
-
-/* Hover effect (optional) */
-.carousel-arrow:hover {
-  filter: brightness(1.3);
 }
 .carousel-arrow.left  { order: 0; }
 .carousel-arrow.right { order: 2; }
 
-@keyframes gradient-move {
-  0%   { background-position:   0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position:   0% 50%; }
-}
-/* 1) Wrap each slide in a gradient frame */
-.image-carousel .carousel-slide {
-  position: relative;
-  padding: 4px;                   /* space for border */
-  box-sizing: border-box;
-  border-radius: 12px;            /* outer rounding */
-  background: linear-gradient(
-    135deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  ) border-box;
- 
-}
-
-/* 2) Make the image itself slightly inset */
-.image-carousel .carousel-slide img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;            /* inner rounding so gradient shows */
-  background-clip: padding-box;
-}
 
 
 /* Container */
@@ -702,150 +634,16 @@ nav a:hover {
   min-width: 10px;
   height: var(--compare-bar-height, 360px);
   background: var(--compare-bar-gradient);
-  border-radius: 6px;
-  margin: 0 0.5rem;
 }
 
-/* Responsive: stack columns on mobile */
-@media (max-width: 700px) {
-  .compare-body {
-    flex-direction: column;
-    gap: 1.2rem;
-    align-items: stretch;
-  }
-  .vex-bar-vertical {
-    width: 100%;
-    height: 10px;
-    margin: 1rem 0;
-  }
-  .compare-body .column.left p,
-  .compare-body .column.right p {
-    text-align: left;
-    align-self: flex-start;
-  }
-  /* Better small screen sizing for location section */
-  .location-copy .headline {
-    font-size: 2rem !important;
-  }
-  .location-copy .copy {
-    font-size: 1rem !important;
-  }
-}
+
+
+
+
 /* 3. Ensure nav is always on top */
 .top-bar {
   position: sticky;  /* you already have this */
   z-index: 1000;     /* higher than gallery-frame */
-}
-
-@media (max-width: 900px) {
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem 1rem 1rem;
-    height: auto; /* Reset height for mobile */
-  }
-  .hero-overlay {
-    position: static;
-    width: 100vw;
-    max-width: 100vw;
-    height: 0px;
-    left: 0;
-    top: 0;
-  }
-  .hero-bg {
-    position: static;
-    width: 100vw;
-    max-width: 100vw;
-    height: 220px;
-    left: 0;
-    top: 0;
-  }
-  .headline {
-    position: static;
-    transform: none;
-    font-size: 2.2rem;
-    text-align: center;
-    margin: 1.5rem 0 1rem 0;
-    padding: 0;
-    white-space: normal;
-    max-width: 95vw;
-  }
-  .headline::after {
-    left: 0;
-    right: 0;
-    width: 100%;
-  }
-  .copy {
-    position: static;
-    transform: none;
-    top: auto;
-    left: auto;
-    width: 100%;
-    max-width: 95vw;
-    font-size: 1.1rem;
-    text-align: center;
-    margin: 0 0 1.5rem 0;
-    padding: 0;
-  }
-  .btn-img {
-    position: static;
-    top: auto;
-    left: auto;
-    transform: none;
-    display: flex;
-    justify-content: center;
-    margin: 1rem 0 2rem 0;
-  }
-  .gradient-bar {
-    position: static !important;
-    width: 90vw !important;
-    max-width: 100vw !important;
-    height: 8px !important;
-    margin: 2rem auto;
-    left: 0 !important;
-    top: 0 !important;
-  }
-  .embed-container {
-    flex-direction: column;
-    gap: 2rem;
-    margin: 1rem 0 1rem 0; /* Reduce top/bottom margin */
-    align-items: center;
-  }
-  .embed-box {
-    width: 95vw !important;
-    max-width: 100vw;
-    min-width: 0;
-    /* Responsive 16:9 aspect ratio */
-    aspect-ratio: 16 / 9;
-    height: auto !important;
-    position: relative;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .embed-box iframe {
-    position: absolute;
-    inset: 0;
-    width: 100% !important;
-    height: 100% !important;
-    border: none;
-  }
-}
-.compare-mobile-label {
-  display: none;
-  font-family: 'Tilt Warp', sans-serif;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  text-align: left;
-  color: #fff;
-}
-@media (max-width: 700px) {
-  .compare-mobile-label {
-    display: block;
-  }
 }
   </style>
 </head>
@@ -860,7 +658,7 @@ nav a:hover {
       <a href="about.html">ABOUT</a>
       <a href="vex.html" >VEX</a>
       <a href="projects.html" >PROJECTS</a>
-      <a href="#"><div class="embed-caption">VEX WORLDS</div></a>
+      <a href="#">SUPPORT</a>
     </nav>
   </header>
 
@@ -949,11 +747,11 @@ nav a:hover {
 </section>
 
 
-<div id="gallery-frame"></div>
+
 
 <!-- IMAGE CAROUSEL -->
 <section class="image-carousel">
-  <button class="carousel-arrow left"></button>
+  <button class="carousel-arrow left" aria-label="Previous">&lsaquo;</button>
   <div class="carousel-track-container">
     <ul class="carousel-track">
       <li class="carousel-slide current-slide">
@@ -971,7 +769,7 @@ nav a:hover {
       <!-- add more <li> as needed -->
     </ul>
   </div>
-  <button class="carousel-arrow right"></button>
+  <button class="carousel-arrow right" aria-label="Next">&rsaquo;</button>
 </section>
 
 
