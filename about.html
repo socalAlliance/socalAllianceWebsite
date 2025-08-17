@@ -152,7 +152,7 @@
     .team-container{ position:relative; width:1200px; margin:0 auto; padding-bottom:1400px; }
     .team-item{ position:relative; }
     .gradient-line{ position:absolute; height:8px; background:linear-gradient(90deg,#F9CB22 23%,#EF7616 50%,#F0115F 77%); }
-    .portrait{ position:absolute; width:165px; height:210px; background-size:cover; border-radius:10px; }
+    .portrait{ position:absolute; width:165px; height:210px; background-size:contain; background-position:center; background-repeat:no-repeat; border-radius:10px; }
     .name{ position:absolute; font-family:'Tilt Warp',sans-serif; font-size:40px; line-height:50px; color:#fff; }
     .role{ position:absolute; font-family:'Instrument Sans',sans-serif; font-weight:700; font-size:24px; line-height:29px; color:#fff; }
 
@@ -170,7 +170,7 @@
     .mission-copy h1{ font-size:clamp(34px,7vw,60px); }
     .mission-copy p { font-size:clamp(16px,3.8vw,24px); }
 
-    @media (max-width:768px){
+    @media (max-width:1122px){
       :root{
         --mission-gif-offset-x:50%;
         --mission-copy-offset-x:50%;
@@ -187,6 +187,7 @@
       .mission-copy .btn-row{ align-items:center; }
 
       .bg-split, .gradient-bar, .gradient-line{ display:none!important; }
+      .triangle-logo{ display: initial !important; }
 
       .team-container{ width:100%; padding:0 16px 48px; }
       .team-container .portrait,
@@ -198,10 +199,35 @@
       .triangle-container{ margin-bottom:2rem!important; }
     }
 
-    /* === Mobile triangle layout & fades (<=480px) === */
+    /* === Tablet triangle layout (481px-1122px) === */
+    @media (max-width: 1122px) and (min-width: 481px) {
+      .triangle-stage { display: none !important; }
+      .triangle-container { height: auto !important; padding: 0 16px 24px !important; margin: 2rem auto 2rem !important; }
+
+      .tri-mobile { display:flex; flex-direction:column; gap:16px; align-items:center; }
+      .tri-mobile .m-topline {
+        width:100%; display:flex; align-items:center; justify-content:center; gap:16px;
+        font-family: 'Tilt Warp', sans-serif; font-size:26px;
+      }
+      .tri-mobile .m-arrow {
+        font-size:26px; line-height:1; background:none; border:none; color:#fff; padding:8px 12px; cursor:pointer;
+      }
+      .tri-mobile .m-toplabel { text-transform:uppercase; white-space:nowrap; opacity:1; transition:opacity .24s ease; }
+      .tri-mobile .m-toplabel.fading { opacity:0; }
+      .tri-mobile .m-svg { width:min(70vw, 480px); height:auto; }
+      .tri-mobile .m-descs {
+        width:100%; display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;
+        font-size:16px; line-height:1.4; text-align:left; max-width:600px;
+      }
+      .tri-mobile .m-descs .right { text-align:right; }
+      .tri-mobile .m-descs .cell { opacity:1; transition:opacity .24s ease; }
+      .tri-mobile .m-descs .cell.fading { opacity:0; }
+    }
+
+    /* === Mobile triangle layout & fades (≤480px) === */
     @media (max-width: 480px) {
       .triangle-stage { display: none !important; }
-      .triangle-container { height: auto !important; padding: 0 16px 24px !important; }
+      .triangle-container { height: auto !important; padding: 0 16px 24px !important; margin: 1rem auto 1rem !important; }
 
       .tri-mobile { display:flex; flex-direction:column; gap:12px; align-items:center; }
       .tri-mobile .m-topline {
@@ -401,7 +427,7 @@
       isAnimating = true;
 
       // Only fade on mobile
-      if (window.matchMedia('(max-width: 480px)').matches) {
+      if (window.matchMedia('(max-width: 1122px)').matches) {
         if (typeof window.mobileFadeOut === 'function') window.mobileFadeOut();
       }
 
@@ -435,7 +461,7 @@
           updateDescriptions();
 
           // Only mobile fades & text refresh
-          if (window.matchMedia('(max-width: 480px)').matches) {
+          if (window.matchMedia('(max-width: 1122px)').matches) {
             if (typeof window.updateMobileTexts === 'function') window.updateMobileTexts();
             if (typeof window.mobileFadeIn === 'function') window.mobileFadeIn();
           }
@@ -678,7 +704,7 @@
     };
 
     function onResize() {
-      const isMobile = window.matchMedia('(max-width: 480px)').matches;
+      const isMobile = window.matchMedia('(max-width: 1122px)').matches;
       if (isMobile) {
         stage.style.display = 'none';
         container.style.height = 'auto';
