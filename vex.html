@@ -48,7 +48,7 @@
       
 
       /* Headline & Copy positioning */
-        --embed-offset-y: 55rem;  
+        --embed-offset-y: 8rem;  
   --headline-top: 75px;   /* move “WHAT IS VEX…” up/down */
   --copy-top:     220px;   /* distance from top for the paragraph */
   /* controls for both embeds */
@@ -62,17 +62,17 @@
   --border-season:  url('images/seasonborder.png');
 
  /* entire section offset */
-  --loc-sec-offset-x: 65px;
+  --loc-sec-offset-x: 0px;
   --loc-sec-offset-y: 0px;
   /* image sizing & offset */
   --loc-img-width:       800px;
   --loc-img-offset-x:    0px;
   --loc-img-offset-y:    0px;
   /* text block offset */
-  --loc-text-offset-x:   00px;
+  --loc-text-offset-x:   0px;
   --loc-text-offset-y:   0px;
   /* paragraph wrap */
-  --loc-desc-wrap:       800px;
+  --loc-desc-wrap:       600px;
  --compare-para-gap: 1.5rem;
   
    /* Comparison-bar sizing & position */
@@ -147,10 +147,144 @@ nav a:hover {
   nav {
     gap: 20px;
   }
+  /* Headline and copy: stack and shrink */
+  .headline {
+    font-size: 2rem;
+    top: 30px;
+    padding-bottom: 0.5rem;
+    white-space: normal;
+    max-width: 95vw;
+  }
+  .headline::after {
+    left: -1rem;
+    right: -1rem;
+    height: 5px;
+  }
+  .copy {
+    font-size: 1rem;
+    top: 90px;
+    width: 95vw;
+    max-width: 95vw;
+    padding: 0 2vw;
+  }
+  .btn-img {
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  /* Embeds: stack vertically */
+  .embed-container {
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem 0 2rem 0;
+    align-items: center;
+  }
+  .embed-box {
+    width: 95vw !important;
+    max-width: 100vw;
+    min-width: 0;
+    /* Responsive 16:9 aspect ratio */
+    aspect-ratio: 16 / 9;
+    height: auto !important;
+    position: relative;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .embed-box iframe {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+  }
+  /* Location section: stack image and text */
+  .location-section {
+    flex-direction: column;
+    gap: 2rem;
+    left: 0;
+    padding: 0 1vw;
+    max-width: 100vw;
+    margin: 2rem 0;
+  }
+  .location-image img {
+    width: 100vw;
+    max-width: 100vw;
+  }
+  .location-copy {
+    max-width: 100vw;
+    text-align: left;
+    align-items: flex-start;
+    left: 0;
+  }
+  .location-copy .headline {
+    font-size: 2.5rem;
+    white-space: normal;
+    padding-bottom: 0.5rem;
+  }
+  .location-copy .copy {
+    font-size: 1.1rem;
+    max-width: 100vw;
+    text-align: left;
+  }
+  /* VEX compare: stack columns */
+  .compare-header {
+    font-size: 2rem;
+    line-height: 2.2rem;
+    white-space: normal;
+  }
+  .compare-header .vs {
+    font-size: 1.2rem;
+    margin: 0 1rem;
+  }
+  .compare-body {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: stretch;
+  }
+  .compare-body .column p {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+  .vex-bar-vertical {
+    width: 100%;
+    height: 10px;
+    margin: 1rem 0;
+  }
+  /* Carousel: shrink and stack */
+  .image-carousel {
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 100vw;
+    padding: 0 1vw;
+  }
+  .carousel-track-container {
+    width: 100vw;
+    max-width: 100vw;
+  }
+  .carousel-slide img {
+    width: 100vw;
+    max-width: 100vw;
+    height: auto;
+  }
+}
+
+/* Tablet responsiveness */
+@media (max-width: 900px) and (min-width: 701px) {
+  .location-copy .headline {
+    font-size: 3rem;
+  }
+  .location-copy .copy {
+    font-size: 1.2rem;
+  }
 }
 
     /* Main Content */
-    .page-container { position:relative; }
+    .page-container { 
+      position: relative; 
+      height: 500px; /* Set a height so content below knows where to start */
+    }
 
     /* HERO BACKDROP IMAGE */
     .hero-bg {
@@ -239,7 +373,7 @@ nav a:hover {
   display: flex;
   justify-content: center;
   gap: var(--embed-gap);
-  margin: var(--embed-offset-y) auto 2rem;
+  margin: 20rem auto 2rem;
   /* removes the old margin:2rem 0; */
 }
 
@@ -248,6 +382,8 @@ nav a:hover {
   width: var(--embed-width);
   height: var(--embed-height);
   background-color: #000;        /* fallback behind iframe */
+  padding-top: 48px; /* Adjust this value to match your border/title height */
+  box-sizing: border-box;
 }
 
 .embed-box::before {
@@ -271,13 +407,14 @@ nav a:hover {
 /* inset by 10px on left and right */
 .embed-box iframe {
   position: absolute;
-  top: 15%;
-  left: 1%;
-  right: 5%;
-  bottom: 5%;
+  top: 60px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
   border: none;
   z-index: 1;
-  width: 98%; height: 85%;
+  width: calc(100% - 40px);
+  height: calc(100% - 80px);
 }
     /* Footer */
     .site-footer {
@@ -332,6 +469,7 @@ nav a:hover {
   margin: 4rem auto;
   padding: 0 1rem;
   max-width: var(--hero-bg-max-width);
+  justify-content: center;
 }
 
 /* image side */
@@ -349,19 +487,23 @@ nav a:hover {
   left: var(--loc-text-offset-x);
   top:  var(--loc-text-offset-y);
   max-width: var(--loc-desc-wrap);
-  text-align: right;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 1rem;
+  align-items: center;
+  gap: 2rem;
 }
 
 /* headline underline */
 .location-copy .headline {
   position: relative;         /* create a positioning context */
   display: inline-block;      /* so ::after width matches text */
-  white-space: nowrap;        /* keep on one line */
+  white-space: normal;        /* allow wrapping */
   padding-bottom: var(--partnerships-underline-offset);
+  font-size: 48px;           /* smaller headline size */
+  font-weight: 400;          /* add some weight */
+  max-width: 100%;           /* don't exceed container width */
+  word-wrap: break-word;     /* break long words if needed */
 }
 
 .location-copy .headline::after {
@@ -378,10 +520,10 @@ nav a:hover {
 /* paragraph */
 .location-copy .copy {
   margin: 0;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1.4;
   max-width: var(--loc-desc-wrap);
-  text-align: right;
+  text-align: left;
 }
 .image-carousel {
   position: relative;
@@ -501,26 +643,25 @@ nav a:hover {
 
 /* Container */
 .vex-compare {
-  margin: 6rem auto;
-  max-width: 1000px;
+  margin: 3rem auto;
+  max-width: 700px;
   color: #fff;
 }
 
 /* Headline */
 .compare-header {
   font-family: 'Tilt Warp', sans-serif;
-  font-size: 60px;
+  font-size: 2rem;
   font-weight: 400;
-  line-height: 76px;
+  line-height: 2.2rem;
   text-align: center;
   white-space: nowrap;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 .compare-header .vs {
   font-family: 'Instrument Sans', sans-serif;
-  font-size: 40px;
-  line-height: 49px;
-  margin: 0 2rem;
+  font-size: 1.2rem;
+  margin: 0 1rem;
   vertical-align: middle;
 }
 
@@ -528,38 +669,183 @@ nav a:hover {
 /* Center the bar & columns under the header */
 .compare-body {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;        /* ← vertical-center bar and text */
-  gap: 4rem;
-  margin: 0 auto;             /* ensure centered horizontally */
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 0 auto;
+  max-width: 900px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
-/* Use the custom gap between each <p> */
-.compare-body .column p {
-  margin: var(--compare-para-gap) 0;   /* vertical spacing */
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 24px;
-  line-height: 29px;
+.compare-body .column {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-/* Bar stays where you placed it via vars */
+.compare-body .column.left p {
+  text-align: left;
+  align-self: flex-start;
+}
+
+.compare-body .column.right p {
+  text-align: right;
+  align-self: flex-end;
+}
+
 .vex-bar-vertical {
-  position: relative;
-  left: var(--compare-bar-offset-x);
-  top:  var(--compare-bar-offset-y);
-  width:  var(--compare-bar-width);
-  height: var(--compare-bar-height);
+  width: var(--compare-bar-width, 20px);
+  min-width: 10px;
+  height: var(--compare-bar-height, 360px);
   background: var(--compare-bar-gradient);
+  border-radius: 6px;
+  margin: 0 0.5rem;
 }
 
-
-
-
-
+/* Responsive: stack columns on mobile */
+@media (max-width: 700px) {
+  .compare-body {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+  .vex-bar-vertical {
+    width: 100%;
+    height: 10px;
+    margin: 1rem 0;
+  }
+  .compare-body .column.left p,
+  .compare-body .column.right p {
+    text-align: left;
+    align-self: flex-start;
+  }
+  /* Better small screen sizing for location section */
+  .location-copy .headline {
+    font-size: 2rem !important;
+  }
+  .location-copy .copy {
+    font-size: 1rem !important;
+  }
+}
 /* 3. Ensure nav is always on top */
 .top-bar {
   position: sticky;  /* you already have this */
   z-index: 1000;     /* higher than gallery-frame */
+}
+
+@media (max-width: 900px) {
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 1rem 1rem;
+    height: auto; /* Reset height for mobile */
+  }
+  .hero-overlay {
+    position: static;
+    width: 100vw;
+    max-width: 100vw;
+    height: 0px;
+    left: 0;
+    top: 0;
+  }
+  .hero-bg {
+    position: static;
+    width: 100vw;
+    max-width: 100vw;
+    height: 220px;
+    left: 0;
+    top: 0;
+  }
+  .headline {
+    position: static;
+    transform: none;
+    font-size: 2.2rem;
+    text-align: center;
+    margin: 1.5rem 0 1rem 0;
+    padding: 0;
+    white-space: normal;
+    max-width: 95vw;
+  }
+  .headline::after {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  .copy {
+    position: static;
+    transform: none;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: 95vw;
+    font-size: 1.1rem;
+    text-align: center;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+  }
+  .btn-img {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 2rem 0;
+  }
+  .gradient-bar {
+    position: static !important;
+    width: 90vw !important;
+    max-width: 100vw !important;
+    height: 8px !important;
+    margin: 2rem auto;
+    left: 0 !important;
+    top: 0 !important;
+  }
+  .embed-container {
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1rem 0 1rem 0; /* Reduce top/bottom margin */
+    align-items: center;
+  }
+  .embed-box {
+    width: 95vw !important;
+    max-width: 100vw;
+    min-width: 0;
+    /* Responsive 16:9 aspect ratio */
+    aspect-ratio: 16 / 9;
+    height: auto !important;
+    position: relative;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .embed-box iframe {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+  }
+}
+.compare-mobile-label {
+  display: none;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  color: #fff;
+}
+@media (max-width: 700px) {
+  .compare-mobile-label {
+    display: block;
+  }
 }
   </style>
 </head>
@@ -574,7 +860,7 @@ nav a:hover {
       <a href="about.html">ABOUT</a>
       <a href="vex.html" >VEX</a>
       <a href="projects.html" >PROJECTS</a>
-      <a href="#">SUPPORT</a>
+      <a href="#"><div class="embed-caption">VEX WORLDS</div></a>
     </nav>
   </header>
 
@@ -606,12 +892,12 @@ nav a:hover {
 <div class="embed-container">
   <!-- First box: Worlds -->
   <div class="embed-box worlds">
-   <iframe width="560" height="315" src="https://www.youtube.com/embed/5G6GLJKQf38?si=Mohzz54MYPQ_LV-B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+   <iframe src="https://www.youtube.com/embed/5G6GLJKQf38?si=Mohzz54MYPQ_LV-B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
 
   <!-- Second box: Season -->
   <div class="embed-box season">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/ocmONiVun9M?si=vZYA92uBOjbeKY-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ocmONiVun9M?si=vZYA92uBOjbeKY-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
 </div>
 
@@ -642,6 +928,7 @@ nav a:hover {
   <!-- BODY: left column / bar / right column -->
   <div class="compare-body">
     <div class="column left">
+      <div class="compare-mobile-label">VEX V5</div>
       <p>2v2 format. 1 robot per team. 10,000+ teams.</p>
       <p>Designed for 6th through 12th grade.</p>
       <p>Full utilization of VEX ecosystem promotes innovation under constraints.</p>
@@ -651,6 +938,7 @@ nav a:hover {
     <div class="vex-bar-vertical"></div>
 
     <div class="column right">
+      <div class="compare-mobile-label">VEX U</div>
       <p>1v1 format. 2 robots per team. 300+ teams.</p>
       <p>Designed for collegiate-level students.</p>
       <p>Free reign over 3D-printing, plastic use, and electronics promotes unique optimizations.</p>
