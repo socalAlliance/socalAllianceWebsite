@@ -28,6 +28,26 @@
     .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav{ display:flex; gap:40px; }
     nav a:hover{ opacity:.7; }
+    /* 1) allow transforms on all of these icons */
+.logo,
+.logo-link .logo,
+.btn-img img,
+.donate-img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+  /* remove transform:none!important; from .donate-img so that this can work */
+}
+/* 2) scale up on hover */
+.logo:hover,
+.logo-link:hover .logo,
+.btn-img:hover img,
+.donate-img:hover {
+  transform: scale(1.05);
+}
+
+/* 3) preserve your existing Donate hover filter */
+.donate-img:hover {
+  filter: grayscale(100%) brightness(80%);
+}
 
     /* Responsive nav for mobile and tablets */
     @media (max-width: 900px) {
