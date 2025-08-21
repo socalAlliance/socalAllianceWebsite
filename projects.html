@@ -37,7 +37,21 @@
     .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav{ display:flex; gap:40px; }
     nav a:hover{ opacity:.7; }
+.logo {
+  transition: transform 0.3s ease;
+  /* (if you ever have an overriding !important transform:none, remove it) */
+}
+.logo-link:hover .logo {
+  transform: scale(1.05);
+}
 
+/* DONATE-WHITE.PNG HOVER GREY-OUT */
+.donate-img {
+  transition: filter 0.3s ease;
+}
+.donate-img:hover {
+  filter: grayscale(100%) brightness(80%);
+}
     /* Responsive nav for mobile and tablets */
     @media (max-width: 900px) {
       .top-bar {
@@ -365,7 +379,7 @@
   );
 }
 .feature-btn {
-  all: unset;                     /* remove default button styles */
+  all: unset;
   display: inline-block;
   font-family: 'Tilt Warp', sans-serif;
   font-size: clamp(22px,3.2vw,30px);
@@ -373,21 +387,105 @@
   padding: 0.5em 1.2em;
   cursor: pointer;
   border: 2px solid transparent;
-  border-image: 
-    linear-gradient(
+  border-image: linear-gradient(
       90deg,
       rgba(249,203,34,0.9) 23%,
       rgba(239,118,22,0.9) 50%,
       rgba(240,17,95,0.9) 77%
     ) 1;
   border-radius: 8px;
-  transition: transform 0.2s ease, filter 0.2s ease;
-  background: rgba(0,0,0,0.4);     /* optional slight fill */
+  transition: transform .2s ease, filter .2s ease;
+  background: rgba(0,0,0,0.4);
 }
-
 .feature-btn:hover {
   transform: scale(1.05);
   filter: brightness(1.2);
+}
+/* Outer wrapper: gradient border/frame */
+/* Title + gradient underline */
+.doc-title {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: clamp(24px, 4vw, 32px);
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 1rem;
+  padding-bottom: 0.25em;
+}
+.doc-title::after {
+  content: "";
+  position: absolute;
+  left: -1rem;      /* overhang */
+  right: -1rem;     /* overhang */
+  bottom: 0;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+}
+
+/* (existing gradient-box styles you already have) */
+.doc-gradient-wrapper {
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  padding: 4px;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 2rem auto;
+}
+.doc-inner {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.doc-inner iframe {
+  display: block;
+  width: 100%;
+  height: 600px;
+  border: none;
+}
+/* Container centers everything */
+.doc-section {
+  text-align: center;
+  margin: 4rem 0; /* optional vertical spacing */
+}
+
+/* Match hero h1 sizing and font */
+.doc-title {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: clamp(40px, 6vw, 76px);
+  font-weight: 100;
+  color: #fff;
+  display: inline-block;   /* so underline shrinks to fit */
+  position: relative;
+  padding-bottom: 0.25em;  /* room for underline */
+  margin-bottom: 2rem;     /* space before the embed box */
+}
+
+/* Gradient underline */
+.doc-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--partnerships-underline-overhang, 5rem));
+  right: calc(-1 * var(--partnerships-underline-overhang, 5rem));
+  bottom: 0;
+  height: var(--partnerships-underline-height, 10px);
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: var(--partnerships-underline-radius, 1000px);
 }
 
     /* FOOTER */
@@ -432,7 +530,7 @@
         <button
           class="feature-btn"
           onclick="window.location.href='projects.html#scrimmages';">
-          SCRIMMING &amp; MEETUPS
+          SCRIMS &amp; MEETUPS
         </button>
       </h3>
       <p><!--…--></p>
@@ -441,13 +539,18 @@
   <article class="feature">
     <img src="images/vexu.png" alt="">
     <div class="copy">
+        
       <h3>
-        <button
-          class="feature-btn"
-          onclick="window.location.href='vex.html';">
-          VEX U COMP TEAM
-        </button>
-      </h3>
+      <a
+        href="https://docs.google.com/document/d/1ytcRuUcWIWxwsZIfzGv6c_-Vg2tsbZ0OXDBiRyXImR0/edit?usp=sharing"
+        target="_blank"
+        rel="noopener"
+        class="feature-btn"
+        onclick="event.stopPropagation()">
+        COMPETING TEAMS
+      </a>
+    </h3>
+  
       <p><!--…--></p>
     </div>
   </article>
@@ -455,90 +558,46 @@
     <img src="images/banner.png" alt="">
     <div class="copy">
       <h3>
-        <button
-          class="feature-btn"
-          onclick="window.location.href='projects.html#hosting';">
-          COMPETITION HOSTING
-        </button>
-      </h3>
-      <p><!--…--></p>
+        <a
+        href="https://docs.google.com/document/d/17gKdwJgWM0LbqSmfvf68YcsC7uPvrioFGI1wJeIiZ_A/edit?usp=sharing"
+        target="_blank"
+        rel="noopener"
+        class="feature-btn"
+        onclick="event.stopPropagation()">
+        Comps/Volunteering/Scrims
+      </a>
     </div>
   </article>
   <article class="feature">
     <img src="images/teaching.png" alt="">
     <div class="copy">
       <h3>
-        <button
-          class="feature-btn"
-          onclick="window.location.href='support.html#resources';">
-          EDUCATIONAL RESOURCES
-        </button>
+       <a
+        href="https://www.youtube.com/@SCA_ORG"
+        target="_blank"
+        rel="noopener"
+        class="feature-btn"
+        onclick="event.stopPropagation()">
+        Videos
+      </a>
       </h3>
       <p><!--…--></p>
     </div>
   </article>
-</section>
- <!-- TIMELINE HEADER -->
-  <h2 class="timeline-title">TIMELINE</h2>
+</section>  
 
-
-  <section class="timeline">
-    <button class="tl-arrow up" aria-label="Scroll earlier"></button>
-    <div class="tl-viewport">
-      <div class="tl-list">
-  <div class="tl-item">
-
-          <div class="tl-dot"><i></i> <strong>JUN 09</strong></div>
-          <a href="/projects.html" class="tl-body">
-            <div class="tl-title">NOTEBOOK AND ROBOT DESIGNS</div>
-            <p class="tl-text">
-              Jesse 948J started the SCA notebook, and Tobias Nueman is leading the robot design.
-            </p>
-          </a>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot"><i></i> <strong>JUN 07</strong></div>
-          <a href="/projects.html" class="tl-body">
-            <div class="tl-title">STABILIZING THE NONPROFIT</div>
-            <p class="tl-text">
-              Made Articles of Organization, got LLC, and started on graphic designs.
-            </p>
-          </a>
-        </div>
-  
-        <div class="tl-item">
-          <div class="tl-dot"><i></i> <strong>JUN 01</strong></div>
-          <a href="/projects.html" class="tl-body">
-            <div class="tl-title">STARTED WEBSITE</div>
-            <p class="tl-text">Allen Suarez, Winston Lin, Dylan Byrnes, Glen Bautista, and Travis Scott are working on the website.</p>
-          </a>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"><i></i> <strong>MAY 19</strong></div>
-          <a href="https://www.robotevents.com/teams/VURC/SCA" class="tl-body">
-            <div class="tl-title">FOUNDING VEXU TEAM</div>
-            <p class="tl-text">After asking friends to help there were enough to manage a team and the nonprofit. We then payed ROBOTEVENTS registration out of pocket.</p>
-          </a>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"><i></i> <strong>MAY 12</strong></div>
-          <a href="/vex.html" class="tl-body">
-            <div class="tl-title">FOUNDING NONPROFIT</div>
-            <p class="tl-text">After William and Allen looked back on their VEXU HighStakes season, they saw how restricting being a team bounded by a school is on not only them but other teams aswell.</p>
-          </a>
-        </div>
-        
-  
-        <!-- repeat for each item… -->
-  
-      </div>
+<section class="doc-section">
+  <h2 class="doc-title">CALENDER</h2>
+  <div class="doc-gradient-wrapper">
+    <div class="doc-inner">
+      <iframe
+        src="https://docs.google.com/document/d/e/2PACX-1vQ2KHa3i_cUA1KIpm9MV2mydgwwaJfaJK2Fl1Bp-9RAzJeDvQZ1exYGBcpQv-DD3aaa1cpIJWQ6KIkc/pub"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
     </div>
-    <button class="tl-arrow down" aria-label="Scroll later"></button>
-  </section>
-
-
-
+  </div>
+</section>
 
   
 
