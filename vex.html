@@ -11,6 +11,10 @@
     rel="stylesheet"/>
   <style>
     :root {
+       --compare-bar-offset-x:   0px;    /* move the bar left/right */
+  --compare-bar-offset-y:   0px;    /* move the bar up/down, if you like */
+  --compare-bar-height:    360px;   /* length of the vertical bar */
+  --compare-bar-width:      20px;   /* thickness of the bar */
       /* Hero background controls */
       --hero-bg-left:     10px;
       --hero-bg-top:      71px;
@@ -154,13 +158,22 @@
     line-height: 1.4;
   }
   .location-headline {
-    font-size: 2rem;
-    top: 30px;
-    padding-bottom: 0.5rem;
-    white-space: normal;
-    max-width: 95vw;
-    position: relative;
+  position: relative;
+  display: inline-block;
+  white-space: normal;
+  padding-bottom: var(--partnerships-underline-offset);
+  font-family:'Tilt Warp',sans-serif;
+  font-size: 200px;        /* ← change this */
+  font-weight: 400;
+  color:#fff;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+@media (max-width: 900px) {
+  .location-copy .location-headline {
+    font-size: 3.5rem;   /* instead of 2.5rem */
   }
+}
   .location-headline::after {
     left: -1rem;
     right: -1rem;
@@ -213,22 +226,22 @@
     width: 100vw;
     max-width: 100vw;
   }
-  .location-copy {
-    max-width: 100vw;
-    text-align: left;
-    align-items: flex-start;
-    left: 0;
-  }
-  .location-copy .location-headline {
-    font-size: 2.5rem;
-    white-space: normal;
-    padding-bottom: 0.5rem;
-  }
-  .location-copy .copy {
-    font-size: 1.1rem;
-    max-width: 100vw;
-    text-align: left;
-  }
+  /* put this at the very end of your <style> */
+.location-copy {
+  text-align: center;             /* center both headline and paragraph */
+}
+
+.location-copy .location-headline {
+  font-size: 64px !important;     /* your new desktop size */
+  margin-bottom: 1.5rem;          /* gap below headline, adjust as you like */
+  display: inline-block;          /* shrink to fit text for centering underline */
+}
+
+.location-copy .copy {
+  text-align: center;             /* ensure paragraph is centered */
+  margin-top: 1.5rem;             /* extra gap if you prefer */
+}
+ 
   /* VEX compare: stack columns */
   .vex-compare {
     margin: 8rem 8rem;
@@ -244,20 +257,37 @@
     font-size: 1.2rem;
     margin: 0 1rem;
   }
-  .compare-body {
-    flex-direction: column;
-    gap: 2rem;
-    align-items: stretch;
-  }
-  .compare-body .column p {
-    font-size: 1rem;
-    line-height: 1.4;
-  }
-  .vex-bar-vertical {
-    width: 100%;
-    height: 10px;
-    margin: 1rem 0;
-  }
+ /* 1) Spread columns to the edges */
+.compare-body {
+  justify-content: space-between;
+  /* remove any hard padding if you want them truly flush */
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* 2) Column alignment */
+.compare-body .column {
+  display: flex;
+  flex-direction: column;
+}
+.compare-body .column.left {
+  align-items: flex-start;     /* children start at left */
+  text-align: left;
+}
+.compare-body .column.right {
+  align-items: flex-end;       /* children start at right */
+  text-align: right;
+}
+/* ensure each <p> actually right-aligns */
+.compare-body .column.right p {
+  text-align: right;
+  align-self: flex-end;
+}
+
+/* 3) Fully round the comparison bar */
+.vex-bar-vertical {
+  border-radius: 99px;         /* pill shape */
+}
   /* Carousel: shrink and stack */
   .image-carousel {
     flex-direction: column;
@@ -270,13 +300,45 @@
     width: 100vw;
     max-width: 100vw;
   }
-  .carousel-slide img {
-    width: 100vw;
-    max-width: 100vw;
-    height: auto;
-  }
+  
+}
+/* — Gradient border for carousel images — */
+.carousel-slide {
+  position: relative;
 }
 
+.carousel-slide img {
+  display: block;
+  width: 100%;
+  /* transparent border as the “canvas” for the gradient */
+  border: 6px solid transparent;
+  border-radius: 12px;
+  /* slice = 1 tells CSS to stretch the gradient over the border width */
+  border-image: linear-gradient(
+    90deg,
+    rgba(249,203,34,1) 0%,
+    rgba(239,118,22,1) 50%,
+    rgba(240,17,95,1) 100%
+  ) 1;
+  box-sizing: border-box;
+}
+
+/* — Gradient border for captions — */
+.carousel-caption {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  /* same transparent border setup */
+  border: 4px solid transparent;
+  border-radius: 8px;
+  border-image: linear-gradient(
+    90deg,
+    rgba(249,203,34,1) 0%,
+    rgba(239,118,22,1) 50%,
+    rgba(240,17,95,1) 100%
+  ) 1;
+  background-color: #000; /* optional: give the caption a solid BG */
+}
 @media (max-width: 600px) {
   .top-bar {
     font-size: 18px;
@@ -666,22 +728,89 @@
   font-size: 1.1rem;
 }
 
+/* Remove any previous ::before border-triangle setup */
+.carousel-arrow::before { border: none; }
+
+/* Base arrow button */
 .carousel-arrow {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
   background: none;
   border: none;
-  font-size: 3rem;
-  color: var(--bar-gradient);
   cursor: pointer;
-  padding: 0 .5rem;
-  transition: transform .2s, filter .2s;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Shared triangle styling */
+.carousel-arrow::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  /* moving 3-color gradient */
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,1)   0%,
+    rgba(239,118,22,1)   50%,
+    rgba(240,17,95,1)   100%
+  );
+  background-size: 200% 200%;
+  animation: gradient-move 3s linear infinite;
+  /* clip to a triangle */
+  clip-path: polygon(
+    /* default: point right */
+    0% 0%,    /* top-left */
+    0% 100%,  /* bottom-left */
+    100% 50%  /* middle-right */
+  );
+  will-change: background-position;
+}
+
+/* flip for “left” arrow */
+.carousel-arrow.left::after {
+  /* mirror horizontally */
+  clip-path: polygon(
+    100% 0%,   /* top-right */
+    100% 100%, /* bottom-right */
+    0%   50%   /* middle-left */
+  );
+}
+
+/* hover scaling */
 .carousel-arrow:hover {
   transform: scale(1.1);
-  filter: brightness(1.2);
 }
-.carousel-arrow.left  { order: 0; }
-.carousel-arrow.right { order: 2; }
 
+/* gradient animation keyframes */
+@keyframes gradient-move {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+/* put this at the very end of your <style> */
+.location-copy {
+  text-align: center;             /* center both headline and paragraph */
+}
+
+
+
+.location-copy .copy {
+  /* center and control wrap width */
+  max-width: 600px;       /* or any px/rem value you prefer */
+  width: 900%;             /* scales on smaller screens */
+  margin: -6.5rem auto 0; /* negative top-margin retained, horizontal auto centers */
+  
+  /* text styling */
+  text-align: center;
+  font-size: 24px !important;
+  line-height: 1.6;       /* improves readability */
+  
+  /* ensure long words break rather than overflow */
+  word-wrap: break-word;
+  hyphens: auto;
+}
 
 
 /* Container */
@@ -750,7 +879,21 @@
   height: var(--compare-bar-height, 360px);
   background: var(--compare-bar-gradient);
 }
+.vex-compare .compare-body .vex-bar-vertical {
+  /* dimension */
+  width:  var(--compare-bar-width)   !important;
+  height: var(--compare-bar-height)  !important;
 
+  /* pill shape + gradient */
+  background: var(--compare-bar-gradient) !important;
+  border-radius: 999px !important;
+
+  /* reposition */
+  /* margin-left will nudge it right (use negative to go left) */
+  margin-left: var(--compare-bar-offset-x) !important;
+  /* margin-top will nudge it down (use negative to go up) */
+  margin-top:  var(--compare-bar-offset-y) !important;
+}
   </style>
 </head>
 <body>
@@ -824,24 +967,32 @@
   <h2 class="compare-headline">
     <span>VEX V5</span>
     <span class="vs">vs.</span>
-    <span>VEX U</span>
+    <span>VEX U‎ ‎ ‎ </span>
   </h2>
 
   <!-- BODY: left column / bar / right column -->
   <div class="compare-body">
     <div class="column left">
+       <p>‎ </p>
       <p>2v2 format. 1 robot per team. 10,000+ teams.</p>
+      <p>‎ </p>
       <p>Designed for 6th through 12th grade.</p>
+      <p>‎ </p>
       <p>Full utilization of VEX ecosystem promotes innovation under constraints.</p>
+      <p>‎ </p>
       <p>Same engineering notebook, interview, and skills evaluation process as VEX U.</p>
     </div>
 
     <div class="vex-bar-vertical"></div>
 
     <div class="column right">
+       <p>‎ </p>
       <p>1v1 format. 2 robots per team. 300+ teams.</p>
+      <p>‎ </p>
       <p>Designed for collegiate-level students.</p>
+      <p>‎ </p>
       <p>Free reign over 3D-printing, plastic use, and electronics promotes unique optimizations.</p>
+      <p>‎ </p>
       <p>Same engineering notebook, interview, and skills evaluation process as VEX V5.</p>
     </div>
   </div>
@@ -853,7 +1004,7 @@
 
 <!-- IMAGE CAROUSEL -->
 <section class="image-carousel">
-  <button class="carousel-arrow left" aria-label="Previous">&lsaquo;</button>
+  <button class="carousel-arrow left" aria-label="Previous"></button>
   <div class="carousel-track-container">
     <ul class="carousel-track">
       <li class="carousel-slide current-slide">
@@ -871,7 +1022,7 @@
       <!-- add more <li> as needed -->
     </ul>
   </div>
-  <button class="carousel-arrow right" aria-label="Next">&rsaquo;</button>
+  <button class="carousel-arrow right" aria-label="Next"></button>
 </section>
 
 

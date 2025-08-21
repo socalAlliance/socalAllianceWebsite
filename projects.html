@@ -332,6 +332,63 @@
 .tl-arrow.up, .tl-arrow.down {
   pointer-events: all;
 }
+/* — Timeline Section Title — */
+.timeline-title {
+  /* 1) text size */
+  font-size: clamp(28px, 4vw, 48px);
+
+  /* 2) spacing around the title:
+     margin-top pushes it away from what’s above,
+     margin-bottom controls how far the timeline sits below. */
+  margin: 3rem 0 1.5rem 18%;
+
+  /* 3) keep your underline setup */
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.em;
+  overflow: visible;
+  --underline-overhang: 4rem;
+}
+.timeline-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--underline-overhang));
+  bottom: 0;
+  width: calc(100% + var(--underline-overhang)*2);
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+}
+.feature-btn {
+  all: unset;                     /* remove default button styles */
+  display: inline-block;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: clamp(22px,3.2vw,30px);
+  color: #fff;
+  padding: 0.5em 1.2em;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-image: 
+    linear-gradient(
+      90deg,
+      rgba(249,203,34,0.9) 23%,
+      rgba(239,118,22,0.9) 50%,
+      rgba(240,17,95,0.9) 77%
+    ) 1;
+  border-radius: 8px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  background: rgba(0,0,0,0.4);     /* optional slight fill */
+}
+
+.feature-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
 
     /* FOOTER */
     .site-footer{background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);color:#fff;padding:2rem 10%}
@@ -367,38 +424,62 @@
     
   </section>
 
-  <section class="features">
-    <article class="feature">
-      <img src="images/scrimming.png" alt="">
-      <div class="copy">
-        <h3>SCRIMMING &amp; MEETUPS</h3>
-        <p></p>
-      </div>
-    </article>
-    <article class="feature">
-      <img src="images/vexu.png" alt="">
-      <div class="copy">
-        <h3>VEX U COMP TEAM</h3>
-        <p></p>
-      </div>
-    </article>
-    <article class="feature">
-      <img src="images/banner.png" alt="">
-      <div class="copy">
-        <h3>COMPETITION HOSTING</h3>  
-        <p></p>
-      </div>
-    </article>
-    <article class="feature">
-      <img src="images/teaching.png" alt="">
-      <div class="copy">
-        <h3>EDUCATIONAL RESOURCES</h3>
-        <p></p>
-      </div>
-    </article>
-  </section>
-
-
+<section class="features">
+  <article class="feature">
+    <img src="images/scrimming.png" alt="">
+    <div class="copy">
+      <h3>
+        <button
+          class="feature-btn"
+          onclick="window.location.href='projects.html#scrimmages';">
+          SCRIMMING &amp; MEETUPS
+        </button>
+      </h3>
+      <p><!--…--></p>
+    </div>
+  </article>
+  <article class="feature">
+    <img src="images/vexu.png" alt="">
+    <div class="copy">
+      <h3>
+        <button
+          class="feature-btn"
+          onclick="window.location.href='vex.html';">
+          VEX U COMP TEAM
+        </button>
+      </h3>
+      <p><!--…--></p>
+    </div>
+  </article>
+  <article class="feature">
+    <img src="images/banner.png" alt="">
+    <div class="copy">
+      <h3>
+        <button
+          class="feature-btn"
+          onclick="window.location.href='projects.html#hosting';">
+          COMPETITION HOSTING
+        </button>
+      </h3>
+      <p><!--…--></p>
+    </div>
+  </article>
+  <article class="feature">
+    <img src="images/teaching.png" alt="">
+    <div class="copy">
+      <h3>
+        <button
+          class="feature-btn"
+          onclick="window.location.href='support.html#resources';">
+          EDUCATIONAL RESOURCES
+        </button>
+      </h3>
+      <p><!--…--></p>
+    </div>
+  </article>
+</section>
+ <!-- TIMELINE HEADER -->
+  <h2 class="timeline-title">TIMELINE</h2>
 
 
   <section class="timeline">
