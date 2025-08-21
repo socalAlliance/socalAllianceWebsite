@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoCalAlliance</title>
+  <link rel="icon" href="images/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --hero-text-size: 36px;
+      --bar-radius: 12px;
+    
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { width:100%; }
+    body {
+      background:#000; color:#fff;
+      font-family:'Instrument Sans',sans-serif;
+      line-height:1.4; overflow-x:hidden;
+    }
+    a { text-decoration:none; color:inherit; }
+
+    /* — Sticky Nav — */
+    .top-bar {
+      position:sticky; top:0; left:0; z-index:10;
+      width:100%; height:100px;
+      display:flex; align-items:center; padding:0 50px;
+      font-family:'Tilt Warp',sans-serif; font-size:28px;
+      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      transition:transform .3s ease;
+    }
+    .top-bar.hidden { transform:translateY(-100%); }
+    .logo { width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
+    nav { display:flex; gap:40px; }
+    nav a:hover { opacity:.7; }
+
+    /* Responsive nav for mobile and tablets */
+    @media (max-width: 900px) {
+      .top-bar {
+        justify-content: space-between;
+        height: 80px;
+        padding: 0 20px;
+        font-size: 20px;
+      }
+      .logo {
+        width: 60px;
+        height: 54px;
+        margin-right: 0;
+      }
+      nav {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-bar {
+        font-size: 18px;
+        padding: 0 15px;
+      }
+      .logo {
+        width: 50px;
+        height: 45px;
+      }
+      nav {
+        gap: 10px;
+      }
+      nav a {
+        font-size: 18px;
+      }
+    }
+
+    
+    /* FOOTER */
+    .site-footer {
+      background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      color:#fff;
+      padding: 3rem 10%;            /* a touch more vertical padding lifts content */
+      font-family:'Instrument Sans',sans-serif;
+    }
+
+    /* Use grid so the center column can be perfectly centered vertically */
+    .footer-content {
+      display: grid;
+      grid-template-columns: minmax(420px,1fr) auto; /* left grows, right hugs content */
+      align-items: center;           /* <-- centers the right column vertically */
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-left {
+      display:flex;
+      align-items: center;           /* left block aligns with the centered right */
+      gap: 1rem;
+      flex: 1 1 auto;
+    }
+
+    /* keep the donate + socials centered as a group */
+    .footer-center {
+      display: grid;
+      place-items: center;           /* centers horizontally + vertically inside its cell */
+      gap: 1rem;
+    }
+
+    .footer-social {
+      display:flex;
+      gap:1rem;
+      justify-content: center;       /* centers the icons under the button */
+    }
+
+    /* Mobile: stack and hard-center everything */
+    @media (max-width: 900px) {
+      .site-footer { padding: 2rem 6vw; }
+      .footer-content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 5rem;
+      }
+      .footer-left {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    .donate-img { height:48px; cursor:pointer; }
+    .footer-social { display:flex; gap:1rem; }
+    .footer-social img {
+      width:60px; height:60px; filter:brightness(200%);
+      transition:filter .2s;
+    }
+    .footer-social a:hover img { filter:brightness(100%); }
+    .donate-img:hover,
+    .footer-social a:hover img {
+      filter: grayscale(100%) brightness(80%);
+    }
+    .btn-img:hover img {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+    .logo-link .logo {
+      transition: transform 0.3s ease;
+    }
+    .logo-link:hover .logo {
+      transform: scale(1.05);
+    }
+    .btn-img img {
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    /* Responsive Fixes */
+    @media (max-width: 900px) {
+      .hero-1, .hero-2 { height: auto; min-height: 320px; background-size: cover; }
+      .hero-text {
+        font-size: 1.3rem;
+        white-space: normal;
+
+        padding: 0.5em 0.5em;
+      }
+      .subhead {
+        max-width: 100%;
+        padding: 16px;
+        font-size: 1rem;
+        margin: 1rem 0 0 0;
+      }
+      .about { position: static !important; width: 100% !important; padding: 24px 8px !important; border-radius: 0; }
+      .about .inner { max-width: 100%; }
+      .founder { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .photo { width: 80px; height: 100px; min-width: 60px; }
+      .signature { width: 150px; height: 38px; min-width: 60px; }
+      .partnerships-banner h2 { font-size: 2rem; }
+      .partners-logos { flex-wrap: wrap; gap: 1rem; }
+      .partners-logos a img { width: 80px; }
+      .gradient-bar { display: none; }
+      .site-footer { padding: 1rem 2vw; }
+      .footer-content { flex-direction: column; gap: 0.5rem; align-self: center;}
+    }
+    /* 1) Nav-bar logo stays colored */
+/* 1) Nav‐bar logo stays colored */
+/* 1) Force the nav‐bar logo image */
+.top-bar .logo-link .logo {
+  background-image: url('images/logo.png') !important;
+  filter: none !important;      /* remove that grayscale/brightness hack */
+}
+
+/* 2) Ensure footer logo stays white */
+.site-footer .logo {
+  background-image: url('images/logowhite.png') !important;
+}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="top-bar">
+    <a href="index.html" class="logo-link"><div class="logo"></div></a>
+    <nav>
+      <a href="about.html">ABOUT</a>
+      <a href="vex.html">VEX</a>
+      <a href="projects.html">PROJECTS</a>
+      <a href="#">SUPPORT</a>
+    </nav>
+  </header>
+
+  
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <a href="index.html" class="logo-link">
+          <div class="logo"></div>
+        </a>
+        <div>
+          <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+          <p class="footer-sub">SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.</p>
+        </div>
+      </div>
+      <div class="footer-center">
+        <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener">
+            <img src="images/SCA_INSTwhite.png" alt="Instagram">
+          </a>
+          <a href="mailto:you@domain.com">
+            <img src="images/SCA_EMAILwhite.png" alt="Email">
+          </a>
+          <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener">
+            <img src="images/SCA_TIKTOKwhite.png" alt="TikTok">
+          </a>
+          <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener">
+            <img src="images/SCA_YOUTUBEwhite.png" alt="YouTube">
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Hide-on-scroll Nav Script -->
+  <script>
+    (function(){
+      let lastY = window.scrollY;
+      const nav = document.querySelector('.top-bar');
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        nav.classList.toggle('hidden', y > lastY && y > 100);
+        lastY = y;
+      });
+    })();
+  </script>
+</body>
+</html>
