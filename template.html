@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-65LTDNTZ16');
+</script>
   <meta charset="UTF-8"/>
   <title>SoCalAlliance</title>
-  <link rel="icon" href="images/logo.png" type="image/png"/>
+  <link rel="icon" href="/images/logo.png" type="image/png"/>
  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
@@ -53,7 +62,7 @@
     }
     .top-bar.hidden { transform:translateY(-100%); }
     .logo { width:81px; height:73px;
-      background:url('images/logo.png') center/cover no-repeat;
+      background:url('/images/logo.png') center/cover no-repeat;
       margin-right:60px;
     }
     .footer-social a:hover img {
@@ -150,11 +159,11 @@
 
   <!-- NAV -->
   <header class="top-bar">
-    <a href="index.html" class="logo-link">
+    <a href="/" class="logo-link">
     <div class="logo"></div>
   </a>
     <nav>
-        <a href="about.html" target="_blank" rel="noopener">ABOUT</a>
+        <a href="/about" target="_blank" rel="noopener">ABOUT</a>
       <a href="#">COMMUNITY</a>
       <a href="#">EVENTS</a>
       <a href="#">PROJECTS</a>
@@ -180,7 +189,7 @@
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-left">
-        <a href="index.html" class="logo-link">
+        <a href="/" class="logo-link">
     <div class="logo"></div>
   </a>
         <div>
@@ -189,19 +198,19 @@
         </div>
       </div>
       <div class="footer-center">
-        <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+        <a href="#donate"><img src="/images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
         <div class="footer-social">
           <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener">
-  <img src="images/SCA_INSTwhite.png" alt="Instagram">
+  <img src="/images/SCA_INSTwhite.png" alt="Instagram">
 </a>
 <a href="mailto:you@domain.com">
-  <img src="images/SCA_EMAILwhite.png" alt="Email">
+  <img src="/images/SCA_EMAILwhite.png" alt="Email">
 </a>
 <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener">
-  <img src="images/SCA_TIKTOKwhite.png" alt="TikTok">
+  <img src="/images/SCA_TIKTOKwhite.png" alt="TikTok">
 </a>
 <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener">
-  <img src="images/SCA_YOUTUBEwhite.png" alt="YouTube">
+  <img src="/images/SCA_YOUTUBEwhite.png" alt="YouTube">
 </a>
         </div>
       </div>

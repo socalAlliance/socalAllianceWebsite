@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-65LTDNTZ16');
+</script>
   <meta charset="UTF-8" />
   <title>SCA • About</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="images/logo.png" type="image/png"/>
+  <link rel="icon" href="/images/logo.png" type="image/png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet" />
@@ -25,7 +34,7 @@
       transition:transform .3s ease;
     }
     .top-bar.hidden{ transform:translateY(-100%); }
-    .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
+    .logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav{ display:flex; gap:40px; }
     nav a:hover{ opacity:.7; }
     /* 1) allow transforms on all of these icons */
@@ -179,8 +188,8 @@
     /* Split background images */
     .bg-split{ position:absolute; top:695px; left:0; width:100%; height:1065px; pointer-events:none; z-index:0; }
     .bg-split__half{ float:left; width:50%; height:100%; background-size:cover; background-position:center; }
-    .bg-split__left{ background:linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%), url('images/spectators.png') center/cover no-repeat; }
-    .bg-split__right{ background:linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 200%), url('images/teaching.png') center/cover no-repeat; }
+    .bg-split__left{ background:linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%), url('/images/spectators.png') center/cover no-repeat; }
+    .bg-split__right{ background:linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 200%), url('/images/teaching.png') center/cover no-repeat; }
 
     .triangle-container{ position:relative; z-index:2; }
     .triangle-logo{ position:absolute; top:50%; left:50%; transform:translate(-50%,-35%); width:275px; height:auto; z-index:3; pointer-events:none; }
@@ -266,7 +275,7 @@
     .footer-social { display:flex; gap:.75rem; }
     .footer-social img { width:40px; height:40px; filter:brightness(200%); transition:filter .2s; }
     .footer-social a:hover img { filter:brightness(100%); }
-    .site-footer .logo { background-image:url('images/logowhite.png')!important; }
+    .site-footer .logo { background-image:url('/images/logowhite.png')!important; }
     .donate-img:hover, .footer-social a:hover img { filter: grayscale(100%) brightness(80%); }
   </style>
 </head>
@@ -274,18 +283,18 @@
 
   <!-- NAV -->
   <header class="top-bar">
-    <a href="index.html" class="logo-link"><div class="logo"></div></a>
+    <a href="/" class="logo-link"><div class="logo"></div></a>
     <nav>
-      <a href="about.html">ABOUT</a>
-      <a href="vex.html">VEX</a>
-      <a href="projects.html">PROJECTS</a>
-      <a href="#">SUPPORT</a>
+      <a href="/about">ABOUT</a>
+      <a href="/vex">VEX</a>
+      <a href="/projects">PROJECTS</a>
+      <a href="/">SUPPORT</a>
     </nav>
   </header>
 
   <!-- MISSION SECTION -->
   <section class="mission-section">
-    <img src="images/mission.gif" alt="" class="mission-gif" />
+    <img src="/images/mission.gif" alt="" class="mission-gif" />
     <div class="mission-copy">
       <h1>OUR MISSION</h1>
       <div class="mission-line" style="height:6px;background-image:linear-gradient(90deg,rgba(249,203,34,.9) 0%,rgba(239,118,22,.9) 50%,rgba(240,17,95,.9) 100%);border-radius:3px;margin:20px 0;"></div>
@@ -293,8 +302,8 @@
         Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
       </p>
       <div class="btn-row">
-        <a href="vex.html" class="btn-img"><img src="images/whatsvex.png" alt="WhatsVEX" /></a>
-        <a href="support.html" class="btn-img"><img src="images/Donate.png" alt="Donate" /></a>
+        <a href="/vex" class="btn-img"><img src="/images/whatsvex.png" alt="WhatsVEX" /></a>
+        <a href="/support" class="btn-img"><img src="/images/Donate.png" alt="Donate" /></a>
       </div>
     </div>
   </section>
@@ -323,7 +332,7 @@
         </defs>
         <polygon points="150,20 40,200 260,200" fill="none" stroke="url(#triangleStrokeGradient)" stroke-width="6" stroke-linejoin="round"/>
       </svg>
-      <img src="images/highstakes.png" alt="Logo" class="triangle-logo"/>
+      <img src="/images/highstakes.png" alt="Logo" class="triangle-logo"/>
 
       <!-- Labels -->
       <div id="labels" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
@@ -487,7 +496,7 @@
     <div class="team-item">
       <div class="gradient-line" style="width:596px; left:553px; top:99px;"></div>
       <div class="gradient-line" style="width:480px; left:669px; top:339px;"></div>
-      <div class="portrait" style="left:104px; top:57px; background-image:url('images/WILLIAMHO.png');"></div>
+      <div class="portrait" style="left:104px; top:57px; background-image:url('/images/WILLIAMHO.png');"></div>
       <div class="name" style="left:314px; top:68px;">WILLIAM HO</div>
       <div class="role" style="left:314px; top:117px; width:835px;">
         <div class="role-title">President</div>
@@ -496,7 +505,7 @@
     </div>
     <div class="team-item">
       <div class="gradient-line" style="width:583px; left:566px; top:589px; transform:matrix(1,0,0,-1,0,0);"></div>
-      <div class="portrait" style="left:148px; top:318px; background-image:url('images/ALLENSUAREZ.png'); transform:rotate(-0.15deg);"></div>
+      <div class="portrait" style="left:148px; top:318px; background-image:url('/images/ALLENSUAREZ.png'); transform:rotate(-0.15deg);"></div>
       <div class="name" style="left:394px; top:318px;">ALLEN SUAREZ</div>
       <div class="role" style="left:394px; top:367px; width:755px;">
         <div class="role-title">Vice President</div>
@@ -505,7 +514,7 @@
     </div>
     <div class="team-item">
       <div class="gradient-line" style="width:478px; left:671px; top:839px; transform:matrix(1,0,0,-1,0,0);"></div>
-      <div class="portrait" style="left:104px; top:557px; background-image:url('images/WINSTONLINE.png');"></div>
+      <div class="portrait" style="left:104px; top:557px; background-image:url('/images/WINSTONLINE.png');"></div>
       <div class="name" style="left:314px; top:568px;">WINSTON LIN</div>
       <div class="role" style="left:314px; top:617px; width:835px;">
         <div class="role-title">Brand Manager</div>
@@ -514,7 +523,7 @@
     </div>
     <div class="team-item">
       <div class="gradient-line" style="width:538px; left:611px; top:1089px; transform:matrix(1,0,0,-1,0,0);"></div>
-      <div class="portrait" style="left:184px; top:807px; background-image:url('images/MILESSANGER.png');"></div>
+      <div class="portrait" style="left:184px; top:807px; background-image:url('/images/MILESSANGER.png');"></div>
       <div class="name" style="left:394px; top:818px;">MILES SANGER</div>
       <div class="role" style="left:394px; top:867px; width:755px;">
         <div class="role-title">Treasurer</div>
@@ -522,7 +531,7 @@
       </div>
     </div>
     <div class="team-item">
-      <div class="portrait" style="left:104px; top:1057px; background-image:url('images/GLENBAUTISTA.png');"></div>
+      <div class="portrait" style="left:104px; top:1057px; background-image:url('/images/GLENBAUTISTA.png');"></div>
       <div class="name" style="left:314px; top:1068px;">GLEN BAUTISTA</div>
       <div class="role" style="left:349px; top:1134px; width:755px;">
         <div class="role-title">Secretary</div>
@@ -535,19 +544,19 @@
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-left">
-        <a href="index.html" class="logo-link"><div class="logo"></div></a>
+        <a href="/" class="logo-link"><div class="logo"></div></a>
         <div>
           <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
           <p class="footer-sub">SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.</p>
         </div>
       </div>
       <div class="footer-center">
-        <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now" /></a>
+        <a href="#donate"><img src="/images/Donatewhite.png" class="donate-img" alt="Donate Now" /></a>
         <div class="footer-social">
-          <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener"><img src="images/SCA_INSTwhite.png" alt="Instagram" /></a>
-          <a href="mailto:you@domain.com"><img src="images/SCA_EMAILwhite.png" alt="Email" /></a>
-          <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener"><img src="images/SCA_TIKTOKwhite.png" alt="TikTok" /></a>
-          <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener"><img src="images/SCA_YOUTUBEwhite.png" alt="YouTube" /></a>
+          <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener"><img src="/images/SCA_INSTwhite.png" alt="Instagram" /></a>
+          <a href="mailto:you@domain.com"><img src="/images/SCA_EMAILwhite.png" alt="Email" /></a>
+          <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener"><img src="/images/SCA_TIKTOKwhite.png" alt="TikTok" /></a>
+          <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener"><img src="/images/SCA_YOUTUBEwhite.png" alt="YouTube" /></a>
         </div>
       </div>
     </div>

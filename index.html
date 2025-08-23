@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-65LTDNTZ16');
+</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SoCalAlliance</title>
-  <link rel="icon" href="images/logo.png" type="image/png"/>
+  <link rel="icon" href="/images/logo.png" type="image/png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet">
@@ -48,7 +57,7 @@
       transition:transform .3s ease;
     }
     .top-bar.hidden { transform:translateY(-100%); }
-    .logo { width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
+    .logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav { display:flex; gap:40px; }
     nav a:hover { opacity:.7; }
 
@@ -92,7 +101,7 @@
       width: 100%;
       min-height: 320px;
       height: 675px;
-      background: url('images/Banner.png') no-repeat;
+      background: url('/images/Banner.png') no-repeat;
       background-size: cover;
       background-position: 50% 15%;
       position: relative;
@@ -148,7 +157,7 @@
     /* HERO 2 + ABOUT */
     .hero-2 {
       position:relative; width:100%; min-height:320px; height:566px;
-      background:url('images/flag.png') center/cover no-repeat;
+      background:url('/images/flag.png') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -180,12 +189,12 @@
     }
     .photo {
       width:140px; height:178px;
-      background:url('images/Winnie.png') center/cover no-repeat;
+      background:url('/images/Winnie.png') center/cover no-repeat;
       flex-shrink:0;
     }
     .signature {
       width:312px; height:79px;
-      background:url('images/signature.png') center/cover no-repeat;
+      background:url('/images/signature.png') center/cover no-repeat;
       margin-bottom:8px;
     }
     .name { font-size:24px; font-weight:700; }
@@ -354,13 +363,13 @@
 /* 1) Nav‐bar logo stays colored */
 /* 1) Force the nav‐bar logo image */
 .top-bar .logo-link .logo {
-  background-image: url('images/logo.png') !important;
+  background-image: url('/images/logo.png') !important;
   filter: none !important;      /* remove that grayscale/brightness hack */
 }
 
 /* 2) Ensure footer logo stays white */
 .site-footer .logo {
-  background-image: url('images/logowhite.png') !important;
+  background-image: url('/images/logowhite.png') !important;
 }
   </style>
 </head>
@@ -368,12 +377,12 @@
 
   <!-- NAV -->
   <header class="top-bar">
-    <a href="index.html" class="logo-link"><div class="logo"></div></a>
+    <a href="/" class="logo-link"><div class="logo"></div></a>
     <nav>
-      <a href="about.html">ABOUT</a>
-      <a href="vex.html">VEX</a>
-      <a href="projects.html">PROJECTS</a>
-      <a href="#">SUPPORT</a>
+      <a href="/about">ABOUT</a>
+      <a href="/vex">VEX</a>
+      <a href="/projects">PROJECTS</a>
+      <a href="/">SUPPORT</a>
     </nav>
   </header>
 
@@ -382,16 +391,16 @@
     <div class="hero-text">FOUNDED BY COMPETITORS</div>
     <div class="subhead">
       <p>See how we’re empowering the next generation of engineers through collaboration, resource-sharing, and mutual growth.</p>
-      <a href="about.html" class="btn-img">
-        <img src="images/Learnmore.png" alt="Learn More">
+      <a href="/about" class="btn-img">
+        <img src="/images/Learnmore.png" alt="Learn More">
       </a>
     </div>
   </section>
 
   <!-- STATS BAR IMAGE -->
   <div style="text-align:center; margin:4rem 0;">
-    <a href="projects.html" class="stats-btn">
-      <img src="images/Statsbar.png" alt="See our projects"/>
+    <a href="/projects" class="stats-btn">
+      <img src="/images/Statsbar.png" alt="See our projects"/>
     </a>
   </div>
 
@@ -419,13 +428,13 @@
   </section>
   <div class="partners-logos">
     <a href="https://mcbride.lbschools.net" target="_blank" rel="noopener">
-      <img src="images/McBride-Logo.png" alt="McBride Logo">
+      <img src="/images/McBride-Logo.png" alt="McBride Logo">
     </a>
     <!-- …other partner logos… -->
   </div>
   <div class="partners-donate">
     <a href="#donate" class="donate-btn">
-      <img src="images/Donate.png" alt="Donate Now">
+      <img src="/images/Donate.png" alt="Donate Now">
     </a>
   </div>
 
@@ -433,7 +442,7 @@
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-left">
-        <a href="index.html" class="logo-link">
+        <a href="/" class="logo-link">
           <div class="logo"></div>
         </a>
         <div>
@@ -442,19 +451,19 @@
         </div>
       </div>
       <div class="footer-center">
-        <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+        <a href="#donate"><img src="/images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
         <div class="footer-social">
           <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener">
-            <img src="images/SCA_INSTwhite.png" alt="Instagram">
+            <img src="/images/SCA_INSTwhite.png" alt="Instagram">
           </a>
           <a href="mailto:you@domain.com">
-            <img src="images/SCA_EMAILwhite.png" alt="Email">
+            <img src="/images/SCA_EMAILwhite.png" alt="Email">
           </a>
           <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener">
-            <img src="images/SCA_TIKTOKwhite.png" alt="TikTok">
+            <img src="/images/SCA_TIKTOKwhite.png" alt="TikTok">
           </a>
           <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener">
-            <img src="images/SCA_YOUTUBEwhite.png" alt="YouTube">
+            <img src="/images/SCA_YOUTUBEwhite.png" alt="YouTube">
           </a>
         </div>
       </div>
