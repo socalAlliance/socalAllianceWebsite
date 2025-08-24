@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-65LTDNTZ16');
+</script>
   <meta charset="UTF-8"/>
   <title>SoCalAlliance</title>
-  <link rel="icon" href="images/logo.png" type="image/png"/>
+  <link rel="icon" href="/images/logo.png" type="image/png"/>
   <link rel="preconnect" href="h/* a/* animated gradient "glow" on arrow glyph */
 .tl-arrow.up::before  { content: "▲"; }
 .tl-arrow.down::before{ content: "▼"; }
@@ -34,7 +43,7 @@
       transition:transform .3s ease;
     }
     .top-bar.hidden{ transform:translateY(-100%); }
-    .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
+    .logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav{ display:flex; gap:40px; }
     nav a:hover{ opacity:.7; }
 .logo {
@@ -490,7 +499,7 @@
 
     /* FOOTER */
     .site-footer{background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);color:#fff;padding:2rem 10%}
-    .site-footer .logo {background-image: url('images/logowhite.png') !important;}
+    .site-footer .logo {background-image: url('/images/logowhite.png') !important;}
     .footer-content{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:5rem}
     .footer-left{display:flex;align-items:flex-start;gap:1rem;flex:1 1 400px}
     .footer-copy{font-size:1.5rem;font-weight:bold}
@@ -506,12 +515,12 @@
 
 <!-- NAV -->
   <header class="top-bar">
-    <a href="index.html" class="logo-link"><div class="logo"></div></a>
+    <a href="/" class="logo-link"><div class="logo"></div></a>
     <nav>
-      <a href="about.html">ABOUT</a>
-      <a href="vex.html">VEX</a>
-      <a href="projects.html">PROJECTS</a>
-      <a href="#">SUPPORT</a>
+      <a href="/about">ABOUT</a>
+      <a href="/vex">VEX</a>
+      <a href="/projects">PROJECTS</a>
+      <a href="/">SUPPORT</a>
     </nav>
   </header>
 
@@ -524,12 +533,12 @@
 
 <section class="features">
   <article class="feature">
-    <img src="images/scrimming.png" alt="">
+    <img src="/images/scrimming.png" alt="">
     <div class="copy">
       <h3>
         <button
           class="feature-btn"
-          onclick="window.location.href='projects.html#scrimmages';">
+          onclick="window.location.href='projects#scrimmages';">
           SCRIMS &amp; MEETUPS
         </button>
       </h3>
@@ -537,7 +546,7 @@
     </div>
   </article>
   <article class="feature">
-    <img src="images/vexu.png" alt="">
+    <img src="/images/vexu.png" alt="">
     <div class="copy">
         
       <h3>
@@ -555,7 +564,7 @@
     </div>
   </article>
   <article class="feature">
-    <img src="images/banner.png" alt="">
+    <img src="/images/banner.png" alt="">
     <div class="copy">
       <h3>
         <a
@@ -569,7 +578,7 @@
     </div>
   </article>
   <article class="feature">
-    <img src="images/teaching.png" alt="">
+    <img src="/images/teaching.png" alt="">
     <div class="copy">
       <h3>
        <a
@@ -604,19 +613,19 @@
 <footer class="site-footer">
   <div class="footer-content">
     <div class="footer-left">
-      <a href="index.html" class="logo-link"><div class="logo"></div></a>
+      <a href="/" class="logo-link"><div class="logo"></div></a>
       <div>
         <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
         <p class="footer-sub">SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities.</p>
       </div>
     </div>
     <div class="footer-center">
-      <a href="#donate"><img src="images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+      <a href="#donate"><img src="/images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
       <div class="footer-social">
-        <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener"><img src="images/SCA_INSTwhite.png" alt="Instagram"></a>
-        <a href="mailto:you@domain.com"><img src="images/SCA_EMAILwhite.png" alt="Email"></a>
-        <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener"><img src="images/SCA_TIKTOKwhite.png" alt="TikTok"></a>
-        <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener"><img src="images/SCA_YOUTUBEwhite.png" alt="YouTube"></a>
+        <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener"><img src="/images/SCA_INSTwhite.png" alt="Instagram"></a>
+        <a href="mailto:you@domain.com"><img src="/images/SCA_EMAILwhite.png" alt="Email"></a>
+        <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener"><img src="/images/SCA_TIKTOKwhite.png" alt="TikTok"></a>
+        <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener"><img src="/images/SCA_YOUTUBEwhite.png" alt="YouTube"></a>
       </div>
     </div>
   </div>
