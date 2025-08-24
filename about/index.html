@@ -281,6 +281,10 @@
       .footer-social img { width:32px; height:32px; }
       .footer-center { gap:0.5rem; }
     }
+    .triangle-logo {
+  transform-origin: center center;
+  transition: transform 0.8s ease;   /* match your rotate duration */
+}
 
     /* ===== Footer (desktop + all) ===== */
     .site-footer {
@@ -380,8 +384,11 @@
   </div>
 
   <script>
+      const logoEl   = document.querySelector('.triangle-logo');
+  let   logoAngle = 0;
     /* Roles / copy */
     const roles = [
+      
       {
         label: "NONPROFIT",
         descriptions: {
@@ -403,7 +410,9 @@
           VEXU_TEAM: "Offers mentorship, shared resources, and a collaborative community for the VEXU team."
         }
       }
+      
     ];
+     
 
     // Desktop coordinates for triangle motion
     const positions = [
@@ -454,7 +463,9 @@
     function animateRotation(direction){
       if (isAnimating || !circumcircle) return;
       isAnimating = true;
-
+ const stepAngle = 360 / roles.length;
+  logoAngle    += direction * stepAngle;
+  logoEl.style.transform = `translate(-50%,-35%) rotate(${logoAngle}deg)`;
       // Only fade on mobile
       if (window.matchMedia('(max-width: 1122px)').matches) {
         if (typeof window.mobileFadeOut === 'function') window.mobileFadeOut();

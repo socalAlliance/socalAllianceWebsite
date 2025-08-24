@@ -903,6 +903,22 @@
   /* margin-top will nudge it down (use negative to go up) */
   margin-top:  var(--compare-bar-offset-y) !important;
 }
+/* Past Seasons button */
+.past-seasons-container {
+  text-align: center;
+  margin: 2rem 0;          /* space above/below */
+}
+
+.past-seasons-btn {
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  display: inline-block;
+}
+
+.past-seasons-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
   </style>
 </head>
 <body>
@@ -953,6 +969,18 @@
   <div class="embed-box season">
     <iframe src="https://www.youtube.com/embed/ocmONiVun9M?si=vZYA92uBOjbeKY-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
+</div>
+<!-- Past Seasons Button -->
+<div class="past-seasons-container">
+  <a
+    href="https://www.youtube.com/playlist?list=PLXdulAseEztM8V1McWUl0aVkL1_CMnCgf"
+    target="_blank"
+    rel="noopener">
+    <img
+      src="/images/pastseasons.png"
+      alt="Past Seasons Playlist"
+      class="past-seasons-btn" />
+  </a>
 </div>
 
 <section class="location-section">
@@ -1011,28 +1039,6 @@
 
 
 
-<!-- IMAGE CAROUSEL -->
-<section class="image-carousel">
-  <button class="carousel-arrow left" aria-label="Previous"></button>
-  <div class="carousel-track-container">
-    <ul class="carousel-track">
-      <li class="carousel-slide current-slide">
-        <img src="/images/slide1.png" alt="Slide 1">
-        <p class="carousel-caption">Robot prepared for upcoming VEX V5RC match.</p>
-      </li>
-      <li class="carousel-slide">
-        <img src="/images/slide2.png" alt="Slide 2">
-        <p class="carousel-caption">Robot in action in a VEX V5RC match.</p>
-      </li>
-      <li class="carousel-slide">
-        <img src="/images/slide3.png" alt="Slide 3">
-        <p class="carousel-caption">Robot scoring in a VEX V5RC match.</p>
-      </li>
-      <!-- add more <li> as needed -->
-    </ul>
-  </div>
-  <button class="carousel-arrow right" aria-label="Next"></button>
-</section>
 
 
 
