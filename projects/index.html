@@ -509,6 +509,20 @@
     .footer-social{display:flex;gap:1rem}
     .footer-social img{width:60px;height:60px;filter:brightness(200%);transition:filter .2s}
     .footer-social a:hover img{filter:grayscale(100%) brightness(80%)}
+    /* 2) On hover, cancel the scale and apply grayscale */
+.site-footer .logo {
+  /* only animate filter, not transform */
+  transition: filter 0.3s ease !important;
+  /* cancel any inherited scale */
+  transform: none !important;
+}
+
+/* 2) On hover, apply grayscale + slight dim */
+.site-footer .logo-link:hover .logo {
+  filter: grayscale(100%) brightness(80%) !important;
+  /* ensure it never scales */
+  transform: none !important;
+}
   </style>
 </head>
 <body>

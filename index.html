@@ -371,6 +371,19 @@
 .site-footer .logo {
   background-image: url('/images/logowhite.png') !important;
 }
+.site-footer .logo {
+  /* only animate filter, not transform */
+  transition: filter 0.3s ease !important;
+  /* cancel any inherited scale */
+  transform: none !important;
+}
+
+/* 2) On hover, apply grayscale + slight dim */
+.site-footer .logo-link:hover .logo {
+  filter: grayscale(100%) brightness(80%) !important;
+  /* ensure it never scales */
+  transform: none !important;
+}
   </style>
 </head>
 <body>

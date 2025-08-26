@@ -197,6 +197,19 @@
 .site-footer .logo {
   background-image: url('/images/logowhite.png') !important;
 }
+.site-footer .logo {
+  /* only animate filter, not transform */
+  transition: filter 0.3s ease !important;
+  /* cancel any inherited scale */
+  transform: none !important;
+}
+
+/* 2) On hover, apply grayscale + slight dim */
+.site-footer .logo-link:hover .logo {
+  filter: grayscale(100%) brightness(80%) !important;
+  /* ensure it never scales */
+  transform: none !important;
+}
   </style>
 </head>
 <body>
@@ -226,7 +239,7 @@
         </div>
       </div>
       <div class="footer-center">
-        <a href="#donate"><img src="/images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+        <a href="/support"><img src="/images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
         <div class="footer-social">
           <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener"><img src="/images/SCA_INSTwhite.png" alt="Instagram" /></a>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" target="_blank" rel="noopener"><img src="/images/SCA_EMAILwhite.png" alt="Email" /></a>    

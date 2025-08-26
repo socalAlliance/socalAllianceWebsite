@@ -357,15 +357,30 @@
   
 }
 /* — Sticky Nav — */
-    .top-bar {
-      position:sticky; top:0; left:0; z-index:10;
-      width:100%; height:100px;
-      display:flex; align-items:center; padding:0 50px;
-      font-family:'Tilt Warp',sans-serif; font-size:28px;
-      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-      transition:transform .3s ease;
-    }
-    .top-bar.hidden { transform:translateY(-100%); }
+  /* Make room for a 100px-tall fixed nav */
+body {
+  padding-top: 100px;
+}
+
+/* Single, un-conflicted nav rule */
+.top-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100px;               /* your nav’s height */
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  background: linear-gradient(90deg, #000 0, #000 10%, #F0115F 60%, #EF7616 100%);
+  font-family: 'Tilt Warp',sans-serif;
+  font-size: 28px;
+  z-index: 1000;
+  transition: top 0.3s ease;
+}
+/* Hides by moving up exactly its own height */
+.top-bar.hidden {
+  top: -100px;
+}
+
     .logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav { display:flex; gap:40px; }
     nav a:hover { opacity:.7; }
@@ -923,7 +938,134 @@
   transform: scale(1.05);
   filter: brightness(1.2);
 }
+/* 2) On hover, cancel the scale and apply grayscale */
+.site-footer .logo-link:hover .logo {
+  transform: none !important;              /* stops the pop/scale */
+  filter: grayscale(100%) brightness(80%) !important; /* grays out */
+}
+.compare-chart {
+  max-width: 1000px;
+  margin: 6rem auto 4rem;
+  padding: 0 1rem;
+  color: #fff;
+}
+.compare-chart__title {
+  text-align: center;
+  font-family: 'Tilt Warp',sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.compare-chart__title::after {
+  content: "";
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  bottom: -0.5rem;
+  width: 6rem; height: 6px;
+  background: var(--bar-gradient);
+  border-radius: 3px;
+}
 
+.compare-chart__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.compare-chart__cell {
+  padding: 1.25rem;
+  text-align: center;
+  font-size: 1rem;
+  background: #000000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.compare-chart__cell:nth-child(3n) {
+  border-right: none;
+}
+
+/* Header styling */
+.compare-chart__cell--header {
+  background: var(--bar-gradient);
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Remove bottom border on last row */
+.compare-chart__grid > .compare-chart__cell:nth-last-child(-n+3) {
+  border-bottom: none;
+}
+
+/* Zebra-stripe every other row to aid readability */
+.compare-chart__grid > .compare-chart__cell:nth-child(n+4):nth-child(odd) {
+  background: #000000;
+}
+
+/* Responsive: switch to single-col on narrow screens */
+@media (max-width: 600px) {
+  .compare-chart__grid {
+    grid-template-columns: 1fr;
+  }
+  .compare-chart__cell--header {
+    text-align: left;
+  }
+  .compare-chart__cell {
+    border-right: none !important;
+    text-align: left;
+  }
+}
+/* Make headers white, Tilt Warp, with a gradient underline */
+.compare-chart__cell--header {
+  background: none;                      /* drop the gradient box */
+  color: #fff;                           /* white text */
+  font-family: 'Tilt Warp', sans-serif; /* match your section titles */
+  font-size: 1.1rem;
+  position: relative;
+  padding-bottom: 1.5rem;               /* give room for the underline */
+}
+
+/* Underline with your gradient bar */
+.compare-chart__cell--header::after {
+  content: '';
+  position: absolute;
+  left: 1rem;       /* inset from the sides */
+  right: 1rem;
+  bottom: 0.5rem;   /* just below text */
+  height: 6px;      /* thickness of underline */
+  background: var(--bar-gradient);
+  border-radius: 3px;
+}
+
+/* Remove any leftover borders so the underline stands out */
+.compare-chart__cell--header {
+  border-bottom: none;
+}
+/* Increase body cell text */
+.compare-chart__cell {
+  font-size: 1.5rem;   /* ~20px */
+}
+
+/* Increase header text */
+.compare-chart__cell--header {
+  font-size: 2rem;    /* ~24px */
+}
+.site-footer .logo {
+  /* only animate filter, not transform */
+  transition: filter 0.3s ease !important;
+  /* cancel any inherited scale */
+  transform: none !important;
+}
+
+/* 2) On hover, apply grayscale + slight dim */
+.site-footer .logo-link:hover .logo {
+  filter: grayscale(100%) brightness(80%) !important;
+  /* ensure it never scales */
+  transform: none !important;
+}
   </style>
 </head>
 <body>
@@ -1003,42 +1145,31 @@
 
 
 
-<section class="vex-compare">
+<section class="compare-chart">
+  
+  <div class="compare-chart__grid">
+    <!-- Headers -->
+    <div class="compare-chart__cell compare-chart__cell--header">Features</div>
+    <div class="compare-chart__cell compare-chart__cell--header">V5RC</div>
+    <div class="compare-chart__cell compare-chart__cell--header">VEX U</div>
 
-  <!-- HEADLINE -->
-  <h2 class="compare-headline">
-    <span>VEX V5</span>
-    <span class="vs">vs.</span>
-    <span>VEX U‎ ‎ ‎ </span>
-  </h2>
+    <!-- Rows -->
+    <div class="compare-chart__cell">Format:</div>
+    <div class="compare-chart__cell">2 vs 2, 1 robot per team<br>10,000+ teams</div>
+    <div class="compare-chart__cell">1 vs 1, 2 robots per team<br>300+ teams</div>
 
-  <!-- BODY: left column / bar / right column -->
-  <div class="compare-body">
-    <div class="column left">
-       <p>‎ </p>
-      <p>2v2 format. 1 robot per team. 10,000+ teams.</p>
-      <p>‎ </p>
-      <p>Designed for 6th through 12th grade.</p>
-      <p>‎ </p>
-      <p>Full utilization of VEX ecosystem promotes innovation under constraints.</p>
-      <p>‎ </p>
-      <p>Same engineering notebook, interview, and skills evaluation process as VEX U.</p>
-    </div>
+    <div class="compare-chart__cell">Age Group:</div>
+    <div class="compare-chart__cell">6th–12th Grade</div>
+    <div class="compare-chart__cell">College Students</div>
 
-    <div class="vex-bar-vertical"></div>
+    <div class="compare-chart__cell">Design Constraints:</div>
+    <div class="compare-chart__cell">VEX ecosystem only</div>
+    <div class="compare-chart__cell">custom 3D-printing, raw stock, sensors</div>
 
-    <div class="column right">
-       <p>‎ </p>
-      <p>1v1 format. 2 robots per team. 300+ teams.</p>
-      <p>‎ </p>
-      <p>Designed for collegiate-level students.</p>
-      <p>‎ </p>
-      <p>Free reign over 3D-printing, plastic use, and electronics promotes unique optimizations.</p>
-      <p>‎ </p>
-      <p>Same engineering notebook, interview, and skills evaluation process as VEX V5.</p>
-    </div>
+    <div class="compare-chart__cell">Judging:</div>
+    <div class="compare-chart__cell">Notebook, interview, skills eval</div>
+    <div class="compare-chart__cell">Same processes as V5RC</div>
   </div>
-
 </section>
 
 
@@ -1074,7 +1205,19 @@
   </footer>
 
 
-  
+   <!-- Hide-on-scroll Nav Script -->
+ <script>
+;(function(){
+  let lastY = window.pageYOffset;
+  const nav = document.querySelector('.top-bar');
+
+  window.addEventListener('scroll', () => {
+    const y = window.pageYOffset;
+    if (y > lastY)       nav.classList.add('hidden');  // scrolling down
+    else if (y < lastY)  nav.classList.remove('hidden'); // scrolling up
+    lastY = y;
+  });
+})();
 </script>
 </body>
 </html>
