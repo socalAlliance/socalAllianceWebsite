@@ -22,6 +22,34 @@
       --hero-text-size: 36px;
       --bar-radius: 12px;
     
+  --support-underline-height: 10px;
+  
+  --support-gradient:
+    linear-gradient(
+      90deg,
+      rgba(249,203,34,0.9) 23%,
+      rgba(239,118,22,0.9) 50%,
+      rgba(240,17,95,0.9) 77%
+    );
+     
+   /* shift the image 20% of its container width to the left */
+  --support-bg-pos-x: -290px;
+  /* shift the image 50% down from its top edge */
+  --support-bg-pos-y: 50%;
+  --support-bg-size: 120% auto; /* keep this if you’re scaling width to 100% */
+      --why-text-size:    20px;    /* default font-size for WHY text */
+  --why-line-height:  1.5;     /* line-height */
+  --why-text-wrap:    1000px;   /* max-width before wrapping */
+    --support-label-size:    18px;
+  --support-text-size:     20px;
+  --support-line-height:   1.5;
+  --support-text-wrap:     700px;
+      --partnerships-text-size: 72px;
+  --partnerships-text-weight: 100;
+  --support-underline-overhang: 5rem;
+  --support-underline-height: 10px;
+  --support-underline-radius: 1000px;
+  
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { width:100%; }
@@ -197,6 +225,192 @@
 .site-footer .logo {
   background-image: url('/images/logowhite.png') !important;
 }
+.site-footer .logo {
+  /* only animate filter, not transform */
+  transition: filter 0.3s ease !important;
+  /* cancel any inherited scale */
+  transform: none !important;
+}
+
+/* 2) On hover, apply grayscale + slight dim */
+.site-footer .logo-link:hover .logo {
+  filter: grayscale(100%) brightness(80%) !important;
+  /* ensure it never scales */
+  transform: none !important;
+}
+
+/* shared gradient separator */
+.gradient-bar.separator {
+  width: 100%;
+  height: 8px;
+  background: var(--support-gradient);
+  border-radius: 4px;
+  margin: 0;
+}
+
+/* WHY SUPPORT US */
+.support-why {
+  background-image:
+    linear-gradient(
+      360deg,
+      rgba(0,0,0,0)   -10%,
+      rgba(0,0,0,0.8) 25%,
+      #000            100%
+    ),
+    url('/images/whysupport.png');
+  background-size:    var(--support-bg-size);
+  background-position: var(--support-bg-pos-x) var(--support-bg-pos-y);
+  background-repeat:  no-repeat;
+
+  padding: 2rem 8% 14rem;
+  text-align: center;
+  position: relative;
+  color: #fff;
+}
+
+/* ensure your text sits above that gradient layer */
+.support-why > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+.support-why h2::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom: 0;
+  height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+
+/* HOW TO SUPPORT US */
+.support-how {
+  /* Layer 1: dark→transparent tint on top
+     Layer 2: your flag.png image underneath */
+  background-image:
+    linear-gradient(
+      260deg,
+      rgba(0,0,0,0)   -10%,
+      rgba(0,0,0,0.8) 25%,
+      #000            70%
+    ),
+    url('/images/flag.png');
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  /* keep your existing padding/text‐alignment */
+  padding: 4rem 8%;
+  text-align: left;
+  color: #fff;
+  position: relative;
+}
+
+/* ensure your headings & paragraphs sit above the tint layer */
+.support-how > * {
+  position: relative;
+  z-index: 1;
+}
+/* — Unified Support Section Titles — */
+.support-why h2,
+.support-how h2 {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: var(--partnerships-text-size);    /* 72px by default */
+  font-weight: var(--partnerships-text-weight);/* 100 by default */
+  line-height: 1.1;
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.5em;
+  margin-bottom: 1rem;
+}
+
+/* — Shared Gradient Underline — */
+.support-why h2::after,
+.support-how h2::after {
+  content: "";
+  position: absolute;
+  left:  calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom: 0;
+  height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+.support-how p {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  max-width: 900px;
+}
+.support-why p {
+  font-size:    var(--why-text-size);
+  line-height:  var(--why-line-height);
+  max-width:    var(--why-text-wrap);
+  margin:       0 auto 1.5rem;  /* keep center wrap if you like */
+  text-align:   center;         /* or left, if you’d prefer */
+  word-wrap:    break-word;
+}
+.support-how p {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+/* buttons row */
+/* ensure the wrapper exists */
+.support-buttons {
+  display: inline-flex;
+  gap: 1.5rem;               /* keeps space between the two icons */
+  margin: 1.5rem 0;
+}
+
+.support-buttons img {
+  height: 60px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.support-buttons a:hover img {
+  transform: scale(1.05);    /* the “pop” on hover */
+  filter: brightness(1.1);
+}
+
+/* responsive tweaks */
+@media (max-width: 600px) {
+  .support-why, .support-how {
+    padding: 3rem 4%;
+  }
+  .support-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+/* bold the label text & size it */
+.support-label {
+  display: inline-block;
+  font-weight: bold;
+  font-size: var(--support-label-size);
+  margin-right: 0.25em;
+}
+
+/* 1) Make the whole section text left-aligned */
+.support-how {
+  text-align: left;
+}
+
+/* 2) Stop centering the <p> blocks by removing the auto side-margins */
+.support-how p {
+  margin: 0.75rem 0;          /* vertical spacing only */
+  /* keep your sizing vars: */
+  font-size: var(--support-text-size);
+  line-height: var(--support-line-height);
+  max-width: var(--support-text-wrap);
+  word-wrap: break-word;
+}
+
   </style>
 </head>
 <body>
@@ -211,6 +425,38 @@
       <a href="/support">SUPPORT</a>
     </nav>
   </header>
+<!-- WHY SUPPORT US -->
+<section class="support-why">
+  <h2>WHY SUPPORT US?</h2>
+  <p>Hundreds of eager students quit VEX each year simply because they can’t find a clear path forward. Not all teams are lucky to have invested coaches or volunteers for the program. Some schools don’t recognize VEX the way they do other sports or programs. That leaves students reinventing the wheel, stuck in a loop of trial and error, and eventually just copying the best design they can find on YouTube. We’re not sending robots to schools. We’re breaking down barriers by sharing everything you need to start and sustain a VEX team.      </p>
+</section>
+<div class="gradient-bar separator"></div>
+
+
+<!-- HOW TO SUPPORT US -->
+<section class="support-how">
+  <h2>HOW TO SUPPORT US</h2>
+  <p>
+Monetary Support: Direct financial support will help support our Mentors and VEX U team with raw parts procurement, registration fees, competitions, and travel. Additionally, this allows us to provide more resources to the community through the production of educational resources and events.
+  </p>
+  <p>
+Products & Service: By donating products or services, you give students direct exposure to your brand and let them experience your offerings without worrying about cost. We can also showcase your products through reviews and recommend them to our community of teams and educators.
+  </p>
+
+  <div class="support-buttons">
+    <a href="#" target="_blank" rel="noopener">
+      <img src="/images/gofundme.png" alt="GoFundMe">
+    </a>
+    <a href="#" target="_blank" rel="noopener">
+      <img src="/images/venmo.png" alt="Venmo">
+    </a>
+  </div>
+
+  <p>
+    Please contact us at socalalliancenonprofit@gmail.com for any inquiries or clarifications.
+  </p>
+</section>
+
 
   
   <!-- FOOTER -->
@@ -226,7 +472,7 @@
         </div>
       </div>
       <div class="footer-center">
-        <a href="#donate"><img src="/images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
+        <a href="/support"><img src="/images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
         <div class="footer-social">
           <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener"><img src="/images/SCA_INSTwhite.png" alt="Instagram" /></a>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" target="_blank" rel="noopener"><img src="/images/SCA_EMAILwhite.png" alt="Email" /></a>    

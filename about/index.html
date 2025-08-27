@@ -192,7 +192,7 @@
     .bg-split__right{ background:linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 200%), url('/images/teaching.png') center/cover no-repeat; }
 
     .triangle-container{ position:relative; z-index:2; }
-    .triangle-logo{ position:absolute; top:50%; left:50%; transform:translate(-50%,-35%); width:275px; height:auto; z-index:3; pointer-events:none; }
+    .triangle-logo{ position:absolute; top:50%; left:50%; transform:translate(-50%,-35%); width:225px; height:auto; z-index:3; pointer-events:none; }
 
     /* ===== Responsive helpers ===== */
     .triangle-container{ width:min(900px,100%)!important; height:auto!important; }
@@ -307,6 +307,11 @@
     .footer-social a:hover img { filter:brightness(100%); }
     .site-footer .logo { background-image:url('/images/logowhite.png')!important; }
     .donate-img:hover, .footer-social a:hover img { filter: grayscale(100%) brightness(80%); }
+    /* 2) On hover, cancel the scale and apply grayscale */
+.site-footer .logo-link:hover .logo {
+  transform: none !important;              /* stops the pop/scale */
+  filter: grayscale(100%) brightness(80%) !important; /* grays out */
+}
   </style>
 </head>
 <body>
@@ -521,7 +526,7 @@
 
   <!-- Decorative gradient bars -->
   <div class="gradient-bar" style="--bar-left:0px; --bar-top:675px; --bar-width:2100px; --bar-height:20px; z-index:9;"></div>
-  <div class="gradient-bar" style="--bar-left:0px; --bar-top:1760px; --bar-width:2100px; --bar-height:20px; z-index:9;"></div>
+  
 
   <!-- Meet the Team -->
   <div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;">
