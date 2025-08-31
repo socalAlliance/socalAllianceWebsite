@@ -192,7 +192,7 @@
     .bg-split__right{ background:linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 200%), url('/images/teaching.png') center/cover no-repeat; }
 
     .triangle-container{ position:relative; z-index:2; }
-    .triangle-logo{ position:absolute; top:50%; left:50%; transform:translate(-50%,-35%); width:225px; height:auto; z-index:3; pointer-events:none; }
+    .triangle-logo{ position:absolute; top:50%; left:50%; transform:translate(-50%,-35%); width:225px; height:auto; z-index:3; pointer-events:none; transform-origin:center center; transition:transform .8s ease; will-change:transform; }
 
     /* ===== Responsive helpers ===== */
     .triangle-container{ width:min(900px,100%)!important; height:auto!important; }
@@ -282,9 +282,35 @@
       .footer-center { gap:0.5rem; }
     }
     .triangle-logo {
-  transform-origin: center center;
-  transition: transform 0.8s ease;   /* match your rotate duration */
-}
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -35%);
+      width: 225px;
+      height: auto;
+      z-index: 3;
+      pointer-events: none;
+      transform-origin: center center;
+      transition: transform 0.8s ease;
+      will-change: transform;
+    }
+
+    /* Remove the continuous rotation keyframes */
+    /* @keyframes rotateClockwise {
+      from {
+        transform: translate(-50%, -35%) rotate(0deg);
+      }
+      to {
+        transform: translate(-50%, -35%) rotate(360deg);
+      }
+    } */
+
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .triangle-logo {
+        transition: none;
+      }
+    }
 
     /* ===== Footer (desktop + all) ===== */
     .site-footer {
@@ -312,6 +338,145 @@
   transform: none !important;              /* stops the pop/scale */
   filter: grayscale(100%) brightness(80%) !important; /* grays out */
 }
+    /* Enhanced arrow styling with accessibility */
+    .arrow, .m-arrow {
+      background: none;
+      border: 2px solid transparent;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 8px 12px;
+      font-size: 1.75rem;
+      color: #fff;
+      /* Remove the conflicting background properties */
+    }
+
+    /* Create the gradient text effect properly */
+    .arrow::before, .m-arrow::before {
+      content: attr(data-arrow) "◀";
+      background: var(--animated-gradient);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-move 3s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .arrow[data-dir="1"]::before, .m-arrow[data-dir="1"]::before {
+      content: "▶";
+    }
+
+    .arrow[data-dir="-1"]::before, .m-arrow[data-dir="-1"]::before {
+      content: "◀";
+    }
+
+    /* Focus states for accessibility */
+    .arrow:focus,
+    .m-arrow:focus {
+      outline: 2px solid #F0115F;
+      outline-offset: 3px;
+      border-color: rgba(240, 17, 95, 0.5);
+    }
+
+    .arrow:focus-visible,
+    .m-arrow:focus-visible {
+      border-color: #EF7616;
+      box-shadow: 0 0 0 3px rgba(239, 118, 22, 0.3);
+    }
+
+    /* Enhanced hover states */
+    .arrow:hover,
+    .m-arrow:hover {
+      transform: scale(1.15) translateY(-2px);
+      background-color: rgba(240, 17, 95, 0.1);
+      border-color: rgba(240, 17, 95, 0.3);
+      box-shadow: 0 4px 12px rgba(240, 17, 95, 0.3);
+    }
+
+    .arrow:active,
+    .m-arrow:active {
+      transform: scale(1.05) translateY(0);
+    }
+
+    /* Rotate arrow on hover with reduced motion respect */
+    .arrow:hover::before,
+    .m-arrow:hover::before {
+      animation-play-state: paused;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .arrow::before, .m-arrow::before {
+        animation: none;
+        background: #F0115F;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        -webkit-text-fill-color: initial;
+        color: #F0115F;
+      }
+      
+      .arrow:hover,
+      .m-arrow:hover {
+        transform: none;
+        box-shadow: none;
+        background-color: #EF7616;
+      }
+    }
+
+    /* Desktop arrows enhancement */
+    #arrow-container .arrow {
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1.75rem;
+      line-height: 1;
+      color: transparent; /* Hide the original text */
+    }
+
+    /* Mobile arrows enhancement */
+    .tri-mobile .m-arrow {
+      min-width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin: 0;
+      color: transparent; /* Hide the original text */
+    }
+
+    /* Improved mobile responsive sizes */
+    @media (max-width: 480px) {
+      .tri-mobile .m-arrow {
+        font-size: 20px;
+        min-width: 2rem;
+        height: 2rem;
+        padding: 4px 8px;
+      }
+    }
+
+    /* Enhanced gradient animation */
+    @keyframes gradient-move {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Disabled state for arrows */
+    .arrow:disabled,
+    .m-arrow:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none !important;
+      animation-play-state: paused;
+    }
   </style>
 </head>
 <body>
@@ -468,44 +633,63 @@
     function animateRotation(direction){
       if (isAnimating || !circumcircle) return;
       isAnimating = true;
- const stepAngle = 360 / roles.length;
-  logoAngle    += direction * stepAngle;
-  logoEl.style.transform = `translate(-50%,-35%) rotate(${logoAngle}deg)`;
+
+      // Invert so: right arrow (1) => clockwise; left arrow (-1) => counter-clockwise
+      const dir = -direction;
+
+      const stepAngle = 120; // 360/3
+      logoAngle -= dir * stepAngle;       // <-- use -= here
+      logoEl.style.transform = `translate(-50%, -35%) rotate(${logoAngle}deg)`;
+
       // Only fade on mobile
       if (window.matchMedia('(max-width: 1122px)').matches) {
         if (typeof window.mobileFadeOut === 'function') window.mobileFadeOut();
       }
 
-      const from = rotation, to = (rotation + direction + 3) % 3;
-      const start = performance.now(), duration = 800;
+      const from = rotation;
+      const to   = (rotation + dir + 3) % 3;
+      const start = performance.now();
+      const duration = 800;
 
       const params = Array.from(labelEls).map((_, i) => {
-        const startPos = positions[(i + from) % 3], endPos = positions[(i + to) % 3];
-        const a0 = getAngle(startPos); let a1 = getAngle(endPos); let d = a1 - a0;
-        if (direction > 0){ if (d > 0) d -= 2*Math.PI; } else { if (d < 0) d += 2*Math.PI; }
+        const startPos = positions[(i + from) % 3];
+        const endPos   = positions[(i + to)   % 3];
+        const a0 = getAngle(startPos);
+        let a1   = getAngle(endPos);
+        let d    = a1 - a0;
+        // Choose the arc in the intended direction
+        if (dir > 0) { if (d > 0) d -= 2*Math.PI; }
+        else         { if (d < 0) d += 2*Math.PI; }
         return { a0, d };
       });
 
-      const gapChangeDelay = duration * 0.2; let gapChanged = false;
+      const gapChangeDelay = duration * 0.2;
+      let gapChanged = false;
 
       function step(ts){
-        const t = Math.min((ts - start) / duration, 1), e = easeInOutCubic(t);
+        const t = Math.min((ts - start) / duration, 1);
+        const e = easeInOutCubic(t);
+
         labelEls.forEach((el,i)=>{
           const { a0, d } = params[i];
           const ang = a0 + d * e;
           const x = circumcircle.center.x + circumcircle.radius * Math.cos(ang);
           const y = circumcircle.center.y + circumcircle.radius * Math.sin(ang);
-          el.style.left = x + "px"; el.style.top = y + "px";
+          el.style.left = x + "px";
+          el.style.top  = y + "px";
         });
 
-        if (!gapChanged && (ts - start) >= gapChangeDelay){ rotation = to; updateArrowGap(); gapChanged = true; }
+        if (!gapChanged && (ts - start) >= gapChangeDelay){
+          rotation = to;
+          updateArrowGap();
+          gapChanged = true;
+        }
 
         if (t < 1) requestAnimationFrame(step);
         else {
           rotation = to;
           updateDescriptions();
 
-          // Only mobile fades & text refresh
           if (window.matchMedia('(max-width: 1122px)').matches) {
             if (typeof window.updateMobileTexts === 'function') window.updateMobileTexts();
             if (typeof window.mobileFadeIn === 'function') window.mobileFadeIn();
@@ -517,9 +701,36 @@
     }
 
     function initialize(){
-      labelEls.forEach((el,i)=>{ el.querySelector(".label-text").textContent = roles[i].label; const pos = positions[(i+rotation)%3]; el.style.left = pos.x + "px"; el.style.top = pos.y + "px"; });
+      labelEls.forEach((el,i)=>{ 
+        el.querySelector(".label-text").textContent = roles[i].label; 
+        const pos = positions[(i+rotation)%3]; 
+        el.style.left = pos.x + "px"; 
+        el.style.top = pos.y + "px"; 
+      });
       updateDescriptions();
-      document.querySelectorAll(".arrow").forEach(a => a.addEventListener("click", () => animateRotation(parseInt(a.dataset.dir,10))));
+      
+      // Initialize logo rotation state
+      logoAngle = 0;
+      logoEl.style.transform = `translate(-50%, -35%) rotate(${logoAngle}deg)`;
+      
+      // Enhanced desktop arrows with accessibility
+      document.querySelectorAll(".arrow").forEach(a => {
+        a.setAttribute('type', 'button');
+        a.setAttribute('title', a.dataset.dir === '1' ? 'Next triangle view' : 'Previous triangle view');
+        a.setAttribute('aria-label', a.dataset.dir === '1' ? 
+          'Navigate to next triangle relationship' : 
+          'Navigate to previous triangle relationship');
+        
+        a.addEventListener("click", () => animateRotation(parseInt(a.dataset.dir,10)));
+        
+        // Keyboard support
+        a.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            animateRotation(parseInt(this.dataset.dir,10));
+          }
+        });
+      });
     }
     initialize();
   </script>
@@ -725,6 +936,16 @@
       const right = (5 - rotation) % 3;
       const topRole = roles[top], leftRole = roles[left], rightRole = roles[right];
       mTopLabel.textContent = topRole.label;
+      
+      // Update aria-labels with current state
+      const arrows = mRoot.querySelectorAll('.m-arrow');
+      arrows.forEach(btn => {
+        const dir = btn.dataset.dir;
+        const action = dir === '1' ? 'next' : 'previous';
+        btn.setAttribute('aria-label', 
+          `Navigate to ${action} triangle relationship. Currently viewing: ${topRole.label}`);
+      });
+      
       const leftKey  = leftRole.label.replace(' ','_');
       const rightKey = rightRole.label.replace(' ','_');
       mLeft.textContent  = topRole.descriptions[leftKey];
