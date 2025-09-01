@@ -158,86 +158,20 @@
       background:linear-gradient(to right, rgba(0,0,0,.2) 0%, #000 40%, #000 50%, #000 60%, rgba(0,0,0,.2) 100%);
       z-index:-1;
     }
-
-    /* ===== Desktop triangle text (no fade on desktop) ===== */
-    .label{ 
-      position:absolute; 
-      font-weight:bold; 
-      font-family:'Tilt Warp',sans-serif; 
-      font-size:2.75rem; 
-      transform:translate(-50%,-50%); 
-      white-space:nowrap; 
-      text-align:center; 
-      opacity:1; 
+    .signature {
+      width:312px; height:79px;
+      background:url('/images/signature.png') center/cover no-repeat;
+      margin-bottom:8px;
     }
+    .name { font-size:24px; font-weight:700; }
 
-    .description-text{ 
-      position:absolute; 
-      font-size:1.5rem; 
-      color:#fff; 
-      max-width:280px; 
-      line-height:1.4; 
-      text-align:center; 
-      opacity:1;
-      font-weight: bold;
-      padding: 10px; 
-      z-index: 4; 
-    }
-
-    /* Triangle container scaling for different screen sizes */
-    .triangle-container {
-      height: 800px !important; 
-      overflow: visible !important; 
-      transform-origin: center top;
-    }
-
-    /* Scale triangle for medium screens (769px - 1122px) */
-    @media (max-width: 1122px) and (min-width: 769px) {
-      .triangle-container {
-        transform: scale(0.85);
-        margin: 3rem auto 1rem !important;
-      }
-    }
-
-    /* Scale triangle for smaller screens (600px - 768px) */
-    @media (max-width: 768px) and (min-width: 600px) {
-      .triangle-container {
-        transform: scale(0.7);
-        margin: 2rem auto 0rem !important;
-      }
-    }
-
-    /* Scale triangle for very small screens (481px - 599px) */
-    @media (max-width: 599px) and (min-width: 481px) {
-      .triangle-container {
-        transform: scale(0.6);
-        margin: 1rem auto -2rem !important;
-      }
-    }
-
-    /* Hide desktop triangle on mobile and show mobile version */
-    @media (max-width: 480px) {
-      .triangle-stage { 
-        display: none !important; 
-      }
-      .triangle-container { 
-        transform: none !important;
-        height: auto !important; 
-        padding: 0 16px 24px !important; 
-        margin: 1rem auto 1rem !important; 
-      }
-    }
-
-    #arrow-container{
-      position:absolute; top:-24px; left:50%; transform:translateX(-50%);
-      display:flex; gap:16.5rem; pointer-events:auto; z-index:5; transition:gap .5s ease;
-    }
-    .arrow{
-      display:inline-block; font-size:1.75rem; cursor:pointer;
-      background:var(--animated-gradient); background-size:200% 200%;
-      -webkit-background-clip:text; background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:gradient-move 3s linear infinite;
+    
+    /* FOOTER */
+    .site-footer {
+      background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      color:#fff;
+      padding: 3rem 10%;            /* a touch more vertical padding lifts content */
+      font-family:'Instrument Sans',sans-serif;
     }
     @keyframes gradient-move{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
     .arrow:hover{ transform:scale(1.1); }
@@ -376,32 +310,161 @@
       .tri-mobile .m-descs .cell { opacity:1; transition:opacity .24s ease; }
       .tri-mobile .m-descs .cell.fading { opacity:0; }
     }
+    /* 1) Nav-bar logo stays colored */
+/* 1) Nav‐bar logo stays colored */
+/* 1) Force the nav‐bar logo image */
+.top-bar .logo-link .logo {
+  background-image: url('/images/logo.png') !important;
+  filter: none !important;      /* remove that grayscale/brightness hack */
+}
 
-    /* === Mobile triangle layout & fades (≤480px) === */
-    @media (max-width: 480px) {
-      .triangle-stage { display: none !important; }
-      .triangle-container { height: auto !important; padding: 0 16px 24px !important; margin: 1rem auto 1rem !important; }
+/* 2) Ensure footer logo stays white */
+.site-footer .logo {
+  background-image: url('/images/logowhite.png') !important;
+}
+.site-footer .logo {
+  /* only animate filter, not transform */
+  transition: filter 0.3s ease !important;
+  /* cancel any inherited scale */
+  transform: none !important;
+}
 
-      .tri-mobile { display:flex; flex-direction:column; gap:12px; align-items:center; }
-      .tri-mobile .m-topline {
-        width:100%; display:flex; align-items:center; justify-content:center; gap:12px;
-        font-family: 'Tilt Warp', sans-serif; font-size:22px;
-      }
-      .tri-mobile .m-arrow {
-        font-size:22px; line-height:1; background:none; border:none; color:#fff; padding:6px 10px; cursor:pointer;
-      }
-      .tri-mobile .m-toplabel { text-transform:uppercase; white-space:nowrap; opacity:1; transition:opacity .24s ease; }
-      .tri-mobile .m-toplabel.fading { opacity:0; }
-      .tri-mobile .m-svg { width:min(90vw, 360px); height:auto; }
-      .tri-mobile .m-descs {
-        width:100%; display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px;
-        font-size:14px; line-height:1.4; text-align:left; max-width:600px;
-        font-weight: bold;
-      }
-      .tri-mobile .m-descs .right { text-align:right; }
-      .tri-mobile .m-descs .cell { opacity:1; transition:opacity .24s ease; }
-      .tri-mobile .m_descs .cell.fading { opacity:0; }
-    }
+/* 2) On hover, apply grayscale + slight dim */
+.site-footer .logo-link:hover .logo {
+  filter: grayscale(100%) brightness(80%) !important;
+  /* ensure it never scales */
+  transform: none !important;
+}
+
+
+
+
+/* SECTION + TITLE */
+.sponsor-carousel-section {
+  margin: 4rem 8%;
+  text-align: center;
+}
+.carousel-title {
+  display: inline-block;
+  position: relative;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 2.5rem;
+  color: #fff;
+  padding-bottom: 0.5em;
+  margin-bottom: 1.5rem;
+}
+.sponsor-carousel-section .carousel-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom: 0;
+  height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+/* ensure only horizontal clipping; logos can overflow vertically on pop */
+/* let pop‐scale overflow vertically */
+.sponsor-marquee {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.sponsor-marquee::-webkit-scrollbar { display: none; }
+.sponsor-marquee { scrollbar-width: none; }
+
+/* horizontal flex + looping animation */
+.marquee {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0; margin: 0;
+  list-style: none;
+  animation: marqueeScroll 20s linear infinite;
+  overflow: visible;                /* ensure children aren’t clipped */
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+/* pause on hover */
+.sponsor-marquee:hover .marquee {
+  animation-play-state: paused;
+}
+
+/* uniform box + button behavior */
+.sponsor-logo {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 150px;    /* your fixed size */
+  height: 100px;
+  border: 3px solid;
+  border-radius: 8px;
+  background: transparent;
+  position: relative;
+  z-index: 9;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  overflow: visible;                /* child img can overflow */
+}
+.sponsor-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* pop & lift on hover */
+.sponsor-logo:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+  z-index: 10;
+}
+
+/* outlines */
+.tier-yellow { border-color: #F9CB22; }
+.tier-orange { border-color: #EF7616; }
+.tier-pink   { border-color: #F0115F; }
+
+/* center title & gradient underline */
+.carousel-title {
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5em;
+}
+.carousel-title::after {
+  content:""; position:absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom:0; height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+
+/* make the title an inline‐block and give it room for the underline */
+.sponsor-carousel-section .carousel-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5em; /* space for the bar */
+}
+
+/* draw the gradient bar */
+.sponsor-carousel-section .carousel-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--partnerships-underline-overhang));
+  right: calc(-1 * var(--partnerships-underline-overhang));
+  bottom: 0;
+  height: var(--partnerships-underline-height);
+  border-radius: var(--partnerships-underline-radius);
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+}
   </style>
 </head>
 <body>
@@ -454,20 +517,155 @@
     </div>
   </section>
 
-  <section class="partnerships-banner">
-    <h2>PARTNERSHIPS</h2>
-  </section>
-  <div class="partners-logos">
-    <a href="https://mcbride.lbschools.net" target="_blank" rel="noopener">
-      <img src="/images/McBride-Logo.png" alt="McBride Logo">
-    </a>
-    <!-- …other partner logos… -->
+ 
+<section class="sponsor-carousel-section">
+  <h2 class="carousel-title">OUR SPONSORS</h2>
+  <div class="sponsor-marquee">
+    <ul class="marquee">
+      <!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li>
+      <!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li>
+      <!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li>
+     
+     
+        </a>
+      </li>
+    </ul>
   </div>
-  <div class="partners-donate">
-    <a href="/support" class="donate-btn">
-      <img src="/images/Donate.png" alt="Donate Now">
-    </a>
-  </div>
+</section>
+
 
   <!-- FOOTER -->
   <footer class="site-footer">
@@ -505,5 +703,34 @@
       });
     })();
   </script>
+  <script>
+// clone your slides so the track is “logo1…logoN | logo1…logoN”
+;(function(){
+  const track = document.querySelector('.carousel-track');
+  // guard
+  if(!track) return;
+  // duplicate
+  track.innerHTML += track.innerHTML;
+  // manual buttons still work
+  const slides = Array.from(track.children);
+  let index = 0;
+  const gap = parseInt(getComputedStyle(track).gap) || 0;
+  function jump(dir){
+    // temporarily disable animation
+    track.style.animation = 'none';
+    // move index and compute offset
+    index = (index + dir + slides.length) % slides.length;
+    const step = slides[0].getBoundingClientRect().width + gap;
+    track.style.transform = `translateX(-${index * step}px)`;
+    // re-trigger CSS animation
+    void track.offsetWidth;
+    track.style.animation = '';
+  }
+  document.querySelector('.carousel-arrow.left')
+    .addEventListener('click', ()=>jump(-1));
+  document.querySelector('.carousel-arrow.right')
+    .addEventListener('click', ()=>jump(1));
+})();
+</script>
 </body>
 </html>

@@ -411,6 +411,190 @@
   word-wrap: break-word;
 }
 
+
+
+
+
+/* WRAPPER & TITLE */
+.support-tiers-section {
+  margin: 4rem 8%;
+  text-align: center;
+}
+.support-tiers-title {
+  display: inline-block;
+  position: relative;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size:4rem;
+  font-weight: 100;
+  color: #fff;
+  padding-bottom: .3em;
+  margin-bottom: 2.5rem;
+}
+.support-tiers-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom: 0;
+  height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+
+/* TIER BOXES */
+.support-tiers {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.support-tiers .tier {
+  flex: 1;
+  min-width: 220px;
+  padding: 1.5rem;
+  background: transparent;
+  border-style: solid;
+  border-width: 10px;           /* your adjustable outline thickness */
+  border-radius: 12px;         /* adjustable corner radius */
+  color: #fff;                 /* all text white */
+  text-align: center;
+  transition: transform .2s;
+}
+.support-tiers .tier:hover {
+  transform: translateY(-4px);
+}
+.support-tiers .tier h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.25rem;
+}
+.support-tiers .tier-amount {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.support-tiers .tier ul {
+  list-style: disc inside;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+/* OUTLINE COLORS */
+.tier-yellow { border-color: #F9CB22; }
+.tier-orange { border-color: #EF7616; }
+.tier-pink   { border-color: #F0115F; }
+
+/* RESPONSIVE STACK */
+@media (max-width: 700px) {
+  .support-tiers { flex-direction: column; gap: 1rem; margin: 2rem 4%; }
+}
+
+
+
+
+
+/* SECTION + TITLE */
+.sponsor-carousel-section {
+  margin: 4rem 8%;
+  text-align: center;
+}
+.carousel-title {
+  display: inline-block;
+  position: relative;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 2.5rem;
+  color: #fff;
+  padding-bottom: 0.5em;
+  margin-bottom: 1.5rem;
+}
+.carousel-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom: 0;
+  height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+/* ensure only horizontal clipping; logos can overflow vertically on pop */
+/* let pop‐scale overflow vertically */
+.sponsor-marquee {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.sponsor-marquee::-webkit-scrollbar { display: none; }
+.sponsor-marquee { scrollbar-width: none; }
+
+/* horizontal flex + looping animation */
+.marquee {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0; margin: 0;
+  list-style: none;
+  animation: marqueeScroll 20s linear infinite;
+  overflow: visible;                /* ensure children aren’t clipped */
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+/* pause on hover */
+.sponsor-marquee:hover .marquee {
+  animation-play-state: paused;
+}
+
+/* uniform box + button behavior */
+.sponsor-logo {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 150px;    /* your fixed size */
+  height: 100px;
+  border: 3px solid;
+  border-radius: 8px;
+  background: transparent;
+  position: relative;
+  z-index: 9;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  overflow: visible;                /* child img can overflow */
+}
+.sponsor-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* pop & lift on hover */
+.sponsor-logo:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+  z-index: 10;
+}
+
+/* outlines */
+.tier-yellow { border-color: #F9CB22; }
+.tier-orange { border-color: #EF7616; }
+.tier-pink   { border-color: #F0115F; }
+
+/* center title & gradient underline */
+.carousel-title {
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5em;
+}
+.carousel-title::after {
+  content:""; position:absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom:0; height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
   </style>
 </head>
 <body>
@@ -453,12 +637,192 @@ Products & Service: By donating products or services, you give students direct 
   </div>
 
   <p>
-    Please contact us at socalalliancenonprofit@gmail.com for any inquiries or clarifications.
+    Please contact us at socalalliancenonprofit@gmail.com for any clarifications and support tier benefits.
   </p>
 </section>
 
+<section class="support-tiers-section">
+  <h2 class="support-tiers-title">SUPPORT TIERS</h2>
+  <div class="support-tiers">
+    <div class="tier tier-yellow">
+      <h3>Yellow Tier</h3>
+      <p class="tier-amount">$50+</p>
+      <ul>
+        <li>Your name on our website</li>
+        <li>Thank-you shoutout on Instagram</li>
+        <li>Access to monthly newsletter</li>
+      </ul>
+    </div>
+    <div class="tier tier-orange">
+      <h3>Orange Tier</h3>
+      <p class="tier-amount">$100+</p>
+      <ul>
+        <li>Everything in Bronze</li>
+        <li>Logo on our “Partners” page</li>
+        <li>Early access to new resources</li>
+      </ul>
+    </div>
+    <div class="tier tier-pink">
+      <h3>Pink Tier</h3>
+      <p class="tier-amount">$250+</p>
+      <ul>
+        <li>Everything in Silver</li>
+        <li>VIP invitation to our events</li>
+        <li>Quarterly strategy call with our team</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  
+<section class="sponsor-carousel-section">
+  <h2 class="carousel-title">OUR SPONSORS</h2>
+  <div class="sponsor-marquee">
+    <ul class="marquee">
+      <!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li>
+      <!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li>
+      <!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li><!-- DUPLICATE 6 TIMES -->
+      <li>
+        <a href="https://mcbride.lbschools.net"
+           target="_blank" rel="noopener"
+           class="sponsor-logo tier-pink">
+          <img src="/images/McBride-Logo.png" alt="McBride">
+        </a>
+      </li>
+     
+     
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-content">
@@ -495,5 +859,36 @@ Products & Service: By donating products or services, you give students direct 
       });
     })();
   </script>
+
+
+<script>
+// clone your slides so the track is “logo1…logoN | logo1…logoN”
+;(function(){
+  const track = document.querySelector('.carousel-track');
+  // guard
+  if(!track) return;
+  // duplicate
+  track.innerHTML += track.innerHTML;
+  // manual buttons still work
+  const slides = Array.from(track.children);
+  let index = 0;
+  const gap = parseInt(getComputedStyle(track).gap) || 0;
+  function jump(dir){
+    // temporarily disable animation
+    track.style.animation = 'none';
+    // move index and compute offset
+    index = (index + dir + slides.length) % slides.length;
+    const step = slides[0].getBoundingClientRect().width + gap;
+    track.style.transform = `translateX(-${index * step}px)`;
+    // re-trigger CSS animation
+    void track.offsetWidth;
+    track.style.animation = '';
+  }
+  document.querySelector('.carousel-arrow.left')
+    .addEventListener('click', ()=>jump(-1));
+  document.querySelector('.carousel-arrow.right')
+    .addEventListener('click', ()=>jump(1));
+})();
+</script>
 </body>
 </html>
