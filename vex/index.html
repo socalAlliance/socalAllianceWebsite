@@ -1066,7 +1066,112 @@ body {
   /* ensure it never scales */
   transform: none !important;
 }
-  </style>
+  
+/* === Do NOT place paragraph over the map (≤1500px) === */
+@media (max-width: 1500px) {
+  .location-section { 
+    display: block !important;
+    margin-bottom: 6rem !important; /* breathing room before table */
+  }
+  .location-image { 
+    display: block !important; 
+    position: static !important; 
+    margin: 0 auto 2rem auto !important; 
+    text-align: center;
+  }
+  .location-image img { 
+    display: inline-block !important;
+    width: min(900px, 92vw) !important; 
+    height: auto !important; 
+  }
+  .location-copy { 
+    display: block !important; 
+    position: stattic !important; 
+    max-width: 800px !important; 
+    margin: 0 auto !important; 
+    padding: 0 20px !important;
+  }
+  .location-copy .location-headline,
+  .location-copy .copy { 
+    position: static !important; 
+    max-width: 800px !important; 
+    margin-left: auto !important; 
+    margin-right: auto !important; 
+  }
+  .location-copy .copy { 
+    margin-top: 1rem;
+    text-align: left;
+    margin-left: auto !important;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+}
+
+
+/* ===== Fix: Center the Close‑Knit paragraph and keep it within screen ===== */
+@media (min-width: 0px) {
+  /* Override the generic .copy absolute rules ONLY inside the location section */
+  .location-copy .copy {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+
+    /* container sizing */
+    max-width: 800px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+
+    /* text layout */
+    text-align: center !important;      /* center text as requested */
+    font-size: clamp(18px, 1.8vw, 24px) !important;
+    line-height: 1.55 !important;
+
+    /* robust wrapping */
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
+    hyphens: auto !important;
+  }
+}
+
+
+/* Extra breathing room below the Close‑Knit paragraph */
+.location-copy .copy {
+  margin-bottom: clamp(24px, 3.5vw, 56px) !important;
+}
+
+
+/* ===== Keep comparison table in 3-column format on all widths ===== */
+@media (max-width: 900px) {
+  .compare-chart__grid {
+    display: grid !important;
+    grid-template-columns: 0.9fr 1fr 1fr !important; /* slightly narrower Features column */
+    column-gap: 0.5rem !important;
+    row-gap: 0.5rem !important;
+  }
+  /* Ensure headers + features column stay visible (undo any old mobile rules) */
+  .compare-chart__cell--header { display: block !important; text-align: center; }
+  .compare-chart__cell:nth-child(n+4):nth-child(3n+1) { display: block !important; }
+  /* Remove any injected labels/lines that were used on earlier mobile treatments */
+  .compare-chart__cell:not(.compare-chart__cell--header)::before,
+  .compare-chart__cell:not(.compare-chart__cell--header)::after { content: none !important; display: none !important; }
+
+  /* Tighter, readable sizing on phones while preserving rows */
+  .compare-chart__cell { 
+    font-size: 0.95rem !important;
+    line-height: 1.35 !important;
+    padding: 0.5rem 0.35rem !important;
+    border: none !important;
+  }
+  .compare-chart__cell--header {
+    font-size: 1.05rem !important;
+    padding: 0.6rem 0.35rem 0.8rem !important;
+  }
+}
+
+</style>
 </head>
 <body>
 
@@ -1130,7 +1235,7 @@ body {
     <h1 class="location-headline"> A CLOSE-KNIT COMMUNITY</h1>
     <p class="copy">
       What sets our community apart is our regional proximity to one another. Centered around the two major hubs of Los Angeles and San Diego, we host gatherings, scrimmages, and competitions that foster meaningful connections and accelerate learning.
-      Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals.
+      Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals. <br></br>
     </p>
   </div>
 </section>
