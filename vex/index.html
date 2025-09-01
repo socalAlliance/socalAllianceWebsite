@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -10,15 +11,13 @@
 
   gtag('config', 'G-65LTDNTZ16');
 </script>
-  <meta charset="UTF-8"/>
-  <title>SCA • Vex</title>
-  <link rel="icon" href="/images/logo.png" type="image/png"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap"
-    rel="stylesheet"/>
-  <style>
+<meta charset="utf-8"/>
+<title>SCA • Vex</title>
+<link href="/images/logo.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&amp;family=Tilt+Warp&amp;display=swap" rel="stylesheet"/>
+<style>
     :root {
        --compare-bar-offset-x:   0px;    /* move the bar left/right */
   --compare-bar-offset-y:   0px;    /* move the bar up/down, if you like */
@@ -1172,149 +1171,213 @@ body {
 }
 
 </style>
-</head>
+<style id="sync-nav-footer">
+/* ===== Nav & Footer sync with support.html ===== */
+
+/* Keep header logo full color (no grayscale filter) */
+.top-bar .logo-link .logo {
+  background-image: url('/images/logo.png') !important;
+  filter: none !important;
+}
+
+/* Left-align header content consistently */
+.top-bar {
+  justify-content: flex-start !important;
+  transition: transform 0.3s ease !important; /* use transform like support.html */
+}
+
+/* Hide-on-scroll behavior via translate (not top:-100px) */
+.top-bar.hidden {
+  transform: translateY(-100%) !important;
+  top: auto !important;
+}
+
+/* Footer styles: grid layout + white logo + hover grayscale */
+.site-footer {
+  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%) !important;
+  color:#fff !important;
+  padding: 3rem 10% !important;
+  font-family:'Instrument Sans',sans-serif !important;
+}
+.footer-content {
+  display: grid !important;
+  grid-template-columns: minmax(420px,1fr) auto !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 2rem !important;
+}
+.footer-left {
+  display:flex !important;
+  align-items:center !important;
+  gap:1rem !important;
+  flex: 1 1 auto !important;
+}
+.footer-center {
+  display:grid !important;
+  place-items:center !important;
+  gap:1rem !important;
+}
+.footer-social {
+  display:flex !important;
+  gap:1rem !important;
+  justify-content:center !important;
+}
+.donate-img { height:48px !important; cursor:pointer !important; }
+.footer-social img {
+  width:60px !important;
+  height:60px !important;
+  filter:brightness(200%) !important;
+  transition:filter .2s !important;
+}
+.footer-social a:hover img { filter:grayscale(100%) brightness(80%) !important; }
+.site-footer .logo {
+  background-image: url('/images/logowhite.png') !important;
+  transition: filter 0.3s ease !important;
+  transform: none !important;
+}
+.site-footer .logo-link:hover .logo {
+  filter: grayscale(100%) brightness(80%) !important;
+  transform: none !important;
+}
+
+/* Mobile footer stacking */
+@media (max-width: 900px) {
+  .site-footer { padding: 2rem 6vw !important; }
+  .footer-content {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    gap: 5rem !important;
+  }
+  .footer-left {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+}
+
+/* Align nav spacing on common breakpoints similar to support.html */
+@media (max-width: 900px) {
+  .top-bar { height: 80px !important; padding: 0 20px !important; font-size: 20px !important; }
+  .logo { width: 60px !important; height: 54px !important; margin-right: 0 !important; }
+  nav { gap: 15px !important; }
+}
+@media (max-width: 600px) {
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+  .logo { width: 50px !important; height: 45px !important; }
+  nav { gap: 10px !important; }
+  nav a { font-size: 18px !important; }
+}
+</style></head>
 <body>
-
-  <!-- NAV -->
-  <header class="top-bar">
-    <a href="/" class="logo-link"><div class="logo"></div></a>
-    <nav>
-      <a href="/about">ABOUT</a>
-      <a href="/vex" >VEX</a>
-      <a href="/projects" >PROJECTS</a>
-      <a href="/support">SUPPORT</a>
-    </nav>
-  </header>
-
-  <!-- MAIN -->
-  <div class="page-container">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-
-    <h1 class="hero-headline">WHAT IS VEX ROBOTICS?</h1>
-
-    <p class="copy-text">
-      VEX V5 Robotics lets students tackle open-ended engineering challenges by designing, building, and programming robots in a competitive, team-based setting. It emphasizes creative problem-solving, iterative design, and collaboration under real constraints. Through this, students gain a practical understanding of how engineers approach complex problems from concept to execution.
+<!-- NAV -->
+<header class="top-bar">
+<a class="logo-link" href="/"><div class="logo"></div></a>
+<nav>
+<a href="/about">ABOUT</a>
+<a href="/vex">VEX</a>
+<a href="/projects">PROJECTS</a>
+<a href="/support">SUPPORT</a>
+</nav>
+</header>
+<!-- MAIN -->
+<div class="page-container">
+<div class="hero-bg"></div>
+<div class="hero-overlay"></div>
+<h1 class="hero-headline">WHAT IS VEX ROBOTICS?</h1>
+<p class="copy-text">
+<br/>VEX V5 Robotics lets students tackle open-ended engineering challenges by designing, building, and programming robots in a competitive, team-based setting. It emphasizes creative problem-solving, iterative design, and collaboration under real constraints. Through this, students gain a practical understanding of how engineers approach complex problems from concept to execution.
     </p>
-
-    <a href="https://www.vexrobotics.com" class="btn-img">
-      <img src="/images/learnmore.png" alt="Learn More">
-    </a>
-  </div>
- 
-
+<a class="btn-img" href="https://www.vexrobotics.com">
+<img alt="Learn More" src="/images/learnmore.png"/>
+</a>
+</div>
 <div class="embed-container">
-  <!-- First box: Worlds -->
-  <div class="embed-box worlds">
-   <iframe class:"worlds" src="https://www.youtube.com/embed/5G6GLJKQf38?si=Mohzz54MYPQ_LV-B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div>
-
-  <!-- Second box: Season -->
-  <div class="embed-box season">
-    <iframe src="https://www.youtube.com/embed/ocmONiVun9M?si=vZYA92uBOjbeKY-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div>
+<!-- First box: Worlds -->
+<div class="embed-box worlds">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class:"worlds"="" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/5G6GLJKQf38?si=Mohzz54MYPQ_LV-B" title="YouTube video player"></iframe>
+</div>
+<!-- Second box: Season -->
+<div class="embed-box season">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/ocmONiVun9M?si=vZYA92uBOjbeKY-k" title="YouTube video player"></iframe>
+</div>
 </div>
 <!-- Past Seasons Button -->
 <div class="past-seasons-container">
-  <a
-    href="https://www.youtube.com/playlist?list=PLXdulAseEztM8V1McWUl0aVkL1_CMnCgf"
-    target="_blank"
-    rel="noopener">
-    <img
-      src="/images/pastseasons.png"
-      alt="Past Seasons Playlist"
-      class="past-seasons-btn" />
-  </a>
+<a href="https://www.youtube.com/playlist?list=PLXdulAseEztM8V1McWUl0aVkL1_CMnCgf" rel="noopener" target="_blank">
+<img alt="Past Seasons Playlist" class="past-seasons-btn" src="/images/pastseasons.png">
+</img></a>
 </div>
-
 <section class="location-section">
-  <div class="location-image">
-    <img src="/images/location.png" alt="Our regional hubs">
-  </div>
-  <div class="location-copy">
-    <h1 class="location-headline"> A CLOSE-KNIT COMMUNITY</h1>
-    <p class="copy">
+<div class="location-image">
+<img alt="Our regional hubs" src="/images/location.png"/>
+</div>
+<div class="location-copy">
+<h1 class="location-headline"> A CLOSE-KNIT COMMUNITY</h1>
+<p class="copy">
       What sets our community apart is our regional proximity to one another. Centered around the two major hubs of Los Angeles and San Diego, we host gatherings, scrimmages, and competitions that foster meaningful connections and accelerate learning.
       Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals. <br></br>
-    </p>
-  </div>
+</p>
+</div>
 </section>
-
-
-
 <section class="compare-chart">
-  
-  <div class="compare-chart__grid">
-    <!-- Headers -->
-    <div class="compare-chart__cell compare-chart__cell--header">Features</div>
-    <div class="compare-chart__cell compare-chart__cell--header">V5RC</div>
-    <div class="compare-chart__cell compare-chart__cell--header">VEX U</div>
-
-    <!-- Rows -->
-    <div class="compare-chart__cell">Format:</div>
-    <div class="compare-chart__cell">2 vs 2, 1 robot per team<br>10,000+ teams</div>
-    <div class="compare-chart__cell">1 vs 1, 2 robots per team<br>300+ teams</div>
-
-    <div class="compare-chart__cell">Age Group:</div>
-    <div class="compare-chart__cell">7th–12th Grade</div>
-    <div class="compare-chart__cell">College Students</div>
-
-    <div class="compare-chart__cell">Design Constraints:</div>
-    <div class="compare-chart__cell">VEX ecosystem only</div>
-    <div class="compare-chart__cell">custom 3D-printing, raw stock, sensors</div>
-
-    <div class="compare-chart__cell">Judging:</div>
-    <div class="compare-chart__cell">Notebook, interview, skills eval</div>
-    <div class="compare-chart__cell">Same processes as V5RC</div>
-  </div>
+<div class="compare-chart__grid">
+<!-- Headers -->
+<div class="compare-chart__cell compare-chart__cell--header">Features</div>
+<div class="compare-chart__cell compare-chart__cell--header">V5RC</div>
+<div class="compare-chart__cell compare-chart__cell--header">VEX U</div>
+<!-- Rows -->
+<div class="compare-chart__cell">Format:</div>
+<div class="compare-chart__cell">2 vs 2, 1 robot per team<br/>10,000+ teams</div>
+<div class="compare-chart__cell">1 vs 1, 2 robots per team<br/>300+ teams</div>
+<div class="compare-chart__cell">Age Group:</div>
+<div class="compare-chart__cell">7th–12th Grade</div>
+<div class="compare-chart__cell">College Students</div>
+<div class="compare-chart__cell">Design Constraints:</div>
+<div class="compare-chart__cell">VEX ecosystem only</div>
+<div class="compare-chart__cell">custom 3D-printing, raw stock, sensors</div>
+<div class="compare-chart__cell">Judging:</div>
+<div class="compare-chart__cell">Notebook, interview, skills eval</div>
+<div class="compare-chart__cell">Same processes as V5RC</div>
+</div>
 </section>
-
-
-
-
-
-
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-left">
-        <a href="/" class="logo-link">
-          <div class="logo"></div>
-        </a>
-        <div>
-          <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
-          <p class="footer-sub">
+<!-- FOOTER -->
+<footer class="site-footer">
+<div class="footer-content">
+<div class="footer-left">
+<a class="logo-link" href="/">
+<div class="logo"></div>
+</a>
+<div>
+<p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+<p class="footer-sub">
             SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities. Contact socalalliancenonprofit@gmail.com for any other questions.
           </p>
-        </div>
-      </div>
-      <div class="footer-center">
-        <a href="/support"><img src="/images/Donatewhite.png" class="donate-img" alt="Donate Now"></a>
-        <div class="footer-social">
-        <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener"><img src="/images/SCA_INSTwhite.png" alt="Instagram" /></a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" target="_blank" rel="noopener"><img src="/images/SCA_EMAILwhite.png" alt="Email" /></a>    
-          <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener"><img src="/images/SCA_TIKTOKwhite.png" alt="TikTok" /></a>
-          <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener"><img src="/images/SCA_YOUTUBEwhite.png" alt="YouTube" /></a>
-        </div>
-      </div>
-    </div>
-  </footer>
+</div>
+</div>
+<div class="footer-center">
+<a href="/support"><img alt="Donate Now" class="donate-img" src="/images/Donatewhite.png"/></a>
+<div class="footer-social">
+<a href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank"><img alt="Instagram" src="/images/SCA_INSTwhite.png"/></a>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank"><img alt="Email" src="/images/SCA_EMAILwhite.png"/></a>
+<a href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank"><img alt="TikTok" src="/images/SCA_TIKTOKwhite.png"/></a>
+<a href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank"><img alt="YouTube" src="/images/SCA_YOUTUBEwhite.png"/></a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Hide-on-scroll Nav Script -->
 
 
-   <!-- Hide-on-scroll Nav Script -->
- <script>
-;(function(){
-  let lastY = window.pageYOffset;
-  const nav = document.querySelector('.top-bar');
-
-  window.addEventListener('scroll', () => {
-    const y = window.pageYOffset;
-    if (y > lastY)       nav.classList.add('hidden');  // scrolling down
-    else if (y < lastY)  nav.classList.remove('hidden'); // scrolling up
-    lastY = y;
-  });
-})();
+<!-- Hide-on-scroll Nav Script (from support.html) -->
+<script>
+  (function(){
+    let lastY = window.scrollY;
+    const nav = document.querySelector('.top-bar');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      nav.classList.toggle('hidden', y > lastY && y > 100);
+      lastY = y;
+    });
+  })();
 </script>
 </body>
 </html>

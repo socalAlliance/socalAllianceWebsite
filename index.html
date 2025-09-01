@@ -472,7 +472,30 @@
   }
 }
 </style>
-</head>
+<style id="nav-left-hotfix">
+/* === NAV alignment + size hotfix (match other pages) === */
+.top-bar {
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+  justify-content: flex-start !important;
+}
+
+.top-bar nav { margin-left: 0 !important; }
+
+@media (min-width: 901px) {
+  .top-bar { height: 100px !important; padding: 0 50px !important; }
+  .top-bar nav { gap: 40px !important; }
+}
+
+@media (max-width: 900px) {
+  .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; }
+  .top-bar nav { gap: 15px !important; }
+}
+
+@media (max-width: 600px) {
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+  .top-bar nav { gap: 10px !important; }
+}
+</style></head>
 <body>
 <!-- NAV -->
 <header class="top-bar">

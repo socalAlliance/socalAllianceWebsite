@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -10,14 +11,14 @@
 
   gtag('config', 'G-65LTDNTZ16');
 </script>
-  <meta charset="UTF-8" />
-  <title>SCA • About</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="/images/logo.png" type="image/png"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet" />
-  <style>
+<meta charset="utf-8"/>
+<title>SCA • About</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="/images/logo.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&amp;family=Tilt+Warp&amp;display=swap" rel="stylesheet"/>
+<style>
     /* — Reset & Base — */
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { width:100%; }
@@ -676,81 +677,129 @@
 }
 
 </style>
-</head>
+<style id="sync-nav-footer">
+/* ===== Sync nav & footer with support.html + left-align hotfix ===== */
+
+/* Header logo stays colored */
+.top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter: none !important; }
+
+/* Hide-on-scroll uses translate (needs .hidden rule) */
+.top-bar { transition: transform 0.3s ease !important; }
+.top-bar.hidden { transform: translateY(-100%) !important; }
+
+/* Left alignment + responsive font sizing to match other pages */
+.top-bar { justify-content: flex-start !important; font-size: clamp(18px, 1.0vw + 18px, 32px) !important; }
+.top-bar nav { margin-left: 0 !important; }
+
+/* Footer parity (gradient background, grid layout, white logo behavior) */
+.site-footer {
+  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%) !important;
+  color:#fff !important;
+  padding: 3rem 10% !important;
+  font-family:'Instrument Sans',sans-serif !important;
+}
+.footer-content {
+  display: grid !important;
+  grid-template-columns: minmax(420px,1fr) auto !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 2rem !important;
+}
+.footer-left { display:flex !important; align-items:center !important; gap:1rem !important; flex: 1 1 auto !important; }
+.footer-center { display:grid !important; place-items:center !important; gap:1rem !important; }
+.footer-social { display:flex !important; gap:1rem !important; justify-content:center !important; }
+.donate-img { height:48px !important; cursor:pointer !important; }
+.footer-social img { width:60px !important; height:60px !important; filter:brightness(200%) !important; transition:filter .2s !important; }
+.footer-social a:hover img { filter:grayscale(100%) brightness(80%) !important; }
+.site-footer .logo { background-image: url('/images/logowhite.png') !important; transition: filter 0.3s ease !important; transform: none !important; }
+.site-footer .logo-link:hover .logo { filter: grayscale(100%) brightness(80%) !important; transform: none !important; }
+
+/* Responsive spacing consistent with other pages */
+@media (min-width: 901px) {
+  .top-bar { height: 100px !important; padding: 0 50px !important; }
+  .top-bar nav { gap: 40px !important; }
+}
+@media (max-width: 900px) {
+  .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; font-size: 20px !important; }
+  .logo { width: 60px !important; height: 54px !important; margin-right: 0 !important; }
+  nav { gap: 15px !important; }
+  .site-footer { padding: 2rem 6vw !important; }
+  .footer-content { grid-template-columns: 1fr !important; justify-items: center !important; gap: 5rem !important; }
+  .footer-left { flex-direction: column !important; text-align: center !important; }
+}
+@media (max-width: 600px) {
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+  .logo { width: 50px !important; height: 45px !important; }
+  nav { gap: 10px !important; }
+  nav a { font-size: 18px !important; }
+}
+</style></head>
 <body>
-
-  <!-- NAV -->
-  <header class="top-bar">
-    <a href="/" class="logo-link"><div class="logo"></div></a>
-    <nav>
-      <a href="/about">ABOUT</a>
-      <a href="/vex">VEX</a>
-      <a href="/projects">PROJECTS</a>
-      <a href="/support">SUPPORT</a>
-    </nav>
-  </header>
-
-  <!-- MISSION SECTION -->
-  <section class="mission-section">
-    <img src="/images/mission.gif" alt="" class="mission-gif" />
-    <div class="mission-copy">
-      <h1>OUR MISSION</h1>
-      <div class="mission-line" style="height:6px;background-image:linear-gradient(90deg,rgba(249,203,34,.9) 0%,rgba(239,118,22,.9) 50%,rgba(240,17,95,.9) 100%);border-radius:3px;margin:20px 0;"></div>
-      <p>
+<!-- NAV -->
+<header class="top-bar">
+<a class="logo-link" href="/"><div class="logo"></div></a>
+<nav>
+<a href="/about">ABOUT</a>
+<a href="/vex">VEX</a>
+<a href="/projects">PROJECTS</a>
+<a href="/support">SUPPORT</a>
+</nav>
+</header>
+<!-- MISSION SECTION -->
+<section class="mission-section">
+<img alt="" class="mission-gif" src="/images/mission.gif"/>
+<div class="mission-copy">
+<h1>OUR MISSION</h1>
+<div class="mission-line" style="height:6px;background-image:linear-gradient(90deg,rgba(249,203,34,.9) 0%,rgba(239,118,22,.9) 50%,rgba(240,17,95,.9) 100%);border-radius:3px;margin:20px 0;"></div>
+<p>
         Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
       </p>
-      <div class="btn-row">
-        <a href="/vex" class="btn-img"><img src="/images/whatsvex.png" alt="WhatsVEX" /></a>
-        <a href="/support" class="btn-outline hover-scale">Donate&nbsp;Now&nbsp;→</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Integrated Approach -->
-  <div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;">
-    <h2>TRIANGULAR TIES</h2>
-  </div>
-
-  <div class="integrated-approach">
-    <div class="background-effects"></div>
-    <div class="bg-split">
-      <div class="bg-split__half bg-split__left"></div>
-      <div class="bg-split__half bg-split__right"></div>
-    </div>
-    <div class="triangle-container" style="margin:5rem auto; width:900px; position:relative; text-align:center; font-family:sans-serif; height:800px;">
-      <!-- SVG Triangle -->
-      <svg viewBox="0 0 300 240" style="width:100%; height:auto;">
-        <defs>
-          <linearGradient id="triangleStrokeGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#F9CB22"/>
-            <stop offset="50%" stop-color="#EF7616"/>
-            <stop offset="100%" stop-color="#F0115F"/>
-          </linearGradient>
-        </defs>
-        <polygon points="150,20 40,200 260,200" fill="none" stroke="url(#triangleStrokeGradient)" stroke-width="6" stroke-linejoin="round"/>
-      </svg>
-      <img src="/images/highstakes.png" alt="Logo" class="triangle-logo"/>
-
-      <!-- Labels -->
-      <div id="labels" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
-        <div class="label"><div class="label-text">NONPROFIT</div></div>
-        <div class="label"><div class="label-text">VEXU TEAM</div></div>
-        <div class="label"><div class="label-text">SOCAL ALLIANCE</div></div>
-      </div>
-
-      <!-- Descriptions -->
-      <div id="description-left" class="description-text"></div>
-      <div id="description-right" class="description-text"></div>
-
-      <!-- Arrows -->
-      <div id="arrow-container">
-        <div class="arrow" data-dir="-1">&#9664;</div>
-        <div class="arrow" data-dir="1">&#9654;</div>
-      </div>
-    </div>
-  </div>
-
-  <script>
+<div class="btn-row">
+<a class="btn-img" href="/vex"><img alt="WhatsVEX" src="/images/whatsvex.png"/></a>
+<a class="btn-outline hover-scale" href="/support">Donate Now →</a>
+</div>
+</div>
+</section>
+<!-- Integrated Approach -->
+<div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;">
+<h2>TRIANGULAR TIES</h2>
+</div>
+<div class="integrated-approach">
+<div class="background-effects"></div>
+<div class="bg-split">
+<div class="bg-split__half bg-split__left"></div>
+<div class="bg-split__half bg-split__right"></div>
+</div>
+<div class="triangle-container" style="margin:5rem auto; width:900px; position:relative; text-align:center; font-family:sans-serif; height:800px;">
+<!-- SVG Triangle -->
+<svg style="width:100%; height:auto;" viewbox="0 0 300 240">
+<defs>
+<lineargradient id="triangleStrokeGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#F9CB22"></stop>
+<stop offset="50%" stop-color="#EF7616"></stop>
+<stop offset="100%" stop-color="#F0115F"></stop>
+</lineargradient>
+</defs>
+<polygon fill="none" points="150,20 40,200 260,200" stroke="url(#triangleStrokeGradient)" stroke-linejoin="round" stroke-width="6"></polygon>
+</svg>
+<img alt="Logo" class="triangle-logo" src="/images/highstakes.png"/>
+<!-- Labels -->
+<div id="labels" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+<div class="label"><div class="label-text">NONPROFIT</div></div>
+<div class="label"><div class="label-text">VEXU TEAM</div></div>
+<div class="label"><div class="label-text">SOCAL ALLIANCE</div></div>
+</div>
+<!-- Descriptions -->
+<div class="description-text" id="description-left"></div>
+<div class="description-text" id="description-right"></div>
+<!-- Arrows -->
+<div id="arrow-container">
+<div class="arrow" data-dir="-1">◀</div>
+<div class="arrow" data-dir="1">▶</div>
+</div>
+</div>
+</div>
+<script>
       const logoEl   = document.querySelector('.triangle-logo');
   let   logoAngle = 0;
     /* Roles / copy */
@@ -980,89 +1029,83 @@
     }
     initialize();
   </script>
-
-  <!-- Decorative gradient bars -->
-  <!-- Removed extra thick separator bar for visual consistency -->
-  
-
-  <!-- Meet the Team -->
-  <div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;">
-    <h2>MEET THE TEAM</h2>
-  </div>
-
-  <div class="team-container">
-    <!-- (team items unchanged) -->
-    <div class="team-item">
-      <div class="gradient-line" style="width:596px; left:553px; top:99px;"></div>
-      <div class="gradient-line" style="width:480px; left:669px; top:339px;"></div>
-      <div class="portrait" style="left:104px; top:57px; background-image:url('/images/WILLIAMHO.png');"></div>
-      <div class="name" style="left:314px; top:68px;">WILLIAM HO</div>
-      <div class="role" style="left:314px; top:117px; width:835px;">
-        <div class="role-title">President</div>
-        <div class="role-text">William, SCA's founder and president, has formally competed in Vex Robotics since 2016. Outside of VEX, he studies Robotics Engineering at UCR, and enjoys 3D modeling, designing, and mountain biking.</div>
-      </div>
-    </div>
-    <div class="team-item">
-      <div class="gradient-line" style="width:583px; left:566px; top:589px; transform:matrix(1,0,0,-1,0,0);"></div>
-      <div class="portrait" style="left:148px; top:318px; background-image:url('/images/ALLENSUAREZ.png'); transform:rotate(-0.15deg);"></div>
-      <div class="name" style="left:394px; top:318px;">ALLEN SUAREZ</div>
-      <div class="role" style="left:394px; top:367px; width:755px;">
-        <div class="role-title">Vice President</div>
-        <div class="role-text">Allen is working towards welding, metal fab, and C.A.D associates at LBCC. He's a mcbride robotics mentor and plans to transfer into mechanical engineering, trying to be a prototype engineer, and learning html. He has been design lead and filled roles in his V5RC and VEX U career.</div>
-      </div>
-    </div>
-    <div class="team-item">
-      <div class="gradient-line" style="width:478px; left:671px; top:839px; transform:matrix(1,0,0,-1,0,0);"></div>
-      <div class="portrait" style="left:104px; top:557px; background-image:url('/images/WINSTONLINE.png');"></div>
-      <div class="name" style="left:314px; top:568px;">WINSTON LIN</div>
-      <div class="role" style="left:314px; top:617px; width:835px;">
-        <div class="role-title">Brand Manager</div>
-        <div class="role-text">Winston is an aspiring mechanical engineer with 5 years of VEX Robotics experience under his belt despite being a rising high school senior. Throughout his career so far, he has garnered 13 total awards, 3 of which were at States-level competitions. Outside of robotics, he also dabbles in music composition, video editing, story writing, and water polo.</div>
-      </div>
-    </div>
-    <div class="team-item">
-      <div class="gradient-line" style="width:538px; left:611px; top:1089px; transform:matrix(1,0,0,-1,0,0);"></div>
-      <div class="portrait" style="left:184px; top:807px; background-image:url('/images/MILESSANGER.png');"></div>
-      <div class="name" style="left:394px; top:818px;">MILES SANGER</div>
-      <div class="role" style="left:394px; top:867px; width:755px;">
-        <div class="role-title">Treasurer</div>
-        <div class="role-text">Miles, SCA’s treasurer and resident “vex lawyer” is also a part-time VEX referee, having formally competed over four years. Outside of VEX, he is pursuing a BFA in Game Development at the USC School of Cinematic Arts, and enjoys writing poetry, watching baseball, and riding public transportation.</div>
-      </div>
-    </div>
-    <div class="team-item">
-      <div class="portrait" style="left:104px; top:1057px; background-image:url('/images/GLENBAUTISTA.png');"></div>
-      <div class="name" style="left:314px; top:1068px;">GLEN BAUTISTA</div>
-      <div class="role" style="left:349px; top:1134px; width:755px;">
-        <div class="role-title">Secretary</div>
-        <div class="role-text">Glen is a B.S. Computer Science major with plans to double major with a B.S. in General Applied Mathematics at UCR. He has experience in C++, HTML, and CSS programming, as well as robot construction. He competed in V5RC, VEX U, and FRC competitions from two high schools and one university.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-left">
-        <a href="/" class="logo-link"><div class="logo"></div></a>
-        <div>
-          <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
-          <p class="footer-sub">SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities. Contact socalalliancenonprofit@gmail.com for any other questions.</p>
-        </div>
-      </div>
-      <div class="footer-center">
-        <a href="/support"><img src="/images/Donatewhite.png" class="donate-img" alt="Donate Now" /></a>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener"><img src="/images/SCA_INSTwhite.png" alt="Instagram" /></a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" target="_blank" rel="noopener"><img src="/images/SCA_EMAILwhite.png" alt="Email" /></a>    
-          <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener"><img src="/images/SCA_TIKTOKwhite.png" alt="TikTok" /></a>
-          <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener"><img src="/images/SCA_YOUTUBEwhite.png" alt="YouTube" /></a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Hide-on-scroll Nav -->
-  <script>
+<!-- Decorative gradient bars -->
+<!-- Removed extra thick separator bar for visual consistency -->
+<!-- Meet the Team -->
+<div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;">
+<h2>MEET THE TEAM</h2>
+</div>
+<div class="team-container">
+<!-- (team items unchanged) -->
+<div class="team-item">
+<div class="gradient-line" style="width:596px; left:553px; top:99px;"></div>
+<div class="gradient-line" style="width:480px; left:669px; top:339px;"></div>
+<div class="portrait" style="left:104px; top:57px; background-image:url('/images/WILLIAMHO.png');"></div>
+<div class="name" style="left:314px; top:68px;">WILLIAM HO</div>
+<div class="role" style="left:314px; top:117px; width:835px;">
+<div class="role-title">President</div>
+<div class="role-text">William, SCA's founder and president, has formally competed in Vex Robotics since 2016. Outside of VEX, he studies Robotics Engineering at UCR, and enjoys 3D modeling, designing, and mountain biking.</div>
+</div>
+</div>
+<div class="team-item">
+<div class="gradient-line" style="width:583px; left:566px; top:589px; transform:matrix(1,0,0,-1,0,0);"></div>
+<div class="portrait" style="left:148px; top:318px; background-image:url('/images/ALLENSUAREZ.png'); transform:rotate(-0.15deg);"></div>
+<div class="name" style="left:394px; top:318px;">ALLEN SUAREZ</div>
+<div class="role" style="left:394px; top:367px; width:755px;">
+<div class="role-title">Vice President</div>
+<div class="role-text">Allen is working towards welding, metal fab, and C.A.D associates at LBCC. He's a mcbride robotics mentor and plans to transfer into mechanical engineering, trying to be a prototype engineer, and learning html. He has been design lead and filled roles in his V5RC and VEX U career.</div>
+</div>
+</div>
+<div class="team-item">
+<div class="gradient-line" style="width:478px; left:671px; top:839px; transform:matrix(1,0,0,-1,0,0);"></div>
+<div class="portrait" style="left:104px; top:557px; background-image:url('/images/WINSTONLINE.png');"></div>
+<div class="name" style="left:314px; top:568px;">WINSTON LIN</div>
+<div class="role" style="left:314px; top:617px; width:835px;">
+<div class="role-title">Brand Manager</div>
+<div class="role-text">Winston is an aspiring mechanical engineer with 5 years of VEX Robotics experience under his belt despite being a rising high school senior. Throughout his career so far, he has garnered 13 total awards, 3 of which were at States-level competitions. Outside of robotics, he also dabbles in music composition, video editing, story writing, and water polo.</div>
+</div>
+</div>
+<div class="team-item">
+<div class="gradient-line" style="width:538px; left:611px; top:1089px; transform:matrix(1,0,0,-1,0,0);"></div>
+<div class="portrait" style="left:184px; top:807px; background-image:url('/images/MILESSANGER.png');"></div>
+<div class="name" style="left:394px; top:818px;">MILES SANGER</div>
+<div class="role" style="left:394px; top:867px; width:755px;">
+<div class="role-title">Treasurer</div>
+<div class="role-text">Miles, SCA’s treasurer and resident “vex lawyer” is also a part-time VEX referee, having formally competed over four years. Outside of VEX, he is pursuing a BFA in Game Development at the USC School of Cinematic Arts, and enjoys writing poetry, watching baseball, and riding public transportation.</div>
+</div>
+</div>
+<div class="team-item">
+<div class="portrait" style="left:104px; top:1057px; background-image:url('/images/GLENBAUTISTA.png');"></div>
+<div class="name" style="left:314px; top:1068px;">GLEN BAUTISTA</div>
+<div class="role" style="left:349px; top:1134px; width:755px;">
+<div class="role-title">Secretary</div>
+<div class="role-text">Glen is a B.S. Computer Science major with plans to double major with a B.S. in General Applied Mathematics at UCR. He has experience in C++, HTML, and CSS programming, as well as robot construction. He competed in V5RC, VEX U, and FRC competitions from two high schools and one university.</div>
+</div>
+</div>
+</div>
+<!-- FOOTER -->
+<footer class="site-footer">
+<div class="footer-content">
+<div class="footer-left">
+<a class="logo-link" href="/"><div class="logo"></div></a>
+<div>
+<p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+<p class="footer-sub">SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities. Contact socalalliancenonprofit@gmail.com for any other questions.</p>
+</div>
+</div>
+<div class="footer-center">
+<a href="/support"><img alt="Donate Now" class="donate-img" src="/images/Donatewhite.png"/></a>
+<div class="footer-social">
+<a href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank"><img alt="Instagram" src="/images/SCA_INSTwhite.png"/></a>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank"><img alt="Email" src="/images/SCA_EMAILwhite.png"/></a>
+<a href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank"><img alt="TikTok" src="/images/SCA_TIKTOKwhite.png"/></a>
+<a href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank"><img alt="YouTube" src="/images/SCA_YOUTUBEwhite.png"/></a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Hide-on-scroll Nav -->
+<script>
     (function(){
       let lastY = window.scrollY;
       const nav = document.querySelector('.top-bar');
@@ -1073,9 +1116,8 @@
       });
     })();
   </script>
-
-  <!-- Desktop scaler + Mobile triangle layout (mobile-only fades) -->
-  <script>
+<!-- Desktop scaler + Mobile triangle layout (mobile-only fades) -->
+<script>
   (function () {
     const container = document.querySelector('.triangle-container');
     if (!container) return;
