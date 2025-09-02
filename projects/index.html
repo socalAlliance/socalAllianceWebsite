@@ -25,64 +25,9 @@
     gtag('config', 'G-65LTDNTZ16');
   </script>
 <style id="nav-footer-override">
-body { padding-top: 0 !important; }
-.top-bar {
-  position: sticky !important; top: 0 !important; left: 0 !important; right: 0 !important;
-  display: flex !important; align-items: center !important;
-  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%) !important;
-  font-family: 'Tilt Warp',sans-serif !important;
-  transition: transform .3s ease !important;
-  will-change: transform !important;
-  justify-content: flex-start !important;
-}
-.top-bar.hidden { transform: translateY(-100%) !important; }
-.top-bar nav a { font-size: inherit !important; }
-
-@media (min-width: 901px) {
-  .top-bar { height: 100px !important; padding: 0 50px !important; font-size: 28px !important; }
-  .top-bar nav { gap: 40px !important; }
-}
-@media (max-width: 900px) {
-  .top-bar { height: 80px !important; padding: 0 20px !important; font-size: 20px !important; }
-  .logo    { width: 60px !important; height: 54px !important; margin-right: 0 !important; }
-  nav      { gap: 15px !important; }
-}
-@media (max-width: 600px) {
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
-  .logo    { width: 50px !important; height: 45px !important; }
-  nav      { gap: 10px !important; }
-  nav a    { font-size: 18px !important; }
-}
-
-.top-bar .logo-link .logo { background-image: url('images/logo.png') !important; filter: none !important; }
-
-.site-footer {
-  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%) !important;
-  color: #fff !important;
-  padding: 3rem 10% !important;
-  font-family: 'Instrument Sans',sans-serif !important;
-}
-.footer-content {
-  display: grid !important;
-  grid-template-columns: minmax(420px,1fr) auto !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 2rem !important;
-}
-.footer-left { display:flex !important; align-items:center !important; gap:1rem !important; flex:1 1 auto !important; }
-.footer-center { display:grid !important; place-items:center !important; gap:1rem !important; }
-.footer-social { display:flex !important; gap:1rem !important; justify-content:center !important; }
-.donate-img { height:48px !important; cursor:pointer !important; transition: filter .3s ease, transform .3s ease !important; }
-.footer-social img { width:60px !important; height:60px !important; filter:brightness(200%) !important; transition:filter .2s !important; }
-.footer-social a:hover img { filter:grayscale(100%) brightness(80%) !important; }
-.site-footer .logo { background-image: url('images/logowhite.png') !important; transition: filter .3s ease !important; transform: none !important; }
-.site-footer .logo-link:hover .logo { filter: grayscale(100%) brightness(80%) !important; transform: none !important; }
-
-@media (max-width: 900px) {
-  .site-footer { padding: 2rem 6vw !important; }
-  .footer-content { grid-template-columns: 1fr !important; justify-items: center !important; gap: 5rem !important; }
-  .footer-left { flex-direction: column !important; text-align: center !important; }
-}
+@media (min-width: 901px) { .logo { width:81px !important; height:73px !important; margin-right:20px !important; } }
+@media (max-width: 900px) { .logo { width:60px !important; height:54px !important; } }
+@media (max-width: 600px) { .logo { width:50px !important; height:45px !important; } }
 </style>
 </head>
 <style>
@@ -904,18 +849,5 @@ nav a:hover { opacity:.7; }
       });
     })();
   </script>
-</main><script id="nav-hide-transform">
-(function(){
-  var lastY = window.scrollY || 0;
-  var nav = document.querySelector('.top-bar');
-  if (!nav) return;
-  window.addEventListener('scroll', function(){
-    var y = window.scrollY || 0;
-    var hide = y > lastY && y > 100;
-    nav.classList.toggle('hidden', hide);
-    lastY = y;
-  }, { passive: true });
-})();
-</script>
-</body>
+</main></body>
 </html>
