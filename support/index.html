@@ -472,6 +472,11 @@
   font-weight: bold;
   margin-bottom: 1rem;
 }
+.support-tiers .tier-note {
+  font-size: 1.25rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
+}
 .support-tiers .tier ul {
   list-style: disc inside;
   line-height: 1.4;
@@ -595,6 +600,9 @@
   background: var(--support-gradient);
   border-radius: var(--support-underline-radius);
 }
+.support-tiers .tier-amount .tier-note {
+  color: #ffffff;   /* a mid-gray; adjust to taste */
+}
   </style>
 </head>
 <body>
@@ -646,29 +654,41 @@ Products & Service: By donating products or services, you give students direct 
   <div class="support-tiers">
     <div class="tier tier-yellow">
       <h3>Yellow Tier</h3>
-      <p class="tier-amount">$50+</p>
+      <p class="tier-amount">
+  <span class="amount">$500+</span>
+  <span class="tier-note">in money/products/service</span>
+</p>
+      
       <ul>
-        <li>Your name on our website</li>
-        <li>Thank-you shoutout on Instagram</li>
-        <li>Access to monthly newsletter</li>
+        <li>Your logo on our website</li>
+       <li>Your logo in our pit banners</li>
+       <li>Credits at the end of videos</li>
       </ul>
     </div>
     <div class="tier tier-orange">
       <h3>Orange Tier</h3>
-      <p class="tier-amount">$100+</p>
+      <p class="tier-amount">
+  <span class="amount">$1000+</span>
+  <span class="tier-note">in money/products/service</span>
+</p>
       <ul>
-        <li>Everything in Bronze</li>
-        <li>Logo on our “Partners” page</li>
-        <li>Early access to new resources</li>
+        <li>Everything in previous tier</li>
+        <li>Your logo at our hosted events</li>
+    
       </ul>
     </div>
     <div class="tier tier-pink">
       <h3>Pink Tier</h3>
-      <p class="tier-amount">$250+</p>
+      <p class="tier-amount">
+  <span class="amount">$2000+</span>
+  <span class="tier-note">in money/products/service</span>
+</p>
       <ul>
-        <li>Everything in Silver</li>
-        <li>VIP invitation to our events</li>
-        <li>Quarterly strategy call with our team</li>
+        <li>Everything in previous tiers</li>
+        <li>your logo on team jerseys</li>
+        <li>Your logo on our VEX U teams robot</li>
+        <li>Access to our engineering notebook</li>
+    
       </ul>
     </div>
   </div>
