@@ -4,9 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SoCalAlliance</title>
 
-  <!-- Set the base to your repo path so relative URLs resolve correctly -->
+  <!-- Make all relative URLs resolve under /socalAllianceWebsite/ -->
   <base href="https://socalalliance.github.io/socalAllianceWebsite/">
 
   <!-- favicon (relative path, no leading slash) -->
@@ -16,23 +15,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet">
-</head>
-<!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-65LTDNTZ16');
-</script>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>SoCalAlliance</title>
-<link href="/images/logo.png" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&amp;family=Tilt+Warp&amp;display=swap" rel="stylesheet"/>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-65LTDNTZ16');
+  </script>
+</head>
 <style>
     :root {
       --hero-text-size: 36px;
@@ -86,7 +78,7 @@
       transition:transform .3s ease;
     }
     .top-bar.hidden { transform:translateY(-100%); }
-    .logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+    .logo { width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav { display:flex; gap:40px; }
     nav a:hover { opacity:.7; }
 
@@ -233,13 +225,13 @@
 /* 1) Nav‐bar logo stays colored */
 /* 1) Force the nav‐bar logo image */
 .top-bar .logo-link .logo {
-  background-image: url('/images/logo.png') !important;
+  background-image: url('images/logo.png') !important;
   filter: none !important;      /* remove that grayscale/brightness hack */
 }
 
 /* 2) Ensure footer logo stays white */
 .site-footer .logo {
-  background-image: url('/images/logowhite.png') !important;
+  background-image: url('images/logowhite.png') !important;
 }
 .site-footer .logo {
   /* only animate filter, not transform */
@@ -273,7 +265,7 @@
       rgba(0,0,0,0.8) 25%,
       #000            100%
     ),
-    url('/images/whysupport.png');
+    url('images/whysupport.png');
   background-size:    var(--support-bg-size);
   background-position: var(--support-bg-pos-x) var(--support-bg-pos-y);
   background-repeat:  no-repeat;
@@ -314,7 +306,7 @@
       rgba(0,0,0,0.8) 25%,
       #000            70%
     ),
-    url('/images/flag.png');
+    url('images/flag.png');
 
   background-size: cover;
   background-position: center center;
@@ -647,12 +639,12 @@
 <body>
 <!-- NAV -->
 <header class="top-bar">
-<a class="logo-link" href="/"><div class="logo"></div></a>
+<a class="logo-link" href="./"><div class="logo"></div></a>
 <nav>
-<a href="/about">ABOUT</a>
-<a href="/vex">VEX</a>
-<a href="/projects">PROJECTS</a>
-<a href="/support">SUPPORT</a>
+<a href="about/">ABOUT</a>
+<a href="vex/">VEX</a>
+<a href="projects/">PROJECTS</a>
+<a href="support/">SUPPORT</a>
 </nav>
 </header>
 <!-- WHY SUPPORT US -->
@@ -672,10 +664,10 @@ Products &amp; Service: By donating products or services, you give students dir
   </p>
 <div class="support-buttons">
 <a href="#" rel="noopener" target="_blank">
-<img alt="GoFundMe" src="/images/gofundme.png"/>
+<img alt="GoFundMe" src="images/gofundme.png"/>
 </a>
 <a href="#" rel="noopener" target="_blank">
-<img alt="Venmo" src="/images/venmo.png"/>
+<img alt="Venmo" src="images/venmo.png"/>
 </a>
 </div>
 <p>
@@ -733,99 +725,99 @@ Products &amp; Service: By donating products or services, you give students dir
 <!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li>
 <!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li>
 <!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li><!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
-<img alt="McBride" src="/images/McBride-Logo.png"/>
+<img alt="McBride" src="images/McBride-Logo.png"/>
 </a>
 </li>
 
@@ -837,7 +829,7 @@ Products &amp; Service: By donating products or services, you give students dir
 <footer class="site-footer">
 <div class="footer-content">
 <div class="footer-left">
-<a class="logo-link" href="/">
+<a class="logo-link" href="./">
 <div class="logo"></div>
 </a>
 <div>
@@ -846,12 +838,12 @@ Products &amp; Service: By donating products or services, you give students dir
 </div>
 </div>
 <div class="footer-center">
-<a href="/support"><img alt="Donate Now" class="donate-img" src="/images/Donatewhite.png"/></a>
+<a href="support/"><img alt="Donate Now" class="donate-img" src="images/Donatewhite.png"/></a>
 <div class="footer-social">
-<a href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank"><img alt="Instagram" src="/images/SCA_INSTwhite.png"/></a>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank"><img alt="Email" src="/images/SCA_EMAILwhite.png"/></a>
-<a href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank"><img alt="TikTok" src="/images/SCA_TIKTOKwhite.png"/></a>
-<a href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank"><img alt="YouTube" src="/images/SCA_YOUTUBEwhite.png"/></a>
+<a href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank"><img alt="Instagram" src="images/SCA_INSTwhite.png"/></a>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank"><img alt="Email" src="images/SCA_EMAILwhite.png"/></a>
+<a href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank"><img alt="TikTok" src="images/SCA_TIKTOKwhite.png"/></a>
+<a href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank"><img alt="YouTube" src="images/SCA_YOUTUBEwhite.png"/></a>
 </div>
 </div>
 </div>

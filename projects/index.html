@@ -4,9 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SoCalAlliance</title>
 
-  <!-- Set the base to your repo path so relative URLs resolve correctly -->
+  <!-- Make all relative URLs resolve under /socalAllianceWebsite/ -->
   <base href="https://socalalliance.github.io/socalAllianceWebsite/">
 
   <!-- favicon (relative path, no leading slash) -->
@@ -16,22 +15,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet">
-</head>
-<!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-65LTDNTZ16');
-</script>
-<meta charset="utf-8"/>
-<title>SoCalAlliance</title>
-<link href="/images/logo.png" rel="icon" type="image/png"/>
-<link "glow"="" "▲";="" "▼";="" *="" .tl-arrow.down::before{="" .tl-arrow.up::before="" .tl-arrow::before="" arrow="" background:="" content:="" display:="" glow"="" glyph="" href="h/* a/* animated gradient " inline-block;="" inline-block;googleapis.com"="" linear-gradient(nt="" on="" rel="preconnect" {="" }=""/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&amp;family=Instrument+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-65LTDNTZ16');
+  </script>
+</head>
 <style>
     :root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }
 
@@ -50,7 +43,7 @@
       transition:transform .3s ease;
     }
     .top-bar.hidden{ transform:translateY(-100%); }
-    .logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+    .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav{ display:flex; gap:40px; }
     nav a:hover{ opacity:.7; }
 .logo {
@@ -506,7 +499,7 @@
 
     /* FOOTER */
     .site-footer{background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);color:#fff;padding:2rem 10%}
-    .site-footer .logo {background-image: url('/images/logowhite.png') !important;}
+    .site-footer .logo {background-image: url('images/logowhite.png') !important;}
     .footer-content{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:5rem}
     .footer-left{display:flex;align-items:flex-start;gap:1rem;flex:1 1 400px}
     .footer-copy{font-size:1.5rem;font-weight:bold}
@@ -554,10 +547,10 @@
         padding: 0 15px;
       }
 .top-bar .logo-link .logo {
-  background-image: url('/images/logo.png') !important;
+  background-image: url('images/logo.png') !important;
   filter: none !important;      /* remove that grayscale/brightness hack */
 }
-.logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+.logo { width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
 .logo {
         width: 60px;
         height: 54px;
@@ -574,11 +567,11 @@
       transform: scale(1.05);
     }
 .logo {
-  background-image: url('/images/logo.png') !important;
+  background-image: url('images/logo.png') !important;
   filter: none !important;      /* remove that grayscale/brightness hack */
 }
 .logo {
-  background-image: url('/images/logowhite.png') !important;
+  background-image: url('images/logowhite.png') !important;
 }
 .logo {
   /* only animate filter, not transform */
@@ -672,7 +665,7 @@ nav a:hover { opacity:.7; }
       filter: grayscale(100%) brightness(80%);
     }
 .site-footer .logo {
-  background-image: url('/images/logowhite.png') !important;
+  background-image: url('images/logowhite.png') !important;
 }
 .site-footer .logo {
   /* only animate filter, not transform */
@@ -729,12 +722,12 @@ nav a:hover { opacity:.7; }
 <body>
 <!-- NAV -->
 <header class="top-bar">
-<a class="logo-link" href="/"><div class="logo"></div></a>
+<a class="logo-link" href="./"><div class="logo"></div></a>
 <nav>
-<a href="/about">ABOUT</a>
-<a href="/vex">VEX</a>
-<a href="/projects">PROJECTS</a>
-<a href="/support">SUPPORT</a>
+<a href="about/">ABOUT</a>
+<a href="vex/">VEX</a>
+<a href="projects/">PROJECTS</a>
+<a href="support/">SUPPORT</a>
 </nav>
 </header>
 <main>
@@ -743,7 +736,7 @@ nav a:hover { opacity:.7; }
 </section>
 <section class="features">
 <article class="feature">
-<img alt="" src="/images/scrimming.png"/>
+<img alt="" src="images/scrimming.png"/>
 <div class="copy">
 <h3>
 <a class="feature-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform?usp=preview" onclick="event.stopPropagation()" rel="noopener" target="_blank">
@@ -754,7 +747,7 @@ nav a:hover { opacity:.7; }
 </div>
 </article>
 <article class="feature">
-<img alt="" src="/images/vexu.png"/>
+<img alt="" src="images/vexu.png"/>
 <div class="copy">
 <h3>
 <a class="feature-btn" href="https://docs.google.com/document/d/1ytcRuUcWIWxwsZIfzGv6c_-Vg2tsbZ0OXDBiRyXImR0/edit?usp=sharing" onclick="event.stopPropagation()" rel="noopener" target="_blank">
@@ -765,7 +758,7 @@ nav a:hover { opacity:.7; }
 </div>
 </article>
 <article class="feature">
-<img alt="" src="/images/banner.png"/>
+<img alt="" src="images/banner.png"/>
 <div class="copy">
 <h3>
 <a class="feature-btn" href="https://docs.google.com/document/d/17gKdwJgWM0LbqSmfvf68YcsC7uPvrioFGI1wJeIiZ_A/edit?usp=sharing" onclick="event.stopPropagation()" rel="noopener" target="_blank">
@@ -774,7 +767,7 @@ nav a:hover { opacity:.7; }
 </h3></div>
 </article>
 <article class="feature">
-<img alt="" src="/images/teaching.png"/>
+<img alt="" src="images/teaching.png"/>
 <div class="copy">
 <h3>
 <a class="feature-btn" href="https://www.youtube.com/@SCA_ORG" onclick="event.stopPropagation()" rel="noopener" target="_blank">
@@ -797,7 +790,7 @@ nav a:hover { opacity:.7; }
 <footer class="site-footer">
 <div class="footer-content">
 <div class="footer-left">
-<a class="logo-link" href="/">
+<a class="logo-link" href="./">
 <div class="logo"></div>
 </a>
 <div>
@@ -806,12 +799,12 @@ nav a:hover { opacity:.7; }
 </div>
 </div>
 <div class="footer-center">
-<a href="/support"><img alt="Donate Now" class="donate-img" src="/images/Donatewhite.png"/></a>
+<a href="support/"><img alt="Donate Now" class="donate-img" src="images/Donatewhite.png"/></a>
 <div class="footer-social">
-<a href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank"><img alt="Instagram" src="/images/SCA_INSTwhite.png"/></a>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank"><img alt="Email" src="/images/SCA_EMAILwhite.png"/></a>
-<a href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank"><img alt="TikTok" src="/images/SCA_TIKTOKwhite.png"/></a>
-<a href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank"><img alt="YouTube" src="/images/SCA_YOUTUBEwhite.png"/></a>
+<a href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank"><img alt="Instagram" src="images/SCA_INSTwhite.png"/></a>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank"><img alt="Email" src="images/SCA_EMAILwhite.png"/></a>
+<a href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank"><img alt="TikTok" src="images/SCA_TIKTOKwhite.png"/></a>
+<a href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank"><img alt="YouTube" src="images/SCA_YOUTUBEwhite.png"/></a>
 </div>
 </div>
 </div>

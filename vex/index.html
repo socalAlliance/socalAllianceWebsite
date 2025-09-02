@@ -4,9 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SoCalAlliance</title>
-
-  <!-- Set the base to your repo path so relative URLs resolve correctly -->
+  <!-- Make all relative URLs resolve under /socalAllianceWebsite/ -->
   <base href="https://socalalliance.github.io/socalAllianceWebsite/">
 
   <!-- favicon (relative path, no leading slash) -->
@@ -16,22 +14,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet">
-</head>
-<!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-65LTDNTZ16');
-</script>
-<meta charset="utf-8"/>
-<title>SCA • Vex</title>
-<link href="/images/logo.png" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&amp;family=Tilt+Warp&amp;display=swap" rel="stylesheet"/>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-65LTDNTZ16');
+  </script>
+</head>
 <style>
     :root {
        --compare-bar-offset-x:   0px;    /* move the bar left/right */
@@ -76,8 +68,8 @@
   
 
   /* path to your border images */
-  --border-worlds:  url('/images/worldsborder.png');
-  --border-season:  url('/images/seasonborder.png');
+  --border-worlds:  url('images/worldsborder.png');
+  --border-season:  url('images/seasonborder.png');
 
  /* entire section offset */
   --loc-sec-offset-x: 0px;
@@ -395,7 +387,7 @@ body {
   top: -100px;
 }
 
-    .logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+    .logo { width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav { display:flex; gap:40px; }
     nav a:hover { opacity:.7; }
 /* Tablet responsiveness */
@@ -423,7 +415,7 @@ body {
       max-width:var(--hero-bg-max-width);
       height: var(--hero-bg-height);
       background:
-        url('/images/whatisvex.png') center/cover no-repeat;
+        url('images/whatisvex.png') center/cover no-repeat;
     }
     .hero-overlay {
       position:absolute;
@@ -637,7 +629,7 @@ body {
     }
     .footer-left .logo {
       width:81px; height:73px;
-      background:url('/images/logowhite.png') center/cover no-repeat;
+      background:url('images/logowhite.png') center/cover no-repeat;
       transition:transform .3s ease;
     }
     .logo-link:hover .logo {
@@ -1191,7 +1183,7 @@ body {
 
 /* Keep header logo full color (no grayscale filter) */
 .top-bar .logo-link .logo {
-  background-image: url('/images/logo.png') !important;
+  background-image: url('images/logo.png') !important;
   filter: none !important;
 }
 
@@ -1246,7 +1238,7 @@ body {
 }
 .footer-social a:hover img { filter:grayscale(100%) brightness(80%) !important; }
 .site-footer .logo {
-  background-image: url('/images/logowhite.png') !important;
+  background-image: url('images/logowhite.png') !important;
   transition: filter 0.3s ease !important;
   transform: none !important;
 }
@@ -1285,12 +1277,12 @@ body {
 <body>
 <!-- NAV -->
 <header class="top-bar">
-<a class="logo-link" href="/"><div class="logo"></div></a>
+<a class="logo-link" href="./"><div class="logo"></div></a>
 <nav>
-<a href="/about">ABOUT</a>
-<a href="/vex">VEX</a>
-<a href="/projects">PROJECTS</a>
-<a href="/support">SUPPORT</a>
+<a href="about/">ABOUT</a>
+<a href="vex/">VEX</a>
+<a href="projects/">PROJECTS</a>
+<a href="support/">SUPPORT</a>
 </nav>
 </header>
 <!-- MAIN -->
@@ -1302,7 +1294,7 @@ body {
 <br/>VEX V5 Robotics lets students tackle open-ended engineering challenges by designing, building, and programming robots in a competitive, team-based setting. It emphasizes creative problem-solving, iterative design, and collaboration under real constraints. Through this, students gain a practical understanding of how engineers approach complex problems from concept to execution.
     </p>
 <a class="btn-img" href="https://www.vexrobotics.com">
-<img alt="Learn More" src="/images/learnmore.png"/>
+<img alt="Learn More" src="images/learnmore.png"/>
 </a>
 </div>
 <div class="embed-container">
@@ -1318,12 +1310,12 @@ body {
 <!-- Past Seasons Button -->
 <div class="past-seasons-container">
 <a href="https://www.youtube.com/playlist?list=PLXdulAseEztM8V1McWUl0aVkL1_CMnCgf" rel="noopener" target="_blank">
-<img alt="Past Seasons Playlist" class="past-seasons-btn" src="/images/pastseasons.png">
+<img alt="Past Seasons Playlist" class="past-seasons-btn" src="images/pastseasons.png">
 </img></a>
 </div>
 <section class="location-section">
 <div class="location-image">
-<img alt="Our regional hubs" src="/images/location.png"/>
+<img alt="Our regional hubs" src="images/location.png"/>
 </div>
 <div class="location-copy">
 <h1 class="location-headline"> A CLOSE-KNIT COMMUNITY</h1>
@@ -1358,7 +1350,7 @@ body {
 <footer class="site-footer">
 <div class="footer-content">
 <div class="footer-left">
-<a class="logo-link" href="/">
+<a class="logo-link" href="./">
 <div class="logo"></div>
 </a>
 <div>
@@ -1369,12 +1361,12 @@ body {
 </div>
 </div>
 <div class="footer-center">
-<a href="/support"><img alt="Donate Now" class="donate-img" src="/images/Donatewhite.png"/></a>
+<a href="support/"><img alt="Donate Now" class="donate-img" src="images/Donatewhite.png"/></a>
 <div class="footer-social">
-<a href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank"><img alt="Instagram" src="/images/SCA_INSTwhite.png"/></a>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank"><img alt="Email" src="/images/SCA_EMAILwhite.png"/></a>
-<a href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank"><img alt="TikTok" src="/images/SCA_TIKTOKwhite.png"/></a>
-<a href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank"><img alt="YouTube" src="/images/SCA_YOUTUBEwhite.png"/></a>
+<a href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank"><img alt="Instagram" src="images/SCA_INSTwhite.png"/></a>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank"><img alt="Email" src="images/SCA_EMAILwhite.png"/></a>
+<a href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank"><img alt="TikTok" src="images/SCA_TIKTOKwhite.png"/></a>
+<a href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank"><img alt="YouTube" src="images/SCA_YOUTUBEwhite.png"/></a>
 </div>
 </div>
 </div>
