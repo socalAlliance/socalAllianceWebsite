@@ -41,7 +41,9 @@
       font-family:'Tilt Warp',sans-serif; font-size:28px;
       background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
       transition:transform .3s ease;
-    }
+    
+  will-change: transform;
+}
     .top-bar.hidden{ transform:translateY(-100%); }
     .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav{ display:flex; gap:40px; }
@@ -50,9 +52,8 @@
 .logo,
 .logo-link .logo,
 .btn-img img,
-.donate-img {
-  transition: transform 0.3s ease, filter 0.3s ease;
-  /* remove transform:none!important; from .donate-img so that this can work */
+.donate-img {transition: transform 0.3s ease, filter 0.3s ease;
+  /* remove from .donate-img so that this can work */
 }
 /* 2) scale up on hover */
 .logo:hover,
@@ -74,7 +75,9 @@
         height: 80px;
         padding: 0 20px;
         font-size: 20px;
-      }
+      
+  will-change: transform;
+}
       .logo {
         width: 60px;
         height: 54px;
@@ -89,7 +92,9 @@
       .top-bar {
         font-size: 18px;
         padding: 0 15px;
-      }
+      
+  will-change: transform;
+}
       .logo {
         width: 50px;
         height: 45px;
@@ -141,7 +146,7 @@
     .btn-outline.hover-grayscale:hover::before{ filter:grayscale(100%); }
     .btn-outline.hover-scale:hover{ transform:scale(1.05); }
 
-    .donate-img{ transition:filter .3s ease; transform:none!important; }
+    .donate-img {transition:filter .3s ease; }
     .donate-img:hover{ filter:grayscale(100%) brightness(80%); transform:none!important; }
 
     /* — Partnerships / Bars — */
@@ -686,17 +691,14 @@
 
 </style>
 <style id="sync-nav-footer">
-/* ===== Sync nav & footer with support.html + left-align hotfix ===== */
+/* ===== Sync nav & footer with site-wide styles ===== */
 
 /* Header logo stays colored */
 .top-bar .logo-link .logo { background-image: url('images/logo.png') !important; filter: none !important; }
 
-/* Hide-on-scroll uses translate (needs .hidden rule) */
-.top-bar { transition: transform 0.3s ease !important; }
+/* Hide-on-scroll uses translate */
+.top-bar { transition: transform .3s ease !important; will-change: transform; justify-content: flex-start !important; font-size: clamp(18px, 1.0vw + 18px, 32px) !important; }
 .top-bar.hidden { transform: translateY(-100%) !important; }
-
-/* Left alignment + responsive font sizing to match other pages */
-.top-bar { justify-content: flex-start !important; font-size: clamp(18px, 1.0vw + 18px, 32px) !important; }
 .top-bar nav { margin-left: 0 !important; }
 
 /* Footer parity (gradient background, grid layout, white logo behavior) */
@@ -716,7 +718,7 @@
 .footer-left { display:flex !important; align-items:center !important; gap:1rem !important; flex: 1 1 auto !important; }
 .footer-center { display:grid !important; place-items:center !important; gap:1rem !important; }
 .footer-social { display:flex !important; gap:1rem !important; justify-content:center !important; }
-.donate-img { height:48px !important; cursor:pointer !important; }
+.donate-img { height:48px !important; cursor:pointer !important; transition: filter .3s ease, transform .3s ease !important; }
 .footer-social img { width:60px !important; height:60px !important; filter:brightness(200%) !important; transition:filter .2s !important; }
 .footer-social a:hover img { filter:grayscale(100%) brightness(80%) !important; }
 .site-footer .logo { background-image: url('images/logowhite.png') !important; transition: filter 0.3s ease !important; transform: none !important; }
@@ -724,11 +726,15 @@
 
 /* Responsive spacing consistent with other pages */
 @media (min-width: 901px) {
-  .top-bar { height: 100px !important; padding: 0 50px !important; }
+  .top-bar { height: 100px !important; padding: 0 50px !important; 
+  will-change: transform;
+}
   .top-bar nav { gap: 40px !important; }
 }
 @media (max-width: 900px) {
-  .top-bar { height: 80px !important; padding: 0 20px !important; font-size: 20px !important; }
+  .top-bar { height: 80px !important; padding: 0 20px !important; font-size: 20px !important; 
+  will-change: transform;
+}
   .logo    { width: 60px !important; height: 54px !important; margin-right: 0 !important; }
   nav      { gap: 15px !important; }
   .site-footer { padding: 2rem 6vw !important; }
@@ -736,7 +742,9 @@
   .footer-left { flex-direction: column !important; text-align: center !important; }
 }
 @media (max-width: 600px) {
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; 
+  will-change: transform;
+}
   .logo    { width: 50px !important; height: 45px !important; }
   nav      { gap: 10px !important; }
   nav a    { font-size: 18px !important; }
