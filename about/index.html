@@ -3,7 +3,7 @@
 <html lang="en">
 <meta charset="utf-8"/>
 <head>
-<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <!-- favicon (relative path, no leading slash) -->
 <link href="/images/logo.png" rel="icon" type="image/png"/>
 <!-- fonts -->
@@ -33,7 +33,7 @@
   .top-bar { font-size: 18px !important; padding: 0 15px !important; }
 }
 </style>
-</meta><style>
+<style>
 /* prevent horizontal panning */
 html, body { overflow-x: clip; }
 
@@ -42,12 +42,11 @@ html, body { overflow-x: clip; }
 
 /* triangle responsive container */
 .triangle-container {
-  width: 100% !important;       /* fill available width */
-  max-width: 1400px;            /* optional cap so it doesn't get absurdly wide */
-  aspect-ratio: 1 / 1;          /* keep it square (adjust if triangle looks too tall/short) */
+  width: min(900px, 100%) !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;  /* avoid sideways scroll */
+  overflow-y: visible !important; /* allow tall labels */
   position: relative;
-  overflow: visible !important; /* let labels breathe */
-  margin: 0 auto;               /* center container */
 }
 
 /* center area where arrows + stage label live */
@@ -63,13 +62,13 @@ html, body { overflow-x: clip; }
 
 /* stage label text (SOCAL ALLIANCE / NONPROFIT / VEXU TEAM) */
 .label-text {
-  font-size: clamp(24px, 2.8vw, 30px);
+  font-size: clamp(28px, 2.8vw, 30px);
   font-weight: 700;
   text-align: center;
-  white-space: normal;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-  max-width: 100%;     /* more breathing room on big screens */
+  white-space: normal;          /* allow wrapping */
+  word-break: keep-all;         /* prevent breaking in the middle of words/letters */
+  overflow-wrap: break-word;    /* wrap only at word boundaries */
+  max-width: 100%;               /* leave room for arrows */
   margin: 0 auto;
 }
 
@@ -120,6 +119,35 @@ html, body { overflow-x: clip; }
   line-height: 1.25;
   text-align: center;
   margin: 0 auto 1rem;
+}
+</style><style>
+/* Responsive triangle container centered with aspect ratio */
+.triangle-container {
+  width: min(95vw, 1400px) !important;
+  margin: 0 auto !important;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: visible !important;
+}
+
+/* Center each label on its coordinate */
+#labels .label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+#labels .label-text {
+  font-size: clamp(20px, 3.2vw, 32px);
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+</style><style id="tri-rescale-style">
+/* Ensure labels are centered on their (left, top) anchor */
+#labels .label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 </style></head>
 <style>
@@ -1328,5 +1356,122 @@ html, body { overflow-x: clip; }
     onResize(); // initial
   })();
   </script>
-</body>
+<script>
+(function(){
+  const BASE_W = 900, BASE_H = 800;
+  function rescaleLabelPositions(){
+    const container = document.querySelector('.triangle-container');
+    const labels = document.querySelectorAll('#labels .label');
+    if(!container || !labels.length) return;
+    const w = container.clientWidth || BASE_W;
+    const h = container.clientHeight || BASE_H;
+    const sx = w / BASE_W;
+    const sy = h / BASE_H;
+    labels.forEach(el => {
+      const l = parseFloat(el.style.left || '0');
+      const t = parseFloat(el.style.top || '0');
+      if (!isNaN(l) && !isNaN(t)){
+        el.style.left = (l * sx) + 'px';
+        el.style.top  = (t * sy) + 'px';
+      }
+    });
+  }
+  window.addEventListener('load', function(){
+    // run twice: after their initialize() and after layout settles
+    setTimeout(rescaleLabelPositions, 50);
+    setTimeout(rescaleLabelPositions, 300);
+  });
+  window.addEventListener('resize', rescaleLabelPositions);
+})();
+</script><script id="tri-rescale-ro">
+(function(){
+  const BASE_W = 900, BASE_H = 800; // original coordinate system
+
+  function storeBasePositions(){
+    document.querySelectorAll('#labels .label').forEach(el => {
+      if (!el.hasAttribute('data-left')) {
+        const l = parseFloat(el.style.left || '0');
+        const t = parseFloat(el.style.top  || '0');
+        if (!isNaN(l) && !isNaN(t) && (l !== 0 || t !== 0)) {
+          el.setAttribute('data-left', l);
+          el.setAttribute('data-top',  t);
+        }
+      }
+    });
+  }
+
+  function rescale(){
+    const container = document.querySelector('.triangle-container');
+    if (!container) return;
+    const w = container.clientWidth || BASE_W;
+    const h = container.clientHeight || BASE_H;
+    const sx = w / BASE_W;
+    const sy = h / BASE_H;
+    document.querySelectorAll('#labels .label').forEach(el => {
+      const l0 = parseFloat(el.getAttribute('data-left'));
+      const t0 = parseFloat(el.getAttribute('data-top'));
+      if (!isNaN(l0) && !isNaN(t0)) {
+        el.style.left = (l0 * sx) + 'px';
+        el.style.top  = (t0 * sy) + 'px';
+      }
+    });
+  }
+
+  // Re-run a few times to catch async layout changes
+  function rescaleBurst(){
+    let count = 0;
+    function step(){
+      rescale();
+      if (++count < 12) requestAnimationFrame(step); // ~200ms burst
+    }
+    requestAnimationFrame(step);
+  }
+
+  function init(){
+    // Wait until the site's own initialize() has positioned labels
+    const start = performance.now();
+    const timer = setInterval(function(){
+      storeBasePositions();
+      const ready = Array.from(document.querySelectorAll('#labels .label'))
+        .every(el => el.hasAttribute('data-left'));
+      if (ready || performance.now() - start > 3000) {
+        clearInterval(timer);
+        rescaleBurst();
+      }
+    }, 50);
+  }
+
+  window.addEventListener('load', function(){
+    init();
+    // Also rerun after fonts are loaded (if supported)
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(rescaleBurst).catch(function(){});
+    }
+  });
+
+  // Respond to resizes/orientation changes
+  window.addEventListener('resize', rescaleBurst, {passive:true});
+  window.addEventListener('orientationchange', rescaleBurst, {passive:true});
+
+  // Observe the container size directly (covers zoom & CSS changes)
+  const ro = new (window.ResizeObserver || function(cb){
+    // minimal polyfill: fall back to window resize only
+    return { observe(){}, disconnect(){} };
+  })(function(){
+    rescaleBurst();
+  });
+  const observeWhenReady = setInterval(function(){
+    const container = document.querySelector('.triangle-container');
+    if (container && ro.observe) {
+      ro.observe(container);
+      clearInterval(observeWhenReady);
+    }
+  }, 100);
+
+  // In case visibility changes (tab switch), recompute
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden) rescaleBurst();
+  });
+
+})();</script></body>
 </html>
