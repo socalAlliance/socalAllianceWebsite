@@ -42,11 +42,12 @@ html, body { overflow-x: clip; }
 
 /* triangle responsive container */
 .triangle-container {
-  width: min(900px, 100%) !important;
-  max-width: 100% !important;
-  overflow-x: hidden !important;  /* avoid sideways scroll */
-  overflow-y: visible !important; /* allow tall labels */
+  width: 100% !important;       /* fill available width */
+  max-width: 1400px;            /* optional cap so it doesn't get absurdly wide */
+  aspect-ratio: 1 / 1;          /* keep it square (adjust if triangle looks too tall/short) */
   position: relative;
+  overflow: visible !important; /* let labels breathe */
+  margin: 0 auto;               /* center container */
 }
 
 /* center area where arrows + stage label live */
@@ -62,13 +63,13 @@ html, body { overflow-x: clip; }
 
 /* stage label text (SOCAL ALLIANCE / NONPROFIT / VEXU TEAM) */
 .label-text {
-  font-size: clamp(28px, 2.8vw, 30px);
+  font-size: clamp(24px, 2.8vw, 30px);
   font-weight: 700;
   text-align: center;
-  white-space: normal;          /* allow wrapping */
-  word-break: keep-all;         /* prevent breaking in the middle of words/letters */
-  overflow-wrap: break-word;    /* wrap only at word boundaries */
-  max-width: 100%;               /* leave room for arrows */
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  max-width: 100%;     /* more breathing room on big screens */
   margin: 0 auto;
 }
 
