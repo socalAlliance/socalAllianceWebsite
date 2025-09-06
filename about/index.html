@@ -3,7 +3,7 @@
 <html lang="en">
 <meta charset="utf-8"/>
 <head>
-<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <!-- favicon (relative path, no leading slash) -->
 <link href="/images/logo.png" rel="icon" type="image/png"/>
 <!-- fonts -->
@@ -33,7 +33,7 @@
   .top-bar { font-size: 18px !important; padding: 0 15px !important; }
 }
 </style>
-</meta><style>
+<style>
 html, body { overflow-x: clip; }
 .mission-gif { width: min(100vw, 780px) !important; }
 .triangle-container {
@@ -43,6 +43,47 @@ html, body { overflow-x: clip; }
 }
 #arrow-container, #labels, .description-text {
   max-width: 100%;
+}
+</style><style>
+/* --- Mobile nav overflow fix --- */
+.top-bar nav { min-width: 0; }
+@media (max-width: 520px) {
+  .top-bar { padding: 0 12px !important; }
+  .top-bar nav { flex-wrap: wrap; gap: 8px !important; }
+  .top-bar nav a { font-size: 16px !important; }
+}
+
+/* --- "TRIANGULAR TIES" title sizing/centering --- */
+.integrated-bar.partnerships-banner h2 {
+  font-size: clamp(22px, 6vw, 40px) !important;
+  line-height: 1.1;
+  text-align: center;
+  margin: 0 auto;
+}
+</style><style>
+/* --- NAV overflow/wrapping fix for small screens --- */
+@media (max-width: 600px) {
+  .top-bar nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    min-width: 0;
+  }
+  .top-bar nav a {
+    font-size: 14px !important;
+    flex: 1 1 auto;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+/* --- Triangular Ties heading size/centering --- */
+.integrated-bar.partnerships-banner h2 {
+  font-size: clamp(20px, 5vw, 32px) !important;
+  line-height: 1.2;
+  text-align: center;
+  margin: 0 auto 1rem;
 }
 </style></head>
 <style>
