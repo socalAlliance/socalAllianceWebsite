@@ -3,7 +3,7 @@
 <html lang="en">
 <meta charset="utf-8"/>
 <head>
-<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <!-- favicon (relative path, no leading slash) -->
 <link href="/images/logo.png" rel="icon" type="image/png"/>
 <!-- fonts -->
@@ -33,7 +33,7 @@
   .top-bar { font-size: 18px !important; padding: 0 15px !important; }
 }
 </style>
-</meta><style>
+<style>
 /* stop accidental page-wide sideways scroll */
 html, body { overflow-x: clip; }
 
@@ -111,6 +111,22 @@ html, body { overflow-x: clip; }
   line-height: 1.25;
   text-align: center;
   margin: 0 auto 1rem;
+}
+</style><style>
+/* --- Desktop cut-off fix for triangle labels --- */
+.triangle-container {
+  /* preserve horizontal clipping to avoid side scroll,
+     but allow vertical overflow so labels aren't cut */
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+/* increase container height on larger screens so bottom labels fit */
+@media (min-width: 992px) {
+  .triangle-container { height: 920px !important; }
+}
+@media (min-width: 1280px) {
+  .triangle-container { height: 980px !important; }
 }
 </style></head>
 <style>
