@@ -36,6 +36,74 @@
   .top-bar { font-size: 18px !important; padding: 0 15px !important; }
 }
 </style>
+
+<style id="final-overrides">
+/* ===== HERO: stack headline, paragraph, and button ===== */
+.page-container.hero-section {
+  position: relative;
+  min-height: var(--hero-bg-height);
+  height: auto;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+}
+.hero-headline {
+  position: relative !important;
+  top: auto !important; left: auto !important;
+  transform: none !important;
+  margin-top: 1rem !important;
+  text-align: center !important;
+  width: 100% !important;
+  z-index: 2 !important;
+}
+.copy-text {
+  position: relative !important;
+  top: auto !important; left: auto !important;
+  transform: none !important;
+  margin: 0 auto !important;
+  width: 80% !important;
+  max-width: 938px !important;
+  font-size: 24px !important;
+  line-height: 1.6 !important;
+  text-align: center !important;
+  z-index: 1 !important;
+}
+.btn-img {
+  position: relative !important;
+  top: auto !important; left: auto !important;
+  transform: none !important;
+  z-index: 1 !important;
+}
+@media (max-width: 900px) {
+  .page-container.hero-section { gap: 1.25rem !important; padding-bottom: 2rem !important; }
+  .hero-headline { font-size: clamp(28px, 8vw, 48px) !important; }
+  .copy-text { margin-top: 0.25rem !important; width: 90vw !important; max-width: 90vw !important; font-size: 16px !important; line-height: 1.4 !important; }
+}
+
+/* ===== LOCATION SECTION: prevent image from squeezing text ===== */
+.location-section { flex-wrap: wrap !important; }
+.location-image { flex: 1 1 520px !important; }
+.location-copy  { flex: 1 1 520px !important; max-width: 900px !important; }
+.location-copy .copy { width: 100% !important; margin: 1rem auto !important; }
+
+/* ===== LOCATION HEADLINE definitive sizing (ID outranks other rules) ===== */
+#loc-headline {
+  font-size: 48px !important;   /* desktop */
+  line-height: 1.15 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  text-align: center !important;
+  margin: 0 auto 1rem !important;
+  max-width: min(90vw, 900px) !important;
+  display: block !important;
+}
+@media (max-width: 900px) { #loc-headline { font-size: 36px !important; } }
+@media (max-width: 600px) { #loc-headline { font-size: 28px !important; } }
+</style>
+
 </head>
 <style>
     :root {
@@ -557,7 +625,7 @@ body {
 
     /* LEARN MORE image button */
     .btn-img {
-      position:absolute; top:430px; left:50%;
+      position:absolute; top:440px; left:50%;
       transform:translateX(-50%);
     }
     .btn-img img {
@@ -1257,7 +1325,7 @@ body {
 </nav>
 </header>
 <!-- MAIN -->
-<div class="page-container">
+<div class="page-container hero-section">
 <div class="hero-bg"></div>
 <div class="hero-overlay"></div>
 <h1 class="hero-headline">WHAT IS VEX ROBOTICS?</h1>
@@ -1289,7 +1357,7 @@ body {
 <img alt="Our regional hubs" src="/images/location.png"/>
 </div>
 <div class="location-copy">
-<h1 class="location-headline"> A CLOSE-KNIT COMMUNITY</h1>
+<h1 id="loc-headline" class="location-headline"> A CLOSE-KNIT COMMUNITY</h1>
 <p class="copy">
       What sets our community apart is our regional proximity to one another. Centered around the two major hubs of Los Angeles and San Diego, we host gatherings, scrimmages, and competitions that foster meaningful connections and accelerate learning.
       Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals. <br></br>
