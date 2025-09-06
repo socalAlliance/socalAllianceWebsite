@@ -34,48 +34,31 @@
 }
 </style>
 <style>
-/* prevent horizontal panning */
+/* stop accidental page-wide sideways scroll */
 html, body { overflow-x: clip; }
 
-/* mission gif clamp */
+/* mission gif: don't exceed viewport width */
 .mission-gif { width: min(100vw, 780px) !important; }
 
-/* triangle responsive container */
+/* triangle section responsive */
 .triangle-container {
   width: min(900px, 100%) !important;
   max-width: 100% !important;
-  overflow-x: hidden !important;  /* avoid sideways scroll */
-  overflow-y: visible !important; /* allow tall labels */
+  overflow: hidden;
   position: relative;
 }
 
-/* center area where arrows + stage label live */
-#arrow-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding-inline: 24px; /* keep text from hitting container edges */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* stage label text (SOCAL ALLIANCE / NONPROFIT / VEXU TEAM) */
+/* labels fix - prevent cut off */
 .label-text {
-  font-size: clamp(28px, 2.8vw, 30px);
-  font-weight: 700;
+  font-size: clamp(30px, 2.8vw, 30px);
+  white-space: nowrap;
   text-align: center;
-  white-space: normal;          /* allow wrapping */
-  word-break: keep-all;         /* prevent breaking in the middle of words/letters */
-  overflow-wrap: break-word;    /* wrap only at word boundaries */
-  max-width: 100%;               /* leave room for arrows */
-  margin: 0 auto;
 }
 
 /* remove decorative circles */
 .label .circle { display: none !important; }
 
-/* description bubbles */
+/* description boxes responsive */
 .description-text {
   font-size: clamp(12px, 2.5vw, 16px);
   line-height: 1.4;
@@ -83,7 +66,13 @@ html, body { overflow-x: clip; }
   max-width: 40%;
 }
 
-/* CSS triangle arrows */
+/* arrows style: CSS triangles instead of text chars */
+#arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
 #arrow-container .arrow {
   width: 0;
   height: 0;
@@ -91,12 +80,15 @@ html, body { overflow-x: clip; }
   border-bottom: 10px solid transparent;
   cursor: pointer;
   display: inline-block;
-  flex: 0 0 auto;
 }
-#arrow-container .arrow[data-dir="-1"] { border-right: 12px solid #ff4d4d; }
-#arrow-container .arrow[data-dir="1"]  { border-left: 12px solid #ff4d4d;  }
+#arrow-container .arrow[data-dir="-1"] {
+  border-right: 12px solid #ff4d4d; /* left triangle */
+}
+#arrow-container .arrow[data-dir="1"] {
+  border-left: 12px solid #ff4d4d; /* right triangle */
+}
 
-/* nav wrap fix */
+/* nav overflow fix */
 @media (max-width: 600px) {
   .top-bar nav {
     display: flex;
@@ -113,7 +105,7 @@ html, body { overflow-x: clip; }
   }
 }
 
-/* headings sizing */
+/* Triangular Ties headings */
 .integrated-bar.partnerships-banner h2 {
   font-size: clamp(24px, 5.5vw, 36px) !important;
   line-height: 1.25;
@@ -121,33 +113,20 @@ html, body { overflow-x: clip; }
   margin: 0 auto 1rem;
 }
 </style><style>
-/* Responsive triangle container centered with aspect ratio */
+/* --- Desktop cut-off fix for triangle labels --- */
 .triangle-container {
-  width: min(95vw, 1400px) !important;
-  margin: 0 auto !important;
-  aspect-ratio: 1 / 1;
-  position: relative;
-  overflow: visible !important;
+  /* preserve horizontal clipping to avoid side scroll,
+     but allow vertical overflow so labels aren't cut */
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
 }
 
-/* Center each label on its coordinate */
-#labels .label {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+/* increase container height on larger screens so bottom labels fit */
+@media (min-width: 992px) {
+  .triangle-container { height: 920px !important; }
 }
-#labels .label-text {
-  font-size: clamp(20px, 3.2vw, 32px);
-  font-weight: 700;
-  text-align: center;
-  white-space: nowrap;
-}
-</style><style id="tri-rescale-style">
-/* Ensure labels are centered on their (left, top) anchor */
-#labels .label {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+@media (min-width: 1280px) {
+  .triangle-container { height: 980px !important; }
 }
 </style></head>
 <style>
@@ -1356,122 +1335,5 @@ html, body { overflow-x: clip; }
     onResize(); // initial
   })();
   </script>
-<script>
-(function(){
-  const BASE_W = 900, BASE_H = 800;
-  function rescaleLabelPositions(){
-    const container = document.querySelector('.triangle-container');
-    const labels = document.querySelectorAll('#labels .label');
-    if(!container || !labels.length) return;
-    const w = container.clientWidth || BASE_W;
-    const h = container.clientHeight || BASE_H;
-    const sx = w / BASE_W;
-    const sy = h / BASE_H;
-    labels.forEach(el => {
-      const l = parseFloat(el.style.left || '0');
-      const t = parseFloat(el.style.top || '0');
-      if (!isNaN(l) && !isNaN(t)){
-        el.style.left = (l * sx) + 'px';
-        el.style.top  = (t * sy) + 'px';
-      }
-    });
-  }
-  window.addEventListener('load', function(){
-    // run twice: after their initialize() and after layout settles
-    setTimeout(rescaleLabelPositions, 50);
-    setTimeout(rescaleLabelPositions, 300);
-  });
-  window.addEventListener('resize', rescaleLabelPositions);
-})();
-</script><script id="tri-rescale-ro">
-(function(){
-  const BASE_W = 900, BASE_H = 800; // original coordinate system
-
-  function storeBasePositions(){
-    document.querySelectorAll('#labels .label').forEach(el => {
-      if (!el.hasAttribute('data-left')) {
-        const l = parseFloat(el.style.left || '0');
-        const t = parseFloat(el.style.top  || '0');
-        if (!isNaN(l) && !isNaN(t) && (l !== 0 || t !== 0)) {
-          el.setAttribute('data-left', l);
-          el.setAttribute('data-top',  t);
-        }
-      }
-    });
-  }
-
-  function rescale(){
-    const container = document.querySelector('.triangle-container');
-    if (!container) return;
-    const w = container.clientWidth || BASE_W;
-    const h = container.clientHeight || BASE_H;
-    const sx = w / BASE_W;
-    const sy = h / BASE_H;
-    document.querySelectorAll('#labels .label').forEach(el => {
-      const l0 = parseFloat(el.getAttribute('data-left'));
-      const t0 = parseFloat(el.getAttribute('data-top'));
-      if (!isNaN(l0) && !isNaN(t0)) {
-        el.style.left = (l0 * sx) + 'px';
-        el.style.top  = (t0 * sy) + 'px';
-      }
-    });
-  }
-
-  // Re-run a few times to catch async layout changes
-  function rescaleBurst(){
-    let count = 0;
-    function step(){
-      rescale();
-      if (++count < 12) requestAnimationFrame(step); // ~200ms burst
-    }
-    requestAnimationFrame(step);
-  }
-
-  function init(){
-    // Wait until the site's own initialize() has positioned labels
-    const start = performance.now();
-    const timer = setInterval(function(){
-      storeBasePositions();
-      const ready = Array.from(document.querySelectorAll('#labels .label'))
-        .every(el => el.hasAttribute('data-left'));
-      if (ready || performance.now() - start > 3000) {
-        clearInterval(timer);
-        rescaleBurst();
-      }
-    }, 50);
-  }
-
-  window.addEventListener('load', function(){
-    init();
-    // Also rerun after fonts are loaded (if supported)
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(rescaleBurst).catch(function(){});
-    }
-  });
-
-  // Respond to resizes/orientation changes
-  window.addEventListener('resize', rescaleBurst, {passive:true});
-  window.addEventListener('orientationchange', rescaleBurst, {passive:true});
-
-  // Observe the container size directly (covers zoom & CSS changes)
-  const ro = new (window.ResizeObserver || function(cb){
-    // minimal polyfill: fall back to window resize only
-    return { observe(){}, disconnect(){} };
-  })(function(){
-    rescaleBurst();
-  });
-  const observeWhenReady = setInterval(function(){
-    const container = document.querySelector('.triangle-container');
-    if (container && ro.observe) {
-      ro.observe(container);
-      clearInterval(observeWhenReady);
-    }
-  }, 100);
-
-  // In case visibility changes (tab switch), recompute
-  document.addEventListener('visibilitychange', function(){
-    if (!document.hidden) rescaleBurst();
-  });
-
-})();</script></body>
+</body>
 </html>
