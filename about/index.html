@@ -3,7 +3,7 @@
 <html lang="en">
 <meta charset="utf-8"/>
 <head>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="width=device-width, initial-scale=1" name="viewport">
 <!-- favicon (relative path, no leading slash) -->
 <link href="/images/logo.png" rel="icon" type="image/png"/>
 <!-- fonts -->
@@ -33,32 +33,49 @@
   .top-bar { font-size: 18px !important; padding: 0 15px !important; }
 }
 </style>
-<style>
-/* stop accidental page-wide sideways scroll */
+</meta><style>
+/* prevent horizontal panning */
 html, body { overflow-x: clip; }
 
-/* mission gif: don't exceed viewport width */
+/* mission gif clamp */
 .mission-gif { width: min(100vw, 780px) !important; }
 
-/* triangle section responsive */
+/* triangle responsive container */
 .triangle-container {
   width: min(900px, 100%) !important;
   max-width: 100% !important;
-  overflow: hidden;
+  overflow-x: hidden !important;  /* avoid sideways scroll */
+  overflow-y: visible !important; /* allow tall labels */
   position: relative;
 }
 
-/* labels fix - prevent cut off */
+/* center area where arrows + stage label live */
+#arrow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-inline: 24px; /* keep text from hitting container edges */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* stage label text (SOCAL ALLIANCE / NONPROFIT / VEXU TEAM) */
 .label-text {
-  font-size: clamp(32px, 2.8vw, 40px);
-  white-space: nowrap;
+  font-size: clamp(28px, 2.8vw, 30px);
+  font-weight: 700;
   text-align: center;
+  white-space: normal;          /* allow wrapping */
+  word-break: keep-all;         /* prevent breaking in the middle of words/letters */
+  overflow-wrap: break-word;    /* wrap only at word boundaries */
+  max-width: 100%;               /* leave room for arrows */
+  margin: 0 auto;
 }
 
 /* remove decorative circles */
 .label .circle { display: none !important; }
 
-/* description boxes responsive */
+/* description bubbles */
 .description-text {
   font-size: clamp(12px, 2.5vw, 16px);
   line-height: 1.4;
@@ -66,13 +83,7 @@ html, body { overflow-x: clip; }
   max-width: 40%;
 }
 
-/* arrows style: CSS triangles instead of text chars */
-#arrow-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
+/* CSS triangle arrows */
 #arrow-container .arrow {
   width: 0;
   height: 0;
@@ -80,15 +91,12 @@ html, body { overflow-x: clip; }
   border-bottom: 10px solid transparent;
   cursor: pointer;
   display: inline-block;
+  flex: 0 0 auto;
 }
-#arrow-container .arrow[data-dir="-1"] {
-  border-right: 12px solid #ff4d4d; /* left triangle */
-}
-#arrow-container .arrow[data-dir="1"] {
-  border-left: 12px solid #ff4d4d; /* right triangle */
-}
+#arrow-container .arrow[data-dir="-1"] { border-right: 12px solid #ff4d4d; }
+#arrow-container .arrow[data-dir="1"]  { border-left: 12px solid #ff4d4d;  }
 
-/* nav overflow fix */
+/* nav wrap fix */
 @media (max-width: 600px) {
   .top-bar nav {
     display: flex;
@@ -105,28 +113,12 @@ html, body { overflow-x: clip; }
   }
 }
 
-/* Triangular Ties headings */
+/* headings sizing */
 .integrated-bar.partnerships-banner h2 {
   font-size: clamp(24px, 5.5vw, 36px) !important;
   line-height: 1.25;
   text-align: center;
   margin: 0 auto 1rem;
-}
-</style><style>
-/* --- Desktop cut-off fix for triangle labels --- */
-.triangle-container {
-  /* preserve horizontal clipping to avoid side scroll,
-     but allow vertical overflow so labels aren't cut */
-  overflow-x: hidden !important;
-  overflow-y: visible !important;
-}
-
-/* increase container height on larger screens so bottom labels fit */
-@media (min-width: 992px) {
-  .triangle-container { height: 920px !important; }
-}
-@media (min-width: 1280px) {
-  .triangle-container { height: 980px !important; }
 }
 </style></head>
 <style>
