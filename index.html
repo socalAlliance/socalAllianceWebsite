@@ -2,44 +2,27 @@
 
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<!-- favicon -->
-<link href="/images/logo.png" rel="icon" type="image/png"/>
-<!-- fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&amp;family=Tilt+Warp&amp;display=swap" rel="stylesheet"/>
-<!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
-<script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+  <!-- favicon -->
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-65LTDNTZ16');
   </script>
-<style id="fix-navbar-overflow">
-html, body {
-  overflow-x: hidden;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-nav a {
-  flex: 1 1 auto;
-  text-align: center;
-  white-space: nowrap;
-  box-sizing: border-box;
-}
-</style></head>
+</head>
 <!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
 <script>
@@ -80,27 +63,15 @@ nav a {
     a { text-decoration:none; color:inherit; }
 
     /* — Sticky Nav — */
-    .top-bar {
-      position:sticky; top:0; left:0; z-index:10;
-      width:100%; height:100px;
-      display:flex; align-items:center; padding:0 50px;
-      font-family:'Tilt Warp',sans-serif; font-size:28px;
-      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-      transition:transform .3s ease;
-    }
-    .top-bar.hidden { transform:translateY(-100%); }
+    
+    
     .logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav { display:flex; gap:40px; }
     nav a:hover { opacity:.7; }
 
     /* Responsive nav for mobile and tablets */
     @media (max-width: 900px) {
-      .top-bar {
-        justify-content: space-between;
-        height: 80px;
-        padding: 0 20px;
-        font-size: 20px;
-      }
+      
       .logo {
         width: 60px;
         height: 54px;
@@ -112,10 +83,7 @@ nav a {
     }
 
     @media (max-width: 600px) {
-      .top-bar {
-        font-size: 18px;
-        padding: 0 15px;
-      }
+      
       .logo {
         width: 50px;
         height: 45px;
@@ -311,10 +279,7 @@ nav a {
     /* 1) Nav-bar logo stays colored */
 /* 1) Nav‐bar logo stays colored */
 /* 1) Force the nav‐bar logo image */
-.top-bar .logo-link .logo {
-  background-image: url('/images/logo.png') !important;
-  filter: none !important;      /* remove that grayscale/brightness hack */
-}
+
 
 /* 2) Ensure footer logo stays white */
 .site-footer .logo {
@@ -502,29 +467,112 @@ nav a {
     font-size: 0.8rem;  /* even smaller on phones */
   }
 }
-</style>
-<style id="nav-left-hotfix">
-/* === NAV alignment + size hotfix (match other pages) === */
+
 .top-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 50px;
+  font-family: 'Tilt Warp', sans-serif !important;
   font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
-  justify-content: flex-start !important;
+  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+  transition: transform .3s ease !important;
+  will-change: transform;
 }
 
-.top-bar nav { margin-left: 0 !important; }
+.top-bar.hidden {
+  transform: translateY(-100%) !important;
+}
 
-@media (min-width: 901px) {
-  .top-bar { height: 100px !important; padding: 0 50px !important; }
-  .top-bar nav { gap: 40px !important; }
+.top-bar nav {
+  display: flex;
+  gap: 40px;
+  margin-left: 0 !important;
+}
+
+.top-bar nav a {
+  font-size: inherit !important;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.top-bar nav a:hover {
+  opacity: 0.7;
+}
+
+.logo {
+  width: 81px;
+  height: 73px;
+  background: url('/images/logo.png') center/cover no-repeat;
+  margin-right: 20px;
+}
+
+.top-bar .logo-link .logo {
+  background-image: url('/images/logo.png') !important;
+  filter: none !important;
 }
 
 @media (max-width: 900px) {
-  .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; }
-  .top-bar nav { gap: 15px !important; }
+  .top-bar {
+    height: 80px !important;
+    padding: 0 20px !important;
+    font-size: 20px !important;
+  }
+  .logo {
+    width: 60px !important;
+    height: 54px !important;
+    margin-right: 0 !important;
+  }
+  nav {
+    gap: 15px !important;
+  }
 }
 
 @media (max-width: 600px) {
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
-  .top-bar nav { gap: 10px !important; }
+  .top-bar {
+    font-size: 18px !important;
+    padding: 0 15px !important;
+  }
+  .logo {
+    width: 50px !important;
+    height: 45px !important;
+  }
+  nav {
+    gap: 10px !important;
+  }
+  nav a {
+    font-size: 16px !important;
+  }
+}
+
+</style>
+<style id="nav-left-hotfix">
+/* === NAV alignment + size hotfix (match other pages) === */
+
+
+
+
+@media (min-width: 901px) {
+  
+  
+}
+
+@media (max-width: 900px) {
+  
+  
+}
+
+@media (max-width: 600px) {
+  
+  
 }
 </style>
 <body>
