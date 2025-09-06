@@ -40,17 +40,53 @@ html, body { overflow-x: clip; }
 /* mission gif: don't exceed viewport width */
 .mission-gif { width: min(100vw, 780px) !important; }
 
-/* triangle section: responsive base */
+/* triangle section responsive */
 .triangle-container {
   width: min(900px, 100%) !important;
   max-width: 100% !important;
-  /* allow visible to avoid clipping text */
-  overflow: visible !important;
-  padding-inline: 12px !important;
+  overflow: hidden;
+  position: relative;
 }
-#arrow-container, #labels, .description-text { max-width: 100%; }
-/* keep labels inside the container's padding */
-#labels { left: 12px !important; right: 12px !important; width: auto !important; }
+
+/* labels fix - prevent cut off */
+.label-text {
+  font-size: clamp(32px, 2.8vw, 40px);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* remove decorative circles */
+.label .circle { display: none !important; }
+
+/* description boxes responsive */
+.description-text {
+  font-size: clamp(12px, 2.5vw, 16px);
+  line-height: 1.4;
+  word-wrap: break-word;
+  max-width: 40%;
+}
+
+/* arrows style: CSS triangles instead of text chars */
+#arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+#arrow-container .arrow {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  cursor: pointer;
+  display: inline-block;
+}
+#arrow-container .arrow[data-dir="-1"] {
+  border-right: 12px solid #ff4d4d; /* left triangle */
+}
+#arrow-container .arrow[data-dir="1"] {
+  border-left: 12px solid #ff4d4d; /* right triangle */
+}
 
 /* nav overflow fix */
 @media (max-width: 600px) {
@@ -69,25 +105,13 @@ html, body { overflow-x: clip; }
   }
 }
 
-/* Triangular Ties headings (both instances) */
+/* Triangular Ties headings */
 .integrated-bar.partnerships-banner h2 {
   font-size: clamp(24px, 5.5vw, 36px) !important;
   line-height: 1.25;
   text-align: center;
   margin: 0 auto 1rem;
 }
-
-/* ensure label endpoints are circular (not square) */
-.label::before, .label::after {
-  content: "";
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin: 0 0.35em;
-  border-radius: 9999px;
-  background: var(--animated-gradient, linear-gradient(45deg, #F9CB22, #F0115F));
-}
-.label { overflow: visible !important; }
 </style></head>
 <style>
     /* — Reset & Base — */
@@ -849,7 +873,7 @@ html, body { overflow-x: clip; }
 <div class="bg-split__half bg-split__left"></div>
 <div class="bg-split__half bg-split__right"></div>
 </div>
-<div class="triangle-container" style="margin:5rem auto; width:900px; position:relative; text-align:center; font-family:sans-serif; height:800px;">
+<div class="triangle-container" style="margin:5rem auto; position:relative; text-align:center; font-family:sans-serif; height:800px;">
 <!-- SVG Triangle -->
 <svg style="width:100%; height:auto;" viewbox="0 0 300 240">
 <defs>
