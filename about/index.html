@@ -3,7 +3,7 @@
 <html lang="en">
 <meta charset="utf-8"/>
 <head>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="width=device-width, initial-scale=1" name="viewport">
 <!-- favicon (relative path, no leading slash) -->
 <link href="/images/logo.png" rel="icon" type="image/png"/>
 <!-- fonts -->
@@ -33,35 +33,26 @@
   .top-bar { font-size: 18px !important; padding: 0 15px !important; }
 }
 </style>
-<style>
+</meta><style>
+/* stop accidental page-wide sideways scroll */
 html, body { overflow-x: clip; }
+
+/* mission gif: don't exceed viewport width */
 .mission-gif { width: min(100vw, 780px) !important; }
+
+/* triangle section: responsive base */
 .triangle-container {
   width: min(900px, 100%) !important;
   max-width: 100% !important;
-  overflow: hidden;
+  /* allow visible to avoid clipping text */
+  overflow: visible !important;
+  padding-inline: 12px !important;
 }
-#arrow-container, #labels, .description-text {
-  max-width: 100%;
-}
-</style><style>
-/* --- Mobile nav overflow fix --- */
-.top-bar nav { min-width: 0; }
-@media (max-width: 520px) {
-  .top-bar { padding: 0 12px !important; }
-  .top-bar nav { flex-wrap: wrap; gap: 8px !important; }
-  .top-bar nav a { font-size: 16px !important; }
-}
+#arrow-container, #labels, .description-text { max-width: 100%; }
+/* keep labels inside the container's padding */
+#labels { left: 12px !important; right: 12px !important; width: auto !important; }
 
-/* --- "TRIANGULAR TIES" title sizing/centering --- */
-.integrated-bar.partnerships-banner h2 {
-  font-size: clamp(30px, 6vw, 40px) !important;
-  line-height: 1.1;
-  text-align: center;
-  margin: 0 auto;
-}
-</style><style>
-/* --- NAV overflow/wrapping fix for small screens --- */
+/* nav overflow fix */
 @media (max-width: 600px) {
   .top-bar nav {
     display: flex;
@@ -78,13 +69,25 @@ html, body { overflow-x: clip; }
   }
 }
 
-/* --- Triangular Ties heading size/centering --- */
+/* Triangular Ties headings (both instances) */
 .integrated-bar.partnerships-banner h2 {
-  font-size: clamp(30px, 5vw, 36px) !important;
-  line-height: 1.2;
+  font-size: clamp(24px, 5.5vw, 36px) !important;
+  line-height: 1.25;
   text-align: center;
   margin: 0 auto 1rem;
 }
+
+/* ensure label endpoints are circular (not square) */
+.label::before, .label::after {
+  content: "";
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin: 0 0.35em;
+  border-radius: 9999px;
+  background: var(--animated-gradient, linear-gradient(45deg, #F9CB22, #F0115F));
+}
+.label { overflow: visible !important; }
 </style></head>
 <style>
     /* — Reset & Base — */
@@ -846,7 +849,7 @@ html, body { overflow-x: clip; }
 <div class="bg-split__half bg-split__left"></div>
 <div class="bg-split__half bg-split__right"></div>
 </div>
-<div class="triangle-container" style="margin:5rem auto; position:relative; text-align:center; font-family:sans-serif; height:800px;">
+<div class="triangle-container" style="margin:5rem auto; width:900px; position:relative; text-align:center; font-family:sans-serif; height:800px;">
 <!-- SVG Triangle -->
 <svg style="width:100%; height:auto;" viewbox="0 0 300 240">
 <defs>
