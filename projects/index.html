@@ -18,7 +18,6 @@
     gtag('js', new Date());
     gtag('config', 'G-65LTDNTZ16');
   </script>
-
 <style id="nav-core">
 .top-bar{
   position: sticky; top: 0; left: 0; z-index: 1000;
@@ -83,147 +82,116 @@
   .top-bar nav.open a{ font-size:16px !important; padding:8px 2px;}
 }
 
-/* === Mobile overflow fixes (add at end) === */
+/* --- Mobile overflow fixes --- */
+html { overflow-x: clip; }
+body { overflow-x: hidden; }
 
-/* 1) Make underline overhang shrink on phones */
-:root{
-  /* keeps the gradient underline from sticking out too far on small screens */
-  --underline-overhang: min(2rem, 4vw);
-  --partnerships-underline-overhang: min(2rem, 4vw);
+img, svg, video { max-width: 100%; height: auto; }
+
+.support-why h2,
+.support-how h2,
+.support-tiers-title,
+.carousel-title {
+  overflow: clip;
 }
 
-/* 2) Clip any horizontal paint that could cause side-scroll */
-.hero,
-.doc-section,
-.site-footer,
-.top-bar { overflow-x: clip; }
-@supports not (overflow: clip) {
-  .hero, .doc-section, .site-footer, .top-bar { overflow-x: hidden; }
+@media (max-width: 600px) {
+  :root { --support-underline-overhang: 0; }
 }
 
-/* 3) Ensure the mobile menu never widens the page */
-@media (max-width:600px){
-  .top-bar nav.open{
-    right: 0;
+.sponsor-marquee { overflow-x: hidden; }
+
+@media (max-width: 600px) {
+  .top-bar nav.open {
     left: auto;
+    right: 0;
     max-width: 100vw;
     box-sizing: border-box;
   }
 }
 
-/* 4) Belt-and-suspenders: avoid any stray 100vw overflow */
-html, body { overflow-x: clip; }
-@supports not (overflow: clip) {
-  html, body { overflow-x: hidden; }
-}
-
-
-/* Reduce button text size on mobile */
-@media (max-width: 600px) {
-  .doc-button {
-    font-size: 1rem;
-    padding: 0.75rem 1rem;
-    line-height: 1.2;
-  }
-}
-
-
-/* === Projects buttons: consistent fit & alignment === */
-.features { align-items: stretch; }
-
-.feature { position: relative; }
-
-/* Ensure inner content uses equal padding and sits on the bottom */
-.feature .copy{
-  padding: clamp(16px, 4vw, 26px) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-end !important;
-  height: 100% !important;
-}
-
-/* Remove extra spacing around the heading and keep the box centered */
-.feature h3{ margin: 0 !important; }
-
-/* Make the button box fit within its tile with equal padding */
-.feature-btn{
-  display: block !important;
-  width: 100% !important;
-  max-width: none !important;
-  box-sizing: border-box !important;
-  text-align: center !important;
-  line-height: 1.25 !important;
-  padding: 0.75em 1em !important;
-  font-size: clamp(14px, 4.5vw, 16px) !important;
-  white-space: normal !important; /* allow wrapping */
-}
-
-/* === Equal-height feature buttons + centered text === */
-:root{ --btn-min-h: 4.6em; } /* fits two lines comfortably; tweak as needed */
-
-.feature-btn{
-  display: flex !important;
-  align-items: center !important;    /* vertical centering */
-  justify-content: center !important;/* horizontal centering */
-  text-align: center !important;
-  min-height: var(--btn-min-h) !important;
-}
-
-/* Slightly taller on very small phones if wrapping increases */
-@media (max-width: 380px){
-  :root{ --btn-min-h: 5.2em; }
-}
-
-</style><style>
-/* === Mobile dropdown visibility & layering fix === */
+</style><style id="mobile-menu-fix">
+/* === Mobile menu robust fix === */
 @media (max-width:600px){
-  .top-bar nav.open{
-    z-index: 2000;                 /* above the sticky header */
-    width: min(92vw, 360px);       /* readable width on phones */
-    max-height: min(70vh, 480px);  /* prevent going off-screen */
-    overflow-y: auto;              /* scroll within if long */
-    box-shadow: 0 8px 24px rgba(0,0,0,.35);
-  }
-  .nav-toggle{ position: relative; z-index: 2001; }
-}
-</style>
-</head>
-<style>
-    :root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+  /* keep header above content */
+  .top-bar{ z-index: 1000 !important; }
 
-    *{margin:0;padding:0;box-sizing:border-box}
-    html,body{width:100%}
-    body{background:#000;color:#fff;font-family:'Instrument Sans',sans-serif;line-height:1.4;overflow-x:hidden}
-    a{text-decoration:none;color:inherit}
+  /* render dropdown on top of everything and not clipped by ancestors */
+  .top-bar nav.open{
+    position: fixed !important;
+    top: 80px;              /* default; JS below will fine-tune */
+    right: 0;
+    left: auto;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    z-index: 2000 !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding: 12px 16px;
+  }
+  .nav-toggle{ position: relative; z-index: 2001 !important; }
+}
+</style></head>
+<style>
+    :root {
+      --hero-text-size: 36px;
+      --bar-radius: 12px;
+    
+  --support-underline-height: 10px;
+  
+  --support-gradient:
+    linear-gradient(
+      90deg,
+      rgba(249,203,34,0.9) 23%,
+      rgba(239,118,22,0.9) 50%,
+      rgba(240,17,95,0.9) 77%
+    );
+     
+   /* shift the image 20% of its container width to the left */
+  --support-bg-pos-x: -290px;
+  /* shift the image 50% down from its top edge */
+  --support-bg-pos-y: 50%;
+  --support-bg-size: 120% auto; /* keep this if you’re scaling width to 100% */
+      --why-text-size:    20px;    /* default font-size for WHY text */
+  --why-line-height:  1.5;     /* line-height */
+  --why-text-wrap:    1000px;   /* max-width before wrapping */
+    --support-label-size:    18px;
+  --support-text-size:     20px;
+  --support-line-height:   1.5;
+  --support-text-wrap:     700px;
+      --partnerships-text-size: 72px;
+  --partnerships-text-weight: 100;
+  --support-underline-overhang: 5rem;
+  --support-underline-height: 10px;
+  --support-underline-radius: 1000px;
+  
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { width:100%; }
+    body {
+      background:#000; color:#fff;
+      font-family:'Instrument Sans',sans-serif;
+      line-height:1.4; overflow-x:hidden;
+    }
+    a { text-decoration:none; color:inherit; }
 
     /* — Sticky Nav — */
-    .top-bar{
-      position:sticky; top:0; left:0; z-index:10;
+    .top-bar {
+      position:sticky; top:0; left:0; z-index: 1000 !important;
       width:100%; height:100px;
       display:flex; align-items:center; padding:0 50px;
       font-family:'Tilt Warp',sans-serif; font-size:28px;
       background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
       transition:transform .3s ease;
     }
-    .top-bar.hidden{ transform:translateY(-100%); }
-    .logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
-    nav{ display:flex; gap:40px; }
-    nav a:hover{ opacity:.7; }
-.logo {
-  transition: transform 0.3s ease;
-  /* (if you ever have an overriding !important transform:none, remove it) */
-}
-.logo-link:hover .logo {
-  transform: scale(1.05);
-}
+    .top-bar.hidden { transform:translateY(-100%); }
+    .logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+    nav { display:flex; gap:40px; }
+    nav a:hover { opacity:.7; }
 
-/* DONATE-WHITE.PNG HOVER GREY-OUT */
-.donate-img {
-  transition: filter 0.3s ease;
-}
-.donate-img:hover {
-  filter: grayscale(100%) brightness(80%);
-}
     /* Responsive nav for mobile and tablets */
     @media (max-width: 900px) {
       .top-bar {
@@ -259,420 +227,122 @@ html, body { overflow-x: clip; }
       }
     }
 
-    /* CONTENT */
-    main{background:#000}
-
-    .hero{padding:90px 8% 40px;text-align:center}
-    .hero h1{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(40px,6vw,76px);line-height:1.05}
-    /* 1. Make the H1 inline and positioned relative */
-/* 1) On your H1, set a custom overhang and allow overflow */
-.hero h1 {
-  --underline-overhang: 4rem;    /* ↔️ change this to whatever you like */
-  position: relative;
-  display: inline-block;
-  padding-bottom: 0.25em;        /* room for the underline */
-  overflow: visible;             /* allow the pseudo‐element to spill outside */
-}
-
-/* 2) Use that variable in the ::after */
-.hero h1::after {
-  content: "";
-  position: absolute;
-  left:  calc(-1 * var(--underline-overhang));
-  bottom: 0;
-  width: calc(100% + (var(--underline-overhang) * 2));
-  height: 8px;                   /* thickness */
-  border-radius: 4px;            /* round ends */
-  background: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-
-}
-    .hero p{margin-top:14px;max-width:900px;margin-inline:auto;opacity:.9}
-
-    /* FEATURES — match mock: 2x2, sharp, thin gutters */
-    .features {
-  padding: 0; /* remove side padding */
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0; /* no gap */
-}
-
-.feature {
-  position: relative;
-  min-height: 500px; /* adjust height as needed */
-  border-radius: 0;
-  overflow: hidden;
-}
-
-.feature:nth-child(odd) { border-right: 0px solid #000; }
-.feature:nth-child(n+3) { border-top: 0px solid #000; }
-
-.feature img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-    .feature::before{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.25));z-index:1
-    }
-    .feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.95) brightness(.85)}
-    .feature .copy{
-      position:relative;z-index:2;color:#fff;padding:26px;display:flex;flex-direction:column;gap:10px;height:100%;justify-content:flex-end
-    }
-    .feature h3{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(22px,3.2vw,30px);letter-spacing:.3px}
-    .feature p{opacity:.9;max-width:52ch}
-
-/* TIMELINE SECTION */
-/* 1) Choose one unified X-offset for line & arrows */
-/* 1) Define shared positions on the .timeline container */
-.timeline {
-  /* X-offset of the line from the left edge */
-  --spine-x: calc(8% + 61px);
-
-  /* Y-offsets of the ends of the line */
-  --spine-top: calc(48px + 7px);    /* matches ::before top */
-  --spine-bottom: calc(90px - 7px); /* matches ::before bottom */
-
-  position: relative;
-  padding: 48px 8% 90px;
-}
-
-/* 2) Position the gradient line using the same vars */
-.timeline::before {
-  content: "";
-  position: absolute;
-  top:    var(--spine-top);
-  bottom: var(--spine-bottom);
-  left:   var(--spine-x);
-  width:  4px;
-  border-radius: 2px;
-  background: linear-gradient(
-    180deg,
-    rgba(249,203,34,0.9) 0%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 100%
-  );
-  pointer-events: none;
-}
-
-/* 3) Align both arrows at that exact X, and vertically at line ends */
-.tl-arrow {
-  position: absolute;
-  left: var(--spine-x);
-  transform: translateX(-50%);  /* center the arrow on the line */
-  z-index: 2;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 2rem;
-}
-
-/* top arrow sits at the top of the line */
-.tl-arrow.up {
-  top: var(--spine-top);
-  /* optionally nudge it above the line: */
-  transform: translate(-50%, -100%);
-}
-
-/* bottom arrow sits at the bottom of the line */
-.tl-arrow.down {
-  bottom: var(--spine-bottom);
-  /* optionally nudge it below the line: */
-  transform: translate(-50%, 100%);
-}
-
-/* animated gradient “glow” on arrow glyph */
-.tl-arrow.up::before  { content: "▲"; }
-.tl-arrow.down::before{ content: "▼"; }
-.tl-arrow::before {
-  display: inline-block;
-  background: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-  background-size: 200% 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: gradient-move 3s linear infinite;
-  transition: transform .2s, filter .2s;
-}
-.tl-arrow:hover::before {
-  transform: scale(1.2);
-  filter: brightness(1.3);
-}
-
-@keyframes gradient-move {
-  0%   { background-position: 0%   50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0%   50%; }
-}
-
-/* viewport and list */
-.tl-viewport {
-  overflow: hidden;
-  width: 100%;
-  max-width: 600px;
-  margin: 0;
-}
-.tl-list {
-  display: grid;
-  gap: 30px;
-  transition: transform 0.4s ease;
-}
-
-/* each item pushed right of the line */
-.tl-item {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 26px;
-  padding-left: calc(8% + 61px + 10px);
-  align-items: start;
-}
-
-/* bold date */
-.tl-dot {
-  font-weight: 700;
-  font-size: 1.2rem;
-  letter-spacing: .3px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  /* keep left of line */
-}
-.tl-dot i {
-  width: 12px;
-  height: 12px;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(255,255,255,.15);
-}
-
-/* body box */
-.tl-body {
-  display: block;
-  width: 100%;
-  text-decoration: none;    /* remove underline */
-  color: inherit;
-  background: #111;
-  padding: 18px 20px;
-  border: 4px solid transparent;
-  border-image: linear-gradient(
-      90deg,
-      rgba(249,203,34,0.9) 23%,
-      rgba(239,118,22,0.9) 50%,
-      rgba(240,17,95,0.9) 77%
-    ) 1;
-  border-radius: 12px;
-  box-shadow: var(--drop-shadow);
-  transition: background .2s, transform .2s;
-}
-.tl-body:hover {
-  background: rgba(255,255,255,0.05);
-  transform: translateY(-2px);
-}
-
-/* gradient underline on title */
-.tl-title {
-  font-family: 'Tilt Warp', sans-serif;
-  font-size: clamp(20px,3.2vw,26px);
-  margin-bottom: 6px;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 4px;
-}
-.tl-title::after {
-  content: "";
-  position: absolute;
-  left: calc(-1 * var(--partnerships-underline-overhang));
-  right: calc(-1 * var(--partnerships-underline-overhang));
-  bottom: 0;
-  height: var(--partnerships-underline-height);
-  background: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-  border-radius: var(--partnerships-underline-radius);
-}
-
-/* text */
-.tl-text {
-  opacity: .9;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-/* ensure arrows are on top */
-.tl-arrow.up, .tl-arrow.down {
-  pointer-events: all;
-}
-/* — Timeline Section Title — */
-.timeline-title {
-  /* 1) text size */
-  font-size: clamp(28px, 4vw, 48px);
-
-  /* 2) spacing around the title:
-     margin-top pushes it away from what’s above,
-     margin-bottom controls how far the timeline sits below. */
-  margin: 3rem 0 1.5rem 18%;
-
-  /* 3) keep your underline setup */
-  display: inline-block;
-  position: relative;
-  padding-bottom: 0.em;
-  overflow: visible;
-  --underline-overhang: 4rem;
-}
-.timeline-title::after {
-  content: "";
-  position: absolute;
-  left: calc(-1 * var(--underline-overhang));
-  bottom: 0;
-  width: calc(100% + var(--underline-overhang)*2);
-  height: 8px;
-  border-radius: 4px;
-  background: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-}
-.feature-btn {
-  all: unset;
-  display: inline-block;
-  font-family: 'Tilt Warp', sans-serif;
-  font-size: clamp(18px,3.2vw,24px);
-  color: #fff;
-  padding: 0.5em 1.2em;
-  cursor: pointer;
-  border: 2px solid transparent;
-  border-image: linear-gradient(
-      90deg,
-      rgba(249,203,34,0.9) 23%,
-      rgba(239,118,22,0.9) 50%,
-      rgba(240,17,95,0.9) 77%
-    ) 1;
-  border-radius: 8px;
-  transition: transform .2s ease, filter .2s ease;
-  background: rgba(0,0,0,0.4);
-}
-.feature-btn:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
-}
-/* Outer wrapper: gradient border/frame */
-/* Title + gradient underline */
-.doc-title {
-  font-family: 'Tilt Warp', sans-serif;
-  font-size: clamp(24px, 4vw, 32px);
-  color: #fff;
-  display: inline-block;
-  position: relative;
-  margin-bottom: 1rem;
-  padding-bottom: 0.25em;
-}
-.doc-title::after {
-  content: "";
-  position: absolute;
-  left: -1rem;      /* overhang */
-  right: -1rem;     /* overhang */
-  bottom: 0;
-  height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-}
-
-/* (existing gradient-box styles you already have) */
-.doc-gradient-wrapper {
-  background: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-  padding: 4px;
-  border-radius: 12px;
-  overflow: hidden;
-  max-width: 100%;
-  margin: 2rem auto;
-}
-.doc-inner {
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.doc-inner iframe {
-  display: block;
-  width: 100%;
-  height: 600px;
-  border: none;
-}
-/* Container centers everything */
-.doc-section {
-  text-align: center;
-  margin: 4rem 0; /* optional vertical spacing */
-}
-
-/* Match hero h1 sizing and font */
-.doc-title {
-  font-family: 'Tilt Warp', sans-serif;
-  font-size: clamp(40px, 6vw, 76px);
-  font-weight: 100;
-  color: #fff;
-  display: inline-block;   /* so underline shrinks to fit */
-  position: relative;
-  padding-bottom: 0.25em;  /* room for underline */
-  margin-bottom: 2rem;     /* space before the embed box */
-}
-
-/* Gradient underline */
-.doc-title::after {
-  content: "";
-  position: absolute;
-  left: calc(-1 * var(--partnerships-underline-overhang, 5rem));
-  right: calc(-1 * var(--partnerships-underline-overhang, 5rem));
-  bottom: 0;
-  height: var(--partnerships-underline-height, 10px);
-  background: linear-gradient(
-    90deg,
-    rgba(249,203,34,0.9) 23%,
-    rgba(239,118,22,0.9) 50%,
-    rgba(240,17,95,0.9) 77%
-  );
-  border-radius: var(--partnerships-underline-radius, 1000px);
-}
-
+    
     /* FOOTER */
-    .site-footer{background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);color:#fff;padding:2rem 10%}
-    .site-footer .logo {background-image: url('/images/logowhite.png') !important;}
-    .footer-content{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:5rem}
-    .footer-left{display:flex;align-items:flex-start;gap:1rem;flex:1 1 400px}
-    .footer-copy{font-size:1.5rem;font-weight:bold}
-    .footer-sub{margin-top:.5rem;font-size:1rem;opacity:.9;max-width:400px}
-    .footer-center{display:flex;flex-direction:column;align-items:center;gap:1rem}
-    .donate-img{height:48px;cursor:pointer}
-    .footer-social{display:flex;gap:1rem}
-    .footer-social img{width:60px;height:60px;filter:brightness(200%);transition:filter .2s}
-    .footer-social a:hover img{filter:grayscale(100%) brightness(80%)}
-    /* 2) On hover, cancel the scale and apply grayscale */
+    .site-footer {
+      background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      color:#fff;
+      padding: 3rem 10%;            /* a touch more vertical padding lifts content */
+      font-family:'Instrument Sans',sans-serif;
+    }
+
+    /* Use grid so the center column can be perfectly centered vertically */
+    .footer-content {
+      display: grid;
+      grid-template-columns: minmax(420px,1fr) auto; /* left grows, right hugs content */
+      align-items: center;           /* <-- centers the right column vertically */
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-left {
+      display:flex;
+      align-items: center;           /* left block aligns with the centered right */
+      gap: 1rem;
+      flex: 1 1 auto;
+    }
+
+    /* keep the donate + socials centered as a group */
+    .footer-center {
+      display: grid;
+      place-items: center;           /* centers horizontally + vertically inside its cell */
+      gap: 1rem;
+    }
+
+    .footer-social {
+      display:flex;
+      gap:1rem;
+      justify-content: center;       /* centers the icons under the button */
+    }
+
+    /* Mobile: stack and hard-center everything */
+    @media (max-width: 900px) {
+      .site-footer { padding: 2rem 6vw; }
+      .footer-content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 5rem;
+      }
+      .footer-left {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    .donate-img { height:48px; cursor:pointer; }
+    .footer-social { display:flex; gap:1rem; }
+    .footer-social img {
+      width:60px; height:60px; filter:brightness(200%);
+      transition:filter .2s;
+    }
+    .footer-social a:hover img { filter:brightness(100%); }
+    .donate-img:hover,
+    .footer-social a:hover img {
+      filter: grayscale(100%) brightness(80%);
+    }
+    .btn-img:hover img {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+    .logo-link .logo {
+      transition: transform 0.3s ease;
+    }
+    .logo-link:hover .logo {
+      transform: scale(1.05);
+    }
+    .btn-img img {
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    /* Responsive Fixes */
+    @media (max-width: 900px) {
+      .hero-1, .hero-2 { height: auto; min-height: 320px; background-size: cover; }
+      .hero-text {
+        font-size: 1.3rem;
+        white-space: normal;
+
+        padding: 0.5em 0.5em;
+      }
+      .subhead {
+        max-width: 100%;
+        padding: 16px;
+        font-size: 1rem;
+        margin: 1rem 0 0 0;
+      }
+      .about { position: static !important; width: 100% !important; padding: 24px 8px !important; border-radius: 0; }
+      .about .inner { max-width: 100%; }
+      .founder { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .photo { width: 80px; height: 100px; min-width: 60px; }
+      .signature { width: 150px; height: 38px; min-width: 60px; }
+      .partnerships-banner h2 { font-size: 2rem; }
+      .partners-logos { flex-wrap: wrap; gap: 1rem; }
+      .partners-logos a img { width: 80px; }
+      .gradient-bar { display: none; }
+      .site-footer { padding: 1rem 2vw; }
+      .footer-content { flex-direction: column; gap: 0.5rem; align-self: center;}
+    }
+    /* 1) Nav-bar logo stays colored */
+/* 1) Nav‐bar logo stays colored */
+/* 1) Force the nav‐bar logo image */
+.top-bar .logo-link .logo {
+  background-image: url('/images/logo.png') !important;
+  filter: none !important;      /* remove that grayscale/brightness hack */
+}
+
+/* 2) Ensure footer logo stays white */
+.site-footer .logo {
+  background-image: url('/images/logowhite.png') !important;
+}
 .site-footer .logo {
   /* only animate filter, not transform */
   transition: filter 0.3s ease !important;
@@ -686,198 +356,392 @@ html, body { overflow-x: clip; }
   /* ensure it never scales */
   transform: none !important;
 }
-  </style>
-<style id="sync-nav-footer">
 
-/* Synced from support.html (nav + footer) */
-.top-bar {
-      position:sticky; top:0; left:0; z-index:10;
-      width:100%; height:100px;
-      display:flex; align-items:center; padding:0 50px;
-      font-family:'Tilt Warp',sans-serif; font-size:28px;
-      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-      transition:transform .3s ease;
-    }
-.top-bar.hidden { transform:translateY(-100%); }
-.top-bar {
-        justify-content: space-between;
-        height: 80px;
-        padding: 0 20px;
-        font-size: 20px;
-      }
-.top-bar {
-        font-size: 18px;
-        padding: 0 15px;
-      }
-.top-bar .logo-link .logo {
-  background-image: url('/images/logo.png') !important;
-  filter: none !important;      /* remove that grayscale/brightness hack */
+/* shared gradient separator */
+.gradient-bar.separator {
+  width: 100%;
+  height: 8px;
+  background: var(--support-gradient);
+  border-radius: 4px;
+  margin: 0;
 }
-.logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
-.logo {
-        width: 60px;
-        height: 54px;
-        margin-right: 0;
-      }
-.logo {
-        width: 50px;
-        height: 45px;
-      }
-.logo {
-      transition: transform 0.3s ease;
-    }
-.logo {
-      transform: scale(1.05);
-    }
-.logo {
-  background-image: url('/images/logo.png') !important;
-  filter: none !important;      /* remove that grayscale/brightness hack */
+
+/* WHY SUPPORT US */
+.support-why {
+  background-image:
+    linear-gradient(
+      360deg,
+      rgba(0,0,0,0)   -10%,
+      rgba(0,0,0,0.8) 25%,
+      #000            100%
+    ),
+    url('/images/whysupport.png');
+  background-size:    var(--support-bg-size);
+  background-position: var(--support-bg-pos-x) var(--support-bg-pos-y);
+  background-repeat:  no-repeat;
+
+  padding: 2rem 8% 14rem;
+  text-align: center;
+  position: relative;
+  color: #fff;
 }
-.logo {
-  background-image: url('/images/logowhite.png') !important;
+
+/* ensure your text sits above that gradient layer */
+.support-why > * {
+  position: relative;
+  z-index: 1;
 }
-.logo {
-  /* only animate filter, not transform */
-  transition: filter 0.3s ease !important;
-  /* cancel any inherited scale */
-  transform: none !important;
+
+
+
+.support-why h2::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom: 0;
+  height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
 }
-.logo {
-  filter: grayscale(100%) brightness(80%) !important;
-  /* ensure it never scales */
-  transform: none !important;
+
+/* HOW TO SUPPORT US */
+.support-how {
+  /* Layer 1: dark→transparent tint on top
+     Layer 2: your flag.png image underneath */
+  background-image:
+    linear-gradient(
+      260deg,
+      rgba(0,0,0,0)   -10%,
+      rgba(0,0,0,0.8) 25%,
+      #000            70%
+    ),
+    url('/images/flag.png');
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  /* keep your existing padding/text‐alignment */
+  padding: 4rem 8%;
+  text-align: left;
+  color: #fff;
+  position: relative;
 }
-nav { display:flex; gap:40px; }
-nav {
-        gap: 15px;
-      }
-nav {
-        gap: 10px;
-      }
-nav a:hover { opacity:.7; }
-@media (max-width: 900px) {
-      .top-bar {
-        justify-content: space-between;
-        height: 80px;
-        padding: 0 20px;
-        font-size: 20px;
-      }
-      .logo {
-        width: 60px;
-        height: 54px;
-        margin-right: 0;
-      }
+
+/* ensure your headings & paragraphs sit above the tint layer */
+.support-how > * {
+  position: relative;
+  z-index: 1;
+}
+/* — Unified Support Section Titles — */
+.support-why h2,
+.support-how h2 {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: var(--partnerships-text-size);    /* 72px by default */
+  font-weight: var(--partnerships-text-weight);/* 100 by default */
+  line-height: 1.1;
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.5em;
+  margin-bottom: 1rem;
+}
+
+/* — Shared Gradient Underline — */
+.support-why h2::after,
+.support-how h2::after {
+  content: "";
+  position: absolute;
+  left:  calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom: 0;
+  height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+.support-how p {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  max-width: 900px;
+}
+.support-why p {
+  font-size:    var(--why-text-size);
+  line-height:  var(--why-line-height);
+  max-width:    var(--why-text-wrap);
+  margin:       0 auto 1.5rem;  /* keep center wrap if you like */
+  text-align:   center;         /* or left, if you’d prefer */
+  word-wrap:    break-word;
+}
+.support-how p {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+/* buttons row */
+/* ensure the wrapper exists */
+.support-buttons {
+  display: inline-flex;
+  gap: 1.5rem;               /* keeps space between the two icons */
+  margin: 1.5rem 0;
+}
+
+.support-buttons img {
+  height: 60px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.support-buttons a:hover img {
+  transform: scale(1.05);    /* the “pop” on hover */
+  filter: brightness(1.1);
+}
+
+/* responsive tweaks */
 @media (max-width: 600px) {
-      .top-bar {
-        font-size: 18px;
-        padding: 0 15px;
-      }
-      .logo {
-        width: 50px;
-        height: 45px;
-      }
-.site-footer {
-      background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-      color:#fff;
-      padding: 3rem 10%;            /* a touch more vertical padding lifts content */
-      font-family:'Instrument Sans',sans-serif;
-    }
-.site-footer { padding: 2rem 6vw; }
-.site-footer { padding: 1rem 2vw; }
-.footer-content {
-      display: grid;
-      grid-template-columns: minmax(420px,1fr) auto; /* left grows, right hugs content */
-      align-items: center;           /* <-- centers the right column vertically */
-      justify-content: space-between;
-      gap: 2rem;
-    }
-.footer-content {
-        grid-template-columns: 1fr;
-        justify-items: center;
-        gap: 5rem;
-      }
-.footer-content { flex-direction: column; gap: 0.5rem; align-self: center;}
-.footer-left {
-      display:flex;
-      align-items: center;           /* left block aligns with the centered right */
-      gap: 1rem;
-      flex: 1 1 auto;
-    }
-.footer-left {
-        flex-direction: column;
-        text-align: center;
-      }
-.footer-center {
-      display: grid;
-      place-items: center;           /* centers horizontally + vertically inside its cell */
-      gap: 1rem;
-    }
-.footer-social {
-      display:flex;
-      gap:1rem;
-      justify-content: center;       /* centers the icons under the button */
-    }
-.footer-social { display:flex; gap:1rem; }
-.donate-img { height:48px; cursor:pointer; }
-.footer-social img {
-      width:60px; height:60px; filter:brightness(200%);
-      transition:filter .2s;
-    }
-.footer-social a:hover img { filter:brightness(100%); }
-.footer-social a:hover img {
-      filter: grayscale(100%) brightness(80%);
-    }
-.site-footer .logo {
-  background-image: url('/images/logowhite.png') !important;
-}
-.site-footer .logo {
-  /* only animate filter, not transform */
-  transition: filter 0.3s ease !important;
-  /* cancel any inherited scale */
-  transform: none !important;
-}
-.site-footer .logo-link:hover .logo {
-  filter: grayscale(100%) brightness(80%) !important;
-  /* ensure it never scales */
-  transform: none !important;
-}
-@media (max-width: 900px) {
-      .site-footer { padding: 2rem 6vw; }
-      .footer-content {
-        grid-template-columns: 1fr;
-        justify-items: center;
-        gap: 5rem;
-      }
-    }
+  .support-why, .support-how {
+    padding: 3rem 4%;
+  }
+  .support-buttons {
+    flex-direction: column;
+    gap: 1rem;
   }
 }
-</style><style id="nav-left-hotfix">
-/* === NAV alignment + size hotfix === */
-.top-bar {
-  /* smoothly scale nav label size on wider screens */
-  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+/* bold the label text & size it */
+.support-label {
+  display: inline-block;
+  font-weight: bold;
+  font-size: var(--support-label-size);
+  margin-right: 0.25em;
 }
 
-/* Left-align content on all sizes unless explicitly changed elsewhere */
-.top-bar { justify-content: flex-start !important; }
+/* 1) Make the whole section text left-aligned */
+.support-how {
+  text-align: left;
+}
 
-/* Ensure the nav cluster doesn't get pushed right by margin tricks */
+/* 2) Stop centering the <p> blocks by removing the auto side-margins */
+.support-how p {
+  margin: 0.75rem 0;          /* vertical spacing only */
+  /* keep your sizing vars: */
+  font-size: var(--support-text-size);
+  line-height: var(--support-line-height);
+  max-width: var(--support-text-wrap);
+  word-wrap: break-word;
+}
+
+
+
+
+
+/* WRAPPER & TITLE */
+.support-tiers-section {
+  margin: 4rem 8%;
+  text-align: center;
+}
+.support-tiers-title {
+  display: inline-block;
+  position: relative;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size:4rem;
+  font-weight: 100;
+  color: #fff;
+  padding-bottom: .3em;
+  margin-bottom: 2.5rem;
+}
+.support-tiers-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom: 0;
+  height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+
+/* TIER BOXES */
+.support-tiers {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.support-tiers .tier {
+  flex: 1;
+  min-width: 220px;
+  padding: 1.5rem;
+  background: transparent;
+  border-style: solid;
+  border-width: 10px;           /* your adjustable outline thickness */
+  border-radius: 12px;         /* adjustable corner radius */
+  color: #fff;                 /* all text white */
+  text-align: center;
+  transition: transform .2s;
+}
+.support-tiers .tier:hover {
+  transform: translateY(-4px);
+}
+.support-tiers .tier h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.25rem;
+}
+.support-tiers .tier-amount {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.support-tiers .tier-note {
+  font-size: 1.25rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
+}
+.support-tiers .tier ul {
+  list-style: disc inside;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+/* OUTLINE COLORS */
+.tier-yellow { border-color: #F9CB22; }
+.tier-orange { border-color: #EF7616; }
+.tier-pink   { border-color: #F0115F; }
+
+/* RESPONSIVE STACK */
+@media (max-width: 700px) {
+  .support-tiers { flex-direction: column; gap: 1rem; margin: 2rem 4%; }
+}
+
+
+
+
+
+/* SECTION + TITLE */
+.sponsor-carousel-section {
+  margin: 4rem 8%;
+  text-align: center;
+}
+.carousel-title {
+  display: inline-block;
+  position: relative;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 2.5rem;
+  color: #fff;
+  padding-bottom: 0.5em;
+  margin-bottom: 1.5rem;
+}
+.carousel-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom: 0;
+  height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+/* ensure only horizontal clipping; logos can overflow vertically on pop */
+/* let pop‐scale overflow vertically */
+.sponsor-marquee {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.sponsor-marquee::-webkit-scrollbar { display: none; }
+.sponsor-marquee { scrollbar-width: none; }
+
+/* horizontal flex + looping animation */
+.marquee {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0; margin: 0;
+  list-style: none;
+  animation: marqueeScroll 20s linear infinite;
+  overflow: visible;                /* ensure children aren’t clipped */
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+/* pause on hover */
+.sponsor-marquee:hover .marquee {
+  animation-play-state: paused;
+}
+
+/* uniform box + button behavior */
+.sponsor-logo {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 150px;    /* your fixed size */
+  height: 100px;
+  border: 3px solid;
+  border-radius: 8px;
+  background: transparent;
+  position: relative;
+  z-index: 9;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  overflow: visible;                /* child img can overflow */
+}
+.sponsor-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* pop & lift on hover */
+.sponsor-logo:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+  z-index: 10;
+}
+
+/* outlines */
+.tier-yellow { border-color: #F9CB22; }
+.tier-orange { border-color: #EF7616; }
+.tier-pink   { border-color: #F0115F; }
+
+/* center title & gradient underline */
+.carousel-title {
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5em;
+}
+.carousel-title::after {
+  content:""; position:absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom:0; height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+.support-tiers .tier-amount .tier-note {
+  color: #ffffff;   /* a mid-gray; adjust to taste */
+}
+  </style>
+<style id="nav-left-hotfix">
+/* === NAV alignment + size hotfix (match index fix) === */
+.top-bar {
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+  justify-content: flex-start !important;
+}
+
 .top-bar nav { margin-left: 0 !important; }
 
-/* Tweak gaps for readability at common breakpoints */
 @media (min-width: 901px) {
   .top-bar { height: 100px !important; padding: 0 50px !important; }
   .top-bar nav { gap: 40px !important; }
 }
 
 @media (max-width: 900px) {
-  /* keep everything left-aligned on tablet */
   .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; }
   .top-bar nav { gap: 15px !important; }
 }
 
 @media (max-width: 600px) {
-  /* slightly smaller text on small phones */
   .top-bar { font-size: 18px !important; padding: 0 15px !important; }
   .top-bar nav { gap: 10px !important; }
 }
@@ -893,65 +757,180 @@ nav a:hover { opacity:.7; }
 <a href="/support/">SUPPORT</a>
 </nav>
 </header>
-<main>
-<section class="hero">
-<h1>WHAT WE’RE DOING</h1>
+<!-- WHY SUPPORT US -->
+<section class="support-why">
+<h2>WHY SUPPORT US?</h2>
+<p>Hundreds of eager students quit VEX each year simply because they can’t find a clear path forward. Not all teams are lucky to have invested coaches or volunteers for the program. Some schools don’t recognize VEX the way they do other sports or programs. That leaves students reinventing the wheel, stuck in a loop of trial and error, and eventually just copying the best design they can find on YouTube. We’re not sending robots to schools. We’re breaking down barriers by sharing everything you need to start and sustain a VEX team.      </p>
 </section>
-<section class="features">
-<article class="feature">
-<img alt="" src="/images/scrimming.png"/>
-<div class="copy">
-<h3>
-<a class="feature-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform?usp=preview" onclick="event.stopPropagation()" rel="noopener" target="_blank">
-        Mentoring and Volunteering
-      </a>
-</h3>
-<p><!--…--></p>
+<div class="gradient-bar separator"></div>
+<!-- HOW TO SUPPORT US -->
+<section class="support-how">
+<h2>HOW TO SUPPORT US</h2>
+<p>
+Monetary Support: Direct financial support will help support our Mentors and VEX U team with raw parts procurement, registration fees, competitions, and travel. Additionally, this allows us to provide more resources to the community through the production of educational resources and events.
+  </p>
+<p>
+Products &amp; Service: By donating products or services, you give students direct exposure to your brand and let them experience your offerings without worrying about cost. We can also showcase your products through reviews and recommend them to our community of teams and educators.
+  </p>
+<div class="support-buttons">
+<a href="#" rel="noopener" target="_blank">
+<img alt="GoFundMe" src="/images/gofundme.png"/>
+</a>
+<a href="#" rel="noopener" target="_blank">
+<img alt="Venmo" src="/images/venmo.png"/>
+</a>
 </div>
-</article>
-<article class="feature">
-<img alt="" src="/images/vexu.png"/>
-<div class="copy">
-<h3>
-<a class="feature-btn" href="https://docs.google.com/document/d/1ytcRuUcWIWxwsZIfzGv6c_-Vg2tsbZ0OXDBiRyXImR0/edit?usp=sharing" onclick="event.stopPropagation()" rel="noopener" target="_blank">
-        Competing Teams
-      </a>
-</h3>
-<p><!--…--></p>
-</div>
-</article>
-<article class="feature">
-<img alt="" src="/images/Banner.png"/>
-<div class="copy">
-<h3>
-<a class="feature-btn" href="https://docs.google.com/document/d/17gKdwJgWM0LbqSmfvf68YcsC7uPvrioFGI1wJeIiZ_A/edit?usp=sharing" onclick="event.stopPropagation()" rel="noopener" target="_blank">
-        Competitions and Scrimmages
-      </a>
-</h3>
-<p><!--…--></p>
-</div>
-</article>
-<article class="feature">
-<img alt="" src="/images/teaching.png"/>
-<div class="copy">
-<h3>
-<a class="feature-btn" href="https://www.youtube.com/@SCA_ORG" onclick="event.stopPropagation()" rel="noopener" target="_blank">
-        Educational Videos
-      </a>
-</h3>
-<p><!--…--></p>
-</div>
-</article>
+<p>
+    Please contact us at socalalliancenonprofit@gmail.com for any clarifications and support tier benefits.
+  </p>
 </section>
-<section class="doc-section">
-<h2 class="doc-title">CALENDER</h2>
-<div class="doc-gradient-wrapper">
-<div class="doc-inner">
-<iframe allowfullscreen="" frameborder="0" src="https://docs.google.com/document/d/e/2PACX-1vQ2KHa3i_cUA1KIpm9MV2mydgwwaJfaJK2Fl1Bp-9RAzJeDvQZ1exYGBcpQv-DD3aaa1cpIJWQ6KIkc/pub">
-</iframe>
+<section class="support-tiers-section">
+<h2 class="support-tiers-title">SUPPORT TIERS</h2>
+<div class="support-tiers">
+<div class="tier tier-yellow">
+<h3>Yellow Tier</h3>
+<p class="tier-amount">
+<span class="amount">$500+</span>
+<span class="tier-note">in money, products, and services</span>
+</p>
+<ul>
+<li>Your logo on our website</li>
+<li>Your logo in our pit banners</li>
+<li>Credits at the end of videos</li>
+</ul>
+</div>
+<div class="tier tier-orange">
+<h3>Orange Tier</h3>
+<p class="tier-amount">
+<span class="amount">$1000+</span>
+<span class="tier-note">in money, products, and services</span>
+</p>
+<ul>
+<li>Everything in previous tier</li>
+<li>Your logo at our hosted events</li>
+</ul>
+</div>
+<div class="tier tier-pink">
+<h3>Pink Tier</h3>
+<p class="tier-amount">
+<span class="amount">$2000+</span>
+<span class="tier-note">in money, products, and services</span>
+</p>
+<ul>
+<li>Everything in previous tiers</li>
+<li>your logo on team jerseys</li>
+<li>Your logo on our VEX U teams robot</li>
+<li>Access to our engineering notebook</li>
+</ul>
 </div>
 </div>
 </section>
+<section class="sponsor-carousel-section">
+<h2 class="carousel-title">OUR SPONSORS</h2>
+<div class="sponsor-marquee">
+<ul class="marquee">
+<!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li>
+<!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li>
+<!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li><!-- DUPLICATE 6 TIMES -->
+<li>
+<a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
+<img alt="McBride" src="/images/McBride-Logo.png"/>
+</a>
+</li>
+</ul>
+</div>
+</section>
+<!-- FOOTER -->
 <footer class="site-footer">
 <div class="footer-content">
 <div class="footer-left">
@@ -974,42 +953,48 @@ nav a:hover { opacity:.7; }
 </div>
 </div>
 </footer>
-<script>
-  (function(){
-    const list      = document.querySelector(".tl-list");
-    const items     = Array.from(list.children);
-    const upBtn     = document.querySelector(".tl-arrow.up");
-    const downBtn   = document.querySelector(".tl-arrow.down");
-    const itemHeight = items[0].getBoundingClientRect().height + 30; // +gap
-    let index = 0;
-  
-    function updateScroll() {
-      list.style.transform = `translateY(-${index * itemHeight}px)`;
-    }
-  
-    upBtn.addEventListener("click", () => {
-      index = Math.max(0, index - 1);
-      updateScroll();
-    });
-    downBtn.addEventListener("click", () => {
-      index = Math.min(items.length - 1, index + 1);
-      updateScroll();
-    });
-  })();
-  </script>
-<!-- Hide-on-scroll Nav -->
+<!-- Hide-on-scroll Nav Script -->
 <script>
     (function(){
       let lastY = window.scrollY;
       const nav = document.querySelector('.top-bar');
-      window.addEventListener('scroll', ()=>{
+      window.addEventListener('scroll', () => {
         const y = window.scrollY;
         nav.classList.toggle('hidden', y > lastY && y > 100);
         lastY = y;
       });
     })();
   </script>
-</main><script>
+<script>
+// clone your slides so the track is “logo1…logoN | logo1…logoN”
+;(function(){
+  const track = document.querySelector('.carousel-track');
+  // guard
+  if(!track) return;
+  // duplicate
+  track.innerHTML += track.innerHTML;
+  // manual buttons still work
+  const slides = Array.from(track.children);
+  let index = 0;
+  const gap = parseInt(getComputedStyle(track).gap) || 0;
+  function jump(dir){
+    // temporarily disable animation
+    track.style.animation = 'none';
+    // move index and compute offset
+    index = (index + dir + slides.length) % slides.length;
+    const step = slides[0].getBoundingClientRect().width + gap;
+    track.style.transform = `translateX(-${index * step}px)`;
+    // re-trigger CSS animation
+    void track.offsetWidth;
+    track.style.animation = '';
+  }
+  document.querySelector('.carousel-arrow.left')
+    .addEventListener('click', ()=>jump(-1));
+  document.querySelector('.carousel-arrow.right')
+    .addEventListener('click', ()=>jump(1));
+})();
+</script>
+<script>
 (function(){
   const btn = document.querySelector('.nav-toggle');
   const nav = document.getElementById('site-nav');
@@ -1018,6 +1003,17 @@ nav a:hover { opacity:.7; }
     const open = this.getAttribute('aria-expanded') === 'true';
     this.setAttribute('aria-expanded', String(!open));
     nav.classList.toggle('open', !open);
+    /* injected: adjust dropdown top to header height */
+    if (!open) {
+      const header = document.querySelector('.top-bar');
+      if (header && window.matchMedia('(max-width: 600px)').matches) {
+        nav.style.top = header.getBoundingClientRect().height + 'px';
+      } else {
+        nav.style.top = '';
+      }
+    } else {
+      nav.style.top = '';
+    }
   });
   nav.addEventListener('click', function(e){
     if (e.target.tagName === 'A') {
