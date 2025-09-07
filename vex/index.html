@@ -2,40 +2,22 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-
-  <!-- favicon (relative path, no leading slash) -->
-  <link rel="icon" type="image/png" href="/images/logo.png" />
-
-  <!-- fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet">
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- favicon (relative path, no leading slash) -->
+<link href="/images/logo.png" rel="icon" type="image/png"/>
+<!-- fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&amp;family=Tilt+Warp&amp;display=swap" rel="stylesheet"/>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
+<script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-65LTDNTZ16');
   </script>
-<style id="nav-footer-override">
-.top-bar { font-family:'Tilt Warp',sans-serif !important; }
-.top-bar nav a { font-size: inherit !important; }
-
-@media (min-width: 901px) {
-  .top-bar { font-size: 28px !important; height: 100px !important; padding: 0 50px !important; }
-}
-@media (max-width: 900px) {
-  .top-bar { font-size: 20px !important; height: 80px !important; padding: 0 20px !important; }
-}
-@media (max-width: 600px) {
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
-}
-</style>
 
 <style id="final-overrides">
 /* ===== HERO: stack headline, paragraph, and button ===== */
@@ -103,8 +85,47 @@
 @media (max-width: 900px) { #loc-headline { font-size: 36px !important; } }
 @media (max-width: 600px) { #loc-headline { font-size: 28px !important; } }
 </style>
+<style id="nav-core">
+.top-bar{
+  position: sticky; top: 0; left: 0; z-index: 10;
+  width: 100%; height: 100px;
+  display: flex; align-items: center; justify-content: flex-start; padding: 0 50px;
+  font-family: 'Tilt Warp', sans-serif !important;
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+  transition: transform .3s ease !important; will-change: transform;
+}
+.top-bar.hidden{ transform: translateY(-100%) !important; }
 
-</head>
+.logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+.top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter:none !important; }
+
+.top-bar nav{ display:flex; gap:40px; margin-left:0 !important; }
+.top-bar nav a{
+  display:inline-block;
+  font-size:inherit !important;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  white-space:nowrap;
+  line-height:1.2;
+  padding:0;
+  flex:initial;
+}
+.top-bar nav a:hover{ opacity:.7; }
+
+@media (max-width:900px){
+  .top-bar{ height:80px !important; padding:0 20px !important; font-size:20px !important; }
+  .logo{ width:60px !important; height:54px !important; margin-right:0 !important; }
+  .top-bar nav{ gap:15px !important; }
+}
+@media (max-width:600px){
+  .top-bar{ font-size:18px !important; padding:0 15px !important; }
+  .logo{ width:50px; height:45px; }
+  .top-bar nav{ gap:10px; flex-wrap:wrap; justify-content:center; }
+  .top-bar nav a{ font-size:16px !important; }
+}
+</style></head>
 <style>
     :root {
        --compare-bar-offset-x:   0px;    /* move the bar left/right */
@@ -1314,7 +1335,6 @@ body {
 }
 </style>
 <body>
-<!-- NAV -->
 <header class="top-bar">
 <a class="logo-link" href="/"><div class="logo"></div></a>
 <nav>
@@ -1324,6 +1344,9 @@ body {
 <a href="/support/">SUPPORT</a>
 </nav>
 </header>
+
+<!-- NAV -->
+
 <!-- MAIN -->
 <div class="page-container hero-section">
 <div class="hero-bg"></div>
@@ -1349,18 +1372,18 @@ body {
 <!-- Past Seasons Button -->
 <div class="past-seasons-container">
 <a href="https://www.youtube.com/playlist?list=PLXdulAseEztM8V1McWUl0aVkL1_CMnCgf" rel="noopener" target="_blank">
-<img alt="Past Seasons Playlist" class="past-seasons-btn" src="/images/pastseasons.png">
-</img></a>
+<img alt="Past Seasons Playlist" class="past-seasons-btn" src="/images/pastseasons.png"/>
+</a>
 </div>
 <section class="location-section">
 <div class="location-image">
 <img alt="Our regional hubs" src="/images/location.png"/>
 </div>
 <div class="location-copy">
-<h1 id="loc-headline" class="location-headline"> A CLOSE-KNIT COMMUNITY</h1>
+<h1 class="location-headline" id="loc-headline"> A CLOSE-KNIT COMMUNITY</h1>
 <p class="copy">
       What sets our community apart is our regional proximity to one another. Centered around the two major hubs of Los Angeles and San Diego, we host gatherings, scrimmages, and competitions that foster meaningful connections and accelerate learning.
-      Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals. <br></br>
+      Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals. <br/>
 </p>
 </div>
 </section>
@@ -1411,19 +1434,18 @@ body {
 </div>
 </footer>
 <!-- Hide-on-scroll Nav Script -->
-
-
 <!-- Hide-on-scroll Nav Script (from support.html) -->
+
 <script>
-  (function(){
-    let lastY = window.scrollY;
-    const nav = document.querySelector('.top-bar');
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      nav.classList.toggle('hidden', y > lastY && y > 100);
-      lastY = y;
-    });
-  })();
-</script>
-</body>
+(function(){
+  let lastY = window.scrollY;
+  const nav = document.querySelector('.top-bar');
+  if (!nav) return;
+  window.addEventListener('scroll', ()=>{
+    const y = window.scrollY;
+    nav.classList.toggle('hidden', y > lastY && y > 100);
+    lastY = y;
+  });
+})();
+</script></body>
 </html>
