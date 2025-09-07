@@ -18,8 +18,8 @@
     gtag('js', new Date());
     gtag('config', 'G-65LTDNTZ16');
   </script>
-<style id="no-hscroll">html, body { overflow-x: clip; }</style><style id="nav-core">
-/* ===== Canonical navbar + mobile hamburger ===== */
+<style id="no-hscroll">html, body { overflow-x: clip; }</style>
+<style id="nav-core">
 .top-bar{
   position: sticky; top: 0; left: 0; z-index: 1000;
   width: 100%; height: 100px;
@@ -34,7 +34,6 @@
 .logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
 .top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter:none !important; }
 
-/* desktop/default nav layout */
 .top-bar nav{ display:flex; gap:40px; margin-left:0 !important; }
 .top-bar nav a{
   display:inline-block;
@@ -45,11 +44,9 @@
   white-space:nowrap;
   line-height:1.2;
   padding:0;
-  flex:initial;
 }
 .top-bar nav a:hover{ opacity:.7; }
 
-/* hide the hamburger by default (>=600px) */
 .nav-toggle { display:none; }
 
 @media (max-width:900px){
@@ -58,39 +55,63 @@
   .top-bar nav{ gap:15px !important; }
 }
 
-/* ===== Mobile: hamburger dropdown (panel anchored right, links right-aligned) ===== */
 @media (max-width:600px){
   .top-bar{ font-size:18px !important; padding:0 15px !important; }
   .logo{ width:50px; height:45px; }
 
-  /* show the hamburger, keep it at the right edge */
   .nav-toggle{
     display:flex; align-items:center; justify-content:center;
     width:44px; height:44px; margin-left:auto;
     background:transparent; border:none; cursor:pointer;
   }
-  /* burger icon */
   .burger, .burger::before, .burger::after{
     content:''; display:block; width:24px; height:2px; background:#fff; border-radius:2px;
     position:relative; transition:transform .2s ease, opacity .2s ease, background .2s ease;
   }
   .burger::before{ position:absolute; top:-7px; }
   .burger::after{ position:absolute; top:7px; }
-  /* X state when open */
   .nav-toggle[aria-expanded="true"] .burger{ background:transparent; }
   .nav-toggle[aria-expanded="true"] .burger::before{ transform: translateY(7px) rotate(45deg); }
   .nav-toggle[aria-expanded="true"] .burger::after{ transform: translateY(-7px) rotate(-45deg); }
 
-  /* hide inline links; show dropdown panel when open */
   .top-bar nav{ display:none !important; }
   .top-bar nav.open{
     display:flex !important; flex-direction:column; gap:12px;
     position:absolute; top:100%; right:0;
     padding:12px 16px; background:#000; border-top:1px solid rgba(255,255,255,.15);
   }
-  .top-bar nav.open a{ font-size:16px !important; padding:8px 2px}
+  .top-bar nav.open a{ font-size:16px !important; padding:8px 2px;}
 }
-</style></head>
+
+/* --- Mobile overflow fixes --- */
+html { overflow-x: clip; }
+body { overflow-x: hidden; }
+
+img, svg, video { max-width: 100%; height: auto; }
+
+.support-why h2,
+.support-how h2,
+.support-tiers-title,
+.carousel-title {
+  overflow: clip;
+}
+
+@media (max-width: 600px) {
+  :root { --support-underline-overhang: 0; }
+}
+
+.sponsor-marquee { overflow-x: hidden; }
+
+@media (max-width: 600px) {
+  .top-bar nav.open {
+    left: auto;
+    right: 0;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+}
+</style>
+</head>
 <!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
 <script>
@@ -623,30 +644,39 @@
 }
 
 </style>
+
 <style id="nav-left-hotfix">
-/* === NAV alignment + size hotfix (match other pages) === */
+/* === NAV alignment + size hotfix (match index fix) === */
+.top-bar {
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+  justify-content: flex-start !important;
+}
 
-
-
+.top-bar nav { margin-left: 0 !important; }
 
 @media (min-width: 901px) {
-  
-  
+  .top-bar { height: 100px !important; padding: 0 50px !important; }
+  .top-bar nav { gap: 40px !important; }
 }
 
 @media (max-width: 900px) {
-  
-  
+  .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; }
+  .top-bar nav { gap: 15px !important; }
 }
 
 @media (max-width: 600px) {
-  
-  
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+  .top-bar nav { gap: 10px !important; }
 }
 </style>
+
 <body>
+
 <header class="top-bar">
-<a class="logo-link" href="/"><div class="logo"></div></a><button aria-controls="site-nav" aria-expanded="false" aria-label="Menu" class="nav-toggle"><span aria-hidden="true" class="burger"></span></button>
+<a class="logo-link" href="/"><div class="logo"></div></a>
+<button aria-controls="site-nav" aria-expanded="false" aria-label="Menu" class="nav-toggle">
+<span aria-hidden="true" class="burger"></span>
+</button>
 <nav id="site-nav">
 <a href="/about/">ABOUT</a>
 <a href="/vex/">VEX</a>
@@ -654,6 +684,7 @@
 <a href="/support/">SUPPORT</a>
 </nav>
 </header>
+
 <!-- NAV -->
 <!-- HERO 1 -->
 <section class="hero-1">
@@ -847,18 +878,20 @@
     .addEventListener('click', ()=>jump(1));
 })();
 </script>
+
 <script>
-(function(){
-  let lastY = window.scrollY;
-  const nav = document.querySelector('.top-bar');
-  if (!nav) return;
-  window.addEventListener('scroll', ()=>{
-    const y = window.scrollY;
-    nav.classList.toggle('hidden', y > lastY && y > 100);
-    lastY = y;
-  });
-})();
-</script><script>
+    (function(){
+      let lastY = window.scrollY;
+      const nav = document.querySelector('.top-bar');
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        nav.classList.toggle('hidden', y > lastY && y > 100);
+        lastY = y;
+      });
+    })();
+</script>
+
+<script>
 (function(){
   const btn = document.querySelector('.nav-toggle');
   const nav = document.getElementById('site-nav');
@@ -868,7 +901,6 @@
     this.setAttribute('aria-expanded', String(!open));
     nav.classList.toggle('open', !open);
   });
-  // Close on link tap
   nav.addEventListener('click', function(e){
     if (e.target.tagName === 'A') {
       btn.setAttribute('aria-expanded', 'false');
@@ -876,5 +908,6 @@
     }
   });
 })();
-</script></body>
+</script>
+</body>
 </html>

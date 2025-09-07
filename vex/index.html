@@ -18,20 +18,6 @@
     gtag('js', new Date());
     gtag('config', 'G-65LTDNTZ16');
   </script>
-<style id="nav-footer-override">
-.top-bar { font-family:'Tilt Warp',sans-serif !important; }
-.top-bar nav a { font-size: inherit !important; }
-
-@media (min-width: 901px) {
-  .top-bar { font-size: 28px !important; height: 100px !important; padding: 0 50px !important; }
-}
-@media (max-width: 900px) {
-  .top-bar { font-size: 20px !important; height: 80px !important; padding: 0 20px !important; }
-}
-@media (max-width: 600px) {
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
-}
-</style>
 <style id="final-overrides">
 /* ===== HERO: stack headline, paragraph, and button ===== */
 .page-container.hero-section {
@@ -98,8 +84,9 @@
 @media (max-width: 900px) { #loc-headline { font-size: 36px !important; } }
 @media (max-width: 600px) { #loc-headline { font-size: 28px !important; } }
 </style>
+
+
 <style id="nav-core">
-/* ===== Canonical navbar + mobile hamburger ===== */
 .top-bar{
   position: sticky; top: 0; left: 0; z-index: 1000;
   width: 100%; height: 100px;
@@ -114,7 +101,6 @@
 .logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
 .top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter:none !important; }
 
-/* desktop/default nav layout */
 .top-bar nav{ display:flex; gap:40px; margin-left:0 !important; }
 .top-bar nav a{
   display:inline-block;
@@ -125,11 +111,9 @@
   white-space:nowrap;
   line-height:1.2;
   padding:0;
-  flex:initial;
 }
 .top-bar nav a:hover{ opacity:.7; }
 
-/* hamburger button hidden by default (>=600px) */
 .nav-toggle { display:none; }
 
 @media (max-width:900px){
@@ -138,31 +122,25 @@
   .top-bar nav{ gap:15px !important; }
 }
 
-/* ===== Mobile: convert links to hamburger dropdown ===== */
 @media (max-width:600px){
   .top-bar{ font-size:18px !important; padding:0 15px !important; }
   .logo{ width:50px; height:45px; }
 
-  /* show the hamburger, hide inline links */
   .nav-toggle{
     display:flex; align-items:center; justify-content:center;
-    width:44px; height:44px; margin-left: auto;   /* push to right */
+    width:44px; height:44px; margin-left:auto;
     background:transparent; border:none; cursor:pointer;
   }
-  /* 3-line icon */
   .burger, .burger::before, .burger::after{
     content:''; display:block; width:24px; height:2px; background:#fff; border-radius:2px;
     position:relative; transition:transform .2s ease, opacity .2s ease, background .2s ease;
   }
   .burger::before{ position:absolute; top:-7px; }
   .burger::after{ position:absolute; top:7px; }
-
-  /* X state when open */
   .nav-toggle[aria-expanded="true"] .burger{ background:transparent; }
   .nav-toggle[aria-expanded="true"] .burger::before{ transform: translateY(7px) rotate(45deg); }
   .nav-toggle[aria-expanded="true"] .burger::after{ transform: translateY(-7px) rotate(-45deg); }
 
-  /* hide inline nav; show dropdown panel when open */
   .top-bar nav{ display:none !important; }
   .top-bar nav.open{
     display:flex !important; flex-direction:column; gap:12px;
@@ -171,7 +149,111 @@
   }
   .top-bar nav.open a{ font-size:16px !important; padding:8px 2px;}
 }
-</style></head>
+
+/* --- Mobile overflow fixes --- */
+html { overflow-x: clip; }
+body { overflow-x: hidden; }
+
+img, svg, video { max-width: 100%; height: auto; }
+
+.support-why h2,
+.support-how h2,
+.support-tiers-title,
+.carousel-title {
+  overflow: clip;
+}
+
+@media (max-width: 600px) {
+  :root { --support-underline-overhang: 0; }
+}
+
+.sponsor-marquee { overflow-x: hidden; }
+
+@media (max-width: 600px) {
+  .top-bar nav.open {
+    left: auto;
+    right: 0;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+}
+</style><style id="nav-left-hotfix">
+/* === NAV alignment + size hotfix (match index fix) === */
+.top-bar {
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+  justify-content: flex-start !important;
+}
+
+.top-bar nav { margin-left: 0 !important; }
+
+@media (min-width: 901px) {
+  .top-bar { height: 100px !important; padding: 0 50px !important; }
+  .top-bar nav { gap: 40px !important; }
+}
+
+@media (max-width: 900px) {
+  .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; }
+  .top-bar nav { gap: 15px !important; }
+}
+
+@media (max-width: 600px) {
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+  .top-bar nav { gap: 10px !important; }
+}
+</style><style id="sync-nav-footer">
+/* ===== Sync nav & footer with site-wide styles (canonical) ===== */
+
+/* Header logo stays colored */
+.top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter: none !important; }
+
+/* Hide-on-scroll uses translate */
+.top-bar { transition: transform .3s ease !important; will-change: transform; justify-content: flex-start !important; font-size: clamp(18px, 1.0vw + 18px, 32px) !important; }
+.top-bar.hidden { transform: translateY(-100%) !important; }
+.top-bar nav { margin-left: 0 !important; }
+
+/* Footer parity (gradient background, grid layout, white logo behavior) */
+.site-footer {
+  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%) !important;
+  color:#fff !important;
+  padding: 3rem 10% !important;
+  font-family:'Instrument Sans',sans-serif !important;
+}
+.footer-content {
+  display: grid !important;
+  grid-template-columns: minmax(420px,1fr) auto !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 2rem !important;
+}
+.footer-left { display:flex !important; align-items:center !important; gap:1rem !important; flex: 1 1 auto !important; }
+.footer-center { display:grid !important; place-items:center !important; gap:1rem !important; }
+.footer-social { display:flex !important; gap:1rem !important; justify-content:center !important; }
+.donate-img { height:48px !important; cursor:pointer !important; transition: filter .3s ease, transform .3s ease !important; }
+.footer-social img { width:60px !important; height:60px !important; filter:brightness(200%) !important; transition:filter .2s !important; }
+.footer-social a:hover img { filter:grayscale(100%) brightness(80%) !important; }
+.site-footer .logo { background-image: url('/images/logowhite.png') !important; transition: filter 0.3s ease !important; transform: none !important; }
+.site-footer .logo-link:hover .logo { filter: grayscale(100%) brightness(80%) !important; transform: none !important; }
+
+/* Responsive spacing consistent with other pages */
+@media (min-width: 901px) {
+  .top-bar { height: 100px !important; padding: 0 50px !important; }
+  .top-bar nav { gap: 40px !important; }
+}
+@media (max-width: 900px) {
+  .top-bar { height: 80px !important; padding: 0 20px !important; font-size: 20px !important; }
+  .logo    { width: 60px !important; height: 54px !important; margin-right: 0 !important; }
+  nav      { gap: 15px !important; }
+  .site-footer { padding: 2rem 6vw !important; }
+  .footer-content { grid-template-columns: 1fr !important; justify-items: center !important; gap: 5rem !important; }
+  .footer-left { flex-direction: column !important; text-align: center !important; }
+}
+@media (max-width: 600px) {
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+  .logo    { width: 50px !important; height: 45px !important; }
+  nav      { gap: 10px !important; }
+  nav a    { font-size: 18px !important; }
+}
+</style><style id="nav-size-enforcer">.top-bar { font-size: clamp(18px, 1.0vw + 18px, 32px) !important; }</style></head>
 <style>
     :root {
        --compare-bar-offset-x:   0px;    /* move the bar left/right */
@@ -264,12 +346,7 @@
 
 /* Responsive nav for mobile and tablets */
 @media (max-width: 900px) {
-  .top-bar {
-    justify-content: space-between;
-    height: 80px;
-    padding: 0 20px;
-    font-size: 20px;
-  }
+  
   .logo {
     width: 60px;
     height: 54px;
@@ -494,10 +571,7 @@
 }
 
 @media (max-width: 600px) {
-  .top-bar {
-    font-size: 18px;
-    padding: 0 15px;
-  }
+  
   .logo {
     width: 50px;
     height: 45px;
@@ -512,28 +586,12 @@
 }
 /* — Sticky Nav — */
   /* Make room for a 100px-tall fixed nav */
-body {
-  padding-top: 100px;
-}
+
 
 /* Single, un-conflicted nav rule */
-.top-bar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 100px;               /* your nav’s height */
-  display: flex;
-  align-items: center;
-  padding: 0 50px;
-  background: linear-gradient(90deg, #000 0, #000 10%, #F0115F 60%, #EF7616 100%);
-  font-family: 'Tilt Warp',sans-serif;
-  font-size: 28px;
-  z-index: 1000;
-  transition: top 0.3s ease;
-}
+
 /* Hides by moving up exactly its own height */
-.top-bar.hidden {
-  top: -100px;
-}
+
 
     .logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
     nav { display:flex; gap:40px; }
@@ -1326,64 +1384,14 @@ body {
 }
 
 </style>
-<style id="sync-nav-footer">
-/* ===== Sync nav & footer with site-wide styles (canonical) ===== */
 
-/* Header logo stays colored */
-.top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter: none !important; }
-
-/* Hide-on-scroll uses translate */
-.top-bar { transition: transform .3s ease !important; will-change: transform; justify-content: flex-start !important; font-size: clamp(18px, 1.0vw + 18px, 32px) !important; }
-.top-bar.hidden { transform: translateY(-100%) !important; }
-.top-bar nav { margin-left: 0 !important; }
-
-/* Footer parity (gradient background, grid layout, white logo behavior) */
-.site-footer {
-  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%) !important;
-  color:#fff !important;
-  padding: 3rem 10% !important;
-  font-family:'Instrument Sans',sans-serif !important;
-}
-.footer-content {
-  display: grid !important;
-  grid-template-columns: minmax(420px,1fr) auto !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 2rem !important;
-}
-.footer-left { display:flex !important; align-items:center !important; gap:1rem !important; flex: 1 1 auto !important; }
-.footer-center { display:grid !important; place-items:center !important; gap:1rem !important; }
-.footer-social { display:flex !important; gap:1rem !important; justify-content:center !important; }
-.donate-img { height:48px !important; cursor:pointer !important; transition: filter .3s ease, transform .3s ease !important; }
-.footer-social img { width:60px !important; height:60px !important; filter:brightness(200%) !important; transition:filter .2s !important; }
-.footer-social a:hover img { filter:grayscale(100%) brightness(80%) !important; }
-.site-footer .logo { background-image: url('/images/logowhite.png') !important; transition: filter 0.3s ease !important; transform: none !important; }
-.site-footer .logo-link:hover .logo { filter: grayscale(100%) brightness(80%) !important; transform: none !important; }
-
-/* Responsive spacing consistent with other pages */
-@media (min-width: 901px) {
-  .top-bar { height: 100px !important; padding: 0 50px !important; }
-  .top-bar nav { gap: 40px !important; }
-}
-@media (max-width: 900px) {
-  .top-bar { height: 80px !important; padding: 0 20px !important; font-size: 20px !important; }
-  .logo    { width: 60px !important; height: 54px !important; margin-right: 0 !important; }
-  nav      { gap: 15px !important; }
-  .site-footer { padding: 2rem 6vw !important; }
-  .footer-content { grid-template-columns: 1fr !important; justify-items: center !important; gap: 5rem !important; }
-  .footer-left { flex-direction: column !important; text-align: center !important; }
-}
-@media (max-width: 600px) {
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
-  .logo    { width: 50px !important; height: 45px !important; }
-  nav      { gap: 10px !important; }
-  nav a    { font-size: 18px !important; }
-}
-</style>
 <body>
 <!-- NAV -->
 <header class="top-bar">
-<a class="logo-link" href="/"><div class="logo"></div></a><button aria-controls="site-nav" aria-expanded="false" aria-label="Menu" class="nav-toggle"><span aria-hidden="true" class="burger"></span></button>
+<a class="logo-link" href="/"><div class="logo"></div></a>
+<button aria-controls="site-nav" aria-expanded="false" aria-label="Menu" class="nav-toggle">
+<span aria-hidden="true" class="burger"></span>
+</button>
 <nav id="site-nav">
 <a href="/about/">ABOUT</a>
 <a href="/vex/">VEX</a>
@@ -1406,7 +1414,7 @@ body {
 <div class="embed-container">
 <!-- First box: Worlds -->
 <div class="embed-box worlds">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cJj6MhTCP9M?si=U9zb4oq8LEAGdJs8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/cJj6MhTCP9M?si=U9zb4oq8LEAGdJs8" title="YouTube video player" width="560"></iframe>
 </div>
 <!-- Second box: Season -->
 <div class="embed-box season">
@@ -1427,7 +1435,7 @@ body {
 <h1 class="location-headline" id="loc-headline"> A CLOSE-KNIT COMMUNITY</h1>
 <p class="copy">
       What sets our community apart is our regional proximity to one another. Centered around the two major hubs of Los Angeles and San Diego, we host gatherings, scrimmages, and competitions that foster meaningful connections and accelerate learning.
-      Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals. <br></br>
+      Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals. <br/>
 </p>
 </div>
 </section>
@@ -1480,17 +1488,17 @@ body {
 <!-- Hide-on-scroll Nav Script -->
 <!-- Hide-on-scroll Nav Script (from support.html) -->
 <script>
-  (function(){
-    let lastY = window.scrollY;
-    const nav = document.querySelector('.top-bar');
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      nav.classList.toggle('hidden', y > lastY && y > 100);
-      lastY = y;
-    });
-  })();
+(function(){
+  let lastY = window.scrollY;
+  const nav = document.querySelector('.top-bar');
+  if (!nav) return;
+  window.addEventListener('scroll', ()=>{
+    const y = window.scrollY;
+    nav.classList.toggle('hidden', y > lastY && y > 100);
+    lastY = y;
+  });
+})();
 </script>
-
 <script>
 (function(){
   const btn = document.querySelector('.nav-toggle');
@@ -1501,7 +1509,6 @@ body {
     this.setAttribute('aria-expanded', String(!open));
     nav.classList.toggle('open', !open);
   });
-  // close on link click (useful on mobile)
   nav.addEventListener('click', function(e){
     if (e.target.tagName === 'A') {
       btn.setAttribute('aria-expanded', 'false');
