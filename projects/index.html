@@ -158,34 +158,20 @@ html, body { overflow-x: clip; }
   white-space: normal !important; /* allow wrapping */
 }
 
-/* Keep both bottom buttons aligned by normalizing row heights */
-@media (min-width: 700px){
-  .features{ grid-auto-rows: 1fr; }
-  .feature{ min-height: 520px; }
+/* === Equal-height feature buttons + centered text === */
+:root{ --btn-min-h: 4.6em; } /* fits two lines comfortably; tweak as needed */
+
+.feature-btn{
+  display: flex !important;
+  align-items: center !important;    /* vertical centering */
+  justify-content: center !important;/* horizontal centering */
+  text-align: center !important;
+  min-height: var(--btn-min-h) !important;
 }
 
-
-/* === Row equalization to align bottom buttons === */
-/* Make each tile in a row the same height using aspect-ratio.
-   This guarantees the two bottom buttons sit on the same baseline. */
-@media (min-width: 700px){
-  .feature{
-    aspect-ratio: 3 / 4;         /* consistent tile height across the row */
-    min-height: auto !important;  /* override previous min-height */
-    height: auto !important;
-    display: flex;
-    flex-direction: column;
-  }
-  .feature .copy{ margin-top: auto; } /* pin content to bottom */
-  .features{ align-items: stretch; grid-auto-rows: 1fr; }
-}
-
-
-/* Nudge the bottom-right tile down a bit without affecting layout flow */
-@media (min-width: 700px){
-  .features .feature:nth-child(4) .copy{
-    transform: translateY(clamp(4px, 0.6vw, 14px));
-  }
+/* Slightly taller on very small phones if wrapping increases */
+@media (max-width: 380px){
+  :root{ --btn-min-h: 5.2em; }
 }
 
 </style></head>
@@ -904,7 +890,7 @@ nav a:hover { opacity:.7; }
 <div class="copy">
 <h3>
 <a class="feature-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform?usp=preview" onclick="event.stopPropagation()" rel="noopener" target="_blank">
-        Mentoring / Volunteering
+        Mentoring and Volunteering
       </a>
 </h3>
 <p><!--…--></p>
@@ -926,7 +912,7 @@ nav a:hover { opacity:.7; }
 <div class="copy">
 <h3>
 <a class="feature-btn" href="https://docs.google.com/document/d/17gKdwJgWM0LbqSmfvf68YcsC7uPvrioFGI1wJeIiZ_A/edit?usp=sharing" onclick="event.stopPropagation()" rel="noopener" target="_blank">
-        Competitions / Scrimmages
+        Competitions and Scrimmages
       </a>
 </h3>
 <p><!--…--></p>
