@@ -18,21 +18,7 @@
     gtag('js', new Date());
     gtag('config', 'G-65LTDNTZ16');
   </script>
-<style id="nav-footer-override">
-/* === Consistent header font sizes across all pages === */
-.top-bar { font-family:'Tilt Warp',sans-serif !important; }
-.top-bar nav a { font-size: inherit !important; }
 
-@media (min-width: 901px) {
-  .top-bar { font-size: 28px !important; height: 100px !important; padding: 0 50px !important; }
-}
-@media (max-width: 900px) {
-  .top-bar { font-size: 20px !important; height: 80px !important; padding: 0 20px !important; }
-}
-@media (max-width: 600px) {
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
-}
-</style>
 <style>
 /* stop accidental page-wide sideways scroll */
 html, body { overflow-x: clip; }
@@ -128,7 +114,95 @@ html, body { overflow-x: clip; }
 @media (min-width: 1280px) {
   .triangle-container { height: 980px !important; }
 }
-</style></head>
+</style>
+<style id="nav-footer-override">
+/* === Consistent header font sizes across all pages === */
+.top-bar { font-family:'Tilt Warp',sans-serif !important; }
+.top-bar nav a { font-size: inherit !important; }
+
+@media (min-width: 901px) {
+  .top-bar { font-size: 28px !important; height: 100px !important; padding: 0 50px !important; }
+}
+@media (max-width: 900px) {
+  .top-bar { font-size: 20px !important; height: 80px !important; padding: 0 20px !important; }
+}
+@media (max-width: 600px) {
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+}
+</style>
+
+<style id="sync-nav-footer">
+/* ===== Sync nav & footer with site-wide styles ===== */
+
+/* Header logo stays colored */
+.top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter: none !important; }
+
+/* Hide-on-scroll uses translate */
+.top-bar { transition: transform .3s ease !important; will-change: transform; justify-content: flex-start !important; font-size: clamp(18px, 1.0vw + 18px, 32px) !important; }
+.top-bar.hidden { transform: translateY(-100%) !important; }
+.top-bar nav { margin-left: 0 !important; }
+
+/* Footer parity (gradient background, grid layout, white logo behavior) */
+.site-footer {
+  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%) !important;
+  color:#fff !important;
+  padding: 3rem 10% !important;
+  font-family:'Instrument Sans',sans-serif !important;
+}
+.footer-content {
+  display: grid !important;
+  grid-template-columns: minmax(420px,1fr) auto !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 2rem !important;
+}
+.footer-left { display:flex !important; align-items:center !important; gap:1rem !important; flex: 1 1 auto !important; }
+.footer-center { display:grid !important; place-items:center !important; gap:1rem !important; }
+.footer-social { display:flex !important; gap:1rem !important; justify-content:center !important; }
+.donate-img { height:48px !important; cursor:pointer !important; transition: filter .3s ease, transform .3s ease !important; }
+.footer-social img { width:60px !important; height:60px !important; filter:brightness(200%) !important; transition:filter .2s !important; }
+.footer-social a:hover img { filter:grayscale(100%) brightness(80%) !important; }
+.site-footer .logo { background-image: url('/images/logowhite.png') !important; transition: filter 0.3s ease !important; transform: none !important; }
+.site-footer .logo-link:hover .logo { filter: grayscale(100%) brightness(80%) !important; transform: none !important; }
+
+/* Responsive spacing consistent with other pages */
+@media (min-width: 901px) {
+  .top-bar { height: 100px !important; padding: 0 50px !important; will-change: transform; }
+  .top-bar nav { gap: 40px !important; }
+}
+@media (max-width: 900px) {
+  .top-bar { height: 80px !important; padding: 0 20px !important; font-size: 20px !important; will-change: transform; }
+  .logo    { width: 60px !important; height: 54px !important; margin-right: 0 !important; }
+  nav      { gap: 15px !important; }
+  .site-footer { padding: 2rem 6vw !important; }
+  .footer-content { grid-template-columns: 1fr !important; justify-items: center !important; gap: 5rem !important; }
+  .footer-left { flex-direction: column !important; text-align: center !important; }
+}
+@media (max-width: 600px) {
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; will-change: transform; }
+  .logo    { width: 50px !important; height: 45px !important; }
+  nav      { gap: 10px !important; }
+  nav a    { font-size: 18px !important; }
+}
+
+/* Nav overflow fix on very small screens (wrap + center) */
+@media (max-width: 600px) {
+  .top-bar nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    min-width: 0;
+  }
+  .top-bar nav a {
+    font-size: 14px !important;
+    flex: 1 1 auto;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+</style>
+</head>
 <style>
     /* — Reset & Base — */
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -793,66 +867,7 @@ html, body { overflow-x: clip; }
 }
 
 </style>
-<style id="sync-nav-footer">
-/* ===== Sync nav & footer with site-wide styles ===== */
 
-/* Header logo stays colored */
-.top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter: none !important; }
-
-/* Hide-on-scroll uses translate */
-.top-bar { transition: transform .3s ease !important; will-change: transform; justify-content: flex-start !important; font-size: clamp(18px, 1.0vw + 18px, 32px) !important; }
-.top-bar.hidden { transform: translateY(-100%) !important; }
-.top-bar nav { margin-left: 0 !important; }
-
-/* Footer parity (gradient background, grid layout, white logo behavior) */
-.site-footer {
-  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%) !important;
-  color:#fff !important;
-  padding: 3rem 10% !important;
-  font-family:'Instrument Sans',sans-serif !important;
-}
-.footer-content {
-  display: grid !important;
-  grid-template-columns: minmax(420px,1fr) auto !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 2rem !important;
-}
-.footer-left { display:flex !important; align-items:center !important; gap:1rem !important; flex: 1 1 auto !important; }
-.footer-center { display:grid !important; place-items:center !important; gap:1rem !important; }
-.footer-social { display:flex !important; gap:1rem !important; justify-content:center !important; }
-.donate-img { height:48px !important; cursor:pointer !important; transition: filter .3s ease, transform .3s ease !important; }
-.footer-social img { width:60px !important; height:60px !important; filter:brightness(200%) !important; transition:filter .2s !important; }
-.footer-social a:hover img { filter:grayscale(100%) brightness(80%) !important; }
-.site-footer .logo { background-image: url('/images/logowhite.png') !important; transition: filter 0.3s ease !important; transform: none !important; }
-.site-footer .logo-link:hover .logo { filter: grayscale(100%) brightness(80%) !important; transform: none !important; }
-
-/* Responsive spacing consistent with other pages */
-@media (min-width: 901px) {
-  .top-bar { height: 100px !important; padding: 0 50px !important; 
-  will-change: transform;
-}
-  .top-bar nav { gap: 40px !important; }
-}
-@media (max-width: 900px) {
-  .top-bar { height: 80px !important; padding: 0 20px !important; font-size: 20px !important; 
-  will-change: transform;
-}
-  .logo    { width: 60px !important; height: 54px !important; margin-right: 0 !important; }
-  nav      { gap: 15px !important; }
-  .site-footer { padding: 2rem 6vw !important; }
-  .footer-content { grid-template-columns: 1fr !important; justify-items: center !important; gap: 5rem !important; }
-  .footer-left { flex-direction: column !important; text-align: center !important; }
-}
-@media (max-width: 600px) {
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; 
-  will-change: transform;
-}
-  .logo    { width: 50px !important; height: 45px !important; }
-  nav      { gap: 10px !important; }
-  nav a    { font-size: 18px !important; }
-}
-</style>
 <body>
 <!-- NAV -->
 <header class="top-bar">
