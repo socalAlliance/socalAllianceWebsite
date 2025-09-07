@@ -174,7 +174,20 @@ html, body { overflow-x: clip; }
   :root{ --btn-min-h: 5.2em; }
 }
 
-</style></head>
+</style><style>
+/* === Mobile dropdown visibility & layering fix === */
+@media (max-width:600px){
+  .top-bar nav.open{
+    z-index: 2000;                 /* above the sticky header */
+    width: min(92vw, 360px);       /* readable width on phones */
+    max-height: min(70vh, 480px);  /* prevent going off-screen */
+    overflow-y: auto;              /* scroll within if long */
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  }
+  .nav-toggle{ position: relative; z-index: 2001; }
+}
+</style>
+</head>
 <style>
     :root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }
 
