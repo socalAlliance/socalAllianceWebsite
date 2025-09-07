@@ -18,9 +18,22 @@
     gtag('js', new Date());
     gtag('config', 'G-65LTDNTZ16');
   </script>
+<style>
+/* === Mobile dropdown visibility & layering fix === */
+@media (max-width:600px){
+  .top-bar nav.open{
+    z-index: 2000;                 /* above the sticky header */
+    width: min(92vw, 360px);       /* readable width on phones */
+    max-height: min(70vh, 480px);  /* prevent going off-screen */
+    overflow-y: auto;              /* scroll within if long */
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  }
+  .nav-toggle{ position: relative; z-index: 2001; }
+}
+</style>
 <style id="nav-core">
 .top-bar{
-  position: sticky; top: 0; right: 0; z-index: 1000;
+  position: sticky; top: 0; left: 0; z-index: 1000;
   width: 100%; height: 100px;
   display: flex; align-items: center; justify-content: flex-start; padding: 0 50px;
   font-family: 'Tilt Warp', sans-serif !important;
@@ -33,7 +46,7 @@
 .logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
 .top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter:none !important; }
 
-.top-bar nav{ display:flex; gap:40px; margin-right:0 !important; }
+.top-bar nav{ display:flex; gap:40px; margin-left:0 !important; }
 .top-bar nav a{
   display:inline-block;
   font-size:inherit !important;
@@ -82,131 +95,58 @@
   .top-bar nav.open a{ font-size:16px !important; padding:8px 2px;}
 }
 
-/* === Mobile overflow fixes (add at end) === */
+/* --- Mobile overflow fixes --- */
+html { overflow-x: clip; }
+body { overflow-x: hidden; }
 
-/* 1) Make underline overhang shrink on phones */
-:root{
-  /* keeps the gradient underline from sticking out too far on small screens */
-  --underline-overhang: min(2rem, 4vw);
-  --partnerships-underline-overhang: min(2rem, 4vw);
+img, svg, video { max-width: 100%; height: auto; }
+
+.support-why h2,
+.support-how h2,
+.support-tiers-title,
+.carousel-title {
+  overflow: clip;
 }
 
-/* 2) Clip any horizontal paint that could cause side-scroll */
-.hero,
-.doc-section,
-.site-footer,
-.top-bar { overflow-x: clip; }
-@supports not (overflow: clip) {
-  .hero, .doc-section, .site-footer, .top-bar { overflow-x: hidden; }
+@media (max-width: 600px) {
+  :root { --support-underline-overhang: 0; }
 }
 
-/* 3) Ensure the mobile menu never widens the page */
-@media (max-width:600px){
-  .top-bar nav.open{
+.sponsor-marquee { overflow-x: hidden; }
+
+@media (max-width: 600px) {
+  .top-bar nav.open {
+    left: auto;
     right: 0;
     max-width: 100vw;
     box-sizing: border-box;
   }
 }
 
-/* 4) Belt-and-suspenders: avoid any stray 100vw overflow */
-html, body { overflow-x: clip; }
-@supports not (overflow: clip) {
-  html, body { overflow-x: hidden; }
+</style><style id="nav-left-hotfix">
+/* === NAV alignment + size hotfix (match index fix) === */
+.top-bar {
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+  justify-content: flex-start !important;
 }
 
+.top-bar nav { margin-left: 0 !important; }
 
-/* Reduce button text size on mobile */
+@media (min-width: 901px) {
+  .top-bar { height: 100px !important; padding: 0 50px !important; }
+  .top-bar nav { gap: 40px !important; }
+}
+
+@media (max-width: 900px) {
+  .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; }
+  .top-bar nav { gap: 15px !important; }
+}
+
 @media (max-width: 600px) {
-  .doc-button {
-    font-size: 1rem;
-    padding: 0.75rem 1rem;
-    line-height: 1.2;
-  }
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+  .top-bar nav { gap: 10px !important; }
 }
-
-
-/* === Projects buttons: consistent fit & alignment === */
-.features { align-items: stretch; }
-
-.feature { position: relative; }
-
-/* Ensure inner content uses equal padding and sits on the bottom */
-.feature .copy{
-  padding: clamp(16px, 4vw, 26px) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-end !important;
-  height: 100% !important;
-}
-
-/* Remove extra spacing around the heading and keep the box centered */
-.feature h3{ margin: 0 !important; }
-
-/* Make the button box fit within its tile with equal padding */
-.feature-btn{
-  display: block !important;
-  width: 100% !important;
-  max-width: none !important;
-  box-sizing: border-box !important;
-  text-align: center !important;
-  line-height: 1.25 !important;
-  padding: 0.75em 1em !important;
-  font-size: clamp(14px, 4.5vw, 16px) !important;
-  white-space: normal !important; /* allow wrapping */
-}
-
-/* === Equal-height feature buttons + centered text === */
-:root{ --btn-min-h: 4.6em; } /* fits two lines comfortably; tweak as needed */
-
-.feature-btn{
-  display: flex !important;
-  align-items: center !important;    /* vertical centering */
-  justify-content: center !important;/* horizontal centering */
-  text-align: center !important;
-  min-height: var(--btn-min-h) !important;
-}
-
-/* Slightly taller on very small phones if wrapping increases */
-@media (max-width: 380px){
-  :root{ --btn-min-h: 5.2em; }
-}
-
-</style><style>
-/* === Mobile dropdown visibility & layering fix === */
-@media (max-width:600px){
-  .top-bar nav.open{
-    z-index: 2000;                 /* above the sticky header */
-    width: min(92vw, 360px);       /* readable width on phones */
-    max-height: min(70vh, 480px);  /* prevent going off-screen */
-    overflow-y: auto;              /* scroll within if long */
-    box-shadow: 0 8px 24px rgba(0,0,0,.35);
-  }
-  .nav-toggle{ position: relative; z-index: 2001; }
-}
-</style>
-<style id="mobile-menu-fix">/* Keep the sticky header on top everywhere */
-.top-bar { z-index: 1000 !important; }
-
-/* Phone-only: render the opened menu above the page content */
-@media (max-width: 600px) {
-  .top-bar nav.open{
-    position: fixed !important;  /* escape header stacking context */
-    right: 0;
-    top: var(--nav-top, 80px);   /* JS sets this to header height */
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    z-index: 2000 !important;
-    max-width: 100vw !important;
-    box-sizing: border-box !important;
-    background: #000;
-    border-top: 1px solid rgba(255,255,255,.15);
-    padding: 12px 16px;
-    box-shadow: 0 8px 24px rgba(0,0,0,.35);
-  }
-  .nav-toggle { position: relative; z-index: 2001 !important; }
-}</style></head>
+</style></head>
 <style>
     :root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }
 
@@ -706,204 +646,8 @@ html, body { overflow-x: clip; }
   transform: none !important;
 }
   </style>
-<style id="sync-nav-footer">
 
-/* Synced from support.html (nav + footer) */
-.top-bar {
-      position:sticky; top:0; right:0; z-index:10;
-      width:100%; height:100px;
-      display:flex; align-items:center; padding:0 50px;
-      font-family:'Tilt Warp',sans-serif; font-size:28px;
-      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-      transition:transform .3s ease;
-    }
-.top-bar.hidden { transform:translateY(-100%); }
-.top-bar {
-        justify-content: space-between;
-        height: 80px;
-        padding: 0 20px;
-        font-size: 20px;
-      }
-.top-bar {
-        font-size: 18px;
-        padding: 0 15px;
-      }
-.top-bar .logo-link .logo {
-  background-image: url('/images/logo.png') !important;
-  filter: none !important;      /* remove that grayscale/brightness hack */
-}
-.logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
-.logo {
-        width: 60px;
-        height: 54px;
-        margin-right: 0;
-      }
-.logo {
-        width: 50px;
-        height: 45px;
-      }
-.logo {
-      transition: transform 0.3s ease;
-    }
-.logo {
-      transform: scale(1.05);
-    }
-.logo {
-  background-image: url('/images/logo.png') !important;
-  filter: none !important;      /* remove that grayscale/brightness hack */
-}
-.logo {
-  background-image: url('/images/logowhite.png') !important;
-}
-.logo {
-  /* only animate filter, not transform */
-  transition: filter 0.3s ease !important;
-  /* cancel any inherited scale */
-  transform: none !important;
-}
-.logo {
-  filter: grayscale(100%) brightness(80%) !important;
-  /* ensure it never scales */
-  transform: none !important;
-}
-nav { display:flex; gap:40px; }
-nav {
-        gap: 15px;
-      }
-nav {
-        gap: 10px;
-      }
-nav a:hover { opacity:.7; }
-@media (max-width: 900px) {
-      .top-bar {
-        justify-content: space-between;
-        height: 80px;
-        padding: 0 20px;
-        font-size: 20px;
-      }
-      .logo {
-        width: 60px;
-        height: 54px;
-        margin-right: 0;
-      }
-@media (max-width: 600px) {
-      .top-bar {
-        font-size: 18px;
-        padding: 0 15px;
-      }
-      .logo {
-        width: 50px;
-        height: 45px;
-      }
-.site-footer {
-      background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-      color:#fff;
-      padding: 3rem 10%;            /* a touch more vertical padding lifts content */
-      font-family:'Instrument Sans',sans-serif;
-    }
-.site-footer { padding: 2rem 6vw; }
-.site-footer { padding: 1rem 2vw; }
-.footer-content {
-      display: grid;
-      grid-template-columns: minmax(420px,1fr) auto; /* left grows, right hugs content */
-      align-items: center;           /* <-- centers the right column vertically */
-      justify-content: space-between;
-      gap: 2rem;
-    }
-.footer-content {
-        grid-template-columns: 1fr;
-        justify-items: center;
-        gap: 5rem;
-      }
-.footer-content { flex-direction: column; gap: 0.5rem; align-self: center;}
-.footer-left {
-      display:flex;
-      align-items: center;           /* left block aligns with the centered right */
-      gap: 1rem;
-      flex: 1 1 auto;
-    }
-.footer-left {
-        flex-direction: column;
-        text-align: center;
-      }
-.footer-center {
-      display: grid;
-      place-items: center;           /* centers horizontally + vertically inside its cell */
-      gap: 1rem;
-    }
-.footer-social {
-      display:flex;
-      gap:1rem;
-      justify-content: center;       /* centers the icons under the button */
-    }
-.footer-social { display:flex; gap:1rem; }
-.donate-img { height:48px; cursor:pointer; }
-.footer-social img {
-      width:60px; height:60px; filter:brightness(200%);
-      transition:filter .2s;
-    }
-.footer-social a:hover img { filter:brightness(100%); }
-.footer-social a:hover img {
-      filter: grayscale(100%) brightness(80%);
-    }
-.site-footer .logo {
-  background-image: url('/images/logowhite.png') !important;
-}
-.site-footer .logo {
-  /* only animate filter, not transform */
-  transition: filter 0.3s ease !important;
-  /* cancel any inherited scale */
-  transform: none !important;
-}
-.site-footer .logo-link:hover .logo {
-  filter: grayscale(100%) brightness(80%) !important;
-  /* ensure it never scales */
-  transform: none !important;
-}
-@media (max-width: 900px) {
-      .site-footer { padding: 2rem 6vw; }
-      .footer-content {
-        grid-template-columns: 1fr;
-        justify-items: center;
-        gap: 5rem;
-      }
-    }
-  }
-}
-</style><style id="nav-left-hotfix">
-/* === NAV alignment + size hotfix === */
-.top-bar {
-  /* smoothly scale nav label size on wider screens */
-  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
-}
-
-/* Left-align content on all sizes unless explicitly changed elsewhere */
-.top-bar { justify-content: flex-start !important; }
-
-/* Ensure the nav cluster doesn't get pushed right by margin tricks */
-.top-bar nav { margin-right: 0 !important; }
-
-/* Tweak gaps for readability at common breakpoints */
-@media (min-width: 901px) {
-  .top-bar { height: 100px !important; padding: 0 50px !important; }
-  .top-bar nav { gap: 40px !important; }
-}
-
-@media (max-width: 900px) {
-  /* keep everything left-aligned on tablet */
-  .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; }
-  .top-bar nav { gap: 15px !important; }
-}
-
-@media (max-width: 600px) {
-  /* slightly smaller text on small phones */
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
-  .top-bar nav { gap: 10px !important; }
-}
-</style>
-<body>
-<!-- NAV -->
-<header class="top-bar">
+<body><header class="top-bar">
 <a class="logo-link" href="/"><div class="logo"></div></a><button aria-controls="site-nav" aria-expanded="false" aria-label="Menu" class="nav-toggle"><span aria-hidden="true" class="burger"></span></button>
 <nav id="site-nav">
 <a href="/about/">ABOUT</a>
@@ -912,6 +656,8 @@ nav a:hover { opacity:.7; }
 <a href="/support/">SUPPORT</a>
 </nav>
 </header>
+<!-- NAV -->
+
 <main>
 <section class="hero">
 <h1>WHAT WE’RE DOING</h1>
@@ -1017,58 +763,33 @@ nav a:hover { opacity:.7; }
   })();
   </script>
 <!-- Hide-on-scroll Nav -->
-<script>
+
+</main><script>
     (function(){
       let lastY = window.scrollY;
       const nav = document.querySelector('.top-bar');
-      window.addEventListener('scroll', ()=>{
+      window.addEventListener('scroll', () => {
         const y = window.scrollY;
         nav.classList.toggle('hidden', y > lastY && y > 100);
         lastY = y;
       });
     })();
-  </script>
-</main><script>(function(){
+  </script><script>
+(function(){
   const btn = document.querySelector('.nav-toggle');
   const nav = document.getElementById('site-nav');
-  const header = document.querySelector('.top-bar');
-  if (!btn || !nav || !header) return;
-
-  function setMenuTop(){
-    if (window.matchMedia('(max-width: 600px)').matches) {
-      const h = header.getBoundingClientRect().height;
-      document.documentElement.style.setProperty('--nav-top', h + 'px');
-    } else {
-      document.documentElement.style.removeProperty('--nav-top');
-    }
-  }
-
-  function closeMenu(){
-    btn.setAttribute('aria-expanded', 'false');
-    nav.classList.remove('open');
-    document.body.style.overflow = ''; // re-enable page scroll
-  }
-
+  if (!btn || !nav) return;
   btn.addEventListener('click', function(){
     const open = this.getAttribute('aria-expanded') === 'true';
     this.setAttribute('aria-expanded', String(!open));
     nav.classList.toggle('open', !open);
-
-    if (!open) {
-      setMenuTop();                      // pin dropdown below header
-      document.body.style.overflow = 'hidden'; // prevent background scroll
-    } else {
-      document.body.style.overflow = '';
+  });
+  nav.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') {
+      btn.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
     }
   });
-
-  // Close if you tap a link
-  nav.addEventListener('click', function(e){
-    if (e.target.tagName === 'A') closeMenu();
-  });
-
-  // Keep correct position on rotate/resize/scroll
-  window.addEventListener('resize', setMenuTop);
-  window.addEventListener('scroll', setMenuTop, { passive: true });
-})();</script></body>
+})();
+</script></body>
 </html>
