@@ -81,6 +81,35 @@
   }
   .top-bar nav.open a{ font-size:16px !important; padding:8px 2px;}
 }
+
+/* --- Mobile overflow fixes --- */
+html { overflow-x: clip; }
+body { overflow-x: hidden; }
+
+img, svg, video { max-width: 100%; height: auto; }
+
+.support-why h2,
+.support-how h2,
+.support-tiers-title,
+.carousel-title {
+  overflow: clip;
+}
+
+@media (max-width: 600px) {
+  :root { --support-underline-overhang: 0; }
+}
+
+.sponsor-marquee { overflow-x: hidden; }
+
+@media (max-width: 600px) {
+  .top-bar nav.open {
+    left: auto;
+    right: 0;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+}
+
 </style></head>
 <style>
     :root {
