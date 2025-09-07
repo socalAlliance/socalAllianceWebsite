@@ -19,8 +19,9 @@
     gtag('config', 'G-65LTDNTZ16');
   </script>
 <style id="no-hscroll">html, body { overflow-x: clip; }</style><style id="nav-core">
+/* ===== Canonical navbar + mobile hamburger ===== */
 .top-bar{
-  position: sticky; top: 0; left: 0; z-index: 10;
+  position: sticky; top: 0; left: 0; z-index: 1000;
   width: 100%; height: 100px;
   display: flex; align-items: center; justify-content: flex-start; padding: 0 50px;
   font-family: 'Tilt Warp', sans-serif !important;
@@ -33,6 +34,7 @@
 .logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
 .top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter:none !important; }
 
+/* desktop/default nav layout */
 .top-bar nav{ display:flex; gap:40px; margin-left:0 !important; }
 .top-bar nav a{
   display:inline-block;
@@ -47,16 +49,46 @@
 }
 .top-bar nav a:hover{ opacity:.7; }
 
+/* hide the hamburger by default (>=600px) */
+.nav-toggle { display:none; }
+
 @media (max-width:900px){
   .top-bar{ height:80px !important; padding:0 20px !important; font-size:20px !important; }
   .logo{ width:60px !important; height:54px !important; margin-right:0 !important; }
   .top-bar nav{ gap:15px !important; }
 }
+
+/* ===== Mobile: hamburger dropdown (panel anchored right, links right-aligned) ===== */
 @media (max-width:600px){
   .top-bar{ font-size:18px !important; padding:0 15px !important; }
   .logo{ width:50px; height:45px; }
-  .top-bar nav{ gap:10px; flex-wrap:wrap; justify-content:center; }
-  .top-bar nav a{ font-size:16px !important; }
+
+  /* show the hamburger, keep it at the right edge */
+  .nav-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:44px; height:44px; margin-left:auto;
+    background:transparent; border:none; cursor:pointer;
+  }
+  /* burger icon */
+  .burger, .burger::before, .burger::after{
+    content:''; display:block; width:24px; height:2px; background:#fff; border-radius:2px;
+    position:relative; transition:transform .2s ease, opacity .2s ease, background .2s ease;
+  }
+  .burger::before{ position:absolute; top:-7px; }
+  .burger::after{ position:absolute; top:7px; }
+  /* X state when open */
+  .nav-toggle[aria-expanded="true"] .burger{ background:transparent; }
+  .nav-toggle[aria-expanded="true"] .burger::before{ transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .burger::after{ transform: translateY(-7px) rotate(-45deg); }
+
+  /* hide inline links; show dropdown panel when open */
+  .top-bar nav{ display:none !important; }
+  .top-bar nav.open{
+    display:flex !important; flex-direction:column; gap:12px;
+    position:absolute; top:100%; right:0;
+    padding:12px 16px; background:#000; border-top:1px solid rgba(255,255,255,.15);
+  }
+  .top-bar nav.open a{ font-size:16px !important; padding:8px 2px}
 }
 </style></head>
 <!-- Google tag (gtag.js) -->
@@ -614,17 +646,15 @@
 </style>
 <body>
 <header class="top-bar">
-<a class="logo-link" href="/"><div class="logo"></div></a>
-<nav>
+<a class="logo-link" href="/"><div class="logo"></div></a><button aria-controls="site-nav" aria-expanded="false" aria-label="Menu" class="nav-toggle"><span aria-hidden="true" class="burger"></span></button>
+<nav id="site-nav">
 <a href="/about/">ABOUT</a>
 <a href="/vex/">VEX</a>
 <a href="/projects/">PROJECTS</a>
 <a href="/support/">SUPPORT</a>
 </nav>
 </header>
-
 <!-- NAV -->
-
 <!-- HERO 1 -->
 <section class="hero-1">
 <div class="hero-text">FOUNDED BY COMPETITORS</div>
@@ -788,7 +818,6 @@
 </div>
 </footer>
 <!-- Hide-on-scroll Nav Script -->
-
 <script>
 // clone your slides so the track is “logo1…logoN | logo1…logoN”
 ;(function(){
@@ -827,6 +856,24 @@
     const y = window.scrollY;
     nav.classList.toggle('hidden', y > lastY && y > 100);
     lastY = y;
+  });
+})();
+</script><script>
+(function(){
+  const btn = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function(){
+    const open = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', String(!open));
+    nav.classList.toggle('open', !open);
+  });
+  // Close on link tap
+  nav.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') {
+      btn.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
+    }
   });
 })();
 </script></body>
