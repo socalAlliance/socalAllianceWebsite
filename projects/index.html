@@ -164,6 +164,30 @@ html, body { overflow-x: clip; }
   .feature{ min-height: 520px; }
 }
 
+
+/* === Row equalization to align bottom buttons === */
+/* Make each tile in a row the same height using aspect-ratio.
+   This guarantees the two bottom buttons sit on the same baseline. */
+@media (min-width: 700px){
+  .feature{
+    aspect-ratio: 3 / 4;         /* consistent tile height across the row */
+    min-height: auto !important;  /* override previous min-height */
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+  }
+  .feature .copy{ margin-top: auto; } /* pin content to bottom */
+  .features{ align-items: stretch; grid-auto-rows: 1fr; }
+}
+
+
+/* Nudge the bottom-right tile down a bit without affecting layout flow */
+@media (min-width: 700px){
+  .features .feature:nth-child(4) .copy{
+    transform: translateY(clamp(4px, 0.6vw, 14px));
+  }
+}
+
 </style></head>
 <style>
     :root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }
@@ -904,7 +928,9 @@ nav a:hover { opacity:.7; }
 <a class="feature-btn" href="https://docs.google.com/document/d/17gKdwJgWM0LbqSmfvf68YcsC7uPvrioFGI1wJeIiZ_A/edit?usp=sharing" onclick="event.stopPropagation()" rel="noopener" target="_blank">
         Comps/ Scrims
       </a>
-</h3></div>
+</h3>
+<p><!--…--></p>
+</div>
 </article>
 <article class="feature">
 <img alt="" src="/images/teaching.png"/>
