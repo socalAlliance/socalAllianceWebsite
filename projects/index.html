@@ -117,6 +117,53 @@ html, body { overflow-x: clip; }
   html, body { overflow-x: hidden; }
 }
 
+
+/* Reduce button text size on mobile */
+@media (max-width: 600px) {
+  .doc-button {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    line-height: 1.2;
+  }
+}
+
+
+/* === Projects buttons: consistent fit & alignment === */
+.features { align-items: stretch; }
+
+.feature { position: relative; }
+
+/* Ensure inner content uses equal padding and sits on the bottom */
+.feature .copy{
+  padding: clamp(16px, 4vw, 26px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  height: 100% !important;
+}
+
+/* Remove extra spacing around the heading and keep the box centered */
+.feature h3{ margin: 0 !important; }
+
+/* Make the button box fit within its tile with equal padding */
+.feature-btn{
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  line-height: 1.25 !important;
+  padding: 0.75em 1em !important;
+  font-size: clamp(18px, 4.5vw, 24px) !important;
+  white-space: normal !important; /* allow wrapping */
+}
+
+/* Keep both bottom buttons aligned by normalizing row heights */
+@media (min-width: 700px){
+  .features{ grid-auto-rows: 1fr; }
+  .feature{ min-height: 520px; }
+}
+
 </style></head>
 <style>
     :root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }
