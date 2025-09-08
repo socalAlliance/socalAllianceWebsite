@@ -1293,29 +1293,19 @@ img, svg, video { max-width: 100%; height: auto; }
     container.appendChild(stage);
 
     const BASE_W = 900, BASE_H = 800; // Increased from 720 to 800
-    Object.assign(stage.style, {
-      width: BASE_W + 'px',
-      height: BASE_H + 'px',
-      position: 'absolute',
-      left: '50%',
-      top: '50%',
-      transformOrigin: 'center center'
-    });
+    Object.assign(stage.style, { width: BASE_W + 'px', height: BASE_H + 'px', position: 'absolute', left: '50%', top: '50%', transformOrigin: 'center center' });
 
-    function resizeDesktop() {
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      const ch = container.clientHeight || BASE_H;
-      const rect = container.getBoundingClientRect();
-      const viewportCenterX = vw / 2;
-      // Position the stage's anchor directly under the viewport centerline
-      const leftPx = viewportCenterX - rect.left;
-      stage.style.left = (leftPx - 8.5) + 'px'; // micro offset left by 3px
-      stage.style.top = '50%';
-      // Down-only scale: target ~66% of viewport width, capped by original and container height
-      const targetW = Math.min(vw * 0.66, BASE_W);
-      const s = Math.min(targetW / BASE_W, ch / BASE_H, 1);
-      stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
-    }
+    function resizeDesktop(){
+  const ch = container.clientHeight || BASE_H;
+  const cw = container.clientWidth || BASE_W; // width inside padding
+  const sideReserve = 0.18;   // 16% total (8% each side) -> actually per side reserve
+  const topBottomReservePx = 220; // extra space for labels/arrows
+  const targetW = Math.min(cw * (1 - sideReserve), BASE_W);
+  const targetH = Math.max(0, ch - topBottomReservePx);
+  const s0 = Math.min(targetW / BASE_W, targetH / BASE_H, 1);
+  const s = Math.max(0, s0 * 0.88); // apply global downscale factor
+  stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+}
 
     // 2) Build a clean mobile UI (≤480px)
     let mobileBuilt = false; // (disabled)
@@ -1376,6 +1366,7 @@ img, svg, video { max-width: 100%; height: auto; }
     }
 
     window.addEventListener('resize', onResize);
+    window.addEventListener('load', onResize);
     onResize(); // initial
   })();
   </script>
@@ -1424,3 +1415,45 @@ img, svg, video { max-width: 100%; height: auto; }
   padding-right: max(96px, 12vw) !important;
 }
 </style>
+
+
+<style id="triangle-flex-center">
+.triangle-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.triangle-container .triangle-stage {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  transform-origin: center center !important;
+}
+</style>
+
+
+<style id="triangle-stable-center">
+:root { --tri-side-pad: clamp(72px, 12vw, 220px); }
+.triangle-container {
+  position: relative !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: 50% !important;
+  transform: translateX(-50%) !important;
+  box-sizing: border-box !important;
+  padding-left: var(--tri-side-pad) !important;
+  padding-right: var(--tri-side-pad) !important;
+  overflow: visible !important;
+}
+/* Stage uses absolute 50/50 + translate to stay centered regardless of padding */
+.triangle-container .triangle-stage {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform-origin: center center !important;
+}
+/* Fluid SVG */
+.triangle-container svg { display:block !important; width:100% !important; height:auto !important; }
+</style>
+
+<!-- build: wider downscale with horizontal+vertical reserves -->
