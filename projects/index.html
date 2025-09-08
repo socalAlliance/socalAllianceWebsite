@@ -1016,59 +1016,63 @@ nav a:hover { opacity:.7; }
     });
   })();
   </script>
-<!-- Hide-on-scroll Nav -->
+<!-- Hide-on-scroll Nav Script -->
 <script>
     (function(){
       let lastY = window.scrollY;
       const nav = document.querySelector('.top-bar');
-      window.addEventListener('scroll', ()=>{
+      window.addEventListener('scroll', () => {
         const y = window.scrollY;
         nav.classList.toggle('hidden', y > lastY && y > 100);
         lastY = y;
       });
     })();
   </script>
-</main><script>(function(){
+<script>
+// clone your slides so the track is “logo1…logoN | logo1…logoN”
+;(function(){
+  const track = document.querySelector('.carousel-track');
+  // guard
+  if(!track) return;
+  // duplicate
+  track.innerHTML += track.innerHTML;
+  // manual buttons still work
+  const slides = Array.from(track.children);
+  let index = 0;
+  const gap = parseInt(getComputedStyle(track).gap) || 0;
+  function jump(dir){
+    // temporarily disable animation
+    track.style.animation = 'none';
+    // move index and compute offset
+    index = (index + dir + slides.length) % slides.length;
+    const step = slides[0].getBoundingClientRect().width + gap;
+    track.style.transform = `translateX(-${index * step}px)`;
+    // re-trigger CSS animation
+    void track.offsetWidth;
+    track.style.animation = '';
+  }
+  document.querySelector('.carousel-arrow.left')
+    .addEventListener('click', ()=>jump(-1));
+  document.querySelector('.carousel-arrow.right')
+    .addEventListener('click', ()=>jump(1));
+})();
+</script>
+<script>
+(function(){
   const btn = document.querySelector('.nav-toggle');
   const nav = document.getElementById('site-nav');
-  const header = document.querySelector('.top-bar');
-  if (!btn || !nav || !header) return;
-
-  function setMenuTop(){
-    if (window.matchMedia('(max-width: 600px)').matches) {
-      const h = header.getBoundingClientRect().height;
-      document.documentElement.style.setProperty('--nav-top', h + 'px');
-    } else {
-      document.documentElement.style.removeProperty('--nav-top');
-    }
-  }
-
-  function closeMenu(){
-    btn.setAttribute('aria-expanded', 'false');
-    nav.classList.remove('open');
-    document.body.style.overflow = ''; // re-enable page scroll
-  }
-
+  if (!btn || !nav) return;
   btn.addEventListener('click', function(){
     const open = this.getAttribute('aria-expanded') === 'true';
     this.setAttribute('aria-expanded', String(!open));
     nav.classList.toggle('open', !open);
-
-    if (!open) {
-      setMenuTop();                      // pin dropdown below header
-      document.body.style.overflow = 'hidden'; // prevent background scroll
-    } else {
-      document.body.style.overflow = '';
+  });
+  nav.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') {
+      btn.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
     }
   });
-
-  // Close if you tap a link
-  nav.addEventListener('click', function(e){
-    if (e.target.tagName === 'A') closeMenu();
-  });
-
-  // Keep correct position on rotate/resize/scroll
-  window.addEventListener('resize', setMenuTop);
-  window.addEventListener('scroll', setMenuTop, { passive: true });
-})();</script></body>
+})();
+</script></body>
 </html>
