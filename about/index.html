@@ -1407,3 +1407,20 @@ img, svg, video { max-width: 100%; height: auto; }
 </script>
 </body>
 </html>
+
+<style id="triangle-unclip-patch">
+/* ===== FINAL PATCH: make triangle container full-width and unclipped ===== */
+.triangle-container {
+  position: relative !important;
+  width: 100vw !important;      /* give the triangle the full viewport width */
+  max-width: 100vw !important;
+  overflow: visible !important;  /* allow edges to render */
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+.triangle-container svg {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+}
+</style>
