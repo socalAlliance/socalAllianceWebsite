@@ -417,6 +417,34 @@ main, .hero, .features, .doc-section, .site-footer {
   body.sca-nav--locked{ overflow: hidden; }
 </style>
 
+
+<style id="footer-center-fix">
+/* Constrain footer width and center container on all sizes */
+.site-footer .footer-content{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* < 601px: force a single column, fully centered */
+@media (max-width: 600px){
+  .site-footer .footer-content{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 1.25rem !important;
+  }
+  .site-footer .footer-left{
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .site-footer .footer-left .logo-link{ margin: 0 auto !important; }
+  .site-footer .footer-center{ align-items: center !important; }
+  .site-footer .footer-social{ justify-content: center !important; }
+}
+</style>
+
 </head>
 <style>
     :root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }
