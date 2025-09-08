@@ -27,15 +27,11 @@ html, body { overflow-x: clip; }
 
 /* triangle section responsive */
 .triangle-container {
-  position: relative !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
-  margin-left: 50% !important;
-  transform: translateX(-50%) !important;
-  box-sizing: border-box !important;
-  padding-left: 72px !important;
-  padding-right: 72px !important;
+  width: min(900px, 100%) !important;
+  max-width: 100% !important;
   overflow: visible !important;
+  position: relative;
+  overflow-x: visible !important;
 }
 
 .triangle-container svg {
@@ -1316,9 +1312,7 @@ img, svg, video { max-width: 100%; height: auto; }
       stage.style.left = (leftPx - 8.5) + 'px'; // micro offset left by 3px
       stage.style.top = '50%';
       // Down-only scale: target ~66% of viewport width, capped by original and container height
-      const sidePad = Math.max(72, vw * 0.10);
-      const usableW = Math.max(0, vw - sidePad * 2);
-      const targetW = Math.min(usableW, BASE_W);
+      const targetW = Math.min(vw * 0.66, BASE_W);
       const s = Math.min(targetW / BASE_W, ch / BASE_H, 1);
       stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
     }
@@ -1382,7 +1376,6 @@ img, svg, video { max-width: 100%; height: auto; }
     }
 
     window.addEventListener('resize', onResize);
-window.addEventListener('load', onResize);
     onResize(); // initial
   })();
   </script>
@@ -1421,43 +1414,13 @@ window.addEventListener('load', onResize);
 </body>
 </html>
 
-<style id="triangle-wide-noclip">
-/* Keep triangle fully visible on ultra-wide screens */
+<style id="triangle-midrange-padding-v2">
 .triangle-container {
   width: 100vw !important;
   max-width: 100vw !important;
   box-sizing: border-box !important;
-  padding-left: 80px !important;   /* side breathing room */
-  padding-right: 80px !important;
-  margin-left: 50% !important;     /* ensure true centering with full-bleed width */
-  transform: translateX(-50%) !important;
-  overflow: visible !important;    /* never clip edges */
-}
-</style>
-
-
-<style id="triangle-mid-fix">
-.triangle-container {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  overflow-x: visible !important;
   overflow: visible !important;
-  padding-left: max(72px, 6vw) !important;
-  padding-right: max(72px, 6vw) !important;
-}
-</style>
-
-<style id="triangle-svg-scale">
-.triangle-container svg { display:block !important; width:100% !important; height:auto !important; }
-</style>
-
-
-<style id="triangle-midrange-padding">
-.triangle-container {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  overflow: visible !important;
-  padding-left: max(72px, 10vw) !important;
-  padding-right: max(72px, 10vw) !important;
+  padding-left: max(96px, 12vw) !important;
+  padding-right: max(96px, 12vw) !important;
 }
 </style>
