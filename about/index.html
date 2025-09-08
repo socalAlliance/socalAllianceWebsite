@@ -29,14 +29,8 @@ html, body { overflow-x: clip; }
 .triangle-container {
   width: min(900px, 100%) !important;
   max-width: 100% !important;
-  overflow: visible !important;
+  overflow: hidden;
   position: relative;
-  overflow-x: visible !important;
-}
-
-.triangle-container svg {
-  position: relative;
-  z-index: 6; 
 }
 
 /* labels fix - prevent cut off */
@@ -1293,19 +1287,45 @@ img, svg, video { max-width: 100%; height: auto; }
     container.appendChild(stage);
 
     const BASE_W = 900, BASE_H = 800; // Increased from 720 to 800
-    Object.assign(stage.style, { width: BASE_W + 'px', height: BASE_H + 'px', position: 'absolute', left: '50%', top: '50%', transformOrigin: 'center center' });
+    Object.assign(stage.style, {
+      width: BASE_W + 'px',
+      height: BASE_H + 'px',
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+      transformOrigin: 'center center'
+    });
 
-    function resizeDesktop(){
-  const ch = container.clientHeight || BASE_H;
-  const cw = container.clientWidth || BASE_W; // width inside padding
-  const sideReserve = 0.18;   // 16% total (8% each side) -> actually per side reserve
-  const topBottomReservePx = 220; // extra space for labels/arrows
-  const targetW = Math.min(cw * (1 - sideReserve), BASE_W);
-  const targetH = Math.max(0, ch - topBottomReservePx);
-  const s0 = Math.min(targetW / BASE_W, targetH / BASE_H, 1);
-  const s = Math.max(0, s0 * 0.88); // apply global downscale factor
-  stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
-}
+    function resizeDesktop() {
+      const vw = Math.max(document.documentElement.clientWidth, window.innerWidth);
+      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight);
+
+      const cw = container.clientWidth || BASE_W; // width inside padding
+
+      const sideReserve     = 0.26;   // ~11.5% margin each side
+      const topReservePx    = 140;    // protect arrows/top label
+      const bottomReservePx = 100;    // room for bottom labels
+
+      const targetW = Math.min(cw * (1 - sideReserve), BASE_W);
+      const targetH = Math.max(0, vh - (topReservePx + bottomReservePx));
+
+      const s = Math.min(targetW / BASE_W, targetH / BASE_H, 1);
+
+      // scale & keep centered
+      stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+
+      // total section height = triangle height + reserves
+      const renderedH = BASE_H * s;
+      const totalH    = Math.ceil(renderedH + topReservePx + bottomReservePx);
+
+      container.style.height = totalH + 'px';
+
+      // background matches same height, no gap below
+      const bg = document.querySelector('.bg-split');
+      if (bg) {
+        bg.style.height = totalH + 'px';
+      }
+    }
 
     // 2) Build a clean mobile UI (≤480px)
     let mobileBuilt = false; // (disabled)
@@ -1405,55 +1425,13 @@ img, svg, video { max-width: 100%; height: auto; }
 </body>
 </html>
 
-<style id="triangle-midrange-padding-v2">
-.triangle-container {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  box-sizing: border-box !important;
-  overflow: visible !important;
-  padding-left: max(96px, 12vw) !important;
-  padding-right: max(96px, 12vw) !important;
-}
+<style id="bg-triangle-gap-fix">
+/* keep triangle fully within the background and remove the gap to 'MEET THE TEAM' */
+.integrated-approach { padding-bottom: 0 !important; }
+.triangle-container { margin-bottom: 0 !important; }
+.integrated-bar.meet-bar { margin-top: 0 !important; }
+/* Make sure bg layer sits behind entire triangle stage */
+.bg-split { position: absolute; top: 0; left: 0; width: 100%; height: 100% !important; }
+/* Provide a little top breathing room for the arrows/labels */
+.triangle-container { padding-top: 8px !important; }
 </style>
-
-
-<style id="triangle-flex-center">
-.triangle-container {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-.triangle-container .triangle-stage {
-  position: relative !important;
-  left: auto !important;
-  top: auto !important;
-  transform-origin: center center !important;
-}
-</style>
-
-
-<style id="triangle-stable-center">
-:root { --tri-side-pad: clamp(72px, 12vw, 220px); }
-.triangle-container {
-  position: relative !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
-  margin-left: 50% !important;
-  transform: translateX(-50%) !important;
-  box-sizing: border-box !important;
-  padding-left: var(--tri-side-pad) !important;
-  padding-right: var(--tri-side-pad) !important;
-  overflow: visible !important;
-}
-/* Stage uses absolute 50/50 + translate to stay centered regardless of padding */
-.triangle-container .triangle-stage {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform-origin: center center !important;
-}
-/* Fluid SVG */
-.triangle-container svg { display:block !important; width:100% !important; height:auto !important; }
-</style>
-
-<!-- build: wider downscale with horizontal+vertical reserves -->
