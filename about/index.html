@@ -27,9 +27,9 @@ html, body { overflow-x: clip; }
 
 /* triangle section responsive */
 .triangle-container {
-  width: min(900px, 100%) !important;
-  max-width: 100% !important;
-  overflow: hidden;
+  width: 100% !important;
+  max-width: none !important;
+  overflow: visible !important;
   position: relative;
 }
 
@@ -99,13 +99,10 @@ html, body { overflow-x: clip; }
 }
 </style><style>
 /* --- Desktop cut-off fix for triangle labels --- */
+/* Keep the container visible on both axes to prevent clipping on wide screens */
 .triangle-container {
-  /* preserve horizontal clipping to avoid side scroll,
-     but allow vertical overflow so labels aren't cut */
-  overflow-x: hidden !important;
-  overflow-y: visible !important;
+  overflow: visible !important;
 }
-
 /* increase container height on larger screens so bottom labels fit */
 @media (min-width: 992px) {
   .triangle-container { height: 920px !important; }
@@ -232,6 +229,12 @@ img, svg, video { max-width: 100%; height: auto; }
   .top-bar nav { gap: 10px !important; }
 }
 </style>
+
+/* desktop breathing room to prevent perceived edge cut-off */
+@media (min-width: 1280px) {
+  .triangle-container { padding: 0 180px !important; }
+}
+
 </head>
 <style>
     /* — Reset & Base — */
@@ -1297,34 +1300,18 @@ img, svg, video { max-width: 100%; height: auto; }
     });
 
     function resizeDesktop() {
-      const vw = Math.max(document.documentElement.clientWidth, window.innerWidth);
-      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight);
-
-      const cw = container.clientWidth || BASE_W; // width inside padding
-
-      const sideReserve     = 0.26;   // ~11.5% margin each side
-      const topReservePx    = 140;    // protect arrows/top label
-      const bottomReservePx = 100;    // room for bottom labels
-
-      const targetW = Math.min(cw * (1 - sideReserve), BASE_W);
-      const targetH = Math.max(0, vh - (topReservePx + bottomReservePx));
-
-      const s = Math.min(targetW / BASE_W, targetH / BASE_H, 1);
-
-      // scale & keep centered
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      const ch = container.clientHeight || BASE_H;
+      const rect = container.getBoundingClientRect();
+      const viewportCenterX = vw / 2;
+      // Position the stage's anchor directly under the viewport centerline
+      const leftPx = viewportCenterX - rect.left;
+      stage.style.left = (leftPx - 8.5) + 'px'; // micro offset left by 3px
+      stage.style.top = '50%';
+      // Down-only scale: target ~66% of viewport width, capped by original and container height
+      const targetW = Math.min(vw * 0.66, BASE_W);
+      const s = Math.min(targetW / BASE_W, ch / BASE_H, 1);
       stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
-
-      // total section height = triangle height + reserves
-      const renderedH = BASE_H * s;
-      const totalH    = Math.ceil(renderedH + topReservePx + bottomReservePx);
-
-      container.style.height = totalH + 'px';
-
-      // background matches same height, no gap below
-      const bg = document.querySelector('.bg-split');
-      if (bg) {
-        bg.style.height = totalH + 'px';
-      }
     }
 
     // 2) Build a clean mobile UI (≤480px)
@@ -1386,7 +1373,6 @@ img, svg, video { max-width: 100%; height: auto; }
     }
 
     window.addEventListener('resize', onResize);
-    window.addEventListener('load', onResize);
     onResize(); // initial
   })();
   </script>
@@ -1424,14 +1410,3 @@ img, svg, video { max-width: 100%; height: auto; }
 </script>
 </body>
 </html>
-
-<style id="bg-triangle-gap-fix">
-/* keep triangle fully within the background and remove the gap to 'MEET THE TEAM' */
-.integrated-approach { padding-bottom: 0 !important; }
-.triangle-container { margin-bottom: 0 !important; }
-.integrated-bar.meet-bar { margin-top: 0 !important; }
-/* Make sure bg layer sits behind entire triangle stage */
-.bg-split { position: absolute; top: 0; left: 0; width: 100%; height: 100% !important; }
-/* Provide a little top breathing room for the arrows/labels */
-.triangle-container { padding-top: 8px !important; }
-</style>
