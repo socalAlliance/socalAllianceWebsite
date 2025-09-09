@@ -19,6 +19,7 @@
     gtag('config', 'G-65LTDNTZ16');
   </script>
 <style>
+
 /* stop accidental page-wide sideways scroll */
 html, body { overflow-x: clip; }
 
@@ -27,9 +28,9 @@ html, body { overflow-x: clip; }
 
 /* triangle section responsive */
 .triangle-container {
-  width: 100% !important;
-  max-width: none !important;
-  overflow: visible !important;
+  width: min(900px, 100%) !important;
+  max-width: 100% !important;
+  overflow: hidden;
   position: relative;
 }
 
@@ -99,10 +100,13 @@ html, body { overflow-x: clip; }
 }
 </style><style>
 /* --- Desktop cut-off fix for triangle labels --- */
-/* Keep the container visible on both axes to prevent clipping on wide screens */
 .triangle-container {
-  overflow: visible !important;
+  /* preserve horizontal clipping to avoid side scroll,
+     but allow vertical overflow so labels aren't cut */
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
 }
+
 /* increase container height on larger screens so bottom labels fit */
 @media (min-width: 992px) {
   .triangle-container { height: 920px !important; }
@@ -230,10 +234,16 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 </style>
 
-/* desktop breathing room to prevent perceived edge cut-off */
-@media (min-width: 1280px) {
-  .triangle-container { padding: 0 180px !important; }
+<style id="tri-large-tune">
+.integrated-approach{ padding-top:0 !important; padding-bottom:0 !important; position:relative; }
+.triangle-container{
+  width:100% !important;
+  overflow:visible !important;
+  margin:12px auto !important; /* tight gap to headers */
+  padding-left: clamp(8px, 2vw, 120px) !important;
+  padding-right: clamp(8px, 2vw, 120px) !important;
 }
+</style>
 
 </head>
 <style>
@@ -957,8 +967,8 @@ img, svg, video { max-width: 100%; height: auto; }
 <!-- Labels -->
 <div id="labels" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
 <div class="label"><div class="label-text">NONPROFIT</div></div>
-<div class="label"><div class="label-text">VEXU TEAM</div></div>
-<div class="label"><div class="label-text">SOCAL ALLIANCE</div></div>
+<div class="label"><div class="label-text">VEXU<br class="br-sm"/>TEAM</div></div>
+<div class="label"><div class="label-text">SOCAL<br class="br-sm"/>ALLIANCE</div></div>
 </div>
 <!-- Descriptions -->
 <div class="description-text" id="description-left"></div>
@@ -1167,7 +1177,13 @@ img, svg, video { max-width: 100%; height: auto; }
 
     function initialize(){
       labelEls.forEach((el,i)=>{ 
-        el.querySelector(".label-text").textContent = roles[i].label; 
+        const raw = roles[i].label;
+        const html =
+          raw === 'VEXU TEAM'        ? 'VEXU<br class="stack"/>TEAM' :
+          raw === 'SOCAL ALLIANCE'   ? 'SOCAL<br class="stack"/>ALLIANCE' :
+                                      raw;
+
+        el.querySelector('.label-text').innerHTML = html;
         const pos = positions[(i+rotation)%3]; 
         el.style.left = pos.x + "px"; 
         el.style.top = pos.y + "px"; 
@@ -1299,20 +1315,51 @@ img, svg, video { max-width: 100%; height: auto; }
       transformOrigin: 'center center'
     });
 
-    function resizeDesktop() {
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      const ch = container.clientHeight || BASE_H;
-      const rect = container.getBoundingClientRect();
-      const viewportCenterX = vw / 2;
-      // Position the stage's anchor directly under the viewport centerline
-      const leftPx = viewportCenterX - rect.left;
-      stage.style.left = (leftPx - 8.5) + 'px'; // micro offset left by 3px
-      stage.style.top = '50%';
-      // Down-only scale: target ~66% of viewport width, capped by original and container height
-      const targetW = Math.min(vw * 0.66, BASE_W);
-      const s = Math.min(targetW / BASE_W, ch / BASE_H, 1);
-      stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
-    }
+    
+function resizeDesktop() {
+  const vw = Math.max(document.documentElement.clientWidth, window.innerWidth);
+  const vh = Math.max(document.documentElement.clientHeight, window.innerHeight);
+  const cw = container.clientWidth || BASE_W;
+
+  // Fractional padding (total) that relaxes on wide screens
+  const sideReserveFrac =
+    vw >= 2560 ? 0.16 :
+    vw >= 1920 ? 0.18 :
+    vw >= 1600 ? 0.20 :
+    vw >= 1366 ? 0.22 : 0.26; // total fraction reserved (both sides combined)
+
+  // Always keep a hard minimum px on EACH side to prevent clipping
+  const minSidePadPx = 120; // 96px each side
+  const sidePad = Math.max(minSidePadPx, (cw * sideReserveFrac) / 2);
+  let usableW = Math.max(0, cw - sidePad * 2);
+  if (vw < 1366) {
+    usableW = Math.max(0, cw - sidePad * 1.2);
+  }
+  const topReservePx = 16; const bottomReservePx = 12;
+
+  const targetW = usableW; // no BASE_W clamp
+  const targetH = Math.max(0, vh - (topReservePx + bottomReservePx));
+
+  // Allow modest upscale on big screens but stay within height constraint
+  const MAX_SCALE =
+    vw >= 2560 ? 1.9 :
+    vw >= 1920 ? 1.6 :
+    vw >= 1600 ? 1.4 :
+    vw >= 1366 ? 1.25 : 1.0;
+
+  const s = Math.min(targetW / BASE_W, targetH / BASE_H, MAX_SCALE);
+
+  stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  const yNudge = (vw >= 550 && vw <= 1122) ? 30 : 0;
+  stage.style.top = `calc(50% + ${yNudge}px)`;
+  const renderedH = BASE_H * s;
+  const totalH    = Math.ceil(renderedH + topReservePx + bottomReservePx);
+  container.style.height = totalH + 'px';
+
+  const bg = document.querySelector('.bg-split');
+  if (bg) bg.style.height = totalH + 'px';
+}
+
 
     // 2) Build a clean mobile UI (≤480px)
     let mobileBuilt = false; // (disabled)
@@ -1408,5 +1455,43 @@ img, svg, video { max-width: 100%; height: auto; }
   });
 })();
 </script>
+
+<script id="bg-size-by-container">
+(function(){
+  const container = document.querySelector('.triangle-container');
+  const host = container ? container.closest('.integrated-approach') : null;
+  const bg = host ? host.querySelector('.bg-split') : null;
+  const fx = host ? host.querySelector('.background-effects') : null;
+  if(!(container && host && bg)) return;
+
+  function syncBg(){
+    const rect = container.getBoundingClientRect();
+    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth);
+    // Full height on >= 1123px, 66% & centered on thinner
+    let h = rect.height;
+    let top = 0;
+    if (vw <= 1122) {
+      h = Math.round(rect.height * 0.95);
+      top = Math.max(0, Math.round((rect.height - h) / 2));
+    }
+    const offsetTop = 0; // align with container top (no black gap)
+    bg.style.top = (offsetTop + top) + 'px';
+    bg.style.height = h + 'px';
+    if (fx) { fx.style.top = (offsetTop + top) + 'px'; fx.style.height = h + 'px'; }
+  }
+  new ResizeObserver(syncBg).observe(container);
+  window.addEventListener('resize', syncBg, {passive:true});
+  syncBg();
+})();
+</script>
+
 </body>
 </html>
+
+<style id="no-clip-guard">
+.triangle-container { overflow: visible !important; }
+.label-text br.br-sm { display: none; }
+@media (max-width: 1122px) {
+  .label-text br.br-sm { display: inline; }
+}
+</style>
