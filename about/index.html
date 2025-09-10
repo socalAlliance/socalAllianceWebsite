@@ -249,45 +249,52 @@ img, svg, video { max-width: 100%; height: auto; }
 /* Make gradient arrow symbols larger and responsive */
 #arrow-container .arrow,
 .tri-mobile .m-arrow {
-font-size: 3rem !important; /* default size on desktop */
-width: 3.5rem !important;
-height: 3.5rem !important;
+  font-size: 3rem !important; /* default size on desktop */
+  width: 3.5rem !important;
+  height: 3.5rem !important;
 }
 
 
 #arrow-container .arrow::before,
 .tri-mobile .m-arrow::before {
-font-size: 8rem !important;
+  font-size: 7rem !important;
 }
 
 
 /* Medium screens */
 @media (max-width: 900px) {
-#arrow-container .arrow,
-.tri-mobile .m-arrow {
-font-size: 2.5rem !important;
-width: 3rem !important;
-height: 3rem !important;
-}
-#arrow-container .arrow::before,
-.tri-mobile .m-arrow::before {
-font-size: 8rem !important;
-}
+  #arrow-container .arrow,
+  .tri-mobile .m-arrow {
+    font-size: 2.5rem !important;
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+  #arrow-container .arrow::before,
+  .tri-mobile .m-arrow::before {
+    font-size: 7rem !important;
+  }
 }
 
 
 /* Small screens */
 @media (max-width: 480px) {
+  #arrow-container .arrow,
+  .tri-mobile .m-arrow {
+    font-size: 2rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+  #arrow-container .arrow::before,
+  .tri-mobile .m-arrow::before {
+    font-size: 7rem !important;
+  }
+}
+
 #arrow-container .arrow,
 .tri-mobile .m-arrow {
-font-size: 2rem !important;
-width: 2.5rem !important;
-height: 2.5rem !important;
-}
-#arrow-container .arrow::before,
-.tri-mobile .m-arrow::before {
-font-size: 8rem !important;
-}
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important; /* cancel any circle shaping */
 }
 </style>
 </head>
@@ -803,7 +810,7 @@ font-size: 8rem !important;
 
     /* Create the gradient text effect properly */
     .arrow::before, .m-arrow::before {
-      content: attr(data-arrow) "◀";
+      content: attr(data-arrow) "🢀";
       background: var(--animated-gradient);
       background-size: 200% 200%;
       -webkit-background-clip: text;
@@ -817,11 +824,11 @@ font-size: 8rem !important;
     }
 
     .arrow[data-dir="1"]::before, .m-arrow[data-dir="1"]::before {
-      content: "▶";
+      content: "🢂";
     }
 
     .arrow[data-dir="-1"]::before, .m-arrow[data-dir="-1"]::before {
-      content: "◀";
+      content: "🢀";
     }
 
     /* Focus states for accessibility */
@@ -1020,8 +1027,8 @@ font-size: 8rem !important;
 <div class="description-text" id="description-right"></div>
 <!-- Arrows -->
 <div id="arrow-container">
-<div class="arrow" data-dir="-1">◀</div>
-<div class="arrow" data-dir="1">▶</div>
+<div class="arrow" data-dir="-1">🢀</div>
+<div class="arrow" data-dir="1">🢂</div>
 </div>
 </div>
 </div>
