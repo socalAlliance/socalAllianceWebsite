@@ -245,6 +245,51 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 </style>
 
+<style>
+/* Make gradient arrow symbols larger and responsive */
+#arrow-container .arrow,
+.tri-mobile .m-arrow {
+font-size: 3rem !important; /* default size on desktop */
+width: 3.5rem !important;
+height: 3.5rem !important;
+}
+
+
+#arrow-container .arrow::before,
+.tri-mobile .m-arrow::before {
+font-size: 8rem !important;
+}
+
+
+/* Medium screens */
+@media (max-width: 900px) {
+#arrow-container .arrow,
+.tri-mobile .m-arrow {
+font-size: 2.5rem !important;
+width: 3rem !important;
+height: 3rem !important;
+}
+#arrow-container .arrow::before,
+.tri-mobile .m-arrow::before {
+font-size: 8rem !important;
+}
+}
+
+
+/* Small screens */
+@media (max-width: 480px) {
+#arrow-container .arrow,
+.tri-mobile .m-arrow {
+font-size: 2rem !important;
+width: 2.5rem !important;
+height: 2.5rem !important;
+}
+#arrow-container .arrow::before,
+.tri-mobile .m-arrow::before {
+font-size: 8rem !important;
+}
+}
+</style>
 </head>
 <style>
     /* — Reset & Base — */
