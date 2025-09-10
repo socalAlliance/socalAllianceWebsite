@@ -805,7 +805,7 @@ img, svg, video { max-width: 100%; height: auto; }
 
     /* Create the gradient text effect properly */
     .arrow::before, .m-arrow::before {
-      content: attr(data-arrow) "🢀";
+      content: attr(data-arrow) "<";
       background: var(--animated-gradient);
       background-size: 200% 200%;
       -webkit-background-clip: text;
@@ -819,11 +819,11 @@ img, svg, video { max-width: 100%; height: auto; }
     }
 
     .arrow[data-dir="1"]::before, .m-arrow[data-dir="1"]::before {
-      content: "🢂";
+      content: ">";
     }
 
     .arrow[data-dir="-1"]::before, .m-arrow[data-dir="-1"]::before {
-      content: "🢀";
+      content: "<";
     }
 
     /* Focus states for accessibility */
@@ -1023,7 +1023,7 @@ img, svg, video { max-width: 100%; height: auto; }
 <!-- Arrows -->
 <div id="arrow-container">
 <div class="arrow" data-dir="-1">🢀</div>
-<div class="arrow" data-dir="1">🢂</div>
+<div class="arrow" data-dir="1"></div>
 </div>
 </div>
 </div>
