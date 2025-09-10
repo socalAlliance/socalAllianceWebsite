@@ -826,6 +826,13 @@ img, svg, video { max-width: 100%; height: auto; }
       content: "<";
     }
 
+    .arrow[data-dir="1"]::before,
+    .m-arrow[data-dir="1"]::before,
+    .arrow[data-dir="-1"]::before,
+    .m-arrow[data-dir="-1"]::before {
+      font-weight: 1000; /* heavy bold */
+    }    
+
     /* Focus states for accessibility */
     .arrow:focus,
     .m-arrow:focus {
