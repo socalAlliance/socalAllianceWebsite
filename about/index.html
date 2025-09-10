@@ -290,12 +290,7 @@ img, svg, video { max-width: 100%; height: auto; }
   }
 }
 
-#arrow-container .arrow,
-.tri-mobile .m-arrow {
-  background: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important; /* cancel any circle shaping */
-}
+
 </style>
 </head>
 <style>
@@ -1537,6 +1532,43 @@ function resizeDesktop() {
 })();
 </script>
 
+<style>
+/* === Override arrow styles to remove circular background === */
+#arrow-container .arrow,
+.tri-mobile .m-arrow {
+  border-radius: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: transparent !important; /* hide text base */
+}
+
+#arrow-container .arrow:hover,
+#arrow-container .arrow:active,
+.tri-mobile .m-arrow:hover,
+.tri-mobile .m-arrow:active {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+#arrow-container .arrow:focus,
+#arrow-container .arrow:focus-visible,
+.tri-mobile .m-arrow:focus,
+.tri-mobile .m-arrow:focus-visible {
+  outline: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #arrow-container .arrow:hover,
+  .tri-mobile .m-arrow:hover {
+    background-color: transparent !important;
+  }
+}
+</style>
 </body>
 </html>
 
