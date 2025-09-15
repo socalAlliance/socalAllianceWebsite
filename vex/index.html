@@ -1421,6 +1421,53 @@ img, svg, video { max-width: 100%; height: auto; }
   }
 }
 
+/* ===== FINAL: Close-Knit underline sits right under the headline ===== */
+@media (min-width: 601px) {
+  h1.location-headline#loc-headline {
+    position: relative !important;
+    display: inline-block !important;   /* shrink box to text width */
+    width: auto !important;
+    text-align: center !important;
+    padding-bottom: 0.28rem !important; /* put line tight under letters */
+    margin: 0 auto 1.0rem !important;   /* space between headline and paragraph */
+    /* kill any inherited overhang that makes the line too long */
+    --partnerships-underline-overhang: 0 !important;
+  }
+  h1.location-headline#loc-headline::after {
+    content: "" !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;  /* center under the text */
+    width: 100% !important;                  /* exactly the heading width */
+    height: var(--partnerships-underline-height) !important;
+    background: var(--bar-gradient) !important;
+    border-radius: var(--partnerships-underline-radius) !important;
+  }
+}
+
+/* Phone / small tablets: same behavior */
+@media (max-width: 600px) {
+  h1.location-headline#loc-headline {
+    position: relative !important;
+    display: inline-block !important;
+    width: auto !important;
+    padding-bottom: 0.22rem !important;
+    margin: 0 auto 0.85rem !important;
+    --partnerships-underline-overhang: 0 !important;
+  }
+  h1.location-headline#loc-headline::after {
+    content: "" !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100% !important;
+    height: 6px !important;                 /* slightly thinner on phones */
+    background: var(--bar-gradient) !important;
+    border-radius: 999px !important;
+  }
+}
 </style>
 
 <body>
@@ -1470,7 +1517,7 @@ img, svg, video { max-width: 100%; height: auto; }
 <img alt="Our regional hubs" src="/images/location.png"/>
 </div>
 <div class="location-copy">
-<h1 class="location-headline" id="loc-headline"> A CLOSE-KNIT COMMUNITY</h1>
+<h1 class="location-headline" id="loc-headline">A CLOSE-KNIT COMMUNITY</h1>
 <p class="copy">
       What sets our community apart is our regional proximity to one another. Centered around the two major hubs of Los Angeles and San Diego, we host gatherings, scrimmages, and competitions that foster meaningful connections and accelerate learning.
       Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals. <br/>
