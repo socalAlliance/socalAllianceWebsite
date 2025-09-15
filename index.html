@@ -18,7 +18,16 @@
     gtag('js', new Date());
     gtag('config', 'G-65LTDNTZ16');
   </script>
-<style id="no-hscroll">html, body { overflow-x: clip; }</style>
+<style id="no-hscroll">html, body { overflow-x: clip; }
+/* Prevent any inherited filters from altering sponsor colors */
+.sponsor-marquee, .sponsor-viewport, .sponsor-logo, .sponsor-logo img { filter: none !important; }
+
+
+/* Strong guard: never alter sponsor colors inside the marquee */
+.sponsor-marquee .sponsor-logo,
+.sponsor-marquee .sponsor-logo img { filter: none !important; opacity: 1 !important; }
+
+</style>
 <style id="nav-core">
 .top-bar{
   position: sticky; top: 0; left: 0; z-index: 1000;
@@ -321,13 +330,12 @@ img, svg, video { max-width: 100%; height: auto; }
     .donate-img { height:48px; cursor:pointer; }
     .footer-social { display:flex; gap:1rem; }
     .footer-social img {
-      width:60px; height:60px; filter:brightness(200%);
+      width:60px; height:60px; 
       transition:filter .2s;
     }
-    .footer-social a:hover img { filter:brightness(100%); }
     .donate-img:hover,
     .footer-social a:hover img {
-      filter: grayscale(100%) brightness(80%);
+      filter: brightness(80%);
     }
     .btn-img:hover img {
       transform: scale(1.05);
@@ -383,7 +391,7 @@ img, svg, video { max-width: 100%; height: auto; }
 
 /* 2) On hover, apply grayscale + slight dim */
 .site-footer .logo-link:hover .logo {
-  filter: grayscale(100%) brightness(80%) !important;
+  filter: brightness(80%) !important;
   /* ensure it never scales */
   transform: none !important;
 }
@@ -430,20 +438,18 @@ img, svg, video { max-width: 100%; height: auto; }
   gap: 1.5rem;
   padding: 0; margin: 0;
   list-style: none;
-  animation: marqueeScroll 20s linear infinite;
+  
   overflow: visible;                /* ensure children aren’t clipped */
+  padding-left: var(--s-gap, 1.5rem); padding-right: var(--s-gap, 1.5rem);
 }
-@keyframes marqueeScroll {
-  from { transform: translateX(0); }
+
   to   { transform: translateX(-50%); }
-}
 /* pause on hover */
-.sponsor-marquee:hover .marquee {
-  animation-play-state: paused;
-}
+
 
 /* uniform box + button behavior */
 .sponsor-logo {
+  margin-top: 12px;
   display: inline-block;
   flex: 0 0 auto;
   width: 150px;    /* your fixed size */
@@ -453,7 +459,7 @@ img, svg, video { max-width: 100%; height: auto; }
   background: transparent;
   position: relative;
   z-index: 9;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.25s ease;
   overflow: visible;                /* child img can overflow */
 }
 .sponsor-logo img {
@@ -464,11 +470,7 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 
 /* pop & lift on hover */
-.sponsor-logo:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-  z-index: 10;
-}
+.sponsor-logo:hover { transform: translateY(0px) scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,.35); z-index: 10; filter: none !important; }
 
 /* outlines */
 .tier-yellow { border-color: #F9CB22; }
@@ -643,6 +645,91 @@ img, svg, video { max-width: 100%; height: auto; }
   }
 }
 
+
+/* === Sponsor viewport shows 3 logos at a time === */
+.sponsor-viewport {
+
+  --s-logo-w: 150px;
+  --s-gap: 1.5rem;
+  /* exact 3 logos + 2 gaps area inside the padding */
+  width: calc(3 * var(--s-logo-w) + 2 * var(--s-gap));
+  max-width: 100%;
+  margin: 0 auto;
+   /* gutters so edge logos aren't clipped */
+  box-sizing: content-box;       /* keep inner visible area equal to width above */
+  overflow: hidden; /* ensure only 3 are visible */
+
+}
+
+
+
+/* Make the track GPU-friendly and driven by JS (no CSS keyframes) */
+.marquee {
+  display: flex;
+  gap: var(--s-gap, 1.5rem);
+  padding: 0; margin: 0; list-style: none;
+  will-change: transform;
+  transform: translate3d(0,0,0);
+}
+
+/* Keep logos in fixed boxes, but scale the IMG on hover so it never gets cropped by the box */
+.sponsor-logo {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: var(--s-logo-w, 150px);
+  height: 100px;
+  margin-top: 12px;      /* <-- pushes the whole box down */
+  padding: 10px;
+  border: 3px solid;
+  border-radius: 12px;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  overflow: visible;     /* allow hover scaling to show */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sponsor-logo {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: var(--s-logo-w, 150px);
+  height: 100px;
+  margin-top: 12px;      /* <-- pushes the whole box down */
+  padding: 10px;
+  border: 3px solid;
+  border-radius: 12px;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  overflow: visible;     /* allow hover scaling to show */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Keep logos true to original colors */
+.sponsor-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.25s ease;
+  filter: none !important;   /* force original colors */
+}
+
+.sponsor-logo:hover img { transform: none; }
+
+/* Mobile tweak: show 2 at a time on very small screens for breathing room */
+@media (max-width: 520px) {
+  .sponsor-viewport {
+    width: calc(2 * var(--s-logo-w) + 1 * var(--s-gap));
+  }
+}
+
+/* --- Tier border colors (last in cascade) --- */
+.sponsor-logo.tier-yellow { border-color: #F9CB22 !important; }
+.sponsor-logo.tier-orange { border-color: #EF7616 !important; }
+.sponsor-logo.tier-pink   { border-color: #F0115F !important; }
+
 </style>
 
 <style id="nav-left-hotfix">
@@ -723,7 +810,8 @@ img, svg, video { max-width: 100%; height: auto; }
 <section class="sponsor-carousel-section">
 <h2 class="carousel-title">OUR SPONSORS</h2>
 <div class="sponsor-marquee">
-<ul class="marquee">
+  <div class="sponsor-viewport">
+    <ul class="marquee" id="sponsorTrack">
 <!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
@@ -823,7 +911,8 @@ img, svg, video { max-width: 100%; height: auto; }
 </a>
 </li>
 </ul>
-</div>
+    </div>
+  </div>
 </section>
 <!-- FOOTER -->
 <footer class="site-footer">
@@ -848,36 +937,7 @@ img, svg, video { max-width: 100%; height: auto; }
 </div>
 </div>
 </footer>
-<!-- Hide-on-scroll Nav Script -->
-<script>
-// clone your slides so the track is “logo1…logoN | logo1…logoN”
-;(function(){
-  const track = document.querySelector('.carousel-track');
-  // guard
-  if(!track) return;
-  // duplicate
-  track.innerHTML += track.innerHTML;
-  // manual buttons still work
-  const slides = Array.from(track.children);
-  let index = 0;
-  const gap = parseInt(getComputedStyle(track).gap) || 0;
-  function jump(dir){
-    // temporarily disable animation
-    track.style.animation = 'none';
-    // move index and compute offset
-    index = (index + dir + slides.length) % slides.length;
-    const step = slides[0].getBoundingClientRect().width + gap;
-    track.style.transform = `translateX(-${index * step}px)`;
-    // re-trigger CSS animation
-    void track.offsetWidth;
-    track.style.animation = '';
-  }
-  document.querySelector('.carousel-arrow.left')
-    .addEventListener('click', ()=>jump(-1));
-  document.querySelector('.carousel-arrow.right')
-    .addEventListener('click', ()=>jump(1));
-})();
-</script>
+<!-- (removed unused carousel-track script) -->
 
 <script>
     (function(){
@@ -909,5 +969,69 @@ img, svg, video { max-width: 100%; height: auto; }
   });
 })();
 </script>
+
+<script>
+// Smooth, seamless sponsor ticker (3 logos visible), no cropping on hover
+(function(){
+  const track = document.getElementById('sponsorTrack');
+  if (!track) return;
+  const viewport = track.parentElement;
+  const getGap = () => parseFloat(getComputedStyle(track).gap) || 24;
+  const speed = 60; // pixels per second
+  let paused = false;
+
+  // Ensure we have enough children so the loop is seamless.
+  function ensureFill(){
+    const needWidth = viewport.offsetWidth * 2;
+    // Clone until the track is at least 2x viewport width
+    while (track.scrollWidth < needWidth && track.children.length < 200) {
+      const clones = Array.from(track.children).map(n => n.cloneNode(true));
+      clones.forEach(c => track.appendChild(c));
+    }
+  }
+  ensureFill();
+  viewport.addEventListener('mouseenter', ()=> paused = true);
+  viewport.addEventListener('mouseleave', ()=> paused = false);
+  // Recalculate on resize
+  let resizeTO;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTO);
+    resizeTO = setTimeout(() => {
+      // Remove all but first "page" then refill
+      const originalCount = Math.max(1, Math.floor(track.children.length / 2));
+      while (track.children.length > originalCount) track.removeChild(track.lastElementChild);
+      track.style.transform = 'translateX(0px)';
+      x = 0;
+      ensureFill();
+  viewport.addEventListener('mouseenter', ()=> paused = true);
+  viewport.addEventListener('mouseleave', ()=> paused = false);
+    }, 150);
+  });
+
+  let x = 0;
+  let last = performance.now();
+  function loop(now){
+    const dt = (now - last) / 1000;
+    last = now;
+    if (!paused) { x -= speed * dt; }
+
+    // When the first child fully exits left, move it to the end
+    const first = track.firstElementChild;
+    if (first) {
+      const firstRect = first.getBoundingClientRect();
+      const viewportRect = viewport.getBoundingClientRect();
+      const step = firstRect.width + getGap();
+      if (-x >= step) {
+        track.appendChild(first);
+        x += step;
+      }
+    }
+    track.style.transform = `translate3d(${x}px,0,0)`;
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
 </body>
 </html>
