@@ -1383,6 +1383,44 @@ img, svg, video { max-width: 100%; height: auto; }
   }
 }
 
+/* === DESKTOP/LAPTOP underline fixes === */
+@media (min-width: 601px) {
+  /* Make headline boxes shrink to their text so ::after matches the text width */
+  .hero-headline,
+  .location-headline {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 0 auto !important;       /* keep centered */
+  }
+
+  /* Remove the wide overhang on big screens */
+  .hero-headline::after,
+  .location-headline::after {
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Bring the Close-Knit underline up closer to the text */
+  #loc-headline {                     /* “A CLOSE-KNIT COMMUNITY” */
+    padding-bottom: 0.2rem !important;  /* was ~0.5rem */
+  }
+}
+
+@media (min-width: 601px) {
+  #loc-headline {
+    display: inline-block !important;      /* shrink to text width */
+    padding-bottom: 0.35rem !important;    /* pull underline closer */
+    margin-bottom: 0.75rem !important;     /* keep some gap below */
+    /* kill the wide overhang only for this headline */
+    --partnerships-underline-overhang: 0rem;
+  }
+  #loc-headline::after {
+    left: 0 !important;
+    right: 0 !important;                   /* match the text width */
+    bottom: 0 !important;
+  }
+}
+
 </style>
 
 <body>
