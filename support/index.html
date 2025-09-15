@@ -631,17 +631,13 @@ img, svg, video { max-width: 100%; height: auto; }
   gap: 1.5rem;
   padding: 0; margin: 0;
   list-style: none;
-  animation: marqueeScroll 20s linear infinite;
+  
   overflow: visible;                /* ensure children aren’t clipped */
 }
-@keyframes marqueeScroll {
-  from { transform: translateX(0); }
+
   to   { transform: translateX(-50%); }
-}
 /* pause on hover */
-.sponsor-marquee:hover .marquee {
-  animation-play-state: paused;
-}
+
 
 /* uniform box + button behavior */
 .sponsor-logo {
@@ -666,10 +662,11 @@ img, svg, video { max-width: 100%; height: auto; }
 
 /* pop & lift on hover */
 .sponsor-logo:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
+  transform: translateY(6px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
   z-index: 10;
 }
+
 
 /* outlines */
 .tier-yellow { border-color: #F9CB22; }
@@ -697,7 +694,68 @@ img, svg, video { max-width: 100%; height: auto; }
 .support-tiers .tier-amount .tier-note {
   color: #ffffff;   /* a mid-gray; adjust to taste */
 }
-  </style>
+  
+/* === Support page: Sponsor viewport shows 3 logos === */
+.sponsor-viewport {
+  --s-logo-w: 150px;
+  --s-gap: 1.5rem;
+  width: calc(3 * var(--s-logo-w) + 2 * var(--s-gap)); /* exactly 3 logos visible */
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden; /* always clip to 3 */
+}
+
+/* JS-driven track (no CSS keyframes) */
+.marquee {
+  display: flex;
+  gap: var(--s-gap, 1.5rem);
+  padding: 0; margin: 0; list-style: none;
+  will-change: transform;
+  transform: translate3d(0,0,0);
+}
+
+/* Boxes: move down a bit; transform the box on hover (no color change) */
+.sponsor-logo {
+  margin-top: 12px;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: var(--s-logo-w, 150px);
+  height: 100px;
+  padding: 10px;
+  border: 3px solid;
+  border-radius: 12px;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.sponsor-logo:hover {
+  transform: translateY(6px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+}
+
+/* Images keep true colors and never get filtered */
+.sponsor-marquee, .sponsor-viewport, .sponsor-logo, .sponsor-logo img { filter: none !important; }
+.sponsor-logo img {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+  transform-origin: center; transition: transform 0.25s ease;
+}
+.sponsor-logo:hover img { transform: none; } /* avoid double-scaling */
+
+/* Mobile: show 2 logos at a time */
+@media (max-width: 520px) {
+  .sponsor-viewport {
+    width: calc(2 * var(--s-logo-w) + 1 * var(--s-gap));
+  }
+}
+
+/* Tier borders — ensure they win in the cascade */
+.sponsor-logo.tier-yellow { border-color: #F9CB22 !important; }
+.sponsor-logo.tier-orange { border-color: #EF7616 !important; }
+.sponsor-logo.tier-pink   { border-color: #F0115F !important; }
+
+</style>
 <style id="nav-left-hotfix">
 /* === NAV alignment + size hotfix (match index fix) === */
 .top-bar {
@@ -804,7 +862,8 @@ Products &amp; Service: By donating products or services, you give students dir
 <section class="sponsor-carousel-section">
 <h2 class="carousel-title">OUR SPONSORS</h2>
 <div class="sponsor-marquee">
-<ul class="marquee">
+  <div class="sponsor-viewport">
+    <ul class="marquee" id="sponsorTrack">
 <!-- DUPLICATE 6 TIMES -->
 <li>
 <a class="sponsor-logo tier-pink" href="https://mcbride.lbschools.net" rel="noopener" target="_blank">
@@ -904,7 +963,8 @@ Products &amp; Service: By donating products or services, you give students dir
 </a>
 </li>
 </ul>
-</div>
+    </div>
+  </div>
 </section>
 <!-- FOOTER -->
 <footer class="site-footer">
@@ -987,5 +1047,56 @@ Products &amp; Service: By donating products or services, you give students dir
     }
   });
 })();
-</script></body>
+</script>
+<script>
+// Support page ticker: smooth, seamless, 3-at-a-time, pause on hover
+(function(){
+  const track = document.getElementById('sponsorTrack');
+  if (!track) return;
+  const viewport = track.parentElement;
+  const getGap = () => parseFloat(getComputedStyle(track).gap) || 24;
+  const speed = 60; // px/s
+  let paused = false;
+
+  function ensureFill(){
+    const needWidth = viewport.offsetWidth * 2;
+    while (track.scrollWidth < needWidth && track.children.length < 200) {
+      const clones = Array.from(track.children).map(n => n.cloneNode(true));
+      clones.forEach(c => track.appendChild(c));
+    }
+  }
+  ensureFill();
+
+  window.addEventListener('resize', () => {
+    clearTimeout(window.__scaTickerTO);
+    window.__scaTickerTO = setTimeout(() => {
+      const originalCount = Math.max(1, Math.floor(track.children.length / 2));
+      while (track.children.length > originalCount) track.removeChild(track.lastElementChild);
+      x = 0; track.style.transform = 'translate3d(0,0,0)';
+      ensureFill();
+    }, 150);
+  });
+
+  viewport.addEventListener('mouseenter', () => { paused = true; });
+  viewport.addEventListener('mouseleave', () => { paused = false; });
+
+  let x = 0;
+  let last = performance.now();
+  function loop(now){
+    const dt = (now - last) / 1000; last = now;
+    if (!paused) x -= speed * dt;
+
+    const first = track.firstElementChild;
+    if (first) {
+      const step = first.getBoundingClientRect().width + getGap();
+      if (-x >= step) { track.appendChild(first); x += step; }
+    }
+    track.style.transform = `translate3d(${x}px,0,0)`;
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body>
 </html>
