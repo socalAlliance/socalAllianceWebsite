@@ -98,6 +98,55 @@ html, body { overflow-x: clip; }
   text-align: center;
   margin: 0 auto 1rem;
 }
+
+/* Ensure the hero Donate button can always be clicked */
+.mission-section .btn-row a {
+  position: relative;
+  z-index: 20 !important;
+  pointer-events: auto !important;
+}
+
+/* Belt-and-suspenders: nothing above the hero should intercept clicks */
+.mission-section,
+.mission-section * { pointer-events: auto; }
+
+/* Light at the far left/right edges – symmetric */
+.integrated-approach::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,.10) 0%,
+    rgba(255,255,255,0) 20%,
+    rgba(255,255,255,0) 80%,
+    rgba(255,255,255,.10) 100%
+  );
+  mix-blend-mode: screen;
+}
+
+/* Dark in the center to make the triangle copy pop */
+.integrated-approach::after{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none; z-index:1;
+  background:
+    radial-gradient(ellipse at 50% 50%,
+      rgba(0,0,0,.80) 0%,
+      rgba(0,0,0,.65) 32%,
+      rgba(0,0,0,.45) 50%,
+      rgba(0,0,0,.20) 70%,
+      rgba(0,0,0,0) 82%);
+}
+
+/* Exact 1px side margins for the triangle stage */
+.triangle-container{
+  padding-left:1px !important;
+  padding-right:1px !important;
+}
+
 </style><style>
 /* --- Desktop cut-off fix for triangle labels --- */
 .triangle-container {
@@ -1376,21 +1425,11 @@ function resizeDesktop() {
   const vh = Math.max(document.documentElement.clientHeight, window.innerHeight);
   const cw = container.clientWidth || BASE_W;
 
-  // Fractional padding (total) that relaxes on wide screens
-  const sideReserveFrac =
-    vw >= 2560 ? 0.16 :
-    vw >= 1920 ? 0.18 :
-    vw >= 1600 ? 0.20 :
-    vw >= 1366 ? 0.22 : 0.26; // total fraction reserved (both sides combined)
-
-  // Always keep a hard minimum px on EACH side to prevent clipping
-  const minSidePadPx = 120; // 96px each side
-  const sidePad = Math.max(minSidePadPx, (cw * sideReserveFrac) / 2);
-  let usableW = Math.max(0, cw - sidePad * 2);
-  if (vw < 1366) {
-    usableW = Math.max(0, cw - sidePad * 1.2);
-  }
-  const topReservePx = 16; const bottomReservePx = 12;
+  // No side reserve; let the triangle span nearly full width with 1px gutters
+    const sidePad = 1;                 // 1px on each side
+    const usableW = Math.max(0, cw - sidePad * 2);
+    
+  const topReservePx = 1; const bottomReservePx = 1;
 
   const targetW = usableW; // no BASE_W clamp
   const targetH = Math.max(0, vh - (topReservePx + bottomReservePx));
@@ -1402,9 +1441,16 @@ function resizeDesktop() {
     vw >= 1600 ? 1.4 :
     vw >= 1366 ? 1.25 : 1.0;
 
-  const s = Math.min(targetW / BASE_W, targetH / BASE_H, MAX_SCALE);
+  
+  const sBase = Math.min(targetW / BASE_W, targetH / BASE_H, MAX_SCALE);
+  let s = sBase;
 
-  stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  // Gentle shrink only (not too aggressive)
+  if (vw <= 1122) s *= 0.88;
+  if (vw <= 900)  s *= 0.90;
+  if (vw <= 768)  s *= 0.91;
+  if (vw <= 600)  s *= 1.11;
+stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
   const yNudge = (vw >= 550 && vw <= 1122) ? 30 : 0;
   stage.style.top = `calc(50% + ${yNudge}px)`;
   const renderedH = BASE_H * s;
@@ -1523,16 +1569,12 @@ function resizeDesktop() {
     const rect = container.getBoundingClientRect();
     const vw = Math.max(document.documentElement.clientWidth, window.innerWidth);
     // Full height on >= 1123px, 66% & centered on thinner
-    let h = rect.height;
-    let top = 0;
-    if (vw <= 1122) {
-      h = Math.round(rect.height * 0.95);
-      top = Math.max(0, Math.round((rect.height - h) / 2));
-    }
-    const offsetTop = 0; // align with container top (no black gap)
-    bg.style.top = (offsetTop + top) + 'px';
+    // Match exactly: triangle container height + 2px (already set on container)
+    const h = Math.round(rect.height);
+    const top = 0;
+    bg.style.top = top + 'px';
     bg.style.height = h + 'px';
-    if (fx) { fx.style.top = (offsetTop + top) + 'px'; fx.style.height = h + 'px'; }
+    if (fx) { fx.style.top = top + 'px'; fx.style.height = h + 'px'; }
   }
   new ResizeObserver(syncBg).observe(container);
   window.addEventListener('resize', syncBg, {passive:true});
