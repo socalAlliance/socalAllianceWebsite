@@ -93,7 +93,7 @@ html, body { overflow-x: clip; }
 
 /* Triangular Ties headings */
 .integrated-bar.partnerships-banner h2 {
-  font-size: clamp(24px, 5.5vw, 36px) !important;
+  font-size: 36px !important;
   line-height: 1.25;
   text-align: center;
   margin: 0 auto 1rem;
@@ -110,21 +110,65 @@ html, body { overflow-x: clip; }
 .mission-section,
 .mission-section * { pointer-events: auto; }
 
-/* Light at the far left/right edges – symmetric */
-.integrated-approach::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background: linear-gradient(
+/* Light edges — responsive so they DON'T swallow mobile widths */
+.integrated-approach::before{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none; z-index:1;
+  background:linear-gradient(
     to right,
     rgba(255,255,255,.10) 0%,
     rgba(255,255,255,0) 20%,
     rgba(255,255,255,0) 80%,
     rgba(255,255,255,.10) 100%
   );
-  mix-blend-mode: screen;
+  mix-blend-mode:screen;
+}
+
+/* Laptop and down: tighten the light bands */
+@media (max-width:1122px){
+  .integrated-approach::before{
+    background:linear-gradient(
+      to right,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,0) 14%,
+      rgba(255,255,255,0) 86%,
+      rgba(255,255,255,.10) 100%
+    );
+  }
+}
+@media (max-width:900px){
+  .integrated-approach::before{
+    background:linear-gradient(
+      to right,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,0) 10%,
+      rgba(255,255,255,0) 90%,
+      rgba(255,255,255,.10) 100%
+    );
+  }
+}
+@media (max-width:768px){
+  .integrated-approach::before{
+    background:linear-gradient(
+      to right,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,0) 8%,
+      rgba(255,255,255,0) 92%,
+      rgba(255,255,255,.10) 100%
+    );
+  }
+}
+@media (max-width:600px){
+  .integrated-approach::before{
+    background:linear-gradient(
+      to right,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,0) 6%,
+      rgba(255,255,255,0) 94%,
+      rgba(255,255,255,.10) 100%
+    );
+  }
 }
 
 /* Dark in the center to make the triangle copy pop */
@@ -145,6 +189,85 @@ html, body { overflow-x: clip; }
 .triangle-container{
   padding-left:1px !important;
   padding-right:1px !important;
+}
+
+
+/* Make the OUR MISSION underline fit the text */
+.mission-copy h1{
+  display:inline-block;
+  position:relative;
+  padding-bottom: 12px;
+}
+.mission-copy h1::after{
+  content:"";
+  position:absolute; left:0; bottom:0; width:100%; height:6px;
+  border-radius:3px;
+  background-image:linear-gradient(90deg,rgba(249,203,34,.9) 0%,rgba(239,118,22,.9) 50%,rgba(240,17,95,.9) 100%);
+}
+.mission-line{ display:none !important; }
+
+
+/* Consistent body text — readable but not oversized */
+.mission-copy p,
+.section-text {
+  font-size: 20px !important;
+  line-height: 1.45;
+}
+
+@media (max-width: 1122px){
+  .mission-copy p,
+  .section-text { font-size: 24px !important; }
+}
+@media (max-width: 900px){
+  .mission-copy p,
+  .section-text { font-size: 21px !important; }
+}
+@media (max-width: 600px){
+  .mission-copy p,
+  .section-text { font-size: 19px !important; }
+}
+
+/* Center social icons in footer */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+
+/* Center the donate button and social icons stack */
+.footer-center{
+  display:flex !important;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+}
+/* Ensure the social row shrinks to content and is centered within the column */
+.footer-social{
+  width:auto;
+  margin: 20px 0 0 0;
+}
+
+
+:root { --nav-h: 88px; }  /* adjust if your nav height differs */
+
+/* Prevent overlap with fixed navbar */
+.mission-section { 
+  padding-top: var(--nav-h);
+}
+
+/* Ensure in-page anchors don't hide under the fixed navbar */
+.mission-copy h1,
+.partnerships-banner h2 {
+  scroll-margin-top: var(--nav-h);
+}
+
+/* Pull CTA buttons closer to the paragraph block */
+.mission-copy .btn-row{
+  margin-top: 12px !important;
 }
 
 </style><style>
@@ -465,6 +588,21 @@ img, svg, video { max-width: 100%; height: auto; }
     .donate-img {transition:filter .3s ease; }
     .donate-img:hover{ filter:grayscale(100%) brightness(80%); transform:none!important; }
 
+    /* Section titles: underline matches text width only */
+    .section-title {
+      display: inline-block;      /* shrink to text width */
+      border-bottom: 4px solid currentColor; /* adjust thickness/color as desired */
+      padding-bottom: 4px;        /* a little gap before the underline */
+      margin-bottom: 1em;         /* space below title */
+    }
+
+    .section-text {
+      font-size: 32px;
+      line-height: 1.4;     /* balanced readability */
+      font-weight: 400;     /* regular weight; adjust if you want bolder */
+      margin-bottom: 1.5em; /* consistent spacing */
+    }
+
     /* — Partnerships / Bars — */
     .section-title{ font-family:'Tilt Warp',sans-serif; font-size:60px; line-height:76px; text-align:center; margin:4rem 0 1rem; }
     .partnerships-banner h2{
@@ -472,12 +610,21 @@ img, svg, video { max-width: 100%; height: auto; }
       font-size:var(--partners-text-size,60px); font-weight:var(--partnerships-text-weight,100);
       color:#000; margin:0; position:relative; padding-bottom:var(--partnerships-underline-offset);
     }
-    .partnerships-banner h2::after{
-      content:''; position:absolute; left:calc(-1 * var(--partnerships-underline-overhang));
-      right:calc(-1 * var(--partnerships-underline-overhang)); bottom:0;
-      height:var(--partnerships-underline-height); border-radius:var(--partnerships-underline-radius);
-      background:linear-gradient(90deg, rgba(249,203,34,.9) 23%, rgba(239,118,22,.9) 50%, rgba(240,17,95,.9) 77%);
-    }
+    .partnerships-banner h2 {
+  display: inline-block;
+  position: relative;
+  padding-bottom: var(--partnerships-underline-offset);
+}
+.partnerships-banner h2::after {
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:var(--partnerships-underline-height);
+  border-radius:var(--partnerships-underline-radius);
+  background:linear-gradient(90deg, rgba(249,203,34,.9) 23%, rgba(239,118,22,.9) 50%, rgba(240,17,95,.9) 77%);
+}
     .integrated-approach{ position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:4rem 1rem; z-index:1; }
     .integrated-approach .section-title, .integrated-approach .triangle-container{ position:relative; z-index:2; width:100%; margin:5rem 0; height:clamp(520px, 70vh, 900px); }
     .integrated-bar.partnerships-banner h2{ color:#fff!important; }
