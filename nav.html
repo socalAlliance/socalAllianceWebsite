@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Tilt+Warp&display=swap" rel="stylesheet">
+</head><body>
+<header class="top-bar" role="navigation">
+  <a class="logo-link" href="index.html"><div class="logo"></div></a>
+  <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><span class="burger" aria-hidden="true"></span></button>
+  <nav id="site-nav">
+    <a href="about.html">ABOUT</a>
+    <a href="vex.html">VEX</a>
+    <a href="projects.html">PROJECTS</a>
+    <a href="support.html">SUPPORT</a>
+  </nav>
+</header>
+<script>
+(function(){
+  const btn = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function(){
+    const open = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', String(!open));
+    nav.classList.toggle('open', !open);
+    document.body.classList.toggle('menu-open', !open);
+  });
+  nav.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') {
+      btn.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
+      document.body.classList.remove('menu-open');
+    }
+  });
+})();
+</script>
+</body></html>

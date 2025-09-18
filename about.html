@@ -1283,18 +1283,7 @@ img, svg, video { max-width: 100%; height: auto; }
 </style>
 <body>
 
-<header class="top-bar">
-<a class="logo-link" href="/"><div class="logo"></div></a>
-<button aria-controls="site-nav" aria-expanded="false" aria-label="Menu" class="nav-toggle">
-<span aria-hidden="true" class="burger"></span>
-</button>
-<nav id="site-nav">
-<a href="/about/">ABOUT</a>
-<a href="/vex/">VEX</a>
-<a href="/projects/">PROJECTS</a>
-<a href="/support/">SUPPORT</a>
-</nav>
-</header>
+<div id="nav"></div>
 
 <!-- NAV -->
 <!-- MISSION SECTION -->
@@ -1642,26 +1631,7 @@ img, svg, video { max-width: 100%; height: auto; }
 </div>
 </div>
 <!-- FOOTER -->
-<footer class="site-footer">
-<div class="footer-content">
-<div class="footer-left">
-<a class="logo-link" href="./"><div class="logo"></div></a>
-<div>
-<p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
-<p class="footer-sub">SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities. Contact socalalliancenonprofit@gmail.com for any other questions.</p>
-</div>
-</div>
-<div class="footer-center">
-<a href="/support/"><img alt="Donate Now" class="donate-img" src="/images/Donatewhite.png"/></a>
-<div class="footer-social">
-<a href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank"><img alt="Instagram" src="/images/SCA_INSTwhite.png"/></a>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank"><img alt="Email" src="/images/SCA_EMAILwhite.png"/></a>
-<a href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank"><img alt="TikTok" src="/images/SCA_TIKTOKwhite.png"/></a>
-<a href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank"><img alt="YouTube" src="/images/SCA_YOUTUBEwhite.png"/></a>
-</div>
-</div>
-</div>
-</footer>
+<div id="footer"></div>
 <!-- Hide-on-scroll Nav -->
 <!-- Desktop scaler + Mobile triangle layout (mobile-only fades) -->
 <script>
@@ -1893,6 +1863,139 @@ function resizeDesktop() {
   }
 }
 </style>
+
+<script>
+(async function(){
+  async function loadPart(id, file, fallbackHTML){
+    const mount = document.getElementById(id);
+    try {
+      const res = await fetch(file, { cache: "no-store" });
+      if (!res.ok) throw new Error(res.status + " " + res.statusText);
+      const html = await res.text();
+      mount.innerHTML = html;
+      // Execute any scripts inside the loaded HTML
+      mount.querySelectorAll("script").forEach(old => {
+        const s = document.createElement("script");
+        if (old.src) s.src = old.src; else s.textContent = old.textContent;
+        old.replaceWith(s);
+      });
+    } catch (e) {
+      console.warn("Failed to load", file, e);
+      mount.innerHTML = fallbackHTML;
+    }
+  }
+
+  const navFallback = `
+    <header style="position:sticky;top:0;padding:10px 16px;background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);font-family:'Tilt Warp',sans-serif;color:#fff;display:flex;align-items:center;gap:16px;z-index:1000">
+      <a href="index.html" style="display:inline-block;width:50px;height:45px;background:url('/images/logo.png') center/cover no-repeat"></a>
+      <nav style="margin-left:auto;display:flex;gap:16px;font-weight:bold">
+        <a href="about.html" style="color:#fff;text-decoration:none">ABOUT</a>
+        <a href="vex.html" style="color:#fff;text-decoration:none">VEX</a>
+        <a href="projects.html" style="color:#fff;text-decoration:none">PROJECTS</a>
+        <a href="support.html" style="color:#fff;text-decoration:none">SUPPORT</a>
+      </nav>
+    </header>`;
+
+  const footerFallback = `
+    <footer style="background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);color:#fff;padding:24px 10%;font-family:'Instrument Sans',sans-serif">
+      <div style="max-width:1100px;margin:0 auto;display:flex;gap:16px;align-items:center">
+        <div style="width:50px;height:45px;background:url('/images/logowhite.png') center/cover no-repeat"></div>
+        <div><strong>© 2025 SoCal Alliance Robotics.</strong> All rights reserved.</div>
+        <div style="margin-left:auto"><a href="support.html" style="color:#fff;text-decoration:underline">Donate</a></div>
+      </div>
+    </footer>`;
+
+  await loadPart("nav", "./nav.html", navFallback);
+  await loadPart("footer", "./footer.html", footerFallback);
+
+  // Rewrite folder-style links to flat paths after injection
+  const map = {
+    "/": "index.html",
+    "/about/": "about.html",
+    "/vex/": "vex.html",
+    "/projects/": "projects.html",
+    "/support/": "support.html"
+  };
+  function retargetLinks(scopeId){
+    const root = document.getElementById(scopeId);
+    if (!root) return;
+    root.querySelectorAll("a[href]").forEach(a => {
+      const href = a.getAttribute("href");
+      if (map[href]) a.setAttribute("href", map[href]);
+    });
+  }
+  retargetLinks("nav");
+  retargetLinks("footer");
+})();
+</script>
+
+
+<script>
+(async function(){
+  async function loadPart(id, file, fallbackHTML){
+    const mount = document.getElementById(id);
+    if (!mount) return;
+    try {
+      const res = await fetch(file, { cache: "no-store" });
+      if (!res.ok) throw new Error(res.status + " " + res.statusText);
+      const html = await res.text();
+      mount.innerHTML = html;
+      // re-run any scripts in the loaded fragment
+      mount.querySelectorAll("script").forEach(old => {
+        const s = document.createElement("script");
+        if (old.src) s.src = old.src; else s.textContent = old.textContent;
+        old.replaceWith(s);
+      });
+    } catch (e) {
+      // simple fallback so page isn't blank when opened via file://
+      mount.innerHTML = fallbackHTML;
+      console.warn("Fragment load failed:", file, e);
+    }
+  }
+
+  const navFallback = `
+    <header class="top-bar" role="navigation" style="background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);padding:0 16px;">
+      <a class="logo-link" href="index.html"><div class="logo" style="width:50px;height:45px;background:url('/images/logo.png') center/cover no-repeat"></div></a>
+      <nav id="site-nav" style="margin-left:auto;display:flex;gap:16px;font-weight:bold">
+        <a href="about.html">ABOUT</a>
+        <a href="vex.html">VEX</a>
+        <a href="projects.html">PROJECTS</a>
+        <a href="support.html">SUPPORT</a>
+      </nav>
+    </header>`;
+
+  const footerFallback = `
+    <footer class="site-footer" style="background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);padding:24px 10%;color:#fff;font-family:'Instrument Sans',sans-serif">
+      <div style="max-width:1100px;margin:0 auto;display:flex;gap:16px;align-items:center">
+        <div style="width:50px;height:45px;background:url('/images/logowhite.png') center/cover no-repeat"></div>
+        <div><strong>© 2025 SoCal Alliance Robotics.</strong> All rights reserved.</div>
+        <div style="margin-left:auto"><a href="support.html" style="color:#fff;text-decoration:underline">Donate</a></div>
+      </div>
+    </footer>`;
+
+  await loadPart("nav", "nav.html", navFallback);
+  await loadPart("footer", "footer.html", footerFallback);
+
+  // Retarget folder-style links to flat .html paths
+  const map = { "/": "index.html", "/about/": "about.html", "/vex/": "vex.html", "/projects/": "projects.html", "/support/": "support.html" };
+  function retarget(scopeId){
+    const root = document.getElementById(scopeId);
+    if (!root) return;
+    root.querySelectorAll("a[href]").forEach(a => {
+      const raw = a.getAttribute("href") || "";
+      if (map[raw]) a.setAttribute("href", map[raw]);
+      // absolute URLs that end in those paths
+      try {
+        const u = new URL(a.href);
+        if (map[u.pathname]) a.setAttribute("href", map[u.pathname] + (u.hash || ""));
+      } catch(e){ /* relative; ignore */ }
+    });
+  }
+  retarget("nav");
+  retarget("footer");
+})();
+</script>
+
 </body>
 </html>
 

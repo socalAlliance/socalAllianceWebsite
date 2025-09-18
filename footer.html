@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<style>
+  /* ===== Footer layout & visuals ===== */
+  .site-footer{
+    background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+    color:#fff;
+    padding: 2rem 10%;
+    font-family:'Instrument Sans',sans-serif;
+  }
+  .site-footer .logo { background-image: url('/images/logowhite.png') !important; }
+
+  .footer-content{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    flex-wrap:wrap; gap:5rem;
+    max-width: 1100px; margin: 0 auto; /* center the block */
+  }
+  .footer-left{ display:flex; align-items:flex-start; gap:1rem; flex:1 1 420px; }
+  .footer-copy{ font-size:1.8rem; font-weight:900; line-height:1.15; }
+  .footer-sub{ margin-top:.75rem; font-size:1.05rem; opacity:.95; max-width:600px; }
+
+  .footer-center{ display:flex; flex-direction:column; align-items:center; gap:1rem; }
+  .donate-img{ height:58px; cursor:pointer; transition: filter .2s; display:block; margin: 0 auto; }
+  .donate-img:hover{ filter: grayscale(100%) brightness(80%); }
+
+  .footer-social{ display:flex; gap:1rem; justify-content:center; align-items:center; }
+  .footer-social img{ width:60px; height:60px; filter:brightness(200%); transition:filter .2s; display:block; }
+  .footer-social a:hover img{ filter:grayscale(100%) brightness(80%); }
+
+  /* Keep logo hover consistent (no scale, grayscale on hover) */
+  .site-footer .logo{
+    transition: filter 0.3s ease !important;
+    transform: none !important;
+  }
+  .site-footer .logo-link:hover .logo{
+    filter: grayscale(100%) brightness(80%) !important;
+    transform: none !important;
+  }
+
+@media (max-width: 1100px){
+  .footer-content{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  .footer-left{
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    flex: 0 1 auto;
+  }
+  .footer-left .logo-link{ margin-bottom: 0.5rem; }
+  .footer-center{ width: 100%; align-items: center; }
+  .footer-social{ width: 100%; justify-content: center; }
+  .donate-img{ margin-left:auto; margin-right:auto; display:block; }
+}
+
+</style>
+</head>
+<body>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <a class="logo-link" href="index.html">
+          <div class="logo" style="width:81px;height:73px;background:url('/images/logowhite.png') center/cover no-repeat;"></div>
+        </a>
+        <div>
+          <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+          <p class="footer-sub">SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides robotics education to children of all communities. Contact socalalliancenonprofit@gmail.com for any other questions.</p>
+        </div>
+      </div>
+      <div class="footer-center">
+        <a href="support.html"><img alt="Donate Now" class="donate-img" src="/images/Donatewhite.png"/></a>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank"><img alt="Instagram" src="/images/SCA_INSTwhite.png"/></a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank"><img alt="Email" src="/images/SCA_EMAILwhite.png"/></a>
+          <a href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank"><img alt="TikTok" src="/images/SCA_TIKTOKwhite.png"/></a>
+          <a href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank"><img alt="YouTube" src="/images/SCA_YOUTUBEwhite.png"/></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
