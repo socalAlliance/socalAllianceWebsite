@@ -444,6 +444,50 @@ main, .hero, .features, .doc-section, .site-footer {
 }
 </style>
 
+
+<style id="nav-spacing-normalize">
+/* === Force consistent logo/link spacing site-wide (overrides page-specific CSS) === */
+.top-bar { 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 0 50px !important;
+  height: 100px !important;
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+}
+.top-bar .logo-link .logo,
+.logo { 
+  width: 81px !important; 
+  height: 73px !important; 
+  margin-right: 20px !important;
+  background-image: url('/images/logo.png') !important;
+  filter: none !important;
+}
+#site-nav { 
+  display: flex !important; 
+  gap: 40px !important; 
+  margin-left: 0 !important; 
+  margin-right: 0 !important;
+}
+#site-nav a { 
+  padding: 0 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+/* Tablets */
+@media (max-width: 900px){
+  .top-bar { padding: 0 20px !important; height: 80px !important; font-size: 20px !important; }
+  .logo { width: 60px !important; height: 54px !important; margin-right: 0 !important; }
+  #site-nav { gap: 15px !important; }
+}
+/* Phones */
+@media (max-width: 600px){
+  .top-bar { padding: 0 15px !important; font-size: 18px !important; }
+  .logo { width: 50px !important; height: 45px !important; }
+  #site-nav { gap: 10px !important; }
+}
+</style>
+
 </head>
 <style>
     :root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }
