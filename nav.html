@@ -1,102 +1,66 @@
-<!-- nav.html (left-aligned, tight spacing) -->
-<header class="top-bar" role="navigation">
+<!-- nav.html (no hamburger; always visible, shrinks on mobile) -->
+<header class="top-bar sca-nav" role="navigation">
   <a class="logo-link" href="index.html" aria-label="Home">
     <div class="logo"></div>
   </a>
 
-  <!-- links sit immediately to the right of the logo -->
   <nav id="site-nav" aria-label="Primary">
     <a href="about.html">ABOUT</a>
     <a href="vex.html">VEX</a>
     <a href="projects.html">PROJECTS</a>
     <a href="support.html">SUPPORT</a>
   </nav>
-
-  <!-- mobile toggle (shown under 600px) -->
-  <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
-    <span class="burger" aria-hidden="true"></span>
-  </button>
 </header>
 
 <style>
-  :root {
-    --nav-gap: 18px;   /* spacing between links */
-    --logo-gap: 16px;  /* spacing between logo and first link */
-    --nav-pad-x: 20px; /* horizontal padding */
+  :root{
+    --nav-gap: 18px;      /* spacing between links */
+    --logo-gap: 16px;     /* space between logo and first link */
+    --nav-pad-x: 20px;    /* horizontal padding */
   }
 
-  .top-bar{
-    position: sticky; top: 0; z-index: 1000;
-    width: 100%; height: 100px;
+  .sca-nav{
+    position: sticky; top: 0; z-index: 100000;
+    height: 100px; width: 100%;
     display: flex; align-items: center; justify-content: flex-start;
-    padding: 0 var(--nav-pad-x);
-    box-sizing: border-box;
-    gap: var(--logo-gap);                 /* space between logo and link row */
-    font-family: 'Tilt Warp', sans-serif;
-    font-size: clamp(18px, 1vw + 18px, 32px);
+    padding: 0 var(--nav-pad-x); box-sizing: border-box;
+    gap: var(--logo-gap);
     background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+    font-family: 'Tilt Warp', sans-serif;
+    font-size: clamp(16px, 1.2vw + 12px, 32px);
   }
 
-  .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; }
-  .logo-link{ display:inline-block; line-height:0; }
+  .sca-nav .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; }
+  .sca-nav .logo-link{ display:inline-block; line-height:0; }
 
-  /* links are left-aligned and tightly spaced */
-  #site-nav{
-    display:flex; align-items:center; gap: var(--nav-gap);
-    margin-left: 0;            /* no push to the right */
+  /* Keep links LEFT of the bar, right next to the logo */
+  .sca-nav #site-nav{
+    display:flex !important;               /* ← force visible even if a page hides it */
+    align-items:center;
+    gap: var(--nav-gap);
+    margin-left:0;
   }
-  #site-nav a{
+  .sca-nav #site-nav a{
     color:#fff; text-decoration:none; font-weight:900; white-space:nowrap; line-height:1.2;
-    letter-spacing: .02em;
+    letter-spacing:.02em;
   }
-  #site-nav a:hover{ opacity:.75; }
+  .sca-nav #site-nav a:hover{ opacity:.8; }
 
-  /* Mobile */
-  .nav-toggle{ display:none; margin-left:auto; background:transparent; border:0; width:44px; height:44px; cursor:pointer; }
-  .burger, .burger::before, .burger::after{
-    content:''; display:block; width:24px; height:2px; background:#fff; border-radius:2px;
-    position:relative; transition:transform .2s ease, opacity .2s ease;
+  /* Tablet */
+  @media (max-width: 900px){
+    .sca-nav{ height:80px; --nav-pad-x:16px; --logo-gap:12px; font-size: clamp(14px, 1.4vw + 10px, 22px); }
+    .sca-nav .logo{ width:60px; height:54px; }
+    .sca-nav #site-nav{ gap:14px; }
   }
-  .burger::before{ position:absolute; top:-7px; }
-  .burger::after{ position:absolute; top:7px; }
 
-  @media (max-width: 1100px){
-    /* collapse to burger; keep left alignment of logo + button */
-    #site-nav{ display:none; }
-    .nav-toggle{ display:flex; margin-left:auto; }
-    .nav-toggle[aria-expanded="true"] .burger{ background:transparent; }
-    .nav-toggle[aria-expanded="true"] .burger::before{ transform: translateY(7px) rotate(45deg); }
-    .nav-toggle[aria-expanded="true"] .burger::after{ transform: translateY(-7px) rotate(-45deg); }
-
-    /* dropdown panel */
-    #site-nav.open{
-      display:flex; flex-direction:column; gap:10px;
-      position:absolute; top:100%; left: var(--nav-pad-x);
-      background:#000; padding:12px 14px; border-top:1px solid rgba(255,255,255,.15);
-      border-radius: 8px;
+  /* Phone: smaller text + allow wrapping instead of hiding */
+  @media (max-width: 600px){
+    .sca-nav{ height:64px; --nav-pad-x:12px; --logo-gap:10px; font-size: clamp(12px, 2.2vw + 8px, 18px); }
+    .sca-nav .logo{ width:50px; height:45px; }
+    .sca-nav #site-nav{
+      display:flex !important;             /* ← override any page CSS */
+      flex-wrap: wrap;                      /* wrap to 2 lines if needed */
+      gap: 10px 14px;                       /* row/column gaps */
     }
-    #site-nav.open a{ font-size:18px; }
   }
 </style>
-
-<script>
-  // Mobile toggle
-  (function(){
-    const btn = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('site-nav');
-    if (!btn || !nav) return;
-    btn.addEventListener('click', function(){
-      const open = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', String(!open));
-      nav.classList.toggle('open', !open);
-      document.body.classList.toggle('menu-open', !open);
-    });
-    nav.addEventListener('click', function(e){
-      if (e.target.tagName === 'A') {
-        btn.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('open');
-        document.body.classList.remove('menu-open');
-      }
-    });
-  })();
-</script>
