@@ -1,0 +1,1114 @@
+/* === Extracted from projects.html (style id="nav-core") === */
+.top-bar{
+  position: sticky; top: 0; right: 0; z-index: 1000;
+  width: 100%; height: 100px;
+  display: flex; align-items: center; justify-content: flex-start; padding: 0 50px;
+  font-family: 'Tilt Warp', sans-serif !important;
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+  transition: transform .3s ease !important; will-change: transform;
+}
+.top-bar.hidden{ transform: translateY(-100%) !important; }
+
+.logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+.top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter:none !important; }
+
+.top-bar nav{ display:flex; gap:40px; margin-right:0 !important; }
+.top-bar nav a{
+  display:inline-block;
+  font-size:inherit !important;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  white-space:nowrap;
+  line-height:1.2;
+  padding:0;
+}
+.top-bar nav a:hover{ opacity:.7; }
+
+.nav-toggle { display:none; }
+
+@media (max-width:900px){
+  .top-bar{ height:80px !important; padding:0 20px !important; font-size:20px !important; }
+  .logo{ width:60px !important; height:54px !important; margin-right:0 !important; }
+  .top-bar nav{ gap:15px !important; }
+}
+
+@media (max-width:600px){
+  .top-bar{ font-size:18px !important; padding:0 15px !important; }
+  .logo{ width:50px; height:45px; }
+
+  .nav-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:44px; height:44px; margin-left:auto;
+    background:transparent; border:none; cursor:pointer;
+  }
+  .burger, .burger::before, .burger::after{
+    content:''; display:block; width:24px; height:2px; background:#fff; border-radius:2px;
+    position:relative; transition:transform .2s ease, opacity .2s ease, background .2s ease;
+  }
+  .burger::before{ position:absolute; top:-7px; }
+  .burger::after{ position:absolute; top:7px; }
+  .nav-toggle[aria-expanded="true"] .burger{ background:transparent; }
+  .nav-toggle[aria-expanded="true"] .burger::before{ transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .burger::after{ transform: translateY(-7px) rotate(-45deg); }
+
+  .top-bar nav{ display:none !important; }
+  .top-bar nav.open {
+  display: flex !important;
+  flex-direction: column;
+  gap: 12px;
+
+  position: absolute;
+  top: 100%;
+  right: 0;              /* anchor to hamburger side */
+  /* no left */
+
+  padding: 12px 16px;
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,.15);
+}
+.top-bar nav.open a {
+  font-size: 16px !important;
+  padding: 8px 2px;
+}
+  .top-bar nav.open a{ font-size:16px !important; padding:8px 2px;}
+}
+
+/* === Mobile overflow fixes (add at end) === */
+
+/* 1) Make underline overhang shrink on phones */
+:root{
+  /* keeps the gradient underline from sticking out too far on small screens */
+  --underline-overhang: min(2rem, 4vw);
+  --partnerships-underline-overhang: min(2rem, 4vw);
+}
+
+/* 2) Clip any horizontal paint that could cause side-scroll */
+.hero,
+.doc-section,
+.site-footer,
+.top-bar { overflow-x: clip; }
+@supports not (overflow: clip) {
+  .hero, .doc-section, .site-footer, .top-bar { overflow-x: hidden; }
+}
+
+/* 3) Ensure the mobile menu never widens the page */
+@media (max-width:600px){
+  .top-bar nav.open {
+  display: flex !important;
+  flex-direction: column;
+  gap: 12px;
+
+  position: absolute;
+  top: 100%;
+  right: 0;              /* anchor to hamburger side */
+  /* no left */
+
+  padding: 12px 16px;
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,.15);
+}
+.top-bar nav.open a {
+  font-size: 16px !important;
+  padding: 8px 2px;
+}
+}
+
+/* 4) Belt-and-suspenders: avoid any stray 100vw overflow */
+html, body { overflow-x: clip; }
+@supports not (overflow: clip) {
+  html, body { overflow-x: hidden; }
+}
+
+
+/* Reduce button text size on mobile */
+@media (max-width: 600px) {
+  .doc-button {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    line-height: 1.2;
+  }
+}
+
+
+/* === Projects buttons: consistent fit & alignment === */
+.features { align-items: stretch; }
+
+.feature { position: relative; }
+
+/* Ensure inner content uses equal padding and sits on the bottom */
+.feature .copy{
+  padding: clamp(16px, 4vw, 26px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  height: 100% !important;
+}
+
+/* Remove extra spacing around the heading and keep the box centered */
+.feature h3{ margin: 0 !important; }
+
+/* Make the button box fit within its tile with equal padding */
+.feature-btn{
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  line-height: 1.25 !important;
+  padding: 0.75em 1em !important;
+  white-space: normal !important; /* allow wrapping */
+}
+
+/* === Equal-height feature buttons + centered text === */
+:root{ --btn-min-h: 4.6em; } /* fits two lines comfortably; tweak as needed */
+
+.feature-btn{
+  display: flex !important;
+  align-items: center !important;    /* vertical centering */
+  justify-content: center !important;/* horizontal centering */
+  text-align: center !important;
+  min-height: var(--btn-min-h) !important;
+}
+
+/* Slightly taller on very small phones if wrapping increases */
+@media (max-width: 380px){
+  :root{ --btn-min-h: 5.2em; }
+}
+
+
+/* Ensure menu sits above hero and accepts clicks */
+.top-bar { position: relative; z-index: 1000; }
+.top-bar nav.open { z-index: 1001; pointer-events: auto; }
+/* In case a decorative overlay overlaps the header/menus */
+.hero::before, .hero::after, .page-overlay, .gradient-overlay { pointer-events: none; }
+/* Make sure links themselves are click targets */
+.top-bar nav.open a { pointer-events: auto; }
+
+/* === Extracted from projects.html === */
+/* === Mobile dropdown visibility & layering fix === */
+@media (max-width:600px){
+  .top-bar nav.open {
+  display: flex !important;
+  flex-direction: column;
+  gap: 12px;
+
+  position: absolute;
+  top: 100%;
+  right: 0;              /* anchor to hamburger side */
+  /* no left */
+
+  padding: 12px 16px;
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,.15);
+}
+.top-bar nav.open a {
+  font-size: 16px !important;
+  padding: 8px 2px;
+}
+  .nav-toggle{ position: relative; z-index: 2001; }
+}
+
+/* === Extracted from projects.html (style id="mobile-menu-fix") === */
+/* Keep the sticky header on top everywhere */
+.top-bar { z-index: 1000 !important; }
+
+/* Phone-only: render the opened menu above the page content */
+@media (max-width: 600px) {
+  .top-bar nav.open {
+  display: flex !important;
+  flex-direction: column;
+  gap: 12px;
+
+  position: absolute;
+  top: 100%;
+  right: 0;              /* anchor to hamburger side */
+  /* no left */
+
+  padding: 12px 16px;
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,.15);
+}
+.top-bar nav.open a {
+  font-size: 16px !important;
+  padding: 8px 2px;
+}
+  .nav-toggle { position: relative; z-index: 2001 !important; }
+}
+
+/* === Extracted from projects.html (style id="nav-click-fix-final") === */
+/* FINAL: Put header/nav on the very top and guarantee it receives hover/clicks */
+.top-bar{
+  position: sticky;
+  top: 0;
+  z-index: 4000 !important;
+  pointer-events: auto !important;
+}
+.top-bar * { pointer-events: auto !important; }
+
+/* Anything below header should not sit above it */
+main, .hero, .features, .doc-section, .site-footer {
+  position: relative;
+  z-index: 0 !important;
+}
+
+/* Desktop nav (>=601px) — ensure links are interactive */
+@media (min-width: 601px){
+  .top-bar nav { display:flex !important; }
+  .top-bar nav a{ pointer-events:auto !important; }
+  .sca-nav{ justify-content: flex-start !important; }
+  .sca-nav__menu{ margin-left: -25px !important; gap: 16px !important; font-size: 24.25px !important; }
+}
+
+@media (min-width: 901px){
+  .top-bar nav { display:flex !important; }
+  .top-bar nav a{ pointer-events:auto !important; }
+  .sca-nav{ justify-content: flex-start !important; }
+  .sca-nav__menu{ margin-left: -5px !important; gap: 40px !important; font-size: 28.5px !important; }
+}
+
+/* Mobile dropdown — keep it above content but aligned right */
+@media (max-width: 600px){
+  .top-bar nav.open{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 4001 !important;
+  }
+  /* Burger must sit above as well */
+  .nav-toggle{ position: relative; z-index: 4002 !important; }
+}
+
+/* === Extracted from projects.html (style id="mobile-menu-hardening") === */
+@media (max-width: 600px){
+  /* Header and dropdown must be on top */
+  .top-bar{ position: sticky; top:0; z-index: 10000 !important; }
+  .top-bar nav.open{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 10001 !important;
+    pointer-events: auto !important;
+  }
+  .nav-toggle{ position: relative; z-index: 10002 !important; }
+
+  /* When menu is open, block clicks/hovers to the rest of the page so nothing steals events */
+  body.menu-open main,
+  body.menu-open .hero,
+  body.menu-open .features,
+  body.menu-open .doc-section,
+  body.menu-open .site-footer,
+  body.menu-open .feature::before,
+  body.menu-open iframe {
+    pointer-events: none !important;
+  }
+  /* But keep nav clickable */
+  body.menu-open .top-bar,
+  body.menu-open .top-bar * {
+    pointer-events: auto !important;
+  }
+}
+
+/* === Extracted from projects.html (style id="sca-nav.css") === */
+/* ===== New SCA Nav (namespaced; no clashes) ===== */
+  .u-visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+  .sca-nav{
+    position: sticky; top: 0; z-index: 10050;
+    width: 100%; height: 100px;
+    display: flex; align-items: center; gap: 24px;
+    padding: 0 50px;
+    font-family: 'Tilt Warp', sans-serif;
+    font-size: clamp(18px, 1.0vw + 18px, 32px);
+    background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+  }
+
+  .sca-nav__logo{
+    width:81px; height:73px; flex:0 0 auto;
+    background:url('/images/logo.png') center/cover no-repeat;
+  }
+
+  .sca-nav__menu{
+    margin-left: auto;
+    display: flex; gap: 40px;
+  }
+  .sca-nav__menu a{
+    color:#fff; text-decoration:none; font-weight:bold; white-space:nowrap; line-height:1.2;
+  }
+  .sca-nav__menu a:hover{ opacity:.7; }
+
+  .sca-nav__toggle{ display:none; }
+
+  @media (max-width: 900px){
+    .sca-nav{ height: 80px; padding: 0 20px; font-size: 20px; }
+    .sca-nav__logo{ width:60px; height:54px; }
+    .sca-nav__menu{ gap: 15px; }
+  }
+
+  @media (max-width: 600px){
+    .sca-nav{ font-size: 18px; padding: 0 15px; }
+    .sca-nav__logo{ width:50px; height:45px; }
+
+    .sca-nav__toggle{
+      display:flex; align-items:center; justify-content:center;
+      width:44px; height:44px; margin-left: auto !important; 
+      background:transparent; border:none; cursor:pointer;
+    }
+    .sca-burger, .sca-burger::before, .sca-burger::after{
+      content:''; display:block; width:24px; height:2px; background:#fff; border-radius:2px;
+      position:relative; transition:transform .2s ease, opacity .2s ease, background .2s ease;
+    }
+    .sca-burger::before{ position:absolute; top:-7px; }
+    .sca-burger::after{ position:absolute; top:7px; }
+    .sca-nav__toggle[aria-expanded="true"] .sca-burger{ background:transparent; }
+    .sca-nav__toggle[aria-expanded="true"] .sca-burger::before{ transform: translateY(7px) rotate(45deg); }
+    .sca-nav__toggle[aria-expanded="true"] .sca-burger::after{ transform: translateY(-7px) rotate(-45deg); }
+
+    /* Hide inline menu; show as a fixed, right-aligned panel when open */
+    .sca-nav__menu{ display:none; }
+    .sca-nav__menu.is-open{
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+      position: fixed;              /* detach from page flow to avoid overlaps */
+      top: var(--sca-nav-bottom, 80px);
+      right: 0;                     /* right-aligned as requested */
+      /* no left */
+      background:#000;
+      padding:12px 16px;
+      border-top:1px solid rgba(255,255,255,.15);
+      z-index: 10060;
+    }
+    .sca-nav__menu.is-open a{ font-size:16px; padding:8px 2px; }
+
+    /* Backdrop to catch outside clicks (transparent) */
+    .sca-nav__backdrop[hidden]{ display:none; }
+    .sca-nav__backdrop{
+      position: fixed; inset: 0; z-index: 10055;
+      background: transparent;
+    }
+  }
+
+  /* Lock page scroll when menu is open on mobile */
+  body.sca-nav--locked{ overflow: hidden; }
+
+/* === Extracted from projects.html (style id="footer-center-fix") === */
+/* Constrain footer width and center container on all sizes */
+.site-footer .footer-content{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* < 601px: force a single column, fully centered */
+@media (max-width: 600px){
+  .site-footer .footer-content{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 1.25rem !important;
+  }
+  .site-footer .footer-left{
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .site-footer .footer-left .logo-link{ margin: 0 auto !important; }
+  .site-footer .footer-center{ align-items: center !important; }
+  .site-footer .footer-social{ justify-content: center !important; }
+}
+
+/* === Extracted from projects.html === */
+:root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%}
+    body{background:#000;color:#fff;font-family:'Instrument Sans',sans-serif;line-height:1.4;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+
+    /* — Sticky Nav — */
+    .top-bar{
+      position:sticky; top:0; right:0; z-index:10;
+      width:100%; height:100px;
+      display:flex; align-items:center; padding:0 50px;
+      font-family:'Tilt Warp',sans-serif; font-size:28px;
+      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      transition:transform .3s ease;
+    }
+    .top-bar.hidden{ transform:translateY(-100%); }
+    .logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+    nav{ display:flex; gap:40px; }
+    nav a:hover{ opacity:.7; }
+.logo {
+  transition: transform 0.3s ease;
+  /* (if you ever have an overriding !important transform:none, remove it) */
+}
+.logo-link:hover .logo {
+  transform: scale(1.05);
+}
+
+/* DONATE-WHITE.PNG HOVER GREY-OUT */
+.donate-img {
+  transition: filter 0.3s ease;
+}
+.donate-img:hover {
+  filter: grayscale(100%) brightness(80%);
+}
+    /* Responsive nav for mobile and tablets */
+    @media (max-width: 900px) {
+      .top-bar {
+        justify-content: space-between;
+        height: 80px;
+        padding: 0 20px;
+        font-size: 20px;
+      }
+      .logo {
+        width: 60px;
+        height: 54px;
+        margin-right: 0;
+      }
+      nav {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-bar {
+        font-size: 18px;
+        padding: 0 15px;
+      }
+      .logo {
+        width: 50px;
+        height: 45px;
+      }
+      nav {
+        gap: 10px;
+      }
+      nav a {
+        font-size: 18px;
+      }
+    }
+
+    /* CONTENT */
+    main{background:#000}
+
+    .hero{padding:90px 8% 40px;text-align:center}
+    .hero h1{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(40px,6vw,76px);line-height:1.05}
+    /* 1. Make the H1 inline and positioned relative */
+/* 1) On your H1, set a custom overhang and allow overflow */
+.hero h1 {
+  --underline-overhang: 4rem;    /* ↔️ change this to whatever you like */
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.25em;        /* room for the underline */
+  overflow: visible;             /* allow the pseudo‐element to spill outside */
+}
+
+/* 2) Use that variable in the ::after */
+.hero h1::after {
+  content: "";
+  position: absolute;
+  left:  calc(-1 * var(--underline-overhang));
+  bottom: 0;
+  width: calc(100% + (var(--underline-overhang) * 2));
+  height: 8px;                   /* thickness */
+  border-radius: 4px;            /* round ends */
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+
+}
+    .hero p{margin-top:14px;max-width:900px;margin-inline:auto;opacity:.9}
+
+    /* FEATURES — match mock: 2x2, sharp, thin gutters */
+    .features {
+  padding: 0; /* remove side padding */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0; /* no gap */
+}
+
+.feature {
+  position: relative;
+  min-height: 500px; /* adjust height as needed */
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.feature:nth-child(odd) { border-right: 0px solid #000; }
+.feature:nth-child(n+3) { border-top: 0px solid #000; }
+
+.feature img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+    .feature::before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.25));z-index:1
+    }
+    .feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.95) brightness(.85)}
+    .feature .copy{
+      position:relative;z-index:2;color:#fff;padding:26px;display:flex;flex-direction:column;gap:10px;height:100%;justify-content:flex-end
+    }
+    .feature h3{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(22px,3.2vw,30px);letter-spacing:.3px}
+    .feature p{opacity:.9;max-width:52ch}
+
+/* TIMELINE SECTION */
+/* 1) Choose one unified X-offset for line & arrows */
+/* 1) Define shared positions on the .timeline container */
+.timeline {
+  /* X-offset of the line from the left edge */
+  --spine-x: calc(8% + 61px);
+
+  /* Y-offsets of the ends of the line */
+  --spine-top: calc(48px + 7px);    /* matches ::before top */
+  --spine-bottom: calc(90px - 7px); /* matches ::before bottom */
+
+  position: relative;
+  padding: 48px 8% 90px;
+}
+
+/* 2) Position the gradient line using the same vars */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top:    var(--spine-top);
+  bottom: var(--spine-bottom);
+  left:   var(--spine-x);
+  width:  4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(249,203,34,0.9) 0%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 100%
+  );
+  pointer-events: none;
+}
+
+/* 3) Align both arrows at that exact X, and vertically at line ends */
+.tl-arrow {
+  position: absolute;
+  left: var(--spine-x);
+  transform: translateX(-50%);  /* center the arrow on the line */
+  z-index: 2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+/* top arrow sits at the top of the line */
+.tl-arrow.up {
+  top: var(--spine-top);
+  /* optionally nudge it above the line: */
+  transform: translate(-50%, -100%);
+}
+
+/* bottom arrow sits at the bottom of the line */
+.tl-arrow.down {
+  bottom: var(--spine-bottom);
+  /* optionally nudge it below the line: */
+  transform: translate(-50%, 100%);
+}
+
+/* animated gradient “glow” on arrow glyph */
+.tl-arrow.up::before  { content: "▲"; }
+.tl-arrow.down::before{ content: "▼"; }
+.tl-arrow::before {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-move 3s linear infinite;
+  transition: transform .2s, filter .2s;
+}
+.tl-arrow:hover::before {
+  transform: scale(1.2);
+  filter: brightness(1.3);
+}
+
+@keyframes gradient-move {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* viewport and list */
+.tl-viewport {
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  margin: 0;
+}
+.tl-list {
+  display: grid;
+  gap: 30px;
+  transition: transform 0.4s ease;
+}
+
+/* each item pushed right of the line */
+.tl-item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 26px;
+  padding-left: calc(8% + 61px + 10px);
+  align-items: start;
+}
+
+/* bold date */
+.tl-dot {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: .3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* keep left of line */
+}
+.tl-dot i {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255,255,255,.15);
+}
+
+/* body box */
+.tl-body {
+  display: block;
+  width: 100%;
+  text-decoration: none;    /* remove underline */
+  color: inherit;
+  background: #111;
+  padding: 18px 20px;
+  border: 4px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      rgba(249,203,34,0.9) 23%,
+      rgba(239,118,22,0.9) 50%,
+      rgba(240,17,95,0.9) 77%
+    ) 1;
+  border-radius: 12px;
+  box-shadow: var(--drop-shadow);
+  transition: background .2s, transform .2s;
+}
+.tl-body:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-2px);
+}
+
+/* gradient underline on title */
+.tl-title {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: clamp(20px,3.2vw,26px);
+  margin-bottom: 6px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+.tl-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--partnerships-underline-overhang));
+  right: calc(-1 * var(--partnerships-underline-overhang));
+  bottom: 0;
+  height: var(--partnerships-underline-height);
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: var(--partnerships-underline-radius);
+}
+
+/* text */
+.tl-text {
+  opacity: .9;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* ensure arrows are on top */
+.tl-arrow.up, .tl-arrow.down {
+  pointer-events: all;
+}
+/* — Timeline Section Title — */
+.timeline-title {
+  /* 1) text size */
+  font-size: clamp(28px, 4vw, 48px);
+
+  /* 2) spacing around the title:
+     margin-top pushes it away from what’s above,
+     margin-bottom controls how far the timeline sits below. */
+  margin: 3rem 0 1.5rem 18%;
+
+  /* 3) keep your underline setup */
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.em;
+  overflow: visible;
+  --underline-overhang: 4rem;
+}
+.timeline-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--underline-overhang));
+  bottom: 0;
+  width: calc(100% + (var(--underline-overhang)*2));
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+}
+.feature-btn {
+  all: unset;
+  display: inline-block;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: clamp(12px,3.2vw,48px);
+  color: #fff;
+  padding: 0.5em 1.2em;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      rgba(249,203,34,0.9) 23%,
+      rgba(239,118,22,0.9) 50%,
+      rgba(240,17,95,0.9) 77%
+    ) 1;
+  border-radius: 8px;
+  transition: transform .2s ease, filter .2s ease;
+  background: rgba(0,0,0,0.4);
+}
+.feature-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+/* Outer wrapper: gradient border/frame */
+/* Title + gradient underline */
+.doc-title {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: clamp(24px, 4vw, 32px);
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 1rem;
+  padding-bottom: 0.25em;
+}
+.doc-title::after {
+  content: "";
+  position: absolute;
+  left: -1rem;      /* overhang */
+  right: -1rem;     /* overhang */
+  bottom: 0;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+}
+
+/* (existing gradient-box styles you already have) */
+.doc-gradient-wrapper {
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  padding: 4px;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 2rem auto;
+}
+.doc-inner {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.doc-inner iframe {
+  display: block;
+  width: 100%;
+  height: 600px;
+  border: none;
+}
+/* Container centers everything */
+.doc-section {
+  text-align: center;
+  margin: 4rem 0; /* optional vertical spacing */
+}
+
+/* Match hero h1 sizing and font */
+.doc-title {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: clamp(40px, 6vw, 76px);
+  font-weight: 100;
+  color: #fff;
+  display: inline-block;   /* so underline shrinks to fit */
+  position: relative;
+  padding-bottom: 0.25em;  /* room for underline */
+  margin-bottom: 2rem;     /* space before the embed box */
+}
+
+/* Gradient underline */
+.doc-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--partnerships-underline-overhang, 5rem));
+  right: calc(-1 * var(--partnerships-underline-overhang, 5rem));
+  bottom: 0;
+  height: var(--partnerships-underline-height, 10px);
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: var(--partnerships-underline-radius, 1000px);
+}
+
+    /* FOOTER */
+    .site-footer{background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);color:#fff;padding:2rem 10%}
+    .site-footer .logo {background-image: url('/images/logowhite.png') !important;}
+    .footer-content{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:5rem}
+    .footer-left{display:flex;align-items:flex-start;gap:1rem;flex:1 1 400px}
+    .footer-copy{font-size:1.5rem;font-weight:bold}
+    .footer-sub{margin-top:.5rem;font-size:1rem;opacity:.9;max-width:400px}
+    .footer-center{display:flex;flex-direction:column;align-items:center;gap:1rem}
+    .donate-img{height:48px;cursor:pointer}
+    .footer-social{display:flex;gap:1rem}
+    .footer-social img{width:60px;height:60px;filter:brightness(200%);transition:filter .2s}
+    .footer-social a:hover img{filter:grayscale(100%) brightness(80%)}
+    /* 2) On hover, cancel the scale and apply grayscale */
+.site-footer .logo {
+  /* only animate filter, not transform */
+  transition: filter 0.3s ease !important;
+  /* cancel any inherited scale */
+  transform: none !important;
+}
+
+/* 2) On hover, apply grayscale + slight dim */
+.site-footer .logo-link:hover .logo {
+  filter: grayscale(100%) brightness(80%) !important;
+  /* ensure it never scales */
+  transform: none !important;
+}
+
+/* === Extracted from projects.html (style id="sync-nav-footer") === */
+/* Synced from support.html (nav + footer) */
+.top-bar {
+      position:sticky; top:0; right:0; z-index:10;
+      width:100%; height:100px;
+      display:flex; align-items:center; padding:0 50px;
+      font-family:'Tilt Warp',sans-serif; font-size:28px;
+      background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      transition:transform .3s ease;
+    }
+.top-bar.hidden { transform:translateY(-100%); }
+.top-bar {
+        justify-content: space-between;
+        height: 80px;
+        padding: 0 20px;
+        font-size: 20px;
+      }
+.top-bar {
+        font-size: 18px;
+        padding: 0 15px;
+      }
+.top-bar .logo-link .logo {
+  background-image: url('/images/logo.png') !important;
+  filter: none !important;      /* remove that grayscale/brightness hack */
+}
+.logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+.logo {
+        width: 60px;
+        height: 54px;
+        margin-right: 0;
+      }
+.logo {
+        width: 50px;
+        height: 45px;
+      }
+.logo {
+      transition: transform 0.3s ease;
+    }
+.logo {
+      transform: scale(1.05);
+    }
+.logo {
+  background-image: url('/images/logo.png') !important;
+  filter: none !important;      /* remove that grayscale/brightness hack */
+}
+.logo {
+  background-image: url('/images/logowhite.png') !important;
+}
+.logo {
+  /* only animate filter, not transform */
+  transition: filter 0.3s ease !important;
+  /* cancel any inherited scale */
+  transform: none !important;
+}
+.logo {
+  filter: grayscale(100%) brightness(80%) !important;
+  /* ensure it never scales */
+  transform: none !important;
+}
+nav { display:flex; gap:40px; }
+nav {
+        gap: 15px;
+      }
+nav {
+        gap: 10px;
+      }
+nav a:hover { opacity:.7; }
+@media (max-width: 900px) {
+      .top-bar {
+        justify-content: space-between;
+        height: 80px;
+        padding: 0 20px;
+        font-size: 20px;
+      }
+      .logo {
+        width: 60px;
+        height: 54px;
+        margin-right: 0;
+      }
+@media (max-width: 600px) {
+      .top-bar {
+        font-size: 18px;
+        padding: 0 15px;
+      }
+      .logo {
+        width: 50px;
+        height: 45px;
+      }
+.site-footer {
+      background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      color:#fff;
+      padding: 3rem 10%;            /* a touch more vertical padding lifts content */
+      font-family:'Instrument Sans',sans-serif;
+    }
+.site-footer { padding: 2rem 6vw; }
+.site-footer { padding: 1rem 2vw; }
+.footer-content {
+      display: grid;
+      grid-template-columns: minmax(420px,1fr) auto; /* left grows, right hugs content */
+      align-items: center;           /* <-- centers the right column vertically */
+      justify-content: space-between;
+      gap: 2rem;
+    }
+.footer-content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 5rem;
+      }
+.footer-content { flex-direction: column; gap: 0.5rem; align-self: center;}
+.footer-left {
+      display:flex;
+      align-items: center;           /* left block aligns with the centered right */
+      gap: 1rem;
+      flex: 1 1 auto;
+    }
+.footer-left {
+        flex-direction: column;
+        text-align: center;
+      }
+.footer-center {
+      display: grid;
+      place-items: center;           /* centers horizontally + vertically inside its cell */
+      gap: 1rem;
+    }
+.footer-social {
+      display:flex;
+      gap:1rem;
+      justify-content: center;       /* centers the icons under the button */
+    }
+.footer-social { display:flex; gap:1rem; }
+.donate-img { height:48px; cursor:pointer; }
+.footer-social img {
+      width:60px; height:60px; filter:brightness(200%);
+      transition:filter .2s;
+    }
+.footer-social a:hover img { filter:brightness(100%); }
+.footer-social a:hover img {
+      filter: grayscale(100%) brightness(80%);
+    }
+.site-footer .logo {
+  background-image: url('/images/logowhite.png') !important;
+}
+.site-footer .logo {
+  /* only animate filter, not transform */
+  transition: filter 0.3s ease !important;
+  /* cancel any inherited scale */
+  transform: none !important;
+}
+.site-footer .logo-link:hover .logo {
+  filter: grayscale(100%) brightness(80%) !important;
+  /* ensure it never scales */
+  transform: none !important;
+}
+@media (max-width: 900px) {
+      .site-footer { padding: 2rem 6vw; }
+      .footer-content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 5rem;
+      }
+    }
+  }
+}
+
+/* === Extracted from projects.html (style id="nav-left-hotfix") === */
+/* === NAV alignment + size hotfix === */
+.top-bar {
+  /* smoothly scale nav label size on wider screens */
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+}
+
+/* Left-align content on all sizes unless explicitly changed elsewhere */
+.top-bar { justify-content: flex-start !important; }
+
+/* Ensure the nav cluster doesn't get pushed right by margin tricks */
+.top-bar nav { margin-right: 0 !important; }
+
+/* Tweak gaps for readability at common breakpoints */
+@media (min-width: 901px) {
+  .top-bar { height: 100px !important; padding: 0 50px !important; }
+  .top-bar nav { gap: 40px !important; }
+}
+
+@media (max-width: 900px) {
+  /* keep everything left-aligned on tablet */
+  .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; }
+  .top-bar nav { gap: 15px !important; }
+}
+
+@media (max-width: 600px) {
+  /* slightly smaller text on small phones */
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+  .top-bar nav { gap: 10px !important; }
+}

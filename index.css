@@ -1,0 +1,725 @@
+/* === Extracted from index.html (style id="no-hscroll") === */
+html, body { overflow-x: clip; }
+/* Prevent any inherited filters from altering sponsor colors */
+.sponsor-marquee, .sponsor-viewport, .sponsor-logo, .sponsor-logo img { filter: none !important; }
+
+
+/* Strong guard: never alter sponsor colors inside the marquee */
+.sponsor-marquee .sponsor-logo,
+.sponsor-marquee .sponsor-logo img { filter: none !important; opacity: 1 !important; }
+
+/* === Extracted from index.html (style id="nav-core") === */
+.top-bar{
+  position: sticky; top: 0; left: 0; z-index: 1000;
+  width: 100%; height: 100px;
+  display: flex; align-items: center; justify-content: flex-start; padding: 0 50px;
+  font-family: 'Tilt Warp', sans-serif !important;
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+  transition: transform .3s ease !important; will-change: transform;
+}
+.top-bar.hidden{ transform: translateY(-100%) !important; }
+
+.logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+.top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter:none !important; }
+
+.top-bar nav{ display:flex; gap:40px; margin-left:0 !important; }
+.top-bar nav a{
+  display:inline-block;
+  font-size:inherit !important;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  white-space:nowrap;
+  line-height:1.2;
+  padding:0;
+}
+.top-bar nav a:hover{ opacity:.7; }
+
+.nav-toggle { display:none; }
+
+@media (max-width:900px){
+  .top-bar{ height:80px !important; padding:0 20px !important; font-size:20px !important; }
+  .logo{ width:60px !important; height:54px !important; margin-right:0 !important; }
+  .top-bar nav{ gap:15px !important; }
+}
+
+@media (max-width:600px){
+  .top-bar{ font-size:18px !important; padding:0 15px !important; }
+  .logo{ width:50px; height:45px; }
+
+  .nav-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:44px; height:44px; margin-left:auto;
+    background:transparent; border:none; cursor:pointer;
+  }
+  .burger, .burger::before, .burger::after{
+    content:''; display:block; width:24px; height:2px; background:#fff; border-radius:2px;
+    position:relative; transition:transform .2s ease, opacity .2s ease, background .2s ease;
+  }
+  .burger::before{ position:absolute; top:-7px; }
+  .burger::after{ position:absolute; top:7px; }
+  .nav-toggle[aria-expanded="true"] .burger{ background:transparent; }
+  .nav-toggle[aria-expanded="true"] .burger::before{ transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .burger::after{ transform: translateY(-7px) rotate(-45deg); }
+
+  .top-bar nav{ display:none !important; }
+  .top-bar nav.open{
+    display:flex !important; flex-direction:column; gap:12px;
+    position:absolute; top:100%; right:0;
+    padding:12px 16px; background:#000; border-top:1px solid rgba(255,255,255,.15);
+  }
+  .top-bar nav.open a{ font-size:16px !important; padding:8px 2px;}
+}
+
+/* --- Mobile overflow fixes --- */
+html { overflow-x: clip; }
+body { overflow-x: hidden; }
+
+img, svg, video { max-width: 100%; height: auto; }
+
+.support-why h2,
+.support-how h2,
+.support-tiers-title,
+.carousel-title {
+  overflow: clip;
+}
+
+@media (max-width: 600px) {
+  :root { --support-underline-overhang: 0; }
+}
+
+.sponsor-marquee { overflow-x: hidden; }
+
+@media (max-width: 600px) {
+  .top-bar nav.open {
+    left: auto;
+    right: 0;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+}
+
+/* === Extracted from index.html === */
+:root {
+      --hero-text-size: 36px;
+      --bar-radius: 12px;
+      --stats-bar-max-width: 900px;
+      --stats-bar-height: 150px;
+      --stats-bar-gap: 2rem;
+      --stats-number-size: 48px;
+      --stats-label-size: 18px;
+      --stats-item-gap: 0.5rem;
+      --stats-number-color: #000;
+      --stats-label-color: #000;
+      --stats-gradient: linear-gradient(90deg,rgba(249,203,34,0.9) 23%,rgba(239,118,22,0.9) 50%,rgba(240,17,95,0.9) 77%);
+      --partnerships-text-size: 72px;
+      --partnerships-underline-height: 10px;
+      --partnerships-underline-radius: 1000px;
+      --partnerships-underline-offset: 0.5rem;
+      --partnerships-underline-overhang: 5rem;
+      --partner-logo-width: 120px;
+      --partner-logo-gap: 2rem;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { width:100%; }
+    body {
+      background:#000; color:#fff;
+      font-family:'Instrument Sans',sans-serif;
+      line-height:1.4; overflow-x:hidden;
+    }
+    a { text-decoration:none; color:inherit; }
+
+    /* — Sticky Nav — */
+    
+    
+    .logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
+.top-bar nav { display:flex; gap:40px; }
+    nav a:hover { opacity:.7; }
+
+    /* Responsive nav for mobile and tablets */
+    @media (max-width: 900px) {
+      
+      .logo {
+        width: 60px;
+        height: 54px;
+        margin-right: 0;
+      }
+.top-bar nav {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      
+      .logo {
+        width: 50px;
+        height: 45px;
+      }
+.top-bar nav {
+        gap: 10px;
+      }
+.top-bar nav a {
+        font-size: 18px;
+      }
+    }
+
+    /* HERO 1 */
+    .hero-1 {
+      width: 100%;
+      min-height: 320px;
+      height: 675px;
+      background: url('/images/Banner.webp') no-repeat;
+      background-size: cover;
+      background-position: 50% 15%;
+      position: relative;
+      display: block; /* Remove flex */
+    }
+    .subhead {
+      position: absolute;
+      left: 0.5rem;
+      bottom: 0.5rem;
+      right: auto;
+      top: auto;
+      background: rgba(0,0,0,0.8);
+      padding: 1.2em 1.5em;
+      max-width: 500px;
+      z-index: 2;
+      margin: 0;
+    }
+    .btn-img img { height:40px; display:block; }
+
+    /* STATS BAR IMAGE */
+    .stats-btn img {
+      max-width: 900px;
+      width: 100%;
+      height: auto;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .stats-btn:hover img {
+      transform: scale(1.05);
+    }
+
+    /* HERO 2 + ABOUT */
+    .hero-2 {
+      position:relative; width:100%; min-height:320px; height:566px;
+      background:url('/images/flag.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-2::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(270deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 50%,#000 100%);
+      z-index:1;
+      pointer-events: none;
+    }
+    .about {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      background:rgba(0,0,0,0.75);
+      z-index:2;
+      box-sizing:border-box;
+      border-radius: 12px;
+    }
+    .about .inner { max-width:900px; margin:0 auto; }
+    .about h2 {
+      font:40px 'Tilt Warp',sans-serif; margin-bottom:16px;
+    }
+    .about p { font-size:18px; line-height:22px; margin-bottom:24px; }
+    .founder {
+      display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+    }
+    .photo {
+      width:140px; height:178px;
+      background:url('/images/Winnie.png') center/cover no-repeat;
+      flex-shrink:0;
+    }
+    .signature {
+      width:312px; height:79px;
+      background:url('/images/signature.png') center/cover no-repeat;
+      margin-bottom:8px;
+    }
+    .name { font-size:24px; font-weight:700; }
+
+    
+    /* FOOTER */
+    .site-footer {
+      background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+      color:#fff;
+      padding: 3rem 10%;            /* a touch more vertical padding lifts content */
+      font-family:'Instrument Sans',sans-serif;
+    }
+
+    /* Use grid so the center column can be perfectly centered vertically */
+    .footer-content {
+      display: grid;
+      grid-template-columns: minmax(420px,1fr) auto; /* left grows, right hugs content */
+      align-items: center;           /* <-- centers the right column vertically */
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-left {
+      display:flex;
+      align-items: center;           /* left block aligns with the centered right */
+      gap: 1rem;
+      flex: 1 1 auto;
+    }
+
+    /* keep the donate + socials centered as a group */
+    .footer-center {
+      display: grid;
+      place-items: center;           /* centers horizontally + vertically inside its cell */
+      gap: 1rem;
+    }
+
+    .footer-social {
+      display:flex;
+      gap:1rem;
+      justify-content: center;       /* centers the icons under the button */
+    }
+
+    /* Mobile: stack and hard-center everything */
+    @media (max-width: 900px) {
+      .site-footer { padding: 2rem 6vw; }
+      .footer-content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 5rem;
+      }
+      .footer-left {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    .donate-img { height:48px; cursor:pointer; }
+    .footer-social { display:flex; gap:1rem; }
+    .footer-social img {
+      width:60px; height:60px; 
+      transition:filter .2s;
+    }
+    .donate-img:hover,
+    .footer-social a:hover img {
+      filter: brightness(80%);
+    }
+    .btn-img:hover img {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+    .logo-link .logo {
+      transition: transform 0.3s ease;
+    }
+    .logo-link:hover .logo {
+      transform: scale(1.05);
+    }
+    .btn-img img {
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    /* Responsive Fixes */
+    @media (max-width: 900px) {
+      .hero-1, .hero-2 { height: auto; min-height: 320px; background-size: cover; }
+      .subhead {
+        max-width: 100%;
+        padding: 16px;
+        font-size: 1rem;
+        margin: 1rem 0 0 0;
+      }
+      .about { position: static !important; width: 100% !important; padding: 24px 8px !important; border-radius: 0; }
+      .about .inner { max-width: 100%; }
+      .founder { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .photo { width: 80px; height: 100px; min-width: 60px; }
+      .signature { width: 150px; height: 38px; min-width: 60px; }
+      .partnerships-banner h2 { font-size: 2rem; }
+      .partners-logos { flex-wrap: wrap; gap: 1rem; }
+      .partners-logos a img { width: 80px; }
+      .gradient-bar { display: none; }
+      .site-footer { padding: 1rem 2vw; }
+      .footer-content { flex-direction: column; gap: 0.5rem; align-self: center;}
+    }
+    /* 1) Nav-bar logo stays colored */
+/* 1) Nav‐bar logo stays colored */
+/* 1) Force the nav‐bar logo image */
+
+
+/* 2) Ensure footer logo stays white */
+.site-footer .logo {
+  background-image: url('/images/logowhite.png') !important;
+}
+.site-footer .logo {
+  /* only animate filter, not transform */
+  transition: filter 0.3s ease !important;
+  /* cancel any inherited scale */
+  transform: none !important;
+}
+
+/* 2) On hover, apply grayscale + slight dim */
+.site-footer .logo-link:hover .logo {
+  filter: brightness(80%) !important;
+  /* ensure it never scales */
+  transform: none !important;
+}
+
+
+
+
+/* SECTION + TITLE */
+.sponsor-carousel-section {
+  margin: 4rem 8%;
+  text-align: center;
+}
+.carousel-title {
+  display: inline-block;
+  position: relative;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 2.5rem;
+  color: #fff;
+  padding-bottom: 0.5em;
+  margin-bottom: 1.5rem;
+}
+.sponsor-carousel-section .carousel-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom: 0;
+  height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+/* ensure only horizontal clipping; logos can overflow vertically on pop */
+/* let pop‐scale overflow vertically */
+.sponsor-marquee {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.sponsor-marquee::-webkit-scrollbar { display: none; }
+.sponsor-marquee { scrollbar-width: none; }
+
+/* horizontal flex + looping animation */
+.marquee {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0; margin: 0;
+  list-style: none;
+  
+  overflow: visible;                /* ensure children aren’t clipped */
+  padding-left: var(--s-gap, 1.5rem); padding-right: var(--s-gap, 1.5rem);
+}
+
+  to   { transform: translateX(-50%); }
+/* pause on hover */
+
+
+/* uniform box + button behavior */
+.sponsor-logo {
+  margin-top: 12px;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 150px;    /* your fixed size */
+  height: 100px;
+  border: 3px solid;
+  border-radius: 8px;
+  background: transparent;
+  position: relative;
+  z-index: 9;
+  transition: transform 0.25s ease;
+  overflow: visible;                /* child img can overflow */
+}
+.sponsor-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* pop & lift on hover */
+.sponsor-logo:hover { transform: translateY(0px) scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,.35); z-index: 10; filter: none !important; }
+
+/* outlines */
+.tier-yellow { border-color: #F9CB22; }
+.tier-orange { border-color: #EF7616; }
+.tier-pink   { border-color: #F0115F; }
+
+/* center title & gradient underline */
+.carousel-title {
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5em;
+}
+.carousel-title::after {
+  content:""; position:absolute;
+  left: calc(-1 * var(--support-underline-overhang));
+  right: calc(-1 * var(--support-underline-overhang));
+  bottom:0; height: var(--support-underline-height);
+  background: var(--support-gradient);
+  border-radius: var(--support-underline-radius);
+}
+
+/* make the title an inline‐block and give it room for the underline */
+.sponsor-carousel-section .carousel-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5em; /* space for the bar */
+}
+
+/* draw the gradient bar */
+.sponsor-carousel-section .carousel-title::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--partnerships-underline-overhang));
+  right: calc(-1 * var(--partnerships-underline-overhang));
+  bottom: 0;
+  height: var(--partnerships-underline-height);
+  border-radius: var(--partnerships-underline-radius);
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+}
+  
+
+.hero-text {
+  font-family: 'Tilt Warp', sans-serif;
+  font-weight: 100;
+  font-size: 24px;   /* smaller global size */
+  line-height: 1.1;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  left: auto;
+  bottom: auto;
+  margin: 0;
+  padding: 0.1em 0.1em;
+  text-align: right;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border-radius: 0px;
+  z-index: 2;
+  white-space: normal;
+  max-width: 60vw;
+}
+
+@media (max-width: 600px) {
+  .hero-text {
+    font-size: 18px; /* smaller on phones */
+  }
+}
+
+.subhead p {
+  font-size: 0.95rem;   /* smaller default size */
+  margin-bottom: 5px;
+}
+
+@media (max-width: 600px) {
+  .subhead p {
+    font-size: 0.8rem;  /* even smaller on phones */
+  }
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 50px;
+  font-family: 'Tilt Warp', sans-serif !important;
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+  transition: transform .3s ease !important;
+  will-change: transform;
+}
+
+.top-bar.hidden {
+  transform: translateY(-100%) !important;
+}
+
+.top-bar nav {
+  display: flex;
+  gap: 40px;
+  margin-left: 0 !important;
+}
+
+.top-bar nav a {
+  font-size: inherit !important;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.top-bar nav a:hover {
+  opacity: 0.7;
+}
+
+.logo {
+  width: 81px;
+  height: 73px;
+  background: url('/images/logo.png') center/cover no-repeat;
+  margin-right: 20px;
+}
+
+.top-bar .logo-link .logo {
+  background-image: url('/images/logo.png') !important;
+  filter: none !important;
+}
+
+@media (max-width: 900px) {
+  .top-bar {
+    height: 80px !important;
+    padding: 0 20px !important;
+    font-size: 20px !important;
+  }
+  .logo {
+    width: 60px !important;
+    height: 54px !important;
+    margin-right: 0 !important;
+  }
+.top-bar nav {
+    gap: 15px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-bar {
+    font-size: 18px;
+    padding: 0 15px;  
+    will-change: transform;
+  }
+  .logo {
+    width: 50px;
+    height: 45px;
+  }
+  nav {
+    gap: 10px;
+  }
+  nav a {
+    font-size: 18px;
+  }
+}
+
+
+/* === Sponsor viewport shows 3 logos at a time === */
+.sponsor-viewport {
+
+  --s-logo-w: 150px;
+  --s-gap: 1.5rem;
+  /* exact 3 logos + 2 gaps area inside the padding */
+  width: calc(3 * var(--s-logo-w) + 2 * var(--s-gap));
+  max-width: 100%;
+  margin: 0 auto;
+   /* gutters so edge logos aren't clipped */
+  box-sizing: content-box;       /* keep inner visible area equal to width above */
+  overflow: hidden; /* ensure only 3 are visible */
+
+}
+
+
+
+/* Make the track GPU-friendly and driven by JS (no CSS keyframes) */
+.marquee {
+  display: flex;
+  gap: var(--s-gap, 1.5rem);
+  padding: 0; margin: 0; list-style: none;
+  will-change: transform;
+  transform: translate3d(0,0,0);
+}
+
+/* Keep logos in fixed boxes, but scale the IMG on hover so it never gets cropped by the box */
+.sponsor-logo {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: var(--s-logo-w, 150px);
+  height: 100px;
+  margin-top: 12px;      /* <-- pushes the whole box down */
+  padding: 10px;
+  border: 3px solid;
+  border-radius: 12px;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  overflow: visible;     /* allow hover scaling to show */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sponsor-logo {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: var(--s-logo-w, 150px);
+  height: 100px;
+  margin-top: 12px;      /* <-- pushes the whole box down */
+  padding: 10px;
+  border: 3px solid;
+  border-radius: 12px;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  overflow: visible;     /* allow hover scaling to show */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Keep logos true to original colors */
+.sponsor-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.25s ease;
+  filter: none !important;   /* force original colors */
+}
+
+.sponsor-logo:hover img { transform: none; }
+
+/* Mobile tweak: show 2 at a time on very small screens for breathing room */
+@media (max-width: 520px) {
+  .sponsor-viewport {
+    width: calc(2 * var(--s-logo-w) + 1 * var(--s-gap));
+  }
+}
+
+/* --- Tier border colors (last in cascade) --- */
+.sponsor-logo.tier-yellow { border-color: #F9CB22 !important; }
+.sponsor-logo.tier-orange { border-color: #EF7616 !important; }
+.sponsor-logo.tier-pink   { border-color: #F0115F !important; }
+
+/* === Extracted from index.html (style id="nav-left-hotfix") === */
+/* === NAV alignment + size hotfix (match index fix) === */
+.top-bar {
+  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
+  justify-content: flex-start !important;
+}
+
+.top-bar nav { margin-left: 0 !important; }
+
+@media (min-width: 901px) {
+  .top-bar { height: 100px !important; padding: 0 50px !important; }
+  .top-bar nav { gap: 40px !important; }
+}
+
+@media (max-width: 900px) {
+  .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; }
+  .top-bar nav { gap: 15px !important; }
+}
+
+@media (max-width: 600px) {
+  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
+  .top-bar nav { gap: 10px !important; }
+}

@@ -1,0 +1,51 @@
+/* === Extracted from nav.html === */
+:root{
+    --nav-gap: 18px;      /* spacing between links */
+    --logo-gap: 16px;     /* space between logo and first link */
+    --nav-pad-x: 20px;    /* horizontal padding */
+  }
+
+  .sca-nav{
+    position: sticky; top: 0; z-index: 100000;
+    height: 100px; width: 100%;
+    display: flex; align-items: center; justify-content: flex-start;
+    padding: 0 var(--nav-pad-x); box-sizing: border-box;
+    gap: var(--logo-gap);
+    background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
+    font-family: 'Tilt Warp', sans-serif;
+    font-size: clamp(16px, 1.2vw + 12px, 32px);
+  }
+
+  .sca-nav .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; }
+  .sca-nav .logo-link{ display:inline-block; line-height:0; }
+
+  /* Keep links LEFT of the bar, right next to the logo */
+  .sca-nav #site-nav{
+    display:flex !important;               /* ← force visible even if a page hides it */
+    align-items:center;
+    gap: var(--nav-gap);
+    margin-left:0;
+  }
+  .sca-nav #site-nav a{
+    color:#fff; text-decoration:none; font-weight:900; white-space:nowrap; line-height:1.2;
+    letter-spacing:.02em;
+  }
+  .sca-nav #site-nav a:hover{ opacity:.8; }
+
+  /* Tablet */
+  @media (max-width: 900px){
+    .sca-nav{ height:80px; --nav-pad-x:16px; --logo-gap:12px; font-size: clamp(14px, 1.4vw + 10px, 22px); }
+    .sca-nav .logo{ width:60px; height:54px; }
+    .sca-nav #site-nav{ gap:14px; }
+  }
+
+  /* Phone: smaller text + allow wrapping instead of hiding */
+  @media (max-width: 600px){
+    .sca-nav{ height:64px; --nav-pad-x:12px; --logo-gap:10px; font-size: clamp(12px, 2.2vw + 8px, 18px); }
+    .sca-nav .logo{ width:50px; height:45px; }
+    .sca-nav #site-nav{
+      display:flex !important;             /* ← override any page CSS */
+      flex-wrap: wrap;                      /* wrap to 2 lines if needed */
+      gap: 10px 14px;                       /* row/column gaps */
+    }
+  }
