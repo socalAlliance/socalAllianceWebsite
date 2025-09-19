@@ -19,6 +19,8 @@
     gtag('config', 'G-65LTDNTZ16');
   </script>
 <link rel="stylesheet" href="index.css"/>
+<link rel="stylesheet" href="nav.css"/>
+<link rel="stylesheet" href="footer.css"/>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
@@ -31,54 +33,18 @@
 </script>
 <body>
 <!-- NAV -->
-<div id="nav"></div>
-<script>
-(async () => {
-  const el = document.getElementById('nav');
-  try {
-    // fetch the shared nav (cache-busted)
-    const res = await fetch('nav.html?v=6', { cache: 'no-store' });
-    if (!res.ok) throw new Error(res.status);
-    const html = await res.text();
-    el.innerHTML = html;
+<header class="top-bar sca-nav" role="navigation">
+  <a class="logo-link" href="index.html" aria-label="Home">
+    <div class="logo"></div>
+  </a>
 
-    // run any <script> tags inside nav.html
-    el.querySelectorAll('script').forEach(old => {
-      const s = document.createElement('script');
-      if (old.src) s.src = old.src; else s.textContent = old.textContent;
-      old.replaceWith(s);
-    });
-
-    // normalize folder-style links to flat files
-    const map = { '/':'index.html','/about/':'about.html','/vex/':'vex.html','/projects/':'projects.html','/support/':'support.html' };
-    el.querySelectorAll('a[href]').forEach(a => {
-      const raw = a.getAttribute('href');
-      if (map[raw]) a.setAttribute('href', map[raw]);
-    });
-
-    // fix root-absolute image paths inside the nav (if any)
-    el.querySelectorAll('[src^="/images/"]').forEach(n => {
-      n.setAttribute('src', n.getAttribute('src').replace('/images/','images/'));
-    });
-    el.querySelectorAll('[style*="/images/"]').forEach(n => {
-      n.style.backgroundImage = n.style.backgroundImage.replace('/images/','images/');
-    });
-  } catch (e) {
-    console.warn('Failed to load nav.html:', e);
-    // minimal fallback so the page isn't blank if fetch is blocked (e.g., file://)
-    el.innerHTML = `
-      <header class="top-bar" style="position:sticky;top:0;z-index:1000;background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);padding:0 16px;height:80px;display:flex;align-items:center">
-        <a href="index.html" style="display:inline-block;width:50px;height:45px;background:url('images/logo.png') center/cover no-repeat"></a>
-        <nav style="margin-left:auto;display:flex;gap:16px;font-weight:bold">
-          <a href="about.html" style="color:#fff;text-decoration:none">ABOUT</a>
-          <a href="vex.html" style="color:#fff;text-decoration:none">VEX</a>
-          <a href="projects.html" style="color:#fff;text-decoration:none">PROJECTS</a>
-          <a href="support.html" style="color:#fff;text-decoration:none">SUPPORT</a>
-        </nav>
-      </header>`;
-  }
-})();
-</script>
+  <nav id="site-nav" aria-label="Primary">
+    <a href="about.html">ABOUT</a>
+    <a href="vex.html">VEX</a>
+    <a href="projects.html">PROJECTS</a>
+    <a href="support.html">SUPPORT</a>
+  </nav>
+</header>
 
 <!-- HERO 1 -->
 <section class="hero-1">
@@ -222,48 +188,36 @@
   </div>
 </section>
 <!-- FOOTER -->
-<div id="footer"></div>
-<script>
-(async () => {
-  const el = document.getElementById('footer');
-  try {
-    const res = await fetch('footer.html?v=5', { cache: 'no-store' });
-    if (!res.ok) throw new Error(res.status);
-    const html = await res.text();
-    el.innerHTML = html;
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <a class="logo-link" href="index.html" aria-label="Home">
+        <div class="logo"></div>
+      </a>
+      <div>
+        <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+        <p class="footer-sub">
+          SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides
+          robotics education to children of all communities. Contact socalalliancenonprofit@gmail.com for any other questions.
+        </p>
+      </div>
+    </div>
 
-    // 1) run any scripts inside the loaded footer
-    el.querySelectorAll('script').forEach(old => {
-      const s = document.createElement('script');
-      if (old.src) s.src = old.src; else s.textContent = old.textContent;
-      old.replaceWith(s);
-    });
-
-    // 2) rewrite folder-style links to flat files
-    const map = { '/':'index.html','/about/':'about.html','/vex/':'vex.html','/projects/':'projects.html','/support/':'support.html' };
-    el.querySelectorAll('a[href]').forEach(a => {
-      const raw = a.getAttribute('href');
-      if (map[raw]) a.setAttribute('href', map[raw]);
-    });
-
-    // 3) fix root-absolute image paths
-    el.querySelectorAll('[src^="/images/"]').forEach(n => {
-      n.setAttribute('src', n.getAttribute('src').replace('/images/','images/'));
-    });
-    el.querySelectorAll('[style*="/images/"]').forEach(n => {
-      n.style.backgroundImage = n.style.backgroundImage.replace('/images/','images/');
-    });
-  } catch (e) {
-    console.warn('Failed to load footer.html:', e);
-    // 4) minimal fallback (works even on file://)
-    el.innerHTML = `
-      <footer class="site-footer" style="background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);color:#fff;padding:1.5rem 6vw;text-align:center">
-        <img src="images/logowhite.png" alt="" style="height:45px;vertical-align:middle;margin-right:.5rem">
-        © 2025 SoCal Alliance Robotics · <a href="support.html" style="color:#fff;text-decoration:underline">Donate</a>
-      </footer>`;
-  }
-})();
-</script>
+    <div class="footer-center">
+      <a href="support.html" aria-label="Donate now"><img class="donate-img" src="images/Donatewhite.png" alt="Donate Now"></a>
+      <div class="footer-social" aria-label="Social links">
+        <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="images/SCA_INSTwhite.png" alt="Instagram"></a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" target="_blank" rel="noopener" aria-label="Email">
+          <img src="images/SCA_EMAILwhite.png" alt="Email"></a>
+        <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener" aria-label="TikTok">
+          <img src="images/SCA_TIKTOKwhite.png" alt="TikTok"></a>
+        <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener" aria-label="YouTube">
+          <img src="images/SCA_YOUTUBEwhite.png" alt="YouTube"></a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <!-- (removed unused carousel-track script) -->
 

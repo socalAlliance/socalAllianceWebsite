@@ -1,6 +1,4 @@
-/* === Extracted from vex.html (style id="final-overrides") === */
-/* ===== HERO: stack headline, paragraph, and button ===== */
-.page-container.hero-section {
+/* === Extracted from vex.html (style id="final-overrides") === *//* ===== HERO: stack headline, paragraph, and button ===== */.page-container.hero-section {
   position: relative;
   min-height: var(--hero-bg-height);
   height: auto;
@@ -9,8 +7,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1.75rem;
-}
-.hero-headline {
+}.hero-headline {
   position: relative !important;
   top: auto !important; left: auto !important;
   transform: none !important;
@@ -18,8 +15,7 @@
   text-align: center !important;
   width: 100% !important;
   z-index: 2 !important;
-}
-.copy-text {
+}.copy-text {
   position: relative !important;
   top: auto !important; left: auto !important;
   transform: none !important;
@@ -30,27 +26,16 @@
   line-height: 1.6 !important;
   text-align: center !important;
   z-index: 1 !important;
-}
-.btn-img {
+}.btn-img {
   position: relative !important;
   top: auto !important; left: auto !important;
   transform: none !important;
   z-index: 1 !important;
-}
-@media (max-width: 900px) {
+}@media (max-width: 900px) {
   .page-container.hero-section { gap: 1.25rem !important; padding-bottom: 2rem !important; }
   .hero-headline { font-size: clamp(28px, 8vw, 48px) !important; }
   .copy-text { margin-top: 0.25rem !important; width: 90vw !important; max-width: 90vw !important; font-size: 16px !important; line-height: 1.4 !important; }
-}
-
-/* ===== LOCATION SECTION: prevent image from squeezing text ===== */
-.location-section { flex-wrap: wrap !important; }
-.location-image { flex: 1 1 520px !important; }
-.location-copy  { flex: 1 1 520px !important; max-width: 900px !important; }
-.location-copy .copy { width: 100% !important; margin: 1rem auto !important; }
-
-/* ===== LOCATION HEADLINE definitive sizing (ID outranks other rules) ===== */
-#loc-headline {
+}/* ===== LOCATION SECTION: prevent image from squeezing text ===== */.location-section { flex-wrap: wrap !important; }.location-image { flex: 1 1 520px !important; }.location-copy  { flex: 1 1 520px !important; max-width: 900px !important; }.location-copy .copy { width: 100% !important; margin: 1rem auto !important; }/* ===== LOCATION HEADLINE definitive sizing (ID outranks other rules) ===== */#loc-headline {
   font-size: 48px !important;   /* desktop */
   line-height: 1.15 !important;
   white-space: normal !important;
@@ -60,185 +45,14 @@
   margin: 0 auto 1rem !important;
   max-width: min(90vw, 900px) !important;
   display: block !important;
-}
-@media (max-width: 900px) { #loc-headline { font-size: 36px !important; } }
-@media (max-width: 600px) { #loc-headline { font-size: 28px !important; } }
-
-/* === Extracted from vex.html (style id="nav-core") === */
-.top-bar{
-  position: sticky; top: 0; left: 0; z-index: 1000;
-  width: 100%; height: 100px;
-  display: flex; align-items: center; justify-content: flex-start; padding: 0 50px;
-  font-family: 'Tilt Warp', sans-serif !important;
-  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
-  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-  transition: transform .3s ease !important; will-change: transform;
-}
-.top-bar.hidden{ transform: translateY(-100%) !important; }
-
-.logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
-.top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter:none !important; }
-
-.top-bar nav{ display:flex; gap:40px; margin-left:0 !important; }
-.top-bar nav a{
-  display:inline-block;
-  font-size:inherit !important;
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-  white-space:nowrap;
-  line-height:1.2;
-  padding:0;
-}
-.top-bar nav a:hover{ opacity:.7; }
-
-.nav-toggle { display:none; }
-
-@media (max-width:900px){
-  .top-bar{ height:80px !important; padding:0 20px !important; font-size:20px !important; }
-  .logo{ width:60px !important; height:54px !important; margin-right:0 !important; }
-  .top-bar nav{ gap:15px !important; }
-}
-
-@media (max-width:600px){
-  .top-bar{ font-size:18px !important; padding:0 15px !important; }
-  .logo{ width:50px; height:45px; }
-
-  .nav-toggle{
-    display:flex; align-items:center; justify-content:center;
-    width:44px; height:44px; margin-left:auto;
-    background:transparent; border:none; cursor:pointer;
-  }
-  .burger, .burger::before, .burger::after{
-    content:''; display:block; width:24px; height:2px; background:#fff; border-radius:2px;
-    position:relative; transition:transform .2s ease, opacity .2s ease, background .2s ease;
-  }
-  .burger::before{ position:absolute; top:-7px; }
-  .burger::after{ position:absolute; top:7px; }
-  .nav-toggle[aria-expanded="true"] .burger{ background:transparent; }
-  .nav-toggle[aria-expanded="true"] .burger::before{ transform: translateY(7px) rotate(45deg); }
-  .nav-toggle[aria-expanded="true"] .burger::after{ transform: translateY(-7px) rotate(-45deg); }
-
-  .top-bar nav{ display:none !important; }
-  .top-bar nav.open{
-    display:flex !important; flex-direction:column; gap:12px;
-    position:absolute; top:100%; right:0;
-    padding:12px 16px; background:#000; border-top:1px solid rgba(255,255,255,.15);
-  }
-  .top-bar nav.open a{ font-size:16px !important; padding:8px 2px;}
-}
-
-/* --- Mobile overflow fixes --- */
-html { overflow-x: clip; }
-body { overflow-x: hidden; }
-
-img, svg, video { max-width: 100%; height: auto; }
-
-.support-why h2,
+}@media (max-width: 900px) { #loc-headline { font-size: 36px !important; } }@media (max-width: 600px) { #loc-headline { font-size: 28px !important; } }/* === Extracted from vex.html (style id="nav-core") === */.logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }/* --- Mobile overflow fixes --- */html { overflow-x: clip; }body { overflow-x: hidden; }img, svg, video { max-width: 100%; height: auto; }.support-why h2,
 .support-how h2,
 .support-tiers-title,
 .carousel-title {
   overflow: clip;
-}
-
-@media (max-width: 600px) {
+}@media (max-width: 600px) {
   :root { --support-underline-overhang: 0; }
-}
-
-.sponsor-marquee { overflow-x: hidden; }
-
-@media (max-width: 600px) {
-  .top-bar nav.open {
-    left: auto;
-    right: 0;
-    max-width: 100vw;
-    box-sizing: border-box;
-  }
-}
-
-/* === Extracted from vex.html (style id="nav-left-hotfix") === */
-/* === NAV alignment + size hotfix (match index fix) === */
-.top-bar {
-  font-size: clamp(18px, 1.0vw + 18px, 32px) !important;
-  justify-content: flex-start !important;
-}
-
-.top-bar nav { margin-left: 0 !important; }
-
-@media (min-width: 901px) {
-  .top-bar { height: 100px !important; padding: 0 50px !important; }
-  .top-bar nav { gap: 40px !important; }
-}
-
-@media (max-width: 900px) {
-  .top-bar { justify-content: flex-start !important; height: 80px !important; padding: 0 20px !important; }
-  .top-bar nav { gap: 15px !important; }
-}
-
-@media (max-width: 600px) {
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
-  .top-bar nav { gap: 10px !important; }
-}
-
-/* === Extracted from vex.html (style id="sync-nav-footer") === */
-/* ===== Sync nav & footer with site-wide styles (canonical) ===== */
-
-/* Header logo stays colored */
-.top-bar .logo-link .logo { background-image: url('/images/logo.png') !important; filter: none !important; }
-
-/* Hide-on-scroll uses translate */
-.top-bar { transition: transform .3s ease !important; will-change: transform; justify-content: flex-start !important; font-size: clamp(18px, 1.0vw + 18px, 32px) !important; }
-.top-bar.hidden { transform: translateY(-100%) !important; }
-.top-bar nav { margin-left: 0 !important; }
-
-/* Footer parity (gradient background, grid layout, white logo behavior) */
-.site-footer {
-  background: linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%) !important;
-  color:#fff !important;
-  padding: 3rem 10% !important;
-  font-family:'Instrument Sans',sans-serif !important;
-}
-.footer-content {
-  display: grid !important;
-  grid-template-columns: minmax(420px,1fr) auto !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 2rem !important;
-}
-.footer-left { display:flex !important; align-items:center !important; gap:1rem !important; flex: 1 1 auto !important; }
-.footer-center { display:grid !important; place-items:center !important; gap:1rem !important; }
-.footer-social { display:flex !important; gap:1rem !important; justify-content:center !important; }
-.donate-img { height:48px !important; cursor:pointer !important; transition: filter .3s ease, transform .3s ease !important; }
-.footer-social img { width:60px !important; height:60px !important; filter:brightness(200%) !important; transition:filter .2s !important; }
-.footer-social a:hover img { filter:grayscale(100%) brightness(80%) !important; }
-.site-footer .logo { background-image: url('/images/logowhite.png') !important; transition: filter 0.3s ease !important; transform: none !important; }
-.site-footer .logo-link:hover .logo { filter: grayscale(100%) brightness(80%) !important; transform: none !important; }
-
-/* Responsive spacing consistent with other pages */
-@media (min-width: 901px) {
-  .top-bar { height: 100px !important; padding: 0 50px !important; }
-  .top-bar nav { gap: 40px !important; }
-}
-@media (max-width: 900px) {
-  .top-bar { height: 80px !important; padding: 0 20px !important; font-size: 20px !important; }
-  .logo    { width: 60px !important; height: 54px !important; margin-right: 0 !important; }
-  nav      { gap: 15px !important; }
-  .site-footer { padding: 2rem 6vw !important; }
-  .footer-content { grid-template-columns: 1fr !important; justify-items: center !important; gap: 5rem !important; }
-  .footer-left { flex-direction: column !important; text-align: center !important; }
-}
-@media (max-width: 600px) {
-  .top-bar { font-size: 18px !important; padding: 0 15px !important; }
-  .logo    { width: 50px !important; height: 45px !important; }
-  nav      { gap: 10px !important; }
-  nav a    { font-size: 18px !important; }
-}
-
-/* === Extracted from vex.html (style id="nav-size-enforcer") === */
-.top-bar { font-size: clamp(18px, 1.0vw + 18px, 32px) !important; }
-
-/* === Extracted from vex.html === */
-:root {
+}.sponsor-marquee { overflow-x: hidden; }/* === Extracted from vex.html (style id="nav-left-hotfix") === *//* === NAV alignment + size hotfix (match index fix) === *//* === Extracted from vex.html (style id="sync-nav-footer") === *//* ===== Sync nav & footer with site-wide styles (canonical) ===== *//* Header logo stays colored *//* Hide-on-scroll uses translate *//* Footer parity (gradient background, grid layout, white logo behavior) *//* Responsive spacing consistent with other pages *//* === Extracted from vex.html (style id="nav-size-enforcer") === *//* === Extracted from vex.html === */:root {
        --compare-bar-offset-x:   0px;    /* move the bar left/right */
   --compare-bar-offset-y:   0px;    /* move the bar up/down, if you like */
   --compare-bar-height:    360px;   /* length of the vertical bar */
@@ -310,25 +124,11 @@ img, svg, video { max-width: 100%; height: auto; }
       #EF7616 50%,
       #F0115F 77%
     );                                                   /* same gradient */
-    }
-
-    /* Reset & Base */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html, body { width:100%; overflow-x:hidden; background:#000; color:#fff; }
-    body { font-family:'Instrument Sans',sans-serif; line-height:1.4; }
-    a { color:inherit; text-decoration:none; }
-
-    /* — Sticky Nav — */
-   
-
-@media (max-width: 600px) {
+    }/* Reset & Base */* { margin:0; padding:0; box-sizing:border-box; }html, body { width:100%; overflow-x:hidden; background:#000; color:#fff; }body { font-family:'Instrument Sans',sans-serif; line-height:1.4; }a { color:inherit; text-decoration:none; }/* — Sticky Nav — */@media (max-width: 600px) {
   .hero-headline {
     font-size: 36px !important;
   }
-}
-
-/* Responsive nav for mobile and tablets */
-@media (max-width: 900px) {
+}/* Responsive nav for mobile and tablets */@media (max-width: 900px) {
   
   .logo {
     width: 60px;
@@ -514,13 +314,9 @@ img, svg, video { max-width: 100%; height: auto; }
     max-width: 100vw;
   }
   
-}
-/* — Gradient border for carousel images — */
-.carousel-slide {
+}/* — Gradient border for carousel images — */.carousel-slide {
   position: relative;
-}
-
-.carousel-slide img {
+}.carousel-slide img {
   display: block;
   width: 100%;
   /* transparent border as the “canvas” for the gradient */
@@ -534,10 +330,7 @@ img, svg, video { max-width: 100%; height: auto; }
     rgba(240,17,95,1) 100%
   ) 1;
   box-sizing: border-box;
-}
-
-/* — Gradient border for captions — */
-.carousel-caption {
+}/* — Gradient border for captions — */.carousel-caption {
   display: inline-block;
   margin-top: 0.5rem;
   padding: 0.5rem 1rem;
@@ -551,9 +344,7 @@ img, svg, video { max-width: 100%; height: auto; }
     rgba(240,17,95,1) 100%
   ) 1;
   background-color: #000; /* optional: give the caption a solid BG */
-}
-
-@media (max-width: 600px) {
+}@media (max-width: 600px) {
   
   .logo {
     width: 50px;
@@ -566,37 +357,17 @@ img, svg, video { max-width: 100%; height: auto; }
     font-size: 18px;
   }
   
-}
-/* — Sticky Nav — */
-  /* Make room for a 100px-tall fixed nav */
-
-
-/* Single, un-conflicted nav rule */
-
-/* Hides by moving up exactly its own height */
-
-
-    .logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }
-    nav { display:flex; gap:40px; }
-    nav a:hover { opacity:.7; }
-/* Tablet responsiveness */
-@media (max-width: 900px) and (min-width: 701px) {
+}/* — Sticky Nav — *//* Make room for a 100px-tall fixed nav *//* Single, un-conflicted nav rule *//* Hides by moving up exactly its own height */.logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }nav { display:flex; gap:40px; }nav a:hover { opacity:.7; }/* Tablet responsiveness */@media (max-width: 900px) and (min-width: 701px) {
   .location-copy .location-headline {
     font-size: 3rem;
   }
   .location-copy .copy {
     font-size: 1.2rem;
   }
-}
-
-    /* Main Content */
-    .page-container { 
+}/* Main Content */.page-container { 
       position: relative; 
       height: 500px; /* Set a height so content below knows where to start */
-    }
-
-    /* HERO BACKDROP IMAGE */
-    .hero-bg {
+    }/* HERO BACKDROP IMAGE */.hero-bg {
       position:absolute;
       left:   var(--hero-bg-left);
       top:    var(--hero-bg-top);
@@ -605,8 +376,7 @@ img, svg, video { max-width: 100%; height: auto; }
       height: var(--hero-bg-height);
       background:
         url('/images/whatisvex.webp') center/cover no-repeat;
-    }
-    .hero-overlay {
+    }.hero-overlay {
       position:absolute;
       left:   var(--hero-bg-left);
       top:    var(--hero-bg-top);
@@ -619,10 +389,7 @@ img, svg, video { max-width: 100%; height: auto; }
           rgba(0,0,0,0.8)50%,
           #000           100%
         );
-    }
-
-    /* Headline + underline */
-    .headline {
+    }/* Headline + underline */.headline {
   position:absolute;
   top:    var(--headline-top);
   left:   50%;
@@ -632,9 +399,7 @@ img, svg, video { max-width: 100%; height: auto; }
   font-weight:100;
   color:#fff;
   padding-bottom:var(--partnerships-underline-offset);
-}
-    /* Hero headline + underline */
-    .hero-headline {
+}/* Hero headline + underline */.hero-headline {
       position:absolute;
       top:    var(--headline-top);
       left:   50%;
@@ -644,10 +409,7 @@ img, svg, video { max-width: 100%; height: auto; }
       text-align: center;
       color:#fff;
       padding-bottom:var(--partnerships-underline-offset);
-    }
-    
-    /* Location section headline + underline */
-    .location-headline {
+    }/* Location section headline + underline */.location-headline {
       position: relative;
       display: inline-block;
       white-space: normal;
@@ -658,10 +420,7 @@ img, svg, video { max-width: 100%; height: auto; }
       color:#fff;
       max-width: 100%;
       word-wrap: break-word;
-    }
-    
-    /* VEX comparison headline */
-    .compare-headline {
+    }/* VEX comparison headline */.compare-headline {
       font-family: 'Tilt Warp', sans-serif;
       font-size: 2rem;
       font-weight: 400;
@@ -670,8 +429,7 @@ img, svg, video { max-width: 100%; height: auto; }
       white-space: nowrap;
       margin-bottom: 1.5rem;
       color:#fff;
-    }
-    .headline::after {
+    }.headline::after {
       content:''; position:absolute;
       left:calc(-1 * var(--partnerships-underline-overhang));
       right:calc(-1 * var(--partnerships-underline-overhang));
@@ -682,8 +440,7 @@ img, svg, video { max-width: 100%; height: auto; }
         rgba(240,17,95,0.9) 77%
       );
       border-radius:var(--partnerships-underline-radius);
-    }
-    .hero-headline::after {
+    }.hero-headline::after {
       content:''; position:absolute;
       left:calc(-1 * var(--partnerships-underline-overhang));
       right:calc(-1 * var(--partnerships-underline-overhang));
@@ -694,9 +451,7 @@ img, svg, video { max-width: 100%; height: auto; }
         rgba(240,17,95,0.9) 77%
       );
       border-radius:var(--partnerships-underline-radius);
-    }
-    
-    .location-headline::after {
+    }.location-headline::after {
       content: "";
       position: absolute;
       left:    calc(-1 * var(--partnerships-underline-overhang));
@@ -705,10 +460,7 @@ img, svg, video { max-width: 100%; height: auto; }
       height:  var(--partnerships-underline-height);
       background: var(--bar-gradient);
       border-radius: var(--partnerships-underline-radius);
-    }
-
-    /* Body copy */
-.copy {
+    }/* Body copy */.copy {
   position:absolute;
   top:    var(--copy-top);
   left:   50%;
@@ -717,10 +469,7 @@ img, svg, video { max-width: 100%; height: auto; }
   font-size:24px;
   line-height:1.4;
   text-align:center;
-}
-
-/* Copy text - same styling as copy */
-.copy-text {
+}/* Copy text - same styling as copy */.copy-text {
   position:absolute;
   top:    var(--copy-top);
   left:   50%;
@@ -729,20 +478,14 @@ img, svg, video { max-width: 100%; height: auto; }
   font-size: 24px;
   line-height:1.4;
   text-align:center;
-}
-
-    /* LEARN MORE image button */
-    .btn-img {
+}/* LEARN MORE image button */.btn-img {
       position:absolute; top:440px; left:50%;
       transform:translateX(-50%);
-    }
-    .btn-img img {
+    }.btn-img img {
       height:48px; transition:transform .3s ease;
-    }
-    .btn-img:hover img {
+    }.btn-img:hover img {
       transform:scale(1.05);
-    }
-    .gradient-bar {
+    }.gradient-bar {
   position: absolute;
   left:       var(--bar-left);
   top:        var(--bar-top);
@@ -750,8 +493,7 @@ img, svg, video { max-width: 100%; height: auto; }
   height:     var(--bar-height);
   background: var(--bar-gradient);
   border-radius: var(--bar-radius);
-}
-.embed-container {
+}.embed-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -759,9 +501,7 @@ img, svg, video { max-width: 100%; height: auto; }
   margin: 20rem auto 8rem;
   flex-wrap: wrap;
   /* Increased bottom margin for proper spacing */
-}
-
-.embed-box {
+}.embed-box {
   position: relative;
   width: var(--embed-width);
   height: var(--embed-height);
@@ -770,9 +510,7 @@ img, svg, video { max-width: 100%; height: auto; }
   box-sizing: border-box;
   margin: 0 auto;
   flex-shrink: 0;
-}
-
-.embed-box::before {
+}.embed-box::before {
   content: "";
   position: absolute;
   inset: 0;                      /* stretch to cover entire box */
@@ -780,18 +518,11 @@ img, svg, video { max-width: 100%; height: auto; }
   background-size: 100% 100%;    /* make the PNG fill the box */
   pointer-events: none;          /* clicks pass through to iframe */
   z-index: 2;
-}
-
-/* assign each box its own border image */
-.embed-box.worlds::before {
+}/* assign each box its own border image */.embed-box.worlds::before {
   background-image: var(--border-worlds);
-}
-.embed-box.season::before {
+}.embed-box.season::before {
   background-image: var(--border-season);
-}
-
-/* inset by 10px on left and right */
-.embed-box iframe {
+}/* inset by 10px on left and right */.embed-box iframe {
   position: absolute;
   top: 68px;
   left: 28px;
@@ -801,52 +532,11 @@ img, svg, video { max-width: 100%; height: auto; }
   z-index: 1;
   width: calc(100% - 56px);
   height: calc(100% - 96px);
-}
-
-/* Footer */
-.site-footer {
-  margin-top:100px;
-  background:linear-gradient(90deg,#000 0,#000 10%,#F0115F 60%,#EF7616 100%);
-  color:#fff; padding:2rem 10%;
-      font-family:'Instrument Sans',sans-serif;
-    }
-    .footer-content {
-      display:flex; flex-wrap:wrap; justify-content:space-between; gap:5rem;
-    }
-    .footer-left {
-      display:flex; gap:1rem; align-items:flex-start; flex:1 1 400px;
-    }
-    .footer-left .logo {
-      width:81px; height:73px;
-      background:url('/images/logowhite.png') center/cover no-repeat;
-      transition:transform .3s ease;
-    }
-    .logo-link:hover .logo {
+}/* Footer */.logo-link:hover .logo {
       transform:scale(1.05);
-    }
-    .footer-copy { font-size:1.5rem; font-weight:bold; margin:0; }
-    .footer-sub {
+    }.footer-copy { font-size:1.5rem; font-weight:bold; margin:0; }.footer-sub {
       margin-top:.5rem; font-size:1rem; opacity:.9; max-width:400px;
-    }
-    .footer-center {
-      display:flex; flex-direction:column; align-items:center; gap:1rem; justify-content: center;
-    }
-    .donate-img {
-      height:48px; cursor:pointer; transition:filter .3s ease;
-    }
-    .donate-img:hover {
-      filter:grayscale(100%) brightness(80%);
-    }
-    .footer-social { display:flex; gap:1rem; }
-    .footer-social img {
-      width:60px; height:60px; filter:brightness(200%);
-      transition:filter .2s ease;
-    }
-    .footer-social a:hover img {
-      filter:grayscale(100%) brightness(80%);
-    }
-/* Container & positioning */
-.location-section {
+    }/* Container & positioning */.location-section {
   position: relative;
   left: var(--loc-sec-offset-x);
   top:  var(--loc-sec-offset-y);
@@ -857,19 +547,13 @@ img, svg, video { max-width: 100%; height: auto; }
   padding: 0 1rem;
   max-width: var(--hero-bg-max-width);
   justify-content: center;
-}
-
-/* image side */
-.location-image img {
+}/* image side */.location-image img {
   width: var(--loc-img-width);
   height: auto;
   position: relative;
   left: var(--loc-img-offset-x);
   top:  var(--loc-img-offset-y);
-}
-
-/* text side */
-.location-copy {
+}/* text side */.location-copy {
   position: relative;
   left: var(--loc-text-offset-x);
   top:  var(--loc-text-offset-y);
@@ -879,10 +563,7 @@ img, svg, video { max-width: 100%; height: auto; }
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-}
-
-/* headline underline */
-.location-copy .headline {
+}/* headline underline */.location-copy .headline {
   position: relative;         /* create a positioning context */
   display: inline-block;      /* so ::after width matches text */
   white-space: normal;        /* allow wrapping */
@@ -891,9 +572,7 @@ img, svg, video { max-width: 100%; height: auto; }
   font-weight: 400;          /* add some weight */
   max-width: 100%;           /* don't exceed container width */
   word-wrap: break-word;     /* break long words if needed */
-}
-
-.location-copy .headline::after {
+}.location-copy .headline::after {
   content: "";
   position: absolute;
   left:    calc(-1 * var(--partnerships-underline-overhang));
@@ -902,60 +581,40 @@ img, svg, video { max-width: 100%; height: auto; }
   height:  var(--partnerships-underline-height);
   background: var(--bar-gradient);            /* same gradient */
   border-radius: var(--partnerships-underline-radius);
-}
-
-/* paragraph */
-.location-copy .copy {
+}/* paragraph */.location-copy .copy {
   margin: 0;
   font-size: 18px;
   line-height: 1.4;
   max-width: var(--loc-desc-wrap);
   text-align: left;
-}
-.image-carousel {
+}.image-carousel {
   position: relative;
   margin: 8rem auto 4rem;
   max-width: 900px;
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-.carousel-track-container {
+}.carousel-track-container {
   overflow: hidden;
   flex: 1 1 auto;
-}
-
-.carousel-track {
+}.carousel-track {
   display: flex;
   transition: transform 0.5s ease;
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-.carousel-slide {
+}.carousel-slide {
   min-width: 100%;
   box-sizing: border-box;
   text-align: center;
-}
-
-.carousel-slide img {
+}.carousel-slide img {
   width: 100%;
   height: auto;
   display: block;
-}
-
-.carousel-caption {
+}.carousel-caption {
   margin: 0.5rem 0 0;
   font-size: 1.1rem;
-}
-
-/* Remove any previous ::before border-triangle setup */
-.carousel-arrow::before { border: none; }
-
-/* Base arrow button */
-.carousel-arrow {
+}/* Remove any previous ::before border-triangle setup */.carousel-arrow::before { border: none; }/* Base arrow button */.carousel-arrow {
   width: 2rem;
   height: 2rem;
   padding: 0;
@@ -964,10 +623,7 @@ img, svg, video { max-width: 100%; height: auto; }
   cursor: pointer;
   position: relative;
   overflow: hidden;
-}
-
-/* Shared triangle styling */
-.carousel-arrow::after {
+}/* Shared triangle styling */.carousel-arrow::after {
   content: "";
   position: absolute;
   top: 0; left: 0;
@@ -989,37 +645,22 @@ img, svg, video { max-width: 100%; height: auto; }
     100% 50%  /* middle-right */
   );
   will-change: background-position;
-}
-
-/* flip for “left” arrow */
-.carousel-arrow.left::after {
+}/* flip for “left” arrow */.carousel-arrow.left::after {
   /* mirror horizontally */
   clip-path: polygon(
     100% 0%,   /* top-right */
     100% 100%, /* bottom-right */
     0%   50%   /* middle-left */
   );
-}
-
-/* hover scaling */
-.carousel-arrow:hover {
+}/* hover scaling */.carousel-arrow:hover {
   transform: scale(1.1);
-}
-
-/* gradient animation keyframes */
-@keyframes gradient-move {
+}/* gradient animation keyframes */@keyframes gradient-move {
   0%   { background-position: 0%   50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0%   50%; }
-}
-/* put this at the very end of your <style> */
-.location-copy {
+}/* put this at the very end of your <style> */.location-copy {
   text-align: center;             /* center both headline and paragraph */
-}
-
-
-
-.location-copy .copy {
+}.location-copy .copy {
   /* center and control wrap width */
   max-width: 600px;       /* or any px/rem value you prefer */
   width: 900%;             /* scales on smaller screens */
@@ -1033,19 +674,12 @@ img, svg, video { max-width: 100%; height: auto; }
   /* ensure long words break rather than overflow */
   word-wrap: break-word;
   hyphens: auto;
-}
-
-
-/* Container */
-.vex-compare {
+}/* Container */.vex-compare {
   margin: 12rem auto 3rem;
   padding-top: -10px;
   max-width: 700px;
   color: #fff;
-}
-
-/* Headline */
-.compare-headline {
+}/* Headline */.compare-headline {
   font-family: 'Tilt Warp', sans-serif;
   font-size: 2rem;
   font-weight: 400;
@@ -1054,17 +688,12 @@ img, svg, video { max-width: 100%; height: auto; }
   white-space: nowrap;
   margin-bottom: 1.5rem;
   color:#fff;
-}
-.compare-headline .vs {
+}.compare-headline .vs {
   font-family: 'Instrument Sans', sans-serif;
   font-size: 1.2rem;
   margin: 0 1rem;
   vertical-align: middle;
-}
-
-/* Body flex row */
-/* Center the bar & columns under the header */
-.compare-body {
+}/* Body flex row *//* Center the bar & columns under the header */.compare-body {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1074,35 +703,26 @@ img, svg, video { max-width: 100%; height: auto; }
   max-width: 900px;
   padding-left: 24px;
   padding-right: 24px;
-}
-
-.compare-body .column {
+}.compare-body .column {
   flex: 1 1 0;
   min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
-
-.compare-body .column.left p {
+}.compare-body .column.left p {
   text-align: left;
   align-self: flex-start;
   font-size: 18px;
-}
-
-.compare-body .column.right p {
+}.compare-body .column.right p {
   text-align: left;
   align-self: flex-start;
   font-size: 18px;
-}
-
-.vex-bar-vertical {
+}.vex-bar-vertical {
   width: var(--compare-bar-width, 20px);
   min-width: 10px;
   height: var(--compare-bar-height, 360px);
   background: var(--compare-bar-gradient);
-}
-.vex-compare .compare-body .vex-bar-vertical {
+}.vex-compare .compare-body .vex-bar-vertical {
   /* dimension */
   width:  var(--compare-bar-width)   !important;
   height: var(--compare-bar-height)  !important;
@@ -1116,42 +736,28 @@ img, svg, video { max-width: 100%; height: auto; }
   margin-left: var(--compare-bar-offset-x) !important;
   /* margin-top will nudge it down (use negative to go up) */
   margin-top:  var(--compare-bar-offset-y) !important;
-}
-/* Past Seasons button */
-.past-seasons-container {
+}/* Past Seasons button */.past-seasons-container {
   text-align: center;
   margin: 2rem 0;          /* space above/below */
-}
-
-.past-seasons-btn {
+}.past-seasons-btn {
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
   display: inline-block;
-}
-
-.past-seasons-btn:hover {
+}.past-seasons-btn:hover {
   transform: scale(1.05);
   filter: brightness(1.2);
-}
-/* 2) On hover, cancel the scale and apply grayscale */
-.site-footer .logo-link:hover .logo {
-  filter: grayscale(100%) brightness(80%) !important;
-  transform: none !important;
-}
-.compare-chart {
+}/* 2) On hover, cancel the scale and apply grayscale */.compare-chart {
   max-width: 1000px;
   margin: 6rem auto 4rem;
   padding: 0 1rem;
   color: #fff;
-}
-.compare-chart__title {
+}.compare-chart__title {
   text-align: center;
   font-family: 'Tilt Warp',sans-serif;
   font-size: 2.5rem;
   margin-bottom: 2rem;
   position: relative;
-}
-.compare-chart__title::after {
+}.compare-chart__title::after {
   content: "";
   position: absolute;
   left: 50%; transform: translateX(-50%);
@@ -1159,49 +765,31 @@ img, svg, video { max-width: 100%; height: auto; }
   width: 6rem; height: 6px;
   background: var(--bar-gradient);
   border-radius: 3px;
-}
-
-.compare-chart__grid {
+}.compare-chart__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
-}
-
-.compare-chart__cell {
+}.compare-chart__cell {
   padding: 1.25rem;
   text-align: center;
   font-size: 1rem;
   background: #000000;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   border-right: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.compare-chart__cell:nth-child(3n) {
+}.compare-chart__cell:nth-child(3n) {
   border-right: none;
-}
-
-/* Header styling */
-.compare-chart__cell--header {
+}/* Header styling */.compare-chart__cell--header {
   background: var(--bar-gradient);
   color: #000000;
   font-weight: bold;
   font-size: 1.1rem;
-}
-
-/* Remove bottom border on last row */
-.compare-chart__grid > .compare-chart__cell:nth-last-child(-n+3) {
+}/* Remove bottom border on last row */.compare-chart__grid > .compare-chart__cell:nth-last-child(-n+3) {
   border-bottom: none;
-}
-
-/* Zebra-stripe every other row to aid readability */
-.compare-chart__grid > .compare-chart__cell:nth-child(n+4):nth-child(odd) {
+}/* Zebra-stripe every other row to aid readability */.compare-chart__grid > .compare-chart__cell:nth-child(n+4):nth-child(odd) {
   background: #000000;
-}
-
-/* Responsive: switch to single-col on narrow screens */
-@media (max-width: 600px) {
+}/* Responsive: switch to single-col on narrow screens */@media (max-width: 600px) {
   .compare-chart__grid {
     grid-template-columns: 1fr;
   }
@@ -1212,19 +800,14 @@ img, svg, video { max-width: 100%; height: auto; }
     border-right: none !important;
     text-align: left;
   }
-}
-/* Make headers white, Tilt Warp, with a gradient underline */
-.compare-chart__cell--header {
+}/* Make headers white, Tilt Warp, with a gradient underline */.compare-chart__cell--header {
   background: none;                      /* drop the gradient box */
   color: #fff;                           /* white text */
   font-family: 'Tilt Warp', sans-serif; /* match your section titles */
   font-size: 1.1rem;
   position: relative;
   padding-bottom: 1.5rem;               /* give room for the underline */
-}
-
-/* Underline with your gradient bar */
-.compare-chart__cell--header::after {
+}/* Underline with your gradient bar */.compare-chart__cell--header::after {
   content: '';
   position: absolute;
   left: 1rem;       /* inset from the sides */
@@ -1233,37 +816,13 @@ img, svg, video { max-width: 100%; height: auto; }
   height: 6px;      /* thickness of underline */
   background: var(--bar-gradient);
   border-radius: 3px;
-}
-
-/* Remove any leftover borders so the underline stands out */
-.compare-chart__cell--header {
+}/* Remove any leftover borders so the underline stands out */.compare-chart__cell--header {
   border-bottom: none;
-}
-/* Increase body cell text */
-.compare-chart__cell {
+}/* Increase body cell text */.compare-chart__cell {
   font-size: 1.5rem;   /* ~20px */
-}
-
-/* Increase header text */
-.compare-chart__cell--header {
+}/* Increase header text */.compare-chart__cell--header {
   font-size: 2rem;    /* ~24px */
-}
-.site-footer .logo {
-  /* only animate filter, not transform */
-  transition: filter 0.3s ease !important;
-  /* cancel any inherited scale */
-  transform: none !important;
-}
-
-/* 2) On hover, apply grayscale + slight dim */
-.site-footer .logo-link:hover .logo {
-  filter: grayscale(100%) brightness(80%) !important;
-  /* ensure it never scales */
-  transform: none !important;
-}
-  
-/* === Do NOT place paragraph over the map (≤1500px) === */
-@media (max-width: 1500px) {
+}/* 2) On hover, apply grayscale + slight dim *//* === Do NOT place paragraph over the map (≤1500px) === */@media (max-width: 1500px) {
   .location-section { 
     display: block !important;
     margin-bottom: 6rem !important; /* breathing room before table */
@@ -1301,11 +860,7 @@ img, svg, video { max-width: 100%; height: auto; }
     overflow-wrap: anywhere;
     hyphens: auto;
   }
-}
-
-
-/* ===== Fix: Center the Close‑Knit paragraph and keep it within screen ===== */
-@media (min-width: 0px) {
+}/* ===== Fix: Center the Close‑Knit paragraph and keep it within screen ===== */@media (min-width: 0px) {
   /* Override the generic .copy absolute rules ONLY inside the location section */
   .location-copy .copy {
     position: static !important;
@@ -1329,17 +884,9 @@ img, svg, video { max-width: 100%; height: auto; }
     overflow-wrap: anywhere !important;
     hyphens: auto !important;
   }
-}
-
-
-/* Extra breathing room below the Close‑Knit paragraph */
-.location-copy .copy {
+}/* Extra breathing room below the Close‑Knit paragraph */.location-copy .copy {
   margin-bottom: clamp(24px, 3.5vw, 56px) !important;
-}
-
-
-/* ===== Keep comparison table in 3-column format on all widths ===== */
-@media (max-width: 900px) {
+}/* ===== Keep comparison table in 3-column format on all widths ===== */@media (max-width: 900px) {
   .compare-chart__grid {
     display: grid !important;
     grid-template-columns: 0.9fr 1fr 1fr !important; /* slightly narrower Features column */
@@ -1364,10 +911,7 @@ img, svg, video { max-width: 100%; height: auto; }
     font-size: 1.05rem !important;
     padding: 0.6rem 0.35rem 0.8rem !important;
   }
-}
-
-/* === DESKTOP/LAPTOP underline fixes === */
-@media (min-width: 601px) {
+}/* === DESKTOP/LAPTOP underline fixes === */@media (min-width: 601px) {
   /* Make headline boxes shrink to their text so ::after matches the text width */
   .hero-headline,
   .location-headline {
@@ -1387,9 +931,7 @@ img, svg, video { max-width: 100%; height: auto; }
   #loc-headline {                     /* “A CLOSE-KNIT COMMUNITY” */
     padding-bottom: 0.2rem !important;  /* was ~0.5rem */
   }
-}
-
-@media (min-width: 601px) {
+}@media (min-width: 601px) {
   #loc-headline {
     display: inline-block !important;      /* shrink to text width */
     padding-bottom: 0.35rem !important;    /* pull underline closer */
@@ -1402,10 +944,7 @@ img, svg, video { max-width: 100%; height: auto; }
     right: 0 !important;                   /* match the text width */
     bottom: 0 !important;
   }
-}
-
-/* ===== FINAL: Close-Knit underline sits right under the headline ===== */
-@media (min-width: 601px) {
+}/* ===== FINAL: Close-Knit underline sits right under the headline ===== */@media (min-width: 601px) {
   h1.location-headline#loc-headline {
     position: relative !important;
     display: inline-block !important;   /* shrink box to text width */
@@ -1427,10 +966,7 @@ img, svg, video { max-width: 100%; height: auto; }
     background: var(--bar-gradient) !important;
     border-radius: var(--partnerships-underline-radius) !important;
   }
-}
-
-/* Phone / small tablets: same behavior */
-@media (max-width: 600px) {
+}/* Phone / small tablets: same behavior */@media (max-width: 600px) {
   h1.location-headline#loc-headline {
     position: relative !important;
     display: inline-block !important;
