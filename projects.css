@@ -1,4 +1,4 @@
-/* === Extracted from projects.html (style id="nav-core") === */.logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }/* === Mobile overflow fixes (add at end) === *//* 1) Make underline overhang shrink on phones */:root{
+/* === Extracted from projects.html (style id="nav-core") === *//* === Mobile overflow fixes (add at end) === *//* 1) Make underline overhang shrink on phones */:root{
   /* keeps the gradient underline from sticking out too far on small screens */
   --underline-overhang: min(2rem, 4vw);
   --partnerships-underline-overhang: min(2rem, 4vw);
@@ -33,12 +33,7 @@
   min-height: var(--btn-min-h) !important;
 }/* Slightly taller on very small phones if wrapping increases */@media (max-width: 380px){
   :root{ --btn-min-h: 5.2em; }
-}/* Ensure menu sits above hero and accepts clicks *//* In case a decorative overlay overlaps the header/menus */.hero::before, .hero::after, .page-overlay, .gradient-overlay { pointer-events: none; }/* Make sure links themselves are click targets *//* === Extracted from projects.html === *//* === Mobile dropdown visibility & layering fix === *//* === Extracted from projects.html (style id="mobile-menu-fix") === *//* Keep the sticky header on top everywhere *//* Phone-only: render the opened menu above the page content *//* === Extracted from projects.html (style id="nav-click-fix-final") === *//* FINAL: Put header/nav on the very top and guarantee it receives hover/clicks *//* Anything below header should not sit above it *//* Desktop nav (>=601px) — ensure links are interactive *//* Mobile dropdown — keep it above content but aligned right *//* === Extracted from projects.html (style id="mobile-menu-hardening") === *//* === Extracted from projects.html (style id="sca-nav.css") === *//* ===== New SCA Nav (namespaced; no clashes) ===== */.u-visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}/* Lock page scroll when menu is open on mobile *//* === Extracted from projects.html (style id="footer-center-fix") === *//* Constrain footer width and center container on all sizes *//* < 601px: force a single column, fully centered *//* === Extracted from projects.html === */:root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%}body{background:#000;color:#fff;font-family:'Instrument Sans',sans-serif;line-height:1.4;overflow-x:hidden}a{text-decoration:none;color:inherit}/* — Sticky Nav — */.logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }nav{ display:flex; gap:40px; }nav a:hover{ opacity:.7; }.logo {
-  transition: transform 0.3s ease;
-  /* (if you ever have an overriding !important transform:none, remove it) */
-}.logo-link:hover .logo {
-  transform: scale(1.05);
-}/* DONATE-WHITE.PNG HOVER GREY-OUT *//* Responsive nav for mobile and tablets *//* CONTENT */main{background:#000}.hero{padding:90px 8% 40px;text-align:center}.hero h1{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(40px,6vw,76px);line-height:1.05}/* 1. Make the H1 inline and positioned relative *//* 1) On your H1, set a custom overhang and allow overflow */.hero h1 {
+}/* Ensure menu sits above hero and accepts clicks *//* In case a decorative overlay overlaps the header/menus */.hero::before, .hero::after, .page-overlay, .gradient-overlay { pointer-events: none; }/* Make sure links themselves are click targets *//* === Extracted from projects.html === *//* === Mobile dropdown visibility & layering fix === *//* === Extracted from projects.html (style id="mobile-menu-fix") === *//* Keep the sticky header on top everywhere *//* Phone-only: render the opened menu above the page content *//* === Extracted from projects.html (style id="nav-click-fix-final") === *//* FINAL: Put header/nav on the very top and guarantee it receives hover/clicks *//* Anything below header should not sit above it *//* Desktop nav (>=601px) — ensure links are interactive *//* Mobile dropdown — keep it above content but aligned right *//* === Extracted from projects.html (style id="mobile-menu-hardening") === *//* === Extracted from projects.html (style id="sca-nav.css") === *//* ===== New SCA Nav (namespaced; no clashes) ===== */.u-visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}/* Lock page scroll when menu is open on mobile *//* === Extracted from projects.html (style id="footer-center-fix") === *//* Constrain footer width and center container on all sizes *//* < 601px: force a single column, fully centered *//* === Extracted from projects.html === */:root { --drop-shadow: 0 2px 6px rgba(0,0,0,0.4); }*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%}body{background:#000;color:#fff;font-family:'Instrument Sans',sans-serif;line-height:1.4;overflow-x:hidden}a{text-decoration:none;color:inherit}/* — Sticky Nav — *//* DONATE-WHITE.PNG HOVER GREY-OUT *//* Responsive nav for mobile and tablets *//* CONTENT */main{background:#000}.hero{padding:90px 8% 40px;text-align:center}.hero h1{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(40px,6vw,76px);line-height:1.05}/* 1. Make the H1 inline and positioned relative *//* 1) On your H1, set a custom overhang and allow overflow */.hero h1 {
   --underline-overhang: 4rem;    /* ↔️ change this to whatever you like */
   position: relative;
   display: inline-block;
@@ -338,33 +333,4 @@
     rgba(240,17,95,0.9) 77%
   );
   border-radius: var(--partnerships-underline-radius, 1000px);
-}/* FOOTER */.footer-copy{font-size:1.5rem;font-weight:bold}.footer-sub{margin-top:.5rem;font-size:1rem;opacity:.9;max-width:400px}/* 2) On hover, cancel the scale and apply grayscale *//* 2) On hover, apply grayscale + slight dim *//* === Extracted from projects.html (style id="sync-nav-footer") === *//* Synced from support.html (nav + footer) */.logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }.logo {
-        width: 60px;
-        height: 54px;
-        margin-right: 0;
-      }.logo {
-        width: 50px;
-        height: 45px;
-      }.logo {
-      transition: transform 0.3s ease;
-    }.logo {
-      transform: scale(1.05);
-    }.logo {
-  background-image: url('/images/logo.png') !important;
-  filter: none !important;      /* remove that grayscale/brightness hack */
-}.logo {
-  background-image: url('/images/logowhite.png') !important;
-}.logo {
-  /* only animate filter, not transform */
-  transition: filter 0.3s ease !important;
-  /* cancel any inherited scale */
-  transform: none !important;
-}.logo {
-  filter: grayscale(100%) brightness(80%) !important;
-  /* ensure it never scales */
-  transform: none !important;
-}nav { display:flex; gap:40px; }nav {
-        gap: 15px;
-      }nav {
-        gap: 10px;
-      }nav a:hover { opacity:.7; }/* === Extracted from projects.html (style id="nav-left-hotfix") === *//* === NAV alignment + size hotfix === *//* Left-align content on all sizes unless explicitly changed elsewhere *//* Ensure the nav cluster doesn't get pushed right by margin tricks *//* Tweak gaps for readability at common breakpoints */
+}/* FOOTER *//* 2) On hover, cancel the scale and apply grayscale *//* 2) On hover, apply grayscale + slight dim *//* === Extracted from projects.html (style id="sync-nav-footer") === *//* Synced from support.html (nav + footer) *//* === Extracted from projects.html (style id="nav-left-hotfix") === *//* === NAV alignment + size hotfix === *//* Left-align content on all sizes unless explicitly changed elsewhere *//* Ensure the nav cluster doesn't get pushed right by margin tricks *//* Tweak gaps for readability at common breakpoints */

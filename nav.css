@@ -49,3 +49,47 @@
       gap: 10px 14px;                       /* row/column gaps */
     }
   }
+/* --- enforce consistent link positioning across all pages --- */
+@media (min-width: 901px){
+  .sca-nav__menu {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    gap: 20px !important;   /* adjust gap for consistency */
+  }
+  .sca-nav__menu a {
+    display: inline-block;
+    text-align: center;
+    padding: 0 4px;          /* keeps clickable area neat */
+  }
+}
+/* === SCA: lock nav link alignment & spacing site-wide === */
+@media (min-width: 901px){
+  .sca-nav #site-nav{
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    gap: 40px !important;   /* unified link spacing */
+  }
+}
+
+/* --- Hard alignment reset so every page matches (especially Projects) --- */
+@media (min-width: 901px){
+  .sca-nav #site-nav{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    gap: var(--nav-gap) !important;
+    flex: 0 0 auto !important;
+  }
+  .sca-nav #site-nav > a{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
