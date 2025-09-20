@@ -45,7 +45,7 @@
   margin: 0 auto 1rem !important;
   max-width: min(90vw, 900px) !important;
   display: block !important;
-}@media (max-width: 900px) { #loc-headline { font-size: 36px !important; } }@media (max-width: 600px) { #loc-headline { font-size: 28px !important; } }/* === Extracted from vex.html (style id="nav-core") === */.logo{ width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }/* --- Mobile overflow fixes --- */html { overflow-x: clip; }body { overflow-x: hidden; }img, svg, video { max-width: 100%; height: auto; }.support-why h2,
+}@media (max-width: 900px) { #loc-headline { font-size: 36px !important; } }@media (max-width: 600px) { #loc-headline { font-size: 28px !important; } }/* === Extracted from vex.html (style id="nav-core") === */.logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }/* --- Mobile overflow fixes --- */html { overflow-x: clip; }body { overflow-x: hidden; }img, svg, video { max-width: 100%; height: auto; }.support-why h2,
 .support-how h2,
 .support-tiers-title,
 .carousel-title {
@@ -95,8 +95,8 @@
   
 
   /* path to your border images */
-  --border-worlds:  url('/images/worldsborder.png');
-  --border-season:  url('/images/seasonborder.png');
+  --border-worlds:  url('images/worldsborder.png');
+  --border-season:  url('images/seasonborder.png');
 
  /* entire section offset */
   --loc-sec-offset-x: 0px;
@@ -352,7 +352,7 @@
     font-size: 18px;
   }
   
-}/* — Sticky Nav — *//* Make room for a 100px-tall fixed nav *//* Single, un-conflicted nav rule *//* Hides by moving up exactly its own height */.logo { width:81px; height:73px; background:url('/images/logo.png') center/cover no-repeat; margin-right:20px; }nav { display:flex; gap:40px; }nav a:hover { opacity:.7; }/* Tablet responsiveness */@media (max-width: 900px) and (min-width: 701px) {
+}/* — Sticky Nav — *//* Make room for a 100px-tall fixed nav *//* Single, un-conflicted nav rule *//* Hides by moving up exactly its own height */.logo { width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }nav { display:flex; gap:40px; }nav a:hover { opacity:.7; }/* Tablet responsiveness */@media (max-width: 900px) and (min-width: 701px) {
   .location-copy .location-headline {
     font-size: 3rem;
   }
@@ -370,7 +370,7 @@
       max-width:var(--hero-bg-max-width);
       height: var(--hero-bg-height);
       background:
-        url('/images/whatisvex.webp') center/cover no-repeat;
+        url('images/whatisvex.png') center/cover no-repeat;
     }.hero-overlay {
       position:absolute;
       left:   var(--hero-bg-left);
