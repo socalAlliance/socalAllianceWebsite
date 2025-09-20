@@ -982,3 +982,124 @@
     border-radius: 999px !important;
   }
 }
+
+
+/* === VEX compare (two-column) — screenshot-accurate layout === */
+.vex-compare{
+  margin: 8rem auto 4rem;
+  max-width: 1100px;
+  padding: 0 1rem;
+}
+.compare-headline{
+  font-family:'Tilt Warp',sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-align:center;
+  white-space: nowrap;
+  margin-bottom: 2rem;
+}
+.compare-headline .vs{
+  font-family:'Instrument Sans',sans-serif;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  margin: 0 1rem;
+  opacity:.9;
+}
+.compare-body{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+}
+.compare-body .column{
+  display:flex;
+  flex-direction:column;
+  gap: var(--compare-para-gap, 1.25rem);
+  max-width: 480px;
+}
+.compare-body .column.left{
+  align-items:flex-start;
+  text-align:left;
+}
+.compare-body .column.right{
+  align-items:flex-end;
+  text-align:right;
+}
+.compare-body .column p{
+  font-size: clamp(1rem, 1.4vw, 1.25rem); /* keep larger readable size */
+  line-height: 1.55;
+}
+.vex-bar-vertical{
+  width: var(--compare-bar-width, 20px);
+  height: var(--compare-bar-height, 360px);
+  background: var(--compare-bar-gradient);
+  border-radius: 999px;
+}
+@media (max-width: 900px){
+  .compare-body{
+    gap: 2rem;
+    padding: 0 0.5rem;
+  }
+}
+
+
+
+/* === Fix vertical bar to span full column height, below headline === */
+.vex-compare{
+  position: relative;
+}
+.compare-body{
+  position: relative;
+  align-items: stretch; /* ensure columns stretch equally */
+}
+.vex-bar-vertical{
+  position: relative;
+  align-self: stretch;  /* stretch to full height of .compare-body */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  height: auto !important;
+}
+
+
+
+/* === Override: make center gradient bar match full column height (not the title) === */
+.vex-compare .compare-body{
+  align-items: stretch !important;   /* stretch items to tallest column */
+}
+.vex-compare .vex-bar-vertical{
+  height: auto !important;           /* let flex define the height */
+  align-self: stretch !important;    /* ensure the bar stretches */
+  border-radius: 999px !important;   /* keep pill shape */
+}
+
+
+
+/* === Fix: Ensure vertical bar stretches fully even on thin screens === */
+@media (max-width: 600px){
+  .vex-compare .compare-body{
+    align-items: stretch !important;
+  }
+  .vex-compare .vex-bar-vertical{
+    height: auto !important;
+    min-height: 100% !important;  /* enforce full column height */
+    flex-shrink: 0 !important;
+  }
+}
+
+
+
+/* === Strong override: make the vertical gradient bar match the tallest column === */
+.vex-compare .compare-body{ 
+  align-items: stretch !important;        /* stretch all three items to same height */
+}
+.vex-compare .compare-body .vex-bar-vertical{
+  height: auto !important;                /* cancel fixed var height */
+  align-self: stretch !important;         /* ensure it stretches with the row height */
+  flex: 0 0 var(--compare-bar-width, 20px) !important;  /* fixed width, no shrink */
+  margin-top: 0 !important;               /* ignore offset so it starts with columns */
+  margin-bottom: 0 !important;
+  border-radius: 999px !important;
+}
+/* Tidy paragraph margins so column height is consistent */
+.vex-compare .compare-body .column p{
+  margin: 0 !important;
+}
+
