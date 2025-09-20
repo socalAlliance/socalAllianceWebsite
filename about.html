@@ -86,7 +86,7 @@
 <div class="description-text" id="description-right"></div>
 <!-- Arrows -->
 <div id="arrow-container">
-<div class="arrow" data-dir="-1">🢀</div>
+<div class="arrow" data-dir="-1"></div>
 <div class="arrow" data-dir="1"></div>
 </div>
 </div>
@@ -501,7 +501,7 @@ function resizeDesktop() {
  mTopLabel.textContent = topRole.label;
       
       // Update aria-labels with current state
-      const arrows = mRoot.querySelectorAll('.m-arrow');
+      const arrows = mRoot.querySelectorAll('.arrow');
       arrows.forEach(btn => {
         const dir = btn.dataset.dir;
         const action = dir === '1' ? 'next' : 'previous';

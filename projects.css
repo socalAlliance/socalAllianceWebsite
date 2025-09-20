@@ -333,4 +333,4 @@
     rgba(240,17,95,0.9) 77%
   );
   border-radius: var(--partnerships-underline-radius, 1000px);
-}/* FOOTER *//* 2) On hover, cancel the scale and apply grayscale *//* 2) On hover, apply grayscale + slight dim *//* === Extracted from projects.html (style id="sync-nav-footer") === *//* Synced from support.html (nav + footer) *//* === Extracted from projects.html (style id="nav-left-hotfix") === *//* === NAV alignment + size hotfix === *//* Left-align content on all sizes unless explicitly changed elsewhere *//* Ensure the nav cluster doesn't get pushed right by margin tricks *//* Tweak gaps for readability at common breakpoints */
+}
