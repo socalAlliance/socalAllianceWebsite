@@ -18,25 +18,23 @@
   gtag('js', new Date());
   gtag('config', 'G-65LTDNTZ16');
 </script>
-<link rel="stylesheet" href="about.css"/>
-<link rel="stylesheet" href="nav.css"/>
-<link rel="stylesheet" href="footer.css"/>
+<link href="about.css" rel="stylesheet"/>
+<link href="nav.css" rel="stylesheet"/>
+<link href="footer.css" rel="stylesheet"/>
 </head>
 <body>
 <!-- NAV -->
 <header class="top-bar sca-nav" role="navigation">
-  <a class="logo-link" href="index.html" aria-label="Home">
-    <div class="logo"></div>
-  </a>
-
-  <nav id="site-nav" aria-label="Primary">
-    <a href="about.html">ABOUT</a>
-    <a href="vex.html">VEX</a>
-    <a href="projects.html">PROJECTS</a>
-    <a href="support.html">SUPPORT</a>
-  </nav>
+<a aria-label="Home" class="logo-link" href="index.html">
+<div class="logo"></div>
+</a>
+<nav aria-label="Primary" id="site-nav">
+<a href="about.html">ABOUT</a>
+<a href="vex.html">VEX</a>
+<a href="projects.html">PROJECTS</a>
+<a href="support.html">SUPPORT</a>
+</nav>
 </header>
-
 <!-- MISSION SECTION -->
 <section class="mission-section">
 <img alt="" class="mission-gif" src="images/mission.gif"/>
@@ -90,243 +88,150 @@
 <div class="arrow" data-dir="1"></div>
 </div>
 </div>
+<section aria-label="Triangular ties roles explorer" class="roles-demo" id="roles-demo">
+<div class="rd-labels" id="rd-labels"></div>
+<div class="rd-stage">
+<div class="rd-gear-pane">
+<svg aria-hidden="true" class="rd-gear" id="rd-gear" viewbox="0 0 512 512">
+<defs>
+<lineargradient id="rd-grad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="var(--rd-accent1)"></stop>
+<stop offset="100%" stop-color="var(--rd-accent2)"></stop>
+</lineargradient>
+</defs>
+<path d="M487.4 315.7l-43.3-25c3.5-17.7 5-36.1 4.2-54.9l43.6-25.2c3.1-1.8 4.6-5.5 3.6-9-8.8-29.5-22.8-56.8-41.2-80.8-2.3-3-6.4-4-9.8-2.4l-43.7 20.5c-13.1-12.8-27.9-24-44.1-33.3l5.1-47.9c.4-3.6-1.7-7-5.1-8.4-29.3-12.1-60.9-18.8-93.5-19.1-3.7 0-7 2.2-8.2 5.6l-17.6 45.3c-18.6 1.7-36.7 5.7-53.9 11.7l-32.1-35.8c-2.5-2.8-6.6-3.5-9.9-1.8-27.1 13.3-51.9 31.3-73.4 53.1-2.6 2.6-3.1 6.7-1.2 9.9l24.2 40.4c-10.5 15.8-18.9 32.9-24.9 50.9l-46.6 2.6c-3.7.2-6.8 2.9-7.6 6.4-5.8 30.7-5.5 62.8 1 95 0 0 0 0 0 .1.7 3.6 3.6 6.2 7.3 6.4l46.3 3.1c6.2 18.3 14.7 35.5 25 51.3l-24.3 39.9c-2 3.3-1.5 7.4 1.2 9.9 21.6 21.6 46.4 39.3 73.4 52.1 3.4 1.7 7.5.9 9.9-1.9l32.6-36.7c17.1 6 35.1 9.8 53.5 11.3l17.2 44.6c1.2 3.3 4.5 5.5 8.1 5.4 32.4-.7 64-7.5 93.3-19.7 3.4-1.4 5.4-4.9 5-8.5l-5.3-47.6c16.1-9.3 30.8-20.7 43.8-33.6l43.5 20.3c3.4 1.6 7.5.6 9.8-2.4 18.3-24 32.1-51.4 40.8-80.8 1-3.5-.6-7.2-3.8-8.9zM256 368c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z" fill="url(#rd-grad)"></path>
+</svg>
+<div class="rd-arrows">
+<button aria-label="Previous" class="rd-arrow" data-dir="-1">‹</button>
+<button aria-label="Next" class="rd-arrow" data-dir="1">›</button>
 </div>
+</div>
+<div class="rd-text">
+<h3 class="rd-title" id="rd-title">NONPROFIT</h3>
+<p class="rd-sub"></p>
+<div class="rd-cards">
+<article class="rd-card">
+<h4 id="rd-left-heading">VEXU TEAM</h4>
+<p id="rd-desc-left"></p>
+</article>
+<article class="rd-card">
+<h4 id="rd-right-heading">SOCAL ALLIANCE</h4>
+<p id="rd-desc-right"></p>
+</article>
+</div>
+</div>
+</div>
+</section>
 <script>
-      const logoEl   = document.querySelector('.triangle-logo');
-  let   logoAngle = 0;
-    /* Roles / copy */
-    const roles = [
-      
-      {
-        label: "NONPROFIT",
-        descriptions: {
-          VEXU_TEAM: "Provides funding and resources to the VEXU team, enabling them to compete and innovate.",
-          SOCAL_ALLIANCE: "Acts as the fiscal sponsor for the SoCal Alliance, handling donations and financial oversight."
-        }
-      },
-      {
-        label: "VEXU TEAM",
-        descriptions: {
-          NONPROFIT: "Team members volunteer and provide expertise to support the nonprofit's outreach programs.",
-          SOCAL_ALLIANCE: "Serves as a model team and contributes to the Alliance's knowledge base and community events."
-        }
-      },
-      {
-        label: "SOCAL ALLIANCE",
-        descriptions: {
-          NONPROFIT: "Organizes fundraising events and connects the nonprofit with potential sponsors and partners.",
-          VEXU_TEAM: "Offers mentorship, shared resources, and a collaborative community for the VEXU team."
-        }
+  const RD_ROLES = [
+    {
+      label: "NONPROFIT",
+      descriptions: {
+        VEXU_TEAM: "Provides funding and resources to the VEXU team, enabling them to compete and innovate.",
+        SOCAL_ALLIANCE: "Acts as the fiscal sponsor for the SoCal Alliance, handling donations and financial oversight."
       }
-      
-    ];
-     
-    // Keep triangle background static — no-op to prevent JS errors when called
-    function updateBackgrounds(){ /* intentionally left blank */ }
-
-
-
-    // Desktop coordinates for triangle motion
-    const positions = [
-      { x: 450, y: -5 },   // Top
-      { x: -40, y: 640 },  // Bottom-left
-      { x: 940, y: 640 }   // Bottom-right
-    ];
-
-    let rotation = 0, isAnimating = false;
-    const labelEls = document.querySelectorAll("#labels .label");
-    const descriptionLeftEl = document.getElementById("description-left");
-    const descriptionRightEl = document.getElementById("description-right");
-    const arrowContainer = document.getElementById("arrow-container");
-
-    function updateArrowGap(){
-      const topRoleIndex = (3 - rotation) % 3;
-      arrowContainer.style.gap = roles[topRoleIndex].label === "SOCAL ALLIANCE" ? "24rem" : "16.5rem";
-    }
-
-    const circumcircle = (function(points){
-      const [p1,p2,p3] = points;
-      const d = 2*(p1.x*(p2.y-p3.y)+p2.x*(p3.y-p1.y)+p3.x*(p1.y-p2.y));
-      if (Math.abs(d) < 1e-6) return null;
-      const ux = ((p1.x*p1.x+p1.y*p1.y)*(p2.y-p3.y) + (p2.x*p2.x+p2.y*p2.y)*(p3.y-p1.y) + (p3.x*p3.x+p3.y*p3.y)*(p1.y-p2.y)) / d;
-      const uy = ((p1.x*p1.x+p1.y*p1.y)*(p3.x-p2.x) + (p2.x*p2.x+p2.y*p2.y)*(p1.x-p3.x) + (p3.x*p3.x+p3.y*p3.y)*(p2.x-p1.x)) / d;
-      const center = { x: ux, y: uy };
-      const radius = Math.hypot(center.x - p1.x, center.y - p1.y);
-      return { center, radius };
-    })(positions);
-
-    function getAngle(p){ return Math.atan2(p.y - circumcircle.center.y, p.x - circumcircle.center.x); }
-    function easeInOutCubic(t){ return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2; }
-
-    function updateDescriptions(){
-      updateBackgrounds();
-      const top = (3 - rotation) % 3, left = (4 - rotation) % 3, right = (5 - rotation) % 3;
-      const topRole = roles[top], leftRole = roles[left], rightRole = roles[right];
-     
-    // Keep triangle background static — no-op to prevent JS errors when called
-    function updateBackgrounds(){ /* intentionally left blank */ }
-
- const leftKey = leftRole.label.replace(" ","_");
-      const rightKey = rightRole.label.replace(" ","_");
-
-      descriptionLeftEl.textContent = topRole.descriptions[leftKey];
-     
-    // Keep triangle background static — no-op to prevent JS errors when called
-    function updateBackgrounds(){ /* intentionally left blank */ }
-
- descriptionRightEl.textContent = topRole.descriptions[rightKey];
-
-      const leftVertex = positions[1], rightVertex = positions[2];
-     
-    // Keep triangle background static — no-op to prevent JS errors when called
-    function updateBackgrounds(){ /* intentionally left blank */ }
-
- // Adjusted positioning to give more space
-      Object.assign(descriptionLeftEl.style, { 
-        left: (leftVertex.x - 50) + "px",  // moved more left
-        top: (leftVertex.y - 380) + "px",
-        width: "350px", 
-        textAlign: "left" 
-      });
-      Object.assign(descriptionRightEl.style, { 
-        left: (rightVertex.x - 225) + "px", // moved more right
-        top: (rightVertex.y - 380) + "px",
-        width: "350px", 
-        textAlign: "right" 
-      });
-    }
-
-    
-
-    function animateRotation(direction){
-      if (isAnimating || !circumcircle) return;
-      isAnimating = true;
-      const ANIM_DURATION = 800;
-      try {
-        // Invert so: right arrow (1) => clockwise; left arrow (-1) => counter-clockwise
-        const dir = -direction;
-        const stepAngle = 120; // 360/3
-        logoAngle -= dir * stepAngle;
-        logoEl.style.transform = `translate(-50%, -35%) rotate(${logoAngle}deg)`;
-
-        // Only fade on mobile
-        if (window.matchMedia('(max-width: 1122px)').matches) {
-          if (typeof window.mobileFadeOut === 'function') window.mobileFadeOut();
-        }
-
-        const from = rotation;
-        const to   = (rotation + dir + 3) % 3;
-        const start = performance.now();
-        const duration = ANIM_DURATION;
-
-        const params = Array.from(labelEls).map((_, i) => {
-          const startPos = positions[(i + from) % 3];
-     
-    // Keep triangle background static — no-op to prevent JS errors when called
-    function updateBackgrounds(){ /* intentionally left blank */ }
-
-     const endPos   = positions[(i + to)   % 3];
-     
-    // Keep triangle background static — no-op to prevent JS errors when called
-    function updateBackgrounds(){ /* intentionally left blank */ }
-
-     const a0 = getAngle(startPos);
-          let a1   = getAngle(endPos);
-          let d    = a1 - a0;
-          // Choose the arc in the intended direction
-          if (dir > 0) { if (d > 0) d -= 2*Math.PI; }
-          else         { if (d < 0) d += 2*Math.PI; }
-          return { a0, d };
-        });
-
-        const gapChangeDelay = duration * 0.2;
-        let gapChanged = false;
-
-        function step(ts){
-          const t = Math.min((ts - start) / duration, 1);
-          const e = easeInOutCubic(t);
-
-          labelEls.forEach((el,i)=>{
-            const { a0, d } = params[i];
-     
-    // Keep triangle background static — no-op to prevent JS errors when called
-    function updateBackgrounds(){ /* intentionally left blank */ }
-
-       const ang = a0 + d * e;
-            const x = circumcircle.center.x + circumcircle.radius * Math.cos(ang);
-            const y = circumcircle.center.y + circumcircle.radius * Math.sin(ang);
-            el.style.left = x + "px";
-            el.style.top  = y + "px";
-          });
-
-          if (!gapChanged && (ts - start) >= gapChangeDelay){
-            rotation = to;
-            updateArrowGap();
-            gapChanged = true;
-          }
-
-          if (t < 1) requestAnimationFrame(step);
-          else {
-            rotation = to;
-            updateDescriptions();
-            if (window.matchMedia('(max-width: 1122px)').matches) {
-              if (typeof window.updateMobileTexts === 'function') window.updateMobileTexts();
-              if (typeof window.mobileFadeIn === 'function') window.mobileFadeIn();
-            }
-            isAnimating = false;
-          }
-        }
-        requestAnimationFrame(step);
-      } catch (err) {
-        console.error('animateRotation error', err);
-        isAnimating = false;
-      } finally {
-        // Safety timeout in case animation path is interrupted
-        setTimeout(() => { isAnimating = false; }, ANIM_DURATION + 150);
+    },
+    {
+      label: "VEXU TEAM",
+      descriptions: {
+        NONPROFIT: "Team members volunteer and provide expertise to support the nonprofit's outreach programs.",
+        SOCAL_ALLIANCE: "Serves as a model team and contributes to the Alliance's knowledge base and community events."
+      }
+    },
+    {
+      label: "SOCAL ALLIANCE",
+      descriptions: {
+        NONPROFIT: "Organizes fundraising events and connects the nonprofit with potential sponsors and partners.",
+        VEXU_TEAM: "Offers mentorship, shared resources, and a collaborative community for the VEXU team."
       }
     }
+  ];
 
-    function initialize(){
-      labelEls.forEach((el,i)=>{ 
-        const raw = roles[i].label;
-        const html =
-          raw === 'VEXU TEAM'        ? 'VEXU<br class="stack"/>TEAM' :
-          raw === 'SOCAL ALLIANCE'   ? 'SOCAL<br class="stack"/>ALLIANCE' :
-                                      raw;
+  const rdLabels = document.getElementById('rd-labels');
+  const rdTitle  = document.getElementById('rd-title');
+  const leftH    = document.getElementById('rd-left-heading');
+  const rightH   = document.getElementById('rd-right-heading');
+  const leftP    = document.getElementById('rd-desc-left');
+  const rightP   = document.getElementById('rd-desc-right');
+  const gear     = document.getElementById('rd-gear');
 
-        el.querySelector('.label-text').innerHTML = html;
-        const pos = positions[(i+rotation)%3]; 
-        el.style.left = pos.x + "px"; 
-        el.style.top = pos.y + "px"; 
-      });
-      updateDescriptions();
-      updateBackgrounds();
-      
-      // Initialize logo rotation state
-      logoAngle = 0;
-      logoEl.style.transform = `translate(-50%, -35%) rotate(${logoAngle}deg)`;
-      
-      // Enhanced desktop arrows with accessibility
-      document.querySelectorAll(".arrow").forEach(a => {
-        a.setAttribute('type', 'button');
-        a.setAttribute('title', a.dataset.dir === '1' ? 'Next triangle view' : 'Previous triangle view');
-        a.setAttribute('aria-label', a.dataset.dir === '1' ? 
-          'Navigate to next triangle relationship' : 
-          'Navigate to previous triangle relationship');
-        
-        a.addEventListener("click", (ev) => { ev.preventDefault(); ev.stopPropagation(); animateRotation(parseInt(a.dataset.dir,10)); });
-        
-        // Keyboard support
-        a.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            animateRotation(parseInt(this.dataset.dir,10));
-          }
-        });
-      });
+  RD_ROLES.forEach((r, i) => {
+    const b = document.createElement('button');
+    b.className = 'rd-chip';
+    b.type = 'button';
+    b.textContent = r.label;
+    b.addEventListener('click', () => setIndex(i));
+    rdLabels.appendChild(b);
+  });
+
+  let idx = 0;
+  function norm(s){ return s.toUpperCase().replace(/\s+/g, '_'); }
+
+  function render(spinDir = 0){
+    const active = RD_ROLES[idx];
+    rdTitle.textContent = active.label;
+    const others = RD_ROLES.filter((_,i)=>i!==idx).map(r=>r.label);
+    leftH.textContent = others[0];
+    rightH.textContent = others[1];
+    leftP.textContent = active.descriptions[norm(others[0])] || "—";
+    rightP.textContent = active.descriptions[norm(others[1])] || "—";
+
+    [...rdLabels.children].forEach((c, i)=>{
+      c.classList.toggle('active', i===idx);
+      c.setAttribute('aria-pressed', i===idx ? 'true' : 'false');
+    });
+
+    if (spinDir !== 0) {
+      const cur = getComputedStyle(gear).transform;
+      const extra = 60 * spinDir;
+      gear.style.transform = (cur === 'none') ? `rotate(${extra}deg)` : cur + ` rotate(${extra}deg)`;
     }
-    initialize();
-  </script>
+  }
+  function setIndex(i, spinDir = 1){ idx = (i + RD_ROLES.length) % RD_ROLES.length; render(spinDir); }
+  function rotate(delta){ setIndex(idx + delta, delta); }
+
+  document.querySelectorAll('.rd-arrow').forEach(btn=>{
+    btn.addEventListener('click', ()=> rotate(parseInt(btn.dataset.dir,10)));
+  });
+  window.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') rotate(1);
+    else if(e.key === 'ArrowLeft') rotate(-1);
+  });
+
+  render();
+</script>
+<script id="rd-resize-fix">
+(function(){
+  var container = document.getElementById('roles-demo');
+  if(!container) return;
+  var host = container.closest('.integrated-approach');
+  if(!host) return;
+  var bg = host.querySelector('.bg-split');
+  var fx = host.querySelector('.background-effects');
+  if(!bg) return;
+
+  function applyHeight(){
+    var h = Math.ceil(container.getBoundingClientRect().height);
+    // add a little breathing room for shadows/padding
+    var pad = 100;
+    var target = h + pad;
+    bg.style.minHeight = target + 'px';
+    if(fx){ fx.style.minHeight = target + 'px'; }
+    // also ensure host accommodates content if it used fixed heights
+    host.style.minHeight = target + 'px';
+  }
+
+  // Observe container size changes
+  if ('ResizeObserver' in window){
+    var ro = new ResizeObserver(applyHeight);
+    ro.observe(container);
+  }
+  window.addEventListener('load', applyHeight);
+  window.addEventListener('resize', applyHeight);
+  applyHeight();
+})();
+</script>
+</div>
 <!-- Decorative gradient bars -->
 <!-- Removed extra thick separator bar for visual consistency -->
 <!-- Meet the Team -->
@@ -383,36 +288,34 @@
 </div>
 <!-- FOOTER -->
 <footer class="site-footer">
-  <div class="footer-content">
-    <div class="footer-left">
-      <a class="logo-link" href="index.html" aria-label="Home">
-        <div class="logo"></div>
-      </a>
-      <div>
-        <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
-        <p class="footer-sub">
+<div class="footer-content">
+<div class="footer-left">
+<a aria-label="Home" class="logo-link" href="index.html">
+<div class="logo"></div>
+</a>
+<div>
+<p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+<p class="footer-sub">
           SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides
           robotics education to children of all communities. Contact socalalliancenonprofit@gmail.com for any other questions.
         </p>
-      </div>
-    </div>
-
-    <div class="footer-center">
-      <a href="support.html" aria-label="Donate now"><img class="donate-img" src="images/Donatewhite.png" alt="Donate Now"></a>
-      <div class="footer-social" aria-label="Social links">
-        <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener" aria-label="Instagram">
-          <img src="images/SCA_INSTwhite.png" alt="Instagram"></a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" target="_blank" rel="noopener" aria-label="Email">
-          <img src="images/SCA_EMAILwhite.png" alt="Email"></a>
-        <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener" aria-label="TikTok">
-          <img src="images/SCA_TIKTOKwhite.png" alt="TikTok"></a>
-        <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener" aria-label="YouTube">
-          <img src="images/SCA_YOUTUBEwhite.png" alt="YouTube"></a>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+<div class="footer-center">
+<a aria-label="Donate now" href="support.html"><img alt="Donate Now" class="donate-img" src="images/Donatewhite.png"/></a>
+<div aria-label="Social links" class="footer-social">
+<a aria-label="Instagram" href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank">
+<img alt="Instagram" src="images/SCA_INSTwhite.png"/></a>
+<a aria-label="Email" href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank">
+<img alt="Email" src="images/SCA_EMAILwhite.png"/></a>
+<a aria-label="TikTok" href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank">
+<img alt="TikTok" src="images/SCA_TIKTOKwhite.png"/></a>
+<a aria-label="YouTube" href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank">
+<img alt="YouTube" src="images/SCA_YOUTUBEwhite.png"/></a>
+</div>
+</div>
+</div>
 </footer>
-
 <!-- Hide-on-scroll Nav -->
 <!-- Desktop scaler + Mobile triangle layout (mobile-only fades) -->
 <script>
@@ -545,7 +448,6 @@ function resizeDesktop() {
     onResize(); // initial
   })();
   </script>
-
 <script>
 (function(){
   let lastY = window.scrollY;
@@ -558,7 +460,6 @@ function resizeDesktop() {
   });
 })();
 </script>
-
 <script>
 (function(){
   const btn = document.querySelector('.nav-toggle');
@@ -577,10 +478,9 @@ function resizeDesktop() {
   });
 })();
 </script>
-
 <script id="bg-size-by-container">
 (function(){
-  const container = document.querySelector('.triangle-container');
+  const container = document.querySelector('#roles-demo');
   const host = container ? container.closest('.integrated-approach') : null;
   const bg = host ? host.querySelector('.bg-split') : null;
   const fx = host ? host.querySelector('.background-effects') : null;
@@ -606,9 +506,6 @@ function resizeDesktop() {
   syncBg();
 })();
 </script>
-
-
-
 <script id="flat-links-fix">
 (function(){
   const map = {
@@ -650,8 +547,5 @@ function resizeDesktop() {
   }, true);
 })();
 </script>
-
 </body>
 </html>
-
-
