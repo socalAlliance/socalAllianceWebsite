@@ -58,7 +58,7 @@
     }.stats-btn:hover img {
       transform: scale(1.05);
     }/* HERO 2 + ABOUT */.hero-2 {
-      position:relative; width:100%; min-height:320px; height:566px;
+      position:relative; width:100%; min-height:320px; height: auto; padding: 1px 0;
       background:url('../images/flag.png') center/cover no-repeat;
       display: flex;
       align-items: center;
@@ -274,3 +274,18 @@
     width: calc(2 * var(--s-logo-w) + 1 * var(--s-gap));
   }
 }/* --- Tier border colors (last in cascade) --- */.sponsor-logo.tier-yellow { border-color: #F9CB22 !important; }.sponsor-logo.tier-orange { border-color: #EF7616 !important; }.sponsor-logo.tier-pink   { border-color: #F0115F !important; }/* === Extracted from index.html (style id="nav-left-hotfix") === *//* === NAV alignment + size hotfix (match index fix) === */
+
+
+/* ====== Founder mobile alignment & spacing (combined fix) ====== */
+@media (max-width: 700px) {
+  .founder {
+    justify-content: center;
+    text-align: center;
+  }
+  .founder .photo,
+  .founder .signature,
+  .founder .name {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
