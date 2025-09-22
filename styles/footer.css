@@ -18,7 +18,7 @@
   /* left block */
   .footer-left{ display:flex; align-items:flex-start; gap:1rem; }
   .logo-link{ display:inline-block; }
-  .logo{ width:81px; height:73px; background:url('images/logowhite.png') center/cover no-repeat; transition:filter .25s ease; }
+  .logo{ width:81px; height:73px; background:url('../images/logowhite.png') center/cover no-repeat; transition:filter .25s ease; }
   .logo-link:hover .logo{ filter: grayscale(100%) brightness(80%); }
 
   .footer-copy{ font-size: clamp(1.6rem, 1.1vw + 1.2rem, 2.4rem); font-weight:900; line-height:1.15; margin:0; }

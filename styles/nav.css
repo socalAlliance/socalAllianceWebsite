@@ -16,7 +16,7 @@
     font-size: clamp(16px, 1.2vw + 12px, 32px);
   }
 
-  .sca-nav .logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; }
+  .sca-nav .logo{ width:81px; height:73px; background:url('../images/logo.png') center/cover no-repeat; }
   .sca-nav .logo-link{ display:inline-block; line-height:0; }
 
   /* Keep links LEFT of the bar, right next to the logo */

@@ -18,9 +18,9 @@
     gtag('js', new Date());
     gtag('config', 'G-65LTDNTZ16');
   </script>
-<link rel="stylesheet" href="index.css"/>
-<link rel="stylesheet" href="nav.css"/>
-<link rel="stylesheet" href="footer.css"/>
+<link rel="stylesheet" href="styles/index.css"/>
+<link rel="stylesheet" href="styles/nav.css"/>
+<link rel="stylesheet" href="styles/footer.css"/>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-65LTDNTZ16"></script>
@@ -38,12 +38,12 @@
     <div class="logo"></div>
   </a>
 
-  <nav id="site-nav" aria-label="Primary">
-    <a href="about.html">ABOUT</a>
-    <a href="vex.html">VEX</a>
-    <a href="projects.html">PROJECTS</a>
-    <a href="support.html">SUPPORT</a>
-  </nav>
+<nav id="site-nav">
+  <a href="about/index.html">ABOUT</a>
+  <a href="vex/index.html">VEX</a>
+  <a href="projects/index.html">PROJECTS</a>
+  <a href="support/index.html">SUPPORT</a>
+</nav>
 </header>
 
 <!-- HERO 1 -->
@@ -51,15 +51,15 @@
 <div class="hero-text">FOUNDED BY COMPETITORS</div>
 <div class="subhead">
 <p>See how we’re empowering the next generation of engineers through collaboration, resource-sharing, and mutual growth.</p>
-<a class="btn-img" href="about.html">
-<img alt="Learn More" src="images/Learnmore.png"/>
+<a class="btn-img" href="../about/about.html">
+<img alt="Learn More" src="../images/Learnmore.png"/>
 </a>
 </div>
 </section>
 <!-- STATS BAR IMAGE -->
 <div style="text-align:center; margin:4rem 0;">
-<a class="stats-btn" href="projects.html">
-<img alt="See our projects" src="images/Statsbar.png"/>
+<a class="stats-btn" href="../projects/projects.html">
+<img alt="See our projects" src="../images/Statsbar.png"/>
 </a>
 </div>
 <!-- HERO 2 + ABOUT -->
@@ -320,14 +320,14 @@
 (function(){
   const map = {
     "/": "index.html",
-    "/about/": "about.html",
-    "/about": "about.html",
-    "/vex/": "vex.html",
-    "/vex": "vex.html",
-    "/projects/": "projects.html",
-    "/projects": "projects.html",
-    "/support/": "support.html",
-    "/support": "support.html"
+    "/about/": "about/about.html",
+    "/about": "about/about.html",
+    "/vex/": "vex/vex.html",
+    "/vex": "vex/vex.html",
+    "/projects/": "projects/projects.html",
+    "/projects": "projects/projects.html",
+    "/support/": "support/support.html",
+    "/support": "support/support.html"
   };
   function rewrite(href){
     if (!href) return null;
