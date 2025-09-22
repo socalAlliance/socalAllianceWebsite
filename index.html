@@ -316,45 +316,5 @@
 </script>
 
 
-<script id="flat-links-fix">
-(function(){
-  const map = {"/about/": "about/about.html",
-    "/about": "about/about.html",
-    "/vex/": "vex/vex.html",
-    "/vex": "vex/vex.html",
-    "/projects/": "projects/projects.html",
-    "/projects": "projects/projects.html",
-    "/support/": "support/support.html",
-    "/support": "support/support.html"
-  };
-  function rewrite(href){
-    if (!href) return null;
-    // direct map
-    if (map[href]) return map[href];
-    // absolute URLs
-    try{
-      const u = new URL(href, location.href);
-      if (map[u.pathname]) return map[u.pathname] + (u.hash || "");
-    }catch(e){ /* ignore */ }
-    return null;
-  }
-  // Fix existing anchors
-  document.querySelectorAll('a[href]').forEach(a => {
-    const fix = rewrite(a.getAttribute('href'));
-    if (fix) a.setAttribute('href', fix);
-  });
-  // Intercept clicks just in case something sets href later
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href]');
-    if (!a) return;
-    const fix = rewrite(a.getAttribute('href'));
-    if (fix){
-      e.preventDefault();
-      window.location.href = fix;
-    }
-  }, true);
-})();
-</script>
-
 </body>
 </html>
