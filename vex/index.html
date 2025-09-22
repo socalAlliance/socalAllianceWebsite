@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
 <meta charset="utf-8"/>
+<head>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <!-- favicon (relative path, no leading slash) -->
 <link href="../images/logo.png" rel="icon" type="image/png"/>
@@ -18,17 +18,23 @@
   gtag('js', new Date());
   gtag('config', 'G-65LTDNTZ16');
 </script>
-<link href="../styles/vex.css" rel="stylesheet"/>
-<link href="../styles/nav.css" rel="stylesheet"/>
-<link href="../styles/footer.css" rel="stylesheet"/>
+<link rel="icon" href="../images/logo.png" type="image/png">
+<link rel="stylesheet" href="../styles/about.css">
+<link rel="stylesheet" href="../styles/nav.css">
+<link rel="stylesheet" href="../styles/footer.css">
 </head>
 <body>
 <!-- NAV -->
 <header class="top-bar sca-nav" role="navigation">
-  <a class="logo-link" href="../index.html" aria-label="Home">
-    <div class="logo"></div>
-  </a>
-
+<a aria-label="Home" class="logo-link" href="../">
+<div class="logo"></div>
+</a>
+<button type="button" class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav" style="position:relative;z-index:1000002;">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</button>
+<div class="nav-backdrop" hidden></div>
 <nav id="site-nav">
   <a href="../about/index.html">ABOUT</a>
   <a href="../vex/index.html">VEX</a>
@@ -36,99 +42,419 @@
   <a href="../support/index.html">SUPPORT</a>
 </nav>
 </header>
+<!-- MISSION SECTION -->
+<section class="mission-section">
+<img alt="" class="mission-gif" src="../images/mission.gif"/>
+<div class="mission-copy">
+<h1>OUR MISSION</h1>
+<div class="mission-line" style="height:6px;background-image:linear-gradient(90deg,rgba(249,203,34,.9) 0%,rgba(239,118,22,.9) 50%,rgba(240,17,95,.9) 100%);border-radius:3px;margin:20px 0;"></div>
+<p>
+        Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
+      </p>
+<div class="btn-row">
+<a class="btn-img" href="vex.html"><img alt="WhatsVEX" src="../images/Whatsvex.png"/></a>
+<a class="btn-outline hover-scale" href="support.html">Donate Now →</a>
+</div>
+</div>
+</section>
+<!-- Integrated Approach -->
+<div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;">
+<h2>TRIANGULAR TIES</h2>
+</div>
+<div class="integrated-approach">
+<div class="background-effects"></div>
+<div class="bg-split">
+<div class="bg-split__half bg-split__left"></div>
+<div class="bg-split__half bg-split__right"></div>
+</div>
+<div class="triangle-container" style="margin:5rem auto; position:relative; text-align:center; font-family:sans-serif; height:800px;">
+<!-- SVG Triangle -->
+<svg style="width:100%; height:auto;" viewbox="0 0 300 240">
+<defs>
+<lineargradient id="triangleStrokeGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#F9CB22"></stop>
+<stop offset="50%" stop-color="#EF7616"></stop>
+<stop offset="100%" stop-color="#F0115F"></stop>
+</lineargradient>
+</defs>
+<polygon fill="none" points="150,20 40,200 260,200" stroke="url(#triangleStrokeGradient)" stroke-linejoin="round" stroke-width="6"></polygon>
+</svg>
+<img alt="Logo" class="triangle-logo" src="../images/highstakes.png"/>
+<!-- Labels -->
+<div id="labels" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+<div class="label"><div class="label-text">NONPROFIT</div></div>
+<div class="label"><div class="label-text">VEXU<br class="br-sm"/>TEAM</div></div>
+<div class="label"><div class="label-text">SOCAL<br class="br-sm"/>ALLIANCE</div></div>
+</div>
+<!-- Descriptions -->
+<div class="description-text" id="description-left"></div>
+<div class="description-text" id="description-right"></div>
+<!-- Arrows -->
+<div id="arrow-container">
+<div class="arrow" data-dir="-1"></div>
+<div class="arrow" data-dir="1"></div>
+</div>
+</div>
+<section aria-label="Triangular ties roles explorer" class="roles-demo" id="roles-demo">
+<div class="rd-labels" id="rd-labels"></div>
+<div class="rd-stage">
+<div class="rd-gear-pane">
+<svg aria-hidden="true" class="rd-gear" id="rd-gear" viewbox="0 0 512 512">
+<defs>
+<lineargradient id="rd-grad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="var(--rd-accent1)"></stop>
+<stop offset="100%" stop-color="var(--rd-accent2)"></stop>
+</lineargradient>
+</defs>
+<path d="M487.4 315.7l-43.3-25c3.5-17.7 5-36.1 4.2-54.9l43.6-25.2c3.1-1.8 4.6-5.5 3.6-9-8.8-29.5-22.8-56.8-41.2-80.8-2.3-3-6.4-4-9.8-2.4l-43.7 20.5c-13.1-12.8-27.9-24-44.1-33.3l5.1-47.9c.4-3.6-1.7-7-5.1-8.4-29.3-12.1-60.9-18.8-93.5-19.1-3.7 0-7 2.2-8.2 5.6l-17.6 45.3c-18.6 1.7-36.7 5.7-53.9 11.7l-32.1-35.8c-2.5-2.8-6.6-3.5-9.9-1.8-27.1 13.3-51.9 31.3-73.4 53.1-2.6 2.6-3.1 6.7-1.2 9.9l24.2 40.4c-10.5 15.8-18.9 32.9-24.9 50.9l-46.6 2.6c-3.7.2-6.8 2.9-7.6 6.4-5.8 30.7-5.5 62.8 1 95 0 0 0 0 0 .1.7 3.6 3.6 6.2 7.3 6.4l46.3 3.1c6.2 18.3 14.7 35.5 25 51.3l-24.3 39.9c-2 3.3-1.5 7.4 1.2 9.9 21.6 21.6 46.4 39.3 73.4 52.1 3.4 1.7 7.5.9 9.9-1.9l32.6-36.7c17.1 6 35.1 9.8 53.5 11.3l17.2 44.6c1.2 3.3 4.5 5.5 8.1 5.4 32.4-.7 64-7.5 93.3-19.7 3.4-1.4 5.4-4.9 5-8.5l-5.3-47.6c16.1-9.3 30.8-20.7 43.8-33.6l43.5 20.3c3.4 1.6 7.5.6 9.8-2.4 18.3-24 32.1-51.4 40.8-80.8 1-3.5-.6-7.2-3.8-8.9zM256 368c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z" fill="url(#rd-grad)"></path>
+</svg>
+<div class="rd-arrows">
+<button aria-label="Previous" class="rd-arrow" data-dir="-1">‹</button>
+<button aria-label="Next" class="rd-arrow" data-dir="1">›</button>
+</div>
+</div>
+<div class="rd-text">
+<h3 class="rd-title" id="rd-title">NONPROFIT</h3>
+<p class="rd-sub"></p>
+<div class="rd-cards">
+<article class="rd-card">
+<h4 id="rd-left-heading">VEXU TEAM</h4>
+<p id="rd-desc-left"></p>
+</article>
+<article class="rd-card">
+<h4 id="rd-right-heading">SOCAL ALLIANCE</h4>
+<p id="rd-desc-right"></p>
+</article>
+</div>
+</div>
+</div>
+</section>
+<script>
+  const RD_ROLES = [
+    {
+      label: "NONPROFIT",
+      descriptions: {
+        VEXU_TEAM: "Provides funding and resources to the VEXU team, enabling them to compete and innovate.",
+        SOCAL_ALLIANCE: "Acts as the fiscal sponsor for the SoCal Alliance, handling donations and financial oversight."
+      }
+    },
+    {
+      label: "VEXU TEAM",
+      descriptions: {
+        NONPROFIT: "Team members volunteer and provide expertise to support the nonprofit's outreach programs.",
+        SOCAL_ALLIANCE: "Serves as a model team and contributes to the Alliance's knowledge base and community events."
+      }
+    },
+    {
+      label: "SOCAL ALLIANCE",
+      descriptions: {
+        NONPROFIT: "Organizes fundraising events and connects the nonprofit with potential sponsors and partners.",
+        VEXU_TEAM: "Offers mentorship, shared resources, and a collaborative community for the VEXU team."
+      }
+    }
+  ];
 
-<!-- MAIN -->
-<div class="page-container hero-section">
-<div class="hero-bg"></div>
-<div class="hero-overlay"></div>
-<h1 class="hero-headline">WHAT IS VEX ROBOTICS?</h1>
-<p class="copy-text">
-<br/>VEX V5 Robotics lets students tackle open-ended engineering challenges by designing, building, and programming robots in a competitive, team-based setting. It emphasizes creative problem-solving, iterative design, and collaboration under real constraints. Through this, students gain a practical understanding of how engineers approach complex problems from concept to execution.
-    </p>
-<a class="btn-img" href="https://www.vexrobotics.com">
-<img alt="Learn More" src="../images/Learnmore.png"/>
-</a>
+  const rdLabels = document.getElementById('rd-labels');
+  const rdTitle  = document.getElementById('rd-title');
+  const leftH    = document.getElementById('rd-left-heading');
+  const rightH   = document.getElementById('rd-right-heading');
+  const leftP    = document.getElementById('rd-desc-left');
+  const rightP   = document.getElementById('rd-desc-right');
+  const gear     = document.getElementById('rd-gear');
+
+  RD_ROLES.forEach((r, i) => {
+    const b = document.createElement('button');
+    b.className = 'rd-chip';
+    b.type = 'button';
+    b.textContent = r.label;
+    b.addEventListener('click', () => setIndex(i));
+    rdLabels.appendChild(b);
+  });
+
+  let idx = 0;
+  function norm(s){ return s.toUpperCase().replace(/\s+/g, '_'); }
+
+  function render(spinDir = 0){
+    const active = RD_ROLES[idx];
+    rdTitle.textContent = active.label;
+    const others = RD_ROLES.filter((_,i)=>i!==idx).map(r=>r.label);
+    leftH.textContent = others[0];
+    rightH.textContent = others[1];
+    leftP.textContent = active.descriptions[norm(others[0])] || "—";
+    rightP.textContent = active.descriptions[norm(others[1])] || "—";
+
+    [...rdLabels.children].forEach((c, i)=>{
+      c.classList.toggle('active', i===idx);
+      c.setAttribute('aria-pressed', i===idx ? 'true' : 'false');
+    });
+
+    if (spinDir !== 0) {
+      const cur = getComputedStyle(gear).transform;
+      const extra = 60 * spinDir;
+      gear.style.transform = (cur === 'none') ? `rotate(${extra}deg)` : cur + ` rotate(${extra}deg)`;
+    }
+  }
+  function setIndex(i, spinDir = 1){ idx = (i + RD_ROLES.length) % RD_ROLES.length; render(spinDir); }
+  function rotate(delta){ setIndex(idx + delta, delta); }
+
+  document.querySelectorAll('.rd-arrow').forEach(btn=>{
+    btn.addEventListener('click', ()=> rotate(parseInt(btn.dataset.dir,10)));
+  });
+  window.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') rotate(1);
+    else if(e.key === 'ArrowLeft') rotate(-1);
+  });
+
+  render();
+</script>
+<script id="rd-resize-fix">
+(function(){
+  var container = document.getElementById('roles-demo');
+  if(!container) return;
+  var host = container.closest('.integrated-approach');
+  if(!host) return;
+  var bg = host.querySelector('.bg-split');
+  var fx = host.querySelector('.background-effects');
+  if(!bg) return;
+
+  function applyHeight(){
+    var h = Math.ceil(container.getBoundingClientRect().height);
+    // add a little breathing room for shadows/padding
+    var pad = 100;
+    var target = h + pad;
+    bg.style.minHeight = target + 'px';
+    if(fx){ fx.style.minHeight = target + 'px'; }
+    // also ensure host accommodates content if it used fixed heights
+    host.style.minHeight = target + 'px';
+  }
+
+  // Observe container size changes
+  if ('ResizeObserver' in window){
+    var ro = new ResizeObserver(applyHeight);
+    ro.observe(container);
+  }
+  window.addEventListener('load', applyHeight);
+  window.addEventListener('resize', applyHeight);
+  applyHeight();
+})();
+</script>
 </div>
-<div class="embed-container">
-<!-- First box: Worlds -->
-<div class="embed-box worlds">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/cJj6MhTCP9M?si=U9zb4oq8LEAGdJs8" title="YouTube video player" width="560"></iframe>
+<!-- Decorative gradient bars -->
+<!-- Removed extra thick separator bar for visual consistency -->
+<!-- Meet the Team -->
+<div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;">
+<h2>MEET THE TEAM</h2>
 </div>
-<!-- Second box: Season -->
-<div class="embed-box season">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/ocmONiVun9M?si=vZYA92uBOjbeKY-k" title="YouTube video player"></iframe>
+<div class="team-container">
+<!-- (team items unchanged) -->
+<div class="team-item">
+<div class="gradient-line" style="width:596px; left:553px; top:99px;"></div>
+<div class="gradient-line" style="width:480px; left:669px; top:339px;"></div>
+<div class="portrait" style="left:104px; top:57px; background-image:url('../images/WILLIAMHO.png');"></div>
+<div class="name" style="left:314px; top:68px;">WILLIAM HO</div>
+<div class="role" style="left:314px; top:117px; width:835px;">
+<div class="role-title">President</div>
+<div class="role-text">William, SCA's founder and president, has formally competed in Vex Robotics since 2016. Outside of VEX, he studies Robotics Engineering at UCR, and enjoys 3D modeling, designing, and mountain biking.</div>
 </div>
 </div>
-<!-- Past Seasons Button -->
-<div class="past-seasons-container">
-<a href="https://www.youtube.com/playlist?list=PLXdulAseEztM8V1McWUl0aVkL1_CMnCgf" rel="noopener" target="_blank">
-<img alt="Past Seasons Playlist" class="past-seasons-btn" src="../images/pastseasons.png"/>
-</a>
+<div class="team-item">
+<div class="gradient-line" style="width:583px; left:566px; top:589px; transform:matrix(1,0,0,-1,0,0);"></div>
+<div class="portrait" style="left:148px; top:318px; background-image:url('../images/ALLENSUAREZ.png'); transform:rotate(-0.15deg);"></div>
+<div class="name" style="left:394px; top:318px;">ALLEN SUAREZ</div>
+<div class="role" style="left:394px; top:367px; width:755px;">
+<div class="role-title">Vice President</div>
+<div class="role-text">Allen is working towards welding, metal fab, and C.A.D associates at LBCC. He's a mcbride robotics mentor and plans to transfer into mechanical engineering, trying to be a prototype engineer, and learning html. He has been design lead and filled roles in his V5RC and VEX U career.</div>
 </div>
-<section class="location-section">
-<div class="location-image">
-<img alt="Our regional hubs" src="../images/location.png"/>
 </div>
-<div class="location-copy">
-<h1 class="location-headline" id="loc-headline">A CLOSE-KNIT COMMUNITY</h1>
-<p class="copy">
-      What sets our community apart is our regional proximity to one another. Centered around the two major hubs of Los Angeles and San Diego, we host gatherings, scrimmages, and competitions that foster meaningful connections and accelerate learning.
-      Through this, we’re able to build a cohesive community that not only uplifts students’ robotics knowledge and experience, but also through networking with like-minded individuals. <br/>
-</p>
+<div class="team-item">
+<div class="gradient-line" style="width:478px; left:671px; top:839px; transform:matrix(1,0,0,-1,0,0);"></div>
+<div class="portrait" style="left:104px; top:557px; background-image:url('../images/WINSTONLINE.png');"></div>
+<div class="name" style="left:314px; top:568px;">WINSTON LIN</div>
+<div class="role" style="left:314px; top:617px; width:835px;">
+<div class="role-title">Brand Manager</div>
+<div class="role-text">Winston is an aspiring mechanical engineer with 5 years of VEX Robotics experience under his belt despite being a rising high school senior. Throughout his career so far, he has garnered 13 total awards, 3 of which were at States-level competitions. Outside of robotics, he also dabbles in music composition, video editing, story writing, and water polo.</div>
 </div>
-</section>
-<section class="vex-compare">
-  <h2 class="compare-headline"><span>VEX V5</span><span class="vs">vs.</span><span>VEX U</span></h2>
-  <div class="compare-body">
-    <div class="column left">
-      <p>2v2 format. 1 robot per team. 10,000+ teams.</p>
-      <p>Designed for 6th through 12th grade.</p>
-      <p>Full utilization of VEX ecosystem promotes innovation under constraints.</p>
-      <p>Same engineering notebook, interview, and skills evaluation process as VEX U.</p>
-    </div>
-    <div class="vex-bar-vertical"></div>
-    <div class="column right">
-      <p>1v1 format. 2 robots per team. 300+ teams.</p>
-      <p>Designed for collegiate-level students.</p>
-      <p>Free reign over 3D‑printing, plastic use, and electronics promotes unique optimizations.</p>
-      <p>Same engineering notebook, interview, and skills evaluation process as VEX V5.</p>
-    </div>
-  </div>
-</section>
+</div>
+<div class="team-item">
+<div class="gradient-line" style="width:538px; left:611px; top:1089px; transform:matrix(1,0,0,-1,0,0);"></div>
+<div class="portrait" style="left:184px; top:807px; background-image:url('../images/MILESSANGER.png');"></div>
+<div class="name" style="left:394px; top:818px;">MILES SANGER</div>
+<div class="role" style="left:394px; top:867px; width:755px;">
+<div class="role-title">Treasurer</div>
+<div class="role-text">Miles, SCA’s treasurer and resident “vex lawyer” is also a part-time VEX referee, having formally competed over four years. Outside of VEX, he is pursuing a BFA in Game Development at the USC School of Cinematic Arts, and enjoys writing poetry, watching baseball, and riding public transportation.</div>
+</div>
+</div>
+<div class="team-item">
+<div class="portrait" style="left:104px; top:1057px; background-image:url('../images/GLENBAUTISTA.png');"></div>
+<div class="name" style="left:314px; top:1068px;">GLEN BAUTISTA</div>
+<div class="role" style="left:349px; top:1134px; width:755px;">
+<div class="role-title">Secretary</div>
+<div class="role-text">Glen is a B.S. Computer Science major with plans to double major with a B.S. in General Applied Mathematics at UCR. He has experience in C++, HTML, and CSS programming, as well as robot construction. He competed in V5RC, VEX U, and FRC competitions from two high schools and one university.</div>
+</div>
+</div>
+</div>
 <!-- FOOTER -->
 <footer class="site-footer">
-  <div class="footer-content">
-    <div class="footer-left">
-      <a class="logo-link" href="index.html" aria-label="Home">
-        <div class="logo"></div>
-      </a>
-      <div>
-        <p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
-        <p class="footer-sub">
+<div class="footer-content">
+<div class="footer-left">
+<a aria-label="Home" class="logo-link" href="./">
+<div class="logo"></div>
+</a>
+<div>
+<p class="footer-copy">© 2025 SoCal Alliance Robotics. All rights reserved.</p>
+<p class="footer-sub">
           SoCal Alliance Robotics is a 501(c)(3) nonprofit public benefit organization based in California that provides
           robotics education to children of all communities. Contact socalalliancenonprofit@gmail.com for any other questions.
         </p>
-      </div>
-    </div>
-
-    <div class="footer-center">
-      <a href="../support/index.html" aria-label="Donate now"><img class="donate-img" src="../images/Donatewhite.png" alt="Donate Now"></a>
-      <div class="footer-social" aria-label="Social links">
-        <a href="https://www.instagram.com/socal_robotics_alliance" target="_blank" rel="noopener" aria-label="Instagram">
-          <img src="../images/SCA_INSTwhite.png" alt="Instagram"></a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" target="_blank" rel="noopener" aria-label="Email">
-          <img src="../images/SCA_EMAILwhite.png" alt="Email"></a>
-        <a href="https://www.tiktok.com/@sca_vexu" target="_blank" rel="noopener" aria-label="TikTok">
-          <img src="../images/SCA_TIKTOKwhite.png" alt="TikTok"></a>
-        <a href="https://www.youtube.com/@SCA_ORG" target="_blank" rel="noopener" aria-label="YouTube">
-          <img src="../images/SCA_YOUTUBEwhite.png" alt="YouTube"></a>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+<div class="footer-center">
+<a aria-label="Donate now" href="../support/index.html"><img alt="Donate Now" class="donate-img" src="../images/Donatewhite.png"/></a>
+<div aria-label="Social links" class="footer-social">
+<a aria-label="Instagram" href="https://www.instagram.com/socal_robotics_alliance" rel="noopener" target="_blank">
+<img alt="Instagram" src="../images/SCA_INSTwhite.png"/></a>
+<a aria-label="Email" href="https://docs.google.com/forms/d/e/1FAIpQLScGGJLw2yV9QkPJk8zACn_MSqXgCfeg9FaOOrdy1TTCh5fFEg/viewform" rel="noopener" target="_blank">
+<img alt="Email" src="../images/SCA_EMAILwhite.png"/></a>
+<a aria-label="TikTok" href="https://www.tiktok.com/@sca_vexu" rel="noopener" target="_blank">
+<img alt="TikTok" src="../images/SCA_TIKTOKwhite.png"/></a>
+<a aria-label="YouTube" href="https://www.youtube.com/@SCA_ORG" rel="noopener" target="_blank">
+<img alt="YouTube" src="../images/SCA_YOUTUBEwhite.png"/></a>
+</div>
+</div>
+</div>
 </footer>
+<!-- Hide-on-scroll Nav -->
+<!-- Desktop scaler + Mobile triangle layout (mobile-only fades) -->
+<script>
+  (function () {
+    const container = document.querySelector('.triangle-container');
+    if (!container) return;
 
-<!-- Hide-on-scroll Nav Script -->
-<!-- Hide-on-scroll Nav Script (from support.html) -->
+    // 1) Wrap existing triangle content into a scaling stage (desktop/tablet)
+    const stage = document.createElement('div');
+    stage.className = 'triangle-stage';
+    const kids = Array.from(container.childNodes);
+    kids.forEach(n => stage.appendChild(n));
+    container.appendChild(stage);
+
+    const BASE_W = 900, BASE_H = 800; // Increased from 720 to 800
+    Object.assign(stage.style, {
+      width: BASE_W + 'px',
+      height: BASE_H + 'px',
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+      transformOrigin: 'center center'
+    });
+
+    
+function resizeDesktop() {
+  const vw = Math.max(document.documentElement.clientWidth, window.innerWidth);
+  const vh = Math.max(document.documentElement.clientHeight, window.innerHeight);
+  const cw = container.clientWidth || BASE_W;
+
+  // Fractional padding (total) that relaxes on wide screens
+  const sideReserveFrac =
+    vw >= 2560 ? 0.16 :
+    vw >= 1920 ? 0.18 :
+    vw >= 1600 ? 0.20 :
+    vw >= 1366 ? 0.22 : 0.26; // total fraction reserved (both sides combined)
+
+  // Always keep a hard minimum px on EACH side to prevent clipping
+  const minSidePadPx = 120; // 96px each side
+  const sidePad = Math.max(minSidePadPx, (cw * sideReserveFrac) / 2);
+  let usableW = Math.max(0, cw - sidePad * 2);
+  if (vw < 1366) {
+    usableW = Math.max(0, cw - sidePad * 1.2);
+  }
+  const topReservePx = 16; const bottomReservePx = 12;
+
+  const targetW = usableW; // no BASE_W clamp
+  const targetH = Math.max(0, vh - (topReservePx + bottomReservePx));
+
+  // Allow modest upscale on big screens but stay within height constraint
+  const MAX_SCALE =
+    vw >= 2560 ? 1.9 :
+    vw >= 1920 ? 1.6 :
+    vw >= 1600 ? 1.4 :
+    vw >= 1366 ? 1.25 : 1.0;
+
+  const s = Math.min(targetW / BASE_W, targetH / BASE_H, MAX_SCALE);
+
+  stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  const yNudge = (vw >= 550 && vw <= 1122) ? 30 : 0;
+  stage.style.top = `calc(50% + ${yNudge}px)`;
+  const renderedH = BASE_H * s;
+  const totalH    = Math.ceil(renderedH + topReservePx + bottomReservePx);
+  container.style.height = totalH + 'px';
+
+  const bg = document.querySelector('.bg-split');
+  if (bg) bg.style.height = totalH + 'px';
+}
+
+
+    // 2) Build a clean mobile UI (≤480px)
+    let mobileBuilt = false; // (disabled)
+    let mRoot, mTopLabel, mLeft, mRight;
+
+    function buildMobile() { /* disabled */ }
+
+    function updateMobileTexts() {
+      const top = (3 - rotation) % 3;
+      const left = (4 - rotation) % 3;
+      const right = (5 - rotation) % 3;
+      const topRole = roles[top], leftRole = roles[left], rightRole = roles[right];
+     
+    // Keep triangle background static — no-op to prevent JS errors when called
+    function updateBackgrounds(){ /* intentionally left blank */ }
+
+ mTopLabel.textContent = topRole.label;
+      
+      // Update aria-labels with current state
+      const arrows = mRoot.querySelectorAll('.arrow');
+      arrows.forEach(btn => {
+        const dir = btn.dataset.dir;
+        const action = dir === '1' ? 'next' : 'previous';
+        btn.setAttribute('aria-label', 
+          `Navigate to ${action} triangle relationship. Currently viewing: ${topRole.label}`);
+      });
+      
+      const leftKey  = leftRole.label.replace(' ','_');
+      const rightKey = rightRole.label.replace(' ','_');
+      mLeft.textContent  = topRole.descriptions[leftKey];
+     
+    // Keep triangle background static — no-op to prevent JS errors when called
+    function updateBackgrounds(){ /* intentionally left blank */ }
+
+ mRight.textContent = topRole.descriptions[rightKey];
+    }
+    window.updateMobileTexts = updateMobileTexts;
+
+    // mobile fade helpers (only used on mobile)
+    window.mobileFadeOut = function(){
+      if (!mRoot) return;
+      mTopLabel.classList.add('fading');
+      mLeft.classList.add('fading');
+      mRight.classList.add('fading');
+    };
+    window.mobileFadeIn = function(){
+      if (!mRoot) return;
+      requestAnimationFrame(()=>{
+        mTopLabel.classList.remove('fading');
+        mLeft.classList.remove('fading');
+        mRight.classList.remove('fading');
+      });
+    };
+
+    function onResize() {
+      stage.style.display = 'block';
+      resizeDesktop();
+    }
+
+    window.addEventListener('resize', onResize);
+    onResize(); // initial
+  })();
+  </script>
 <script>
 (function(){
   let lastY = window.scrollY;
@@ -141,64 +467,71 @@
   });
 })();
 </script>
-<script>
+<!-- removed duplicate nav toggle script -->
+<script id="bg-size-by-container">
 (function(){
-  const btn = document.querySelector('.nav-toggle');
-  const nav = document.getElementById('site-nav');
-  if (!btn || !nav) return;
-  btn.addEventListener('click', function(){
-    const open = this.getAttribute('aria-expanded') === 'true';
-    this.setAttribute('aria-expanded', String(!open));
-    nav.classList.toggle('open', !open);
-  });
-  nav.addEventListener('click', function(e){
-    if (e.target.tagName === 'A') {
-      btn.setAttribute('aria-expanded', 'false');
-      nav.classList.remove('open');
+  const container = document.querySelector('#roles-demo');
+  const host = container ? container.closest('.integrated-approach') : null;
+  const bg = host ? host.querySelector('.bg-split') : null;
+  const fx = host ? host.querySelector('.background-effects') : null;
+  if(!(container && host && bg)) return;
+
+  function syncBg(){
+    const rect = container.getBoundingClientRect();
+    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth);
+    // Full height on >= 1123px, 66% & centered on thinner
+    let h = rect.height;
+    let top = 0;
+    if (vw <= 1122) {
+      h = Math.round(rect.height * 0.95);
+      top = Math.max(0, Math.round((rect.height - h) / 2));
     }
-  });
+    const offsetTop = 0; // align with container top (no black gap)
+    bg.style.top = (offsetTop + top) + 'px';
+    bg.style.height = h + 'px';
+    if (fx) { fx.style.top = (offsetTop + top) + 'px'; fx.style.height = h + 'px'; }
+  }
+  new ResizeObserver(syncBg).observe(container);
+  window.addEventListener('resize', syncBg, {passive:true});
+  syncBg();
 })();
 </script>
 
-<script id="flat-links-fix">
+<script>
 (function(){
-  const map = {
-    "/": "index.html",
-    "/about/": "about.html",
-    "/about": "about.html",
-    "/vex/": "vex.html",
-    "/vex": "vex.html",
-    "/projects/": "projects.html",
-    "/projects": "projects.html",
-    "/support/": "support.html",
-    "/support": "support.html"
-  };
-  function rewrite(href){
-    if (!href) return null;
-    // direct map
-    if (map[href]) return map[href];
-    // absolute URLs
-    try{
-      const u = new URL(href, location.href);
-      if (map[u.pathname]) return map[u.pathname] + (u.hash || "");
-    }catch(e){ /* ignore */ }
-    return null;
+  const header   = document.querySelector('.sca-nav');
+  const btn      = header && header.querySelector('.nav-toggle');
+  const nav      = header && header.querySelector('#site-nav');
+  const backdrop = header && header.querySelector('.nav-backdrop');
+  if (!header || !btn || !nav || !backdrop) return;
+
+  function placeMenu(){
+    const rect = header.getBoundingClientRect();
+    document.documentElement.style.setProperty('--sca-nav-bottom', Math.max(0, rect.bottom) + 'px');
   }
-  // Fix existing anchors
-  document.querySelectorAll('a[href]').forEach(a => {
-    const fix = rewrite(a.getAttribute('href'));
-    if (fix) a.setAttribute('href', fix);
-  });
-  // Intercept clicks just in case something sets href later
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href]');
-    if (!a) return;
-    const fix = rewrite(a.getAttribute('href'));
-    if (fix){
-      e.preventDefault();
-      window.location.href = fix;
-    }
-  }, true);
+
+  function openMenu(){
+    placeMenu();
+    nav.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+    backdrop.hidden = false;
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu(){
+    nav.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    backdrop.hidden = true;
+    document.body.classList.remove('menu-open');
+  }
+
+  btn.addEventListener('click', () => nav.classList.contains('open') ? closeMenu() : openMenu());
+  backdrop.addEventListener('click', closeMenu);
+  nav.addEventListener('click', e => { if (e.target.tagName === 'A') closeMenu(); });
+
+  // keep dropdown anchored under the sticky header on resize/scroll
+  window.addEventListener('resize', placeMenu, {passive:true});
+  window.addEventListener('scroll', placeMenu,  {passive:true});
+  placeMenu();
 })();
 </script>
 

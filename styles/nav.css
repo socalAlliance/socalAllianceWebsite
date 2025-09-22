@@ -40,15 +40,7 @@
   }
 
   /* Phone: smaller text + allow wrapping instead of hiding */
-  @media (max-width: 600px){
-    .sca-nav{ height:64px; --nav-pad-x:12px; --logo-gap:10px; font-size: clamp(12px, 2.2vw + 8px, 18px); }
-    .sca-nav .logo{ width:50px; height:45px; }
-    .sca-nav #site-nav{
-      display:flex !important;             /* ← override any page CSS */
-      flex-wrap: wrap;                      /* wrap to 2 lines if needed */
-      gap: 10px 14px;                       /* row/column gaps */
-    }
-  }
+  
 /* --- enforce consistent link positioning across all pages --- */
 @media (min-width: 901px){
   .sca-nav__menu {
@@ -93,3 +85,84 @@
     padding-right: 0 !important;
   }
 }
+
+
+/* === Mobile (<=600px): hamburger + right-side dropdown === */
+@media (max-width: 600px){
+  .sca-nav{
+    height: 64px;
+    --nav-pad-x: 12px;
+    --logo-gap: 10px;
+    font-size: clamp(12px, 2.2vw + 8px, 18px);
+    justify-content: flex-start;
+  }
+  .sca-nav .logo{ width:50px; height:45px; }
+
+  /* Show hamburger on mobile */
+  .nav-toggle{
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    padding: 0; border: 0; background: transparent;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  .nav-toggle .bar{
+    display: block;
+    width: 24px; height: 3px;
+    border-radius: 2px;
+    background: #fff;
+  }
+
+  /* Compact dropdown box aligned to the right */
+  .sca-nav #site-nav{
+    position: fixed;
+    top: var(--sca-nav-bottom, 64px);
+    right: 12px;
+    width: 240px;
+    max-width: 80vw;
+    display: none !important;            /* collapsed by default */
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(0,0,0,.95);
+    box-shadow: 0 12px 30px rgba(0,0,0,.4);
+    z-index: 100010;
+  }
+  .sca-nav #site-nav.open{ display: flex !important; }
+
+  /* Backdrop and scroll lock */
+  .nav-backdrop{
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.35);
+    backdrop-filter: blur(1px);
+    z-index: 100000;
+  }
+  .nav-backdrop[hidden]{ display:none; pointer-events:none; }
+  body.menu-open{ overflow: hidden; }
+}
+
+
+/* === Safety: remove any stray bullets or markers in nav === */
+.sca-nav #site-nav, .sca-nav #site-nav *{
+  list-style: none !important;
+}
+.sca-nav #site-nav::before,
+.sca-nav #site-nav a::before,
+.sca-nav #site-nav a::marker{
+  content: none !important;
+}
+.sca-nav #site-nav a{ display: inline-block; }
+
+/* Desktop/Tablet (>600px): hide hamburger explicitly */
+@media (min-width: 601px){
+  .nav-toggle{ display: none !important; }
+}
+
+/* Safety: the button can never render a bullet */
+.nav-toggle, .nav-toggle *{ list-style: none !important; }
+.nav-toggle::marker{ content: "" !important; }

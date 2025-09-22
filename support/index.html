@@ -25,10 +25,15 @@
 <body>
 <!-- NAV -->
 <header class="top-bar sca-nav" role="navigation">
-  <a class="logo-link" href="../" aria-label="Home">
+  <a class="logo-link" href="../index.html" aria-label="Home">
     <div class="logo"></div>
   </a>
-
+<button type="button" class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav" style="position:relative;z-index:1000002;">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</button>
+<div class="nav-backdrop" hidden></div>
 <nav id="site-nav">
   <a href="../about/index.html">ABOUT</a>
   <a href="../vex/index.html">VEX</a>
@@ -36,7 +41,6 @@
   <a href="../support/index.html">SUPPORT</a>
 </nav>
 </header>
-
 <!-- WHY SUPPORT US -->
 <section class="support-why">
 <h2>WHY SUPPORT US?</h2>
@@ -285,24 +289,7 @@ Products &amp; Service: By donating products or services, you give students dir
     .addEventListener('click', ()=>jump(1));
 })();
 </script>
-<script>
-(function(){
-  const btn = document.querySelector('.nav-toggle');
-  const nav = document.getElementById('site-nav');
-  if (!btn || !nav) return;
-  btn.addEventListener('click', function(){
-    const open = this.getAttribute('aria-expanded') === 'true';
-    this.setAttribute('aria-expanded', String(!open));
-    nav.classList.toggle('open', !open);
-  });
-  nav.addEventListener('click', function(e){
-    if (e.target.tagName === 'A') {
-      btn.setAttribute('aria-expanded', 'false');
-      nav.classList.remove('open');
-    }
-  });
-})();
-</script>
+<!-- removed duplicate nav toggle script -->
 <script>
 // Support page ticker: smooth, seamless, 3-at-a-time, pause on hover
 (function(){
@@ -353,6 +340,43 @@ Products &amp; Service: By donating products or services, you give students dir
 })();
 </script>
 
+<script>
+(function(){
+  const header   = document.querySelector('.sca-nav');
+  const btn      = header && header.querySelector('.nav-toggle');
+  const nav      = header && header.querySelector('#site-nav');
+  const backdrop = header && header.querySelector('.nav-backdrop');
+  if (!header || !btn || !nav || !backdrop) return;
+
+  function placeMenu(){
+    const rect = header.getBoundingClientRect();
+    document.documentElement.style.setProperty('--sca-nav-bottom', Math.max(0, rect.bottom) + 'px');
+  }
+
+  function openMenu(){
+    placeMenu();
+    nav.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+    backdrop.hidden = false;
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu(){
+    nav.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    backdrop.hidden = true;
+    document.body.classList.remove('menu-open');
+  }
+
+  btn.addEventListener('click', () => nav.classList.contains('open') ? closeMenu() : openMenu());
+  backdrop.addEventListener('click', closeMenu);
+  nav.addEventListener('click', e => { if (e.target.tagName === 'A') closeMenu(); });
+
+  // keep dropdown anchored under the sticky header on resize/scroll
+  window.addEventListener('resize', placeMenu, {passive:true});
+  window.addEventListener('scroll', placeMenu,  {passive:true});
+  placeMenu();
+})();
+</script>
 
 </body>
 </html>
