@@ -1,5 +1,5 @@
 /* === Extracted from index.html (style id="no-hscroll") === */html, body { overflow-x: clip; }/* Prevent any inherited filters from altering sponsor colors */.sponsor-marquee, .sponsor-viewport, .sponsor-logo, .sponsor-logo img { filter: none !important; }/* Strong guard: never alter sponsor colors inside the marquee */.sponsor-marquee .sponsor-logo,
-.sponsor-marquee .sponsor-logo img { filter: none !important; opacity: 1 !important; }/* === Extracted from index.html (style id="nav-core") === */.logo{ width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }/* --- Mobile overflow fixes --- */html { overflow-x: clip; }body { overflow-x: hidden; }img, svg, video { max-width: 100%; height: auto; }.support-why h2,
+.sponsor-marquee .sponsor-logo img { filter: none !important; opacity: 1 !important; }/* === Extracted from index.html (style id="nav-core") === */.logo{ width:81px; height:73px; background:url('../images/logo.png') center/cover no-repeat; margin-right:20px; }/* --- Mobile overflow fixes --- */html { overflow-x: clip; }body { overflow-x: hidden; }img, svg, video { max-width: 100%; height: auto; }.support-why h2,
 .support-how h2,
 .support-tiers-title,
 .carousel-title {
@@ -29,11 +29,11 @@
       background:#000; color:#fff;
       font-family:'Instrument Sans',sans-serif;
       line-height:1.4; overflow-x:hidden;
-    }a { text-decoration:none; color:inherit; }/* — Sticky Nav — */.logo { width:81px; height:73px; background:url('images/logo.png') center/cover no-repeat; margin-right:20px; }nav a:hover { opacity:.7; }/* Responsive nav for mobile and tablets *//* HERO 1 */.hero-1 {
+    }a { text-decoration:none; color:inherit; }/* — Sticky Nav — */.logo { width:81px; height:73px; background:url('../images/logo.png') center/cover no-repeat; margin-right:20px; }nav a:hover { opacity:.7; }/* Responsive nav for mobile and tablets *//* HERO 1 */.hero-1 {
       width: 100%;
       min-height: 320px;
       height: 675px;
-      background: url('images/Banner.png') no-repeat;
+      background: url('../images/Banner.png') no-repeat;
       background-size: cover;
       background-position: 50% 15%;
       position: relative;
@@ -59,7 +59,7 @@
       transform: scale(1.05);
     }/* HERO 2 + ABOUT */.hero-2 {
       position:relative; width:100%; min-height:320px; height:566px;
-      background:url('images/flag.png') center/cover no-repeat;
+      background:url('../images/flag.png') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -84,11 +84,11 @@
       display:flex; align-items:center; gap:24px; flex-wrap:wrap;
     }.photo {
       width:140px; height:178px;
-      background:url('images/Winnie.png') center/cover no-repeat;
+      background:url('../images/Winnie.png') center/cover no-repeat;
       flex-shrink:0;
     }.signature {
       width:312px; height:79px;
-      background:url('images/signature.png') center/cover no-repeat;
+      background:url('../images/signature.png') center/cover no-repeat;
       margin-bottom:8px;
     }.name { font-size:24px; font-weight:700; }/* FOOTER *//* Use grid so the center column can be perfectly centered vertically *//* keep the donate + socials centered as a group *//* Mobile: stack and hard-center everything */.btn-img:hover img {
       transform: scale(1.05);
@@ -213,7 +213,7 @@
 }.logo {
   width: 81px;
   height: 73px;
-  background: url('images/logo.png') center/cover no-repeat;
+  background: url('../images/logo.png') center/cover no-repeat;
   margin-right: 20px;
 }/* === Sponsor viewport shows 3 logos at a time === */.sponsor-viewport {
 
