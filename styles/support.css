@@ -231,7 +231,7 @@
   line-height: 1.4;
   margin: 0;
   padding: 0;
-}/* OUTLINE COLORS */.tier-yellow { border-color: #F9CB22; }.tier-orange { border-color: #EF7616; }.tier-pink   { border-color: #F0115F; }/* RESPONSIVE STACK */@media (max-width: 700px) {
+}/* OUTLINE COLORS */.tier-red { border-color: #E70000; }.tier-yellow { border-color: #F9CB22; }.tier-orange { border-color: #EF7616; }.tier-pink   { border-color: #F0115F; }/* RESPONSIVE STACK */@media (max-width: 700px) {
   .support-tiers { flex-direction: column; gap: 1rem; margin: 2rem 4%; }
 }/* SECTION + TITLE */.sponsor-carousel-section {
   margin: 4rem 8%;
