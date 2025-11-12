@@ -1,1105 +1,397 @@
-/* === Extracted from vex.html (style id="final-overrides") === *//* ===== HERO: stack headline, paragraph, and button ===== */.page-container.hero-section {
-  position: relative;
-  min-height: var(--hero-bg-height);
-  height: auto;
-  padding-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.75rem;
-}.hero-headline {
-  position: relative !important;
-  top: auto !important; left: auto !important;
-  transform: none !important;
-  margin-top: 1rem !important;
-  text-align: center !important;
-  width: 100% !important;
-  z-index: 2 !important;
-}.copy-text {
-  position: relative !important;
-  top: auto !important; left: auto !important;
-  transform: none !important;
-  margin: 0 auto !important;
-  width: 80% !important;
-  max-width: 938px !important;
-  font-size: 24px !important;
-  line-height: 1.6 !important;
-  text-align: center !important;
-  z-index: 1 !important;
-}.btn-img {
-  position: relative !important;
-  top: auto !important; left: auto !important;
-  transform: none !important;
-  z-index: 1 !important;
-}@media (max-width: 900px) {
-  .page-container.hero-section { gap: 1.25rem !important; padding-bottom: 2rem !important; }
-  .hero-headline { font-size: clamp(28px, 8vw, 48px) !important; }
-  .copy-text { margin-top: 0.25rem !important; width: 90vw !important; max-width: 90vw !important; font-size: 16px !important; line-height: 1.4 !important; }
-}/* ===== LOCATION SECTION: prevent image from squeezing text ===== */.location-section { flex-wrap: wrap !important; }.location-image { flex: 1 1 520px !important; }.location-copy  { flex: 1 1 520px !important; max-width: 900px !important; }.location-copy .copy { width: 100% !important; margin: 1rem auto !important; }/* ===== LOCATION HEADLINE definitive sizing (ID outranks other rules) ===== */#loc-headline {
-  font-size: 48px !important;   /* desktop */
-  line-height: 1.15 !important;
-  white-space: normal !important;
-  word-break: normal !important;
-  overflow-wrap: normal !important;
-  text-align: center !important;
-  margin: 0 auto 1rem !important;
-  max-width: min(90vw, 900px) !important;
-  display: block !important;
-}@media (max-width: 900px) { #loc-headline { font-size: 36px !important; } }@media (max-width: 600px) { #loc-headline { font-size: 28px !important; } }/* === Extracted from vex.html (style id="nav-core") === */.logo{ width:81px; height:73px; background:url('../images/logo.png') center/cover no-repeat; margin-right:20px; }/* --- Mobile overflow fixes --- */html { overflow-x: clip; }body { overflow-x: hidden; }img, svg, video { max-width: 100%; height: auto; }.support-why h2,
-.support-how h2,
-.support-tiers-title,
-.carousel-title {
-  overflow: clip;
-}@media (max-width: 600px) {
-  :root { --support-underline-overhang: 0; }
-}.sponsor-marquee { overflow-x: hidden; }/* === Extracted from vex.html (style id="nav-left-hotfix") === *//* === NAV alignment + size hotfix (match index fix) === *//* === Extracted from vex.html (style id="sync-nav-footer") === *//* ===== Sync nav & footer with site-wide styles (canonical) ===== *//* Header logo stays colored *//* Hide-on-scroll uses translate *//* Footer parity (gradient background, grid layout, white logo behavior) *//* Responsive spacing consistent with other pages *//* === Extracted from vex.html (style id="nav-size-enforcer") === *//* === Extracted from vex.html === */:root {
-       --compare-bar-offset-x:   0px;    /* move the bar left/right */
-  --compare-bar-offset-y:   0px;    /* move the bar up/down, if you like */
-  --compare-bar-height:    360px;   /* length of the vertical bar */
-  --compare-bar-width:      20px;   /* thickness of the bar */
-      /* Hero background controls */
-      --hero-bg-left:     10px;
-      --hero-bg-top:      71px;
-      --hero-bg-width:    100%;
-      --hero-bg-max-width:2000px;
-      --hero-bg-height:   690px;
-  --bar-left:   0;
-  --bar-top:    0;
-  --bar-width:  100vw;
-  --bar-height: 6px;
-  --bar-radius: 3px;
-  --bar-gradient:
-    linear-gradient(
-      90deg,
-      rgba(249,203,34,0.9) 23%,
-      rgba(239,118,22,0.9) 50%,
-      rgba(240,17,95,0.9) 77%
-    );
-      /* Text & design tokens */
-      --hero-text-size:               72px;
-      --partnerships-underline-height:10px;
-      --partnerships-underline-radius:1000px;
-      --partnerships-underline-offset:0.5rem;
-      --partnerships-underline-overhang:5rem;
-      --btn-gradient:linear-gradient(90deg,#F0115F,#EF7616);
-      
-
-      /* Headline & Copy positioning */
-        --embed-offset-y: 8rem;  
-  --headline-top: 75px;   /* move “WHAT IS VEX…” up/down */
-  --copy-top:     220px;   /* distance from top for the paragraph */
-  /* controls for both embeds */
-  --embed-width:  690px;   /* adjust width here */
-  --embed-height: 445px;   /* adjust height here */
-  --embed-gap:    6rem;    /* spacing between the two boxes */
-  
-
-  /* path to your border ../images */
-  --border-worlds:  url('../images/worldsborder.png');
-  --border-season:  url('../images/seasonborder.png');
-
- /* entire section offset */
-  --loc-sec-offset-x: 0px;
-  --loc-sec-offset-y: 0px;
-  /* image sizing & offset */
-  --loc-img-width:       800px;
-  --loc-img-offset-x:    0px;
-  --loc-img-offset-y:    0px;
-  /* text block offset */
-  --loc-text-offset-x:   0px;
-  --loc-text-offset-y:   0px;
-  /* paragraph wrap */
-  --loc-desc-wrap:       600px;
- --compare-para-gap: 1.5rem;
-  
-   /* Comparison-bar sizing & position */
-  --compare-bar-width:     20px;                         /* thickness */
-  --compare-bar-height:    360px;                       /* length */
-  --compare-bar-offset-x:  0px;                        /* nudge left/right */
-  --compare-bar-offset-y:  0px;                        /* nudge up/down */
-  --compare-bar-gradient:  
-    linear-gradient(
-      180deg,
-      #F9CB22 23%,
-      #EF7616 50%,
-      #F0115F 77%
-    );                                                   /* same gradient */
-    }/* Reset & Base */* { margin:0; padding:0; box-sizing:border-box; }html, body { width:100%; overflow-x:hidden; background:#000; color:#fff; }body { font-family:'Instrument Sans',sans-serif; line-height:1.4; }a { color:inherit; text-decoration:none; }/* — Sticky Nav — */@media (max-width: 600px) {
-  .hero-headline {
-    font-size: 36px !important;
-  }
-}/* Responsive nav for mobile and tablets */@media (max-width: 900px) {
-  
-  .logo {
-    width: 60px;
-    height: 54px;
-    margin-right: 0;
-  }
-  
-  
-  /* Headline and copy: stack and shrink */
-  .hero-headline {
-    position:absolute;
-    top:    5px;
-    left:   50%;
-    transform:translateX(-50%);
-    font-family:'Tilt Warp',sans-serif;
-    font-size: 10vw;
-    color:#fff;
-    padding-bottom:var(--partnerships-underline-offset);
-    white-space: normal;
-    max-width: 90vw;
-  }
-  .hero-headline::after {
-    left: -1rem;
-    right: -1rem;
-    height: 5px;
-  }
-  .copy-text {
-    position: absolute;
-    top: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 16px !important;
-    width: 90vw;
-    max-width: 90vw;
-    padding: 0 2vw;
-    text-align: center;
-    line-height: 1.4;
-  }
-  .location-headline {
-  position: relative;
-  display: inline-block;
-  white-space: normal;
-  padding-bottom: var(--partnerships-underline-offset);
-  font-family:'Tilt Warp',sans-serif;
-  font-size: 200px;        /* ← change this */
-  font-weight: 400;
-  color:#fff;
-  max-width: 100%;
-  word-wrap: break-word;
-}
-@media (max-width: 900px) {
-  .location-copy .location-headline {
-    font-size: 3.5rem;   /* instead of 2.5rem */
-  }
-}
-  .location-headline::after {
-    left: -1rem;
-    right: -1rem;
-    height: 5px;
-  }
-  .btn-img {
-    top: 180px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  /* Embeds: stack vertically */
-  .embed-container {
-    flex-direction: column;
-    gap: 2rem;
-    margin: 2rem 0 2rem 0;
-    align-items: center;
-  }
-  .embed-box {
-    width: 95vw !important;
-    max-width: 100vw;
-    min-width: 0;
-    /* Responsive 16:9 aspect ratio */
-    aspect-ratio: 16 / 9;
-    height: auto !important;
-    position: relative;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .embed-box iframe {
-    position: absolute;
-    top: 12% !important;
-    left: 1% !important;
-    width: 97% !important;
-    height: 85% !important;
-    border: none;
-  }
-
-  /* Location section: stack image and text */
-  .location-section {
-    flex-direction: column;
-    gap: 2rem;
-    left: 0;
-    padding: 0 1vw;
-    max-width: 100vw;
-    margin: 4rem 0 6rem;
-  }
-  .location-image img {
-    width: 100vw;
-    max-width: 100vw;
-  }
-  /* put this at the very end of your <style> */
-.location-copy {
-  text-align: center;             /* center both headline and paragraph */
+/* =====================================================
+   VEX PAGE — Rewritten to match Figma while
+   keeping navbar and footer styles unchanged
+   Fonts: Tilt Warp (titles), Instrument Sans (body)
+   ===================================================== */
+:root{
+  --bar-gradient: linear-gradient(90deg, rgba(249,203,34,0.9) 23%, rgba(239,118,22,0.9) 50%, rgba(240,17,95,0.9) 77%);
 }
 
-.location-copy .location-headline {
-  font-size: 64px !important;     /* your new desktop size */
-  margin-bottom: 1.5rem;          /* gap below headline, adjust as you like */
-  display: inline-block;          /* shrink to fit text for centering underline */
-}
+/* Base */
+html,body{background:#000;color:#fff;font-family:'Instrument Sans',sans-serif;overflow-x:hidden;margin:0}
+img{max-width:100%;height:auto}
 
-.location-copy .copy {
-  text-align: center;             /* ensure paragraph is centered */
-  margin-top: 1.5rem;             /* extra gap if you prefer */
-}
- 
-  /* VEX compare: stack columns */
-  .vex-compare {
-    margin: 8rem 8rem;
-    padding-top: 14rem;
-    align-content: center;
-  }
-  .compare-headline {
-    font-size: 2rem;
-    line-height: 2.2rem;
-    white-space: normal;
-  }
-  .compare-headline .vs {
-    font-size: 1.2rem;
-    margin: 0 1rem;
-  }
- /* 1) Spread columns to the edges */
-.compare-body {
-  justify-content: space-between;
-  /* remove any hard padding if you want them truly flush */
-  padding-left: 0;
-  padding-right: 0;
-}
+/* ------ Generic containers ------ */
+.container{width:min(1100px,90vw);margin:0 auto}
+.gradient-rule{height:6px;background:var(--bar-gradient);border-radius:1000px;width:100%;position:absolute;left:0;bottom:0}
 
-/* 2) Column alignment */
-.compare-body .column {
-  display: flex;
-  flex-direction: column;
-}
-.compare-body .column.left {
-  align-items: flex-start;     /* children start at left */
-  text-align: left;
-}
-.compare-body .column.right {
-  align-items: flex-end;       /* children start at right */
-  text-align: right;
-}
-/* ensure each <p> actually right-aligns */
-.compare-body .column.right p {
-  text-align: right;
-  align-self: flex-end;
-}
+/* ------ Section shells (shared) ------ */
+.section{position:relative;min-height:640px;display:flex;align-items:center;justify-content:center;padding:96px 0}
+.section .section-bg{position:absolute;inset:0;background: #111 center/cover no-repeat;z-index:0}
+.section .section-bg{background-image:var(--bg)}
+.section .section-overlay{position:absolute;inset:0;background:linear-gradient(360deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.75) 50%,#000 100%);z-index:1}
+.section .section-title{font-family:'Tilt Warp',sans-serif;font-weight:400;font-size:48px;white-space:normal;position:relative;display:inline-block;padding-bottom:.5rem;margin:0 0 1rem}
+.section .section-title::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:var(--bar-gradient);border-radius:1000px}
+.section .section-copy{font-size:18px;line-height:1.55;opacity:.95;margin:0;max-width:720px}
+.section .left{margin-left:0;text-align:left}
+.section .center{text-align:center;margin-left:auto;margin-right:auto}
+.section > .container{position:relative;z-index:2}
 
-/* 3) Fully round the comparison bar */
-.vex-bar-vertical {
-  border-radius: 99px;         /* pill shape */
-}
-  /* Carousel: shrink and stack */
-  .image-carousel {
-    flex-direction: column;
-    gap: 0.5rem;
-    max-width: 100vw;
-    padding: 0 1vw;
-    margin: 6rem auto 2rem;
-  }
-  .carousel-track-container {
-    width: 100vw;
-    max-width: 100vw;
-  }
-  
-}/* — Gradient border for carousel ../images — */.carousel-slide {
+/* === OUR TEAM (Hero Section — Figma Accurate) === */
+.hero {
   position: relative;
-}.carousel-slide img {
-  display: block;
-  width: 100%;
-  /* transparent border as the “canvas” for the gradient */
-  border: 6px solid transparent;
-  border-radius: 12px;
-  /* slice = 1 tells CSS to stretch the gradient over the border width */
-  border-image: linear-gradient(
-    90deg,
-    rgba(249,203,34,1) 0%,
-    rgba(239,118,22,1) 50%,
-    rgba(240,17,95,1) 100%
-  ) 1;
-  box-sizing: border-box;
-}/* — Gradient border for captions — */.carousel-caption {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  /* same transparent border setup */
-  border: 4px solid transparent;
-  border-radius: 8px;
-  border-image: linear-gradient(
-    90deg,
-    rgba(249,203,34,1) 0%,
-    rgba(239,118,22,1) 50%,
-    rgba(240,17,95,1) 100%
-  ) 1;
-  background-color: #000; /* optional: give the caption a solid BG */
-}@media (max-width: 600px) {
-  
-  .logo {
-    width: 50px;
-    height: 45px;
-  }
-  
-  nav a {
-    font-size: 18px;
-  }
-  
-}/* — Sticky Nav — *//* Make room for a 100px-tall fixed nav *//* Single, un-conflicted nav rule *//* Hides by moving up exactly its own height */.logo { width:81px; height:73px; background:url('../images/logo.png') center/cover no-repeat; margin-right:20px; }nav { display:flex; gap:40px; }nav a:hover { opacity:.7; }/* Tablet responsiveness */@media (max-width: 900px) and (min-width: 701px) {
-  .location-copy .location-headline {
-    font-size: 3rem;
-  }
-  .location-copy .copy {
-    font-size: 1.2rem;
-  }
-}/* Main Content */.page-container { 
-      position: relative; 
-      height: 500px; /* Set a height so content below knows where to start */
-    }/* HERO BACKDROP IMAGE */.hero-bg {
-      position:absolute;
-      left:   var(--hero-bg-left);
-      top:    var(--hero-bg-top);
-      width:  var(--hero-bg-width);
-      max-width:var(--hero-bg-max-width);
-      height: var(--hero-bg-height);
-      background:
-        url('../images/whatisvex.png') center/cover no-repeat;
-    }.hero-overlay {
-      position:absolute;
-      left:   var(--hero-bg-left);
-      top:    var(--hero-bg-top);
-      width:  var(--hero-bg-width);
-      max-width:var(--hero-bg-max-width);
-      height: var(--hero-bg-height);
-      background:
-        linear-gradient(360deg,
-          rgba(0,0,0,0)   0%,
-          rgba(0,0,0,0.8)50%,
-          #000           100%
-        );
-    }/* Headline + underline */.headline {
-  position:absolute;
-  top:    var(--headline-top);
-  left:   50%;
-  transform:translateX(-50%);
-  font-family:'Tilt Warp',sans-serif;
-  font-size:var(--hero-text-size);
-  font-weight:100;
-  color:#fff;
-  padding-bottom:var(--partnerships-underline-offset);
-}/* Hero headline + underline */.hero-headline {
-      position:absolute;
-      top:    var(--headline-top);
-      left:   50%;
-      transform:translateX(-50%);
-      font-family:'Tilt Warp',sans-serif;
-      font-size: 48px;
-      text-align: center;
-      color:#fff;
-      padding-bottom:var(--partnerships-underline-offset);
-    }/* Location section headline + underline */.location-headline {
-      position: relative;
-      display: inline-block;
-      white-space: normal;
-      padding-bottom: var(--partnerships-underline-offset);
-      font-family:'Tilt Warp',sans-serif;
-      font-size: 48px;
-      font-weight: 400;
-      color:#fff;
-      max-width: 100%;
-      word-wrap: break-word;
-    }/* VEX comparison headline */.compare-headline {
-      font-family: 'Tilt Warp', sans-serif;
-      font-size: 2rem;
-      font-weight: 400;
-      line-height: 2.2rem;
-      text-align: center;
-      white-space: nowrap;
-      margin-bottom: 1.5rem;
-      color:#fff;
-    }.headline::after {
-      content:''; position:absolute;
-      left:calc(-1 * var(--partnerships-underline-overhang));
-      right:calc(-1 * var(--partnerships-underline-overhang));
-      bottom:0; height:var(--partnerships-underline-height);
-      background:linear-gradient(90deg,
-        rgba(249,203,34,0.9) 23%,
-        rgba(239,118,22,0.9) 50%,
-        rgba(240,17,95,0.9) 77%
-      );
-      border-radius:var(--partnerships-underline-radius);
-    }.hero-headline::after {
-      content:''; position:absolute;
-      left:calc(-1 * var(--partnerships-underline-overhang));
-      right:calc(-1 * var(--partnerships-underline-overhang));
-      bottom:0; height:var(--partnerships-underline-height);
-      background:linear-gradient(90deg,
-        rgba(249,203,34,0.9) 23%,
-        rgba(239,118,22,0.9) 50%,
-        rgba(240,17,95,0.9) 77%
-      );
-      border-radius:var(--partnerships-underline-radius);
-    }.location-headline::after {
-      content: "";
-      position: absolute;
-      left:    calc(-1 * var(--partnerships-underline-overhang));
-      right:   calc(-1 * var(--partnerships-underline-overhang));
-      bottom:  0;
-      height:  var(--partnerships-underline-height);
-      background: var(--bar-gradient);
-      border-radius: var(--partnerships-underline-radius);
-    }/* Body copy */.copy {
-  position:absolute;
-  top:    var(--copy-top);
-  left:   50%;
-  transform:translateX(-50%);
-  width:80%; max-width:938px;
-  font-size:24px;
-  line-height:1.4;
-  text-align:center;
-}/* Copy text - same styling as copy */.copy-text {
-  position:absolute;
-  top:    var(--copy-top);
-  left:   50%;
-  transform:translateX(-50%);
-  width:80%; max-width:938px;
-  font-size: 24px;
-  line-height:1.4;
-  text-align:center;
-}/* LEARN MORE image button */.btn-img {
-      position:absolute; top:440px; left:50%;
-      transform:translateX(-50%);
-    }.btn-img img {
-      height:48px; transition:transform .3s ease;
-    }.btn-img:hover img {
-      transform:scale(1.05);
-    }.gradient-bar {
-  position: absolute;
-  left:       var(--bar-left);
-  top:        var(--bar-top);
-  width:      var(--bar-width);
-  height:     var(--bar-height);
-  background: var(--bar-gradient);
-  border-radius: var(--bar-radius);
-}.embed-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--embed-gap);
-  margin: 20rem auto 8rem;
-  flex-wrap: wrap;
-  /* Increased bottom margin for proper spacing */
-}.embed-box {
-  position: relative;
-  width: var(--embed-width);
-  height: var(--embed-height);
-  background-color: #000;        /* fallback behind iframe */
-  padding-top: 48px; /* Adjust this value to match your border/title height */
-  box-sizing: border-box;
-  margin: 0 auto;
-  flex-shrink: 0;
-}.embed-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;                      /* stretch to cover entire box */
-  background-repeat: no-repeat;
-  background-size: 100% 100%;    /* make the PNG fill the box */
-  pointer-events: none;          /* clicks pass through to iframe */
-  z-index: 2;
-}/* assign each box its own border image */.embed-box.worlds::before {
-  background-image: var(--border-worlds);
-}.embed-box.season::before {
-  background-image: var(--border-season);
-}/* inset by 10px on left and right */.embed-box iframe {
-  position: absolute;
-  top: 68px;
-  left: 28px;
-  right: 28px;
-  bottom: 28px;
-  border: none;
-  z-index: 1;
-  width: calc(100% - 56px);
-  height: calc(100% - 96px);
-}/* Footer */.logo-link:hover .logo {
-      transform:scale(1.05);
-    }.footer-copy { font-size:1.5rem; font-weight:bold; margin:0; }.footer-sub {
-      margin-top:.5rem; font-size:1rem; opacity:.9; max-width:400px;
-    }/* Container & positioning */.location-section {
-  position: relative;
-  left: var(--loc-sec-offset-x);
-  top:  var(--loc-sec-offset-y);
-  display: flex;
-  align-items: flex-start;
-  gap: 4rem;
-  margin: 4rem auto 8rem;
-  padding: 0 1rem;
-  max-width: var(--hero-bg-max-width);
-  justify-content: center;
-}/* image side */.location-image img {
-  width: var(--loc-img-width);
-  height: auto;
-  position: relative;
-  left: var(--loc-img-offset-x);
-  top:  var(--loc-img-offset-y);
-}/* text side */.location-copy {
-  position: relative;
-  left: var(--loc-text-offset-x);
-  top:  var(--loc-text-offset-y);
-  max-width: var(--loc-desc-wrap);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}/* headline underline */.location-copy .headline {
-  position: relative;         /* create a positioning context */
-  display: inline-block;      /* so ::after width matches text */
-  white-space: normal;        /* allow wrapping */
-  padding-bottom: var(--partnerships-underline-offset);
-  font-size: 48px;           /* smaller headline size */
-  font-weight: 400;          /* add some weight */
-  max-width: 100%;           /* don't exceed container width */
-  word-wrap: break-word;     /* break long words if needed */
-}.location-copy .headline::after {
-  content: "";
-  position: absolute;
-  left:    calc(-1 * var(--partnerships-underline-overhang));
-  right:   calc(-1 * var(--partnerships-underline-overhang));
-  bottom:  0;
-  height:  var(--partnerships-underline-height);
-  background: var(--bar-gradient);            /* same gradient */
-  border-radius: var(--partnerships-underline-radius);
-}/* paragraph */.location-copy .copy {
-  margin: 0;
-  font-size: 18px;
-  line-height: 1.4;
-  max-width: var(--loc-desc-wrap);
-  text-align: left;
-}.image-carousel {
-  position: relative;
-  margin: 8rem auto 4rem;
-  max-width: 900px;
   display: flex;
   align-items: center;
-  gap: 1rem;
-}.carousel-track-container {
+  justify-content: flex-start;
+  height: 700px;
+  background: url('../images/Banner.png') center/cover no-repeat;
+  color: #fff;
   overflow: hidden;
-  flex: 1 1 auto;
-}.carousel-track {
-  display: flex;
-  transition: transform 0.5s ease;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}.carousel-slide {
-  min-width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-}.carousel-slide img {
-  width: 100%;
-  height: auto;
-  display: block;
-}.carousel-caption {
-  margin: 0.5rem 0 0;
-  font-size: 1.1rem;
-}/* Remove any previous ::before border-triangle setup */.carousel-arrow::before { border: none; }/* Base arrow button */.carousel-arrow {
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}/* Shared triangle styling */.carousel-arrow::after {
+}
+
+/* Left-to-right only black gradient shading (no vertical fade) */
+.hero::before {
   content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  /* moving 3-color gradient */
+  inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(249,203,34,1)   0%,
-    rgba(239,118,22,1)   50%,
-    rgba(240,17,95,1)   100%
+    rgba(0, 0, 0, 0.95) 0%,   /* strong black on left */
+    rgba(0, 0, 0, 0.75) 25%,  /* smooth fade */
+    rgba(0, 0, 0, 0.4) 50%,   /* softer mid fade */
+    rgba(0, 0, 0, 0.1) 75%,   /* almost clear */
+    rgba(0, 0, 0, 0) 100%     /* fully clear on right */
   );
-  background-size: 200% 200%;
-  animation: gradient-move 3s linear infinite;
-  /* clip to a triangle */
-  clip-path: polygon(
-    /* default: point right */
-    0% 0%,    /* top-left */
-    0% 100%,  /* bottom-left */
-    100% 50%  /* middle-right */
-  );
-  will-change: background-position;
-}/* flip for “left” arrow */.carousel-arrow.left::after {
-  /* mirror horizontally */
-  clip-path: polygon(
-    100% 0%,   /* top-right */
-    100% 100%, /* bottom-right */
-    0%   50%   /* middle-left */
-  );
-}/* hover scaling */.carousel-arrow:hover {
-  transform: scale(1.1);
-}/* gradient animation keyframes */@keyframes gradient-move {
-  0%   { background-position: 0%   50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0%   50%; }
-}/* put this at the very end of your <style> */.location-copy {
-  text-align: center;             /* center both headline and paragraph */
-}.location-copy .copy {
-  /* center and control wrap width */
-  max-width: 600px;       /* or any px/rem value you prefer */
-  width: 900%;             /* scales on smaller screens */
-  margin: -6.5rem auto 0; /* negative top-margin retained, horizontal auto centers */
-  
-  /* text styling */
-  text-align: center;
-  font-size: 24px !important;
-  line-height: 1.6;       /* improves readability */
-  
-  /* ensure long words break rather than overflow */
-  word-wrap: break-word;
-  hyphens: auto;
-}/* Container */.vex-compare {
-  margin: 12rem auto 3rem;
-  padding-top: -10px;
-  max-width: 700px;
-  color: #fff;
-}/* Headline */.compare-headline {
-  font-family: 'Tilt Warp', sans-serif;
-  font-size: 2rem;
-  font-weight: 400;
-  line-height: 2.2rem;
-  text-align: center;
-  white-space: nowrap;
-  margin-bottom: 1.5rem;
-  color:#fff;
-}.compare-headline .vs {
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 1.2rem;
-  margin: 0 1rem;
-  vertical-align: middle;
-}/* Body flex row *//* Center the bar & columns under the header */.compare-body {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
-  margin: 0 auto;
-  max-width: 900px;
-  padding-left: 24px;
-  padding-right: 24px;
-}.compare-body .column {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}.compare-body .column.left p {
-  text-align: left;
-  align-self: flex-start;
-  font-size: 18px;
-}.compare-body .column.right p {
-  text-align: left;
-  align-self: flex-start;
-  font-size: 18px;
-}.vex-bar-vertical {
-  width: var(--compare-bar-width, 20px);
-  min-width: 10px;
-  height: var(--compare-bar-height, 360px);
-  background: var(--compare-bar-gradient);
-}.vex-compare .compare-body .vex-bar-vertical {
-  /* dimension */
-  width:  var(--compare-bar-width)   !important;
-  height: var(--compare-bar-height)  !important;
+  z-index: 1;
+}
 
-  /* pill shape + gradient */
-  background: var(--compare-bar-gradient) !important;
-  border-radius: 999px !important;
+.hero .section-overlay {
+  background: none !important;
+}
 
-  /* reposition */
-  /* margin-left will nudge it right (use negative to go left) */
-  margin-left: var(--compare-bar-offset-x) !important;
-  /* margin-top will nudge it down (use negative to go up) */
-  margin-top:  var(--compare-bar-offset-y) !important;
-}/* Past Seasons button */.past-seasons-container {
-  text-align: center;
-  margin: 2rem 0;          /* space above/below */
-}.past-seasons-btn {
-  cursor: pointer;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  display: inline-block;
-}.past-seasons-btn:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
-}/* 2) On hover, cancel the scale and apply grayscale */.compare-chart {
-  max-width: 1000px;
-  margin: 6rem auto 4rem;
-  padding: 0 1rem;
-  color: #fff;
-}.compare-chart__title {
-  text-align: center;
-  font-family: 'Tilt Warp',sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+/* TEXT CONTAINER */
+.hero-inner {
   position: relative;
-}.compare-chart__title::after {
+  z-index: 2;
+  width: 40%;
+  margin-left: 5%;
+  padding: 2rem 2.5rem;
+  text-align: left;
+}
+
+/* TITLE */
+.hero .section-title {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.hero .section-title::after {
   content: "";
   position: absolute;
-  left: 50%; transform: translateX(-50%);
-  bottom: -0.5rem;
-  width: 6rem; height: 6px;
-  background: var(--bar-gradient);
-  border-radius: 3px;
-}.compare-chart__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}.compare-chart__cell {
-  padding: 1.25rem;
-  text-align: center;
+  left: 0;
+  bottom: -0.4rem;
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: 1000px;
+}
+
+/* BODY TEXT */
+.hero .section-copy {
+  font-family: 'Instrument Sans', sans-serif;
   font-size: 1rem;
-  background: #000000;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
-}.compare-chart__cell:nth-child(3n) {
-  border-right: none;
-}/* Header styling */.compare-chart__cell--header {
-  background: var(--bar-gradient);
-  color: #000000;
-  font-weight: bold;
-  font-size: 1.1rem;
-}/* Remove bottom border on last row */.compare-chart__grid > .compare-chart__cell:nth-last-child(-n+3) {
-  border-bottom: none;
-}/* Zebra-stripe every other row to aid readability */.compare-chart__grid > .compare-chart__cell:nth-child(n+4):nth-child(odd) {
-  background: #000000;
-}/* Responsive: switch to single-col on narrow screens */@media (max-width: 600px) {
-  .compare-chart__grid {
-    grid-template-columns: 1fr;
+  line-height: 1.6;
+  opacity: 0.95;
+  color: #fff;
+  max-width: 100%;
+}
+
+/* RESPONSIVE FIXES */
+@media (max-width: 992px) {
+  .hero-inner {
+    width: 60%;
+    margin-left: 5%;
   }
-  .compare-chart__cell--header {
-    text-align: left;
+  .hero .section-copy {
+    font-size: 0.9rem !important;
   }
-  .compare-chart__cell {
-    border-right: none !important;
-    text-align: left;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 550px;
+    justify-content: center;
   }
-}/* Make headers white, Tilt Warp, with a gradient underline */.compare-chart__cell--header {
-  background: none;                      /* drop the gradient box */
-  color: #fff;                           /* white text */
-  font-family: 'Tilt Warp', sans-serif; /* match your section titles */
-  font-size: 1.1rem;
-  position: relative;
-  padding-bottom: 1.5rem;               /* give room for the underline */
-}/* Underline with your gradient bar */.compare-chart__cell--header::after {
-  content: '';
-  position: absolute;
-  left: 1rem;       /* inset from the sides */
-  right: 1rem;
-  bottom: 0.5rem;   /* just below text */
-  height: 6px;      /* thickness of underline */
-  background: var(--bar-gradient);
-  border-radius: 3px;
-}/* Remove any leftover borders so the underline stands out */.compare-chart__cell--header {
-  border-bottom: none;
-}/* Increase body cell text */.compare-chart__cell {
-  font-size: 1.5rem;   /* ~20px */
-}/* Increase header text */.compare-chart__cell--header {
-  font-size: 2rem;    /* ~24px */
-}/* 2) On hover, apply grayscale + slight dim *//* === Do NOT place paragraph over the map (≤1500px) === */@media (max-width: 1500px) {
-  .location-section { 
-    display: block !important;
-    margin-bottom: 6rem !important; /* breathing room before table */
+  .hero .section-copy {
+    font-size: 0.8rem !important;
   }
-  .location-image { 
-    display: block !important; 
-    position: static !important; 
-    margin: 0 auto 2rem auto !important; 
+  .hero::before {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+  }
+
+  .hero-inner {
+    width: 90%;
+    margin-left: 0;
     text-align: center;
   }
-  .location-image img { 
-    display: inline-block !important;
-    width: min(900px, 92vw) !important; 
-    height: auto !important; 
-  }
-  .location-copy { 
-    display: block !important; 
-    position: static !important; 
-    max-width: 800px !important; 
-    margin: 0 auto !important; 
-    padding: 0 20px !important;
-  }
-  .location-copy .location-headline,
-  .location-copy .copy { 
-    position: static !important; 
-    max-width: 800px !important; 
-    margin-left: auto !important; 
-    margin-right: auto !important; 
-  }
-  .location-copy .copy { 
-    margin-top: 1rem;
-    text-align: left;
-    margin-left: auto !important;
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
-    hyphens: auto;
-  }
-}/* ===== Fix: Center the Close‑Knit paragraph and keep it within screen ===== */@media (min-width: 0px) {
-  /* Override the generic .copy absolute rules ONLY inside the location section */
-  .location-copy .copy {
-    position: static !important;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
 
-    /* container sizing */
-    max-width: 800px !important;
-    width: 100% !important;
+  .hero .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* ===== Qualifications ===== */
+/* === OUR QUALIFICATIONS SECTION === */
+.qualifications {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+/* Title styling */
+.qualifications .section-title {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.qualifications .section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.6rem;
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9),
+    rgba(239,118,22,0.9),
+    rgba(240,17,95,0.9)
+  );
+  border-radius: 1000px;
+}
+
+/* Layout grid: 2 columns */
+.qualifications-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+/* Each vertical column */
+.qualifications-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Cards inside each column */
+.qualifications-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Card boxes */
+.qualifications-cards .card {
+  width: 180px;
+  height: 180px;
+  border: 3px solid #ff007f;
+  border-radius: 16px;
+  background: transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qualifications-cards .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+}
+
+/* Arrows */
+.arrow {
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.arrow:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .qualifications-grid {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .qualifications-cards .card {
+    width: 150px;
+    height: 150px;
+  }
+
+  .qualifications .section-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* === WHAT WE PROVIDE SECTION (Top-Right Placement with Original Shading) === */
+.provide {
+  position: relative;
+  display: flex;
+  align-items: flex-start; /* moves content upward */
+  justify-content: flex-end; /* moves content to the right side */
+  min-height: 700px;
+  background: url('../images/Scateam.png') center/cover no-repeat;
+  color: #fff;
+  overflow: hidden;
+  padding: 5rem 6rem 3rem 2rem; /* spacing top-right-bottom-left */
+}
+
+/* Keep original top-to-bottom dark shading */
+.provide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.85) 0%,   /* dark at top */
+    rgba(0, 0, 0, 0.4) 40%,   /* mid fade */
+    rgba(0, 0, 0, 0.1) 80%,   /* light near bottom */
+    rgba(0, 0, 0, 0) 100%     /* clear bottom */
+  );
+  z-index: 1;
+}
+
+/* Put the content box in the top-right corner */
+.provide .provide-inner {
+  position: absolute !important;
+  top: clamp(48px, 8vh, 96px) !important;         /* raise up a bit */
+  right: clamp(24px, 5vw, 96px) !important;       /* hug the right */
+  max-width: min(720px, 90vw) !important;         /* keep tidy width */
+  text-align: right !important;                   /* right-align text */
+  margin: 0 !important;                           /* cancel centering from .container */
+  padding: 0 !important;
+  z-index: 2 !important;
+}
+
+/* Extend underline to match full title width */
+.provide .section-title {
+  display: inline-block;
+  text-align: right;
+  position: relative;
+  right: 0 !important;
+}
+
+.provide .section-title::after {
+  content: "";
+  position: absolute;
+  right: 0 !important; /* align underline flush to the right edge */
+  left: auto;
+  bottom: -0.6rem;
+  height: 8px; /* thicker, smoother bar */
+  width: 100%; /* extend fully under the title */
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 0%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 100%
+  );
+  border-radius: 1000px;
+}
+
+/* Paragraphs: right-align and fill the box width */
+.provide .section-copy {
+  text-align: right !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* Responsive: center on phones for readability */
+@media (max-width: 900px) {
+  .provide .section-title {
+    display: inline-block;
+    text-align: right;
+    position: relative;
+  }
+  .provide .section-copy {
+    text-align: right !important;
     margin: 0 auto !important;
-    padding: 0 20px !important;
+    font-size: medium !important;
+  }
+}
 
-    /* text layout */
-    text-align: center !important;      /* center text as requested */
-    font-size: clamp(18px, 1.8vw, 24px) !important;
-    line-height: 1.55 !important;
-
-    /* robust wrapping */
-    word-break: normal !important;
-    overflow-wrap: anywhere !important;
-    hyphens: auto !important;
+@media (max-width: 600px) {
+  .provide .section-title {
+    display: inline-block;
+    text-align: right;
+    position: relative;
   }
-}/* Extra breathing room below the Close‑Knit paragraph */.location-copy .copy {
-  margin-bottom: clamp(24px, 3.5vw, 56px) !important;
-}/* ===== Keep comparison table in 3-column format on all widths ===== */@media (max-width: 900px) {
-  .compare-chart__grid {
-    display: grid !important;
-    grid-template-columns: 0.9fr 1fr 1fr !important; /* slightly narrower Features column */
-    column-gap: 0.5rem !important;
-    row-gap: 0.5rem !important;
-  }
-  /* Ensure headers + features column stay visible (undo any old mobile rules) */
-  .compare-chart__cell--header { display: block !important; text-align: center; }
-  .compare-chart__cell:nth-child(n+4):nth-child(3n+1) { display: block !important; }
-  /* Remove any injected labels/lines that were used on earlier mobile treatments */
-  .compare-chart__cell:not(.compare-chart__cell--header)::before,
-  .compare-chart__cell:not(.compare-chart__cell--header)::after { content: none !important; display: none !important; }
-
-  /* Tighter, readable sizing on phones while preserving rows */
-  .compare-chart__cell { 
-    font-size: 0.95rem !important;
-    line-height: 1.35 !important;
-    padding: 0.5rem 0.35rem !important;
-    border: none !important;
-  }
-  .compare-chart__cell--header {
-    font-size: 1.05rem !important;
-    padding: 0.6rem 0.35rem 0.8rem !important;
-  }
-}/* === DESKTOP/LAPTOP underline fixes === */@media (min-width: 601px) {
-  /* Make headline boxes shrink to their text so ::after matches the text width */
-  .hero-headline,
-  .location-headline {
-    display: inline-block !important;
-    width: auto !important;
-    margin: 0 auto !important;       /* keep centered */
-  }
-
-  /* Remove the wide overhang on big screens */
-  .hero-headline::after,
-  .location-headline::after {
-    left: 0 !important;
+  .provide .section-copy {
+    text-align: right !important;
+    margin: 0 auto !important;
+    font-size: small !important;
+    width: 100% !important;
     right: 0 !important;
   }
-
-  /* Bring the Close-Knit underline up closer to the text */
-  #loc-headline {                     /* “A CLOSE-KNIT COMMUNITY” */
-    padding-bottom: 0.2rem !important;  /* was ~0.5rem */
-  }
-}@media (min-width: 601px) {
-  #loc-headline {
-    display: inline-block !important;      /* shrink to text width */
-    padding-bottom: 0.35rem !important;    /* pull underline closer */
-    margin-bottom: 0.75rem !important;     /* keep some gap below */
-    /* kill the wide overhang only for this headline */
-    --partnerships-underline-overhang: 0rem;
-  }
-  #loc-headline::after {
-    left: 0 !important;
-    right: 0 !important;                   /* match the text width */
-    bottom: 0 !important;
-  }
-}/* ===== FINAL: Close-Knit underline sits right under the headline ===== */@media (min-width: 601px) {
-  h1.location-headline#loc-headline {
-    position: relative !important;
-    display: inline-block !important;   /* shrink box to text width */
-    width: auto !important;
-    text-align: center !important;
-    padding-bottom: 0.28rem !important; /* put line tight under letters */
-    margin: 0 auto 1.0rem !important;   /* space between headline and paragraph */
-    /* kill any inherited overhang that makes the line too long */
-    --partnerships-underline-overhang: 0 !important;
-  }
-  h1.location-headline#loc-headline::after {
-    content: "" !important;
-    position: absolute !important;
-    bottom: 0 !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;  /* center under the text */
-    width: 100% !important;                  /* exactly the heading width */
-    height: var(--partnerships-underline-height) !important;
-    background: var(--bar-gradient) !important;
-    border-radius: var(--partnerships-underline-radius) !important;
-  }
-}/* Phone / small tablets: same behavior */@media (max-width: 600px) {
-  h1.location-headline#loc-headline {
-    position: relative !important;
-    display: inline-block !important;
-    width: auto !important;
-    padding-bottom: 0.22rem !important;
-    margin: 0 auto 0.85rem !important;
-    --partnerships-underline-overhang: 0 !important;
-  }
-  h1.location-headline#loc-headline::after {
-    content: "" !important;
-    position: absolute !important;
-    bottom: 0 !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 100% !important;
-    height: 6px !important;                 /* slightly thinner on phones */
-    background: var(--bar-gradient) !important;
-    border-radius: 999px !important;
-  }
 }
 
-
-/* === VEX compare (two-column) — screenshot-accurate layout === */
-.vex-compare{
-  margin: 8rem auto 4rem;
-  max-width: 1100px;
-  padding: 0 1rem;
-}
-.compare-headline{
-  font-family:'Tilt Warp',sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  text-align:center;
-  white-space: nowrap;
-  margin-bottom: 2rem;
-}
-.compare-headline .vs{
-  font-family:'Instrument Sans',sans-serif;
-  font-size: clamp(1rem, 3vw, 1.4rem);
-  margin: 0 1rem;
-  opacity:.9;
-}
-.compare-body{
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  gap: clamp(1.5rem, 5vw, 4rem);
-}
-.compare-body .column{
-  display:flex;
-  flex-direction:column;
-  gap: var(--compare-para-gap, 1.25rem);
-  max-width: 480px;
-}
-.compare-body .column.left{
-  align-items:flex-start;
-  text-align:left;
-}
-.compare-body .column.right{
-  align-items:flex-end;
-  text-align:right;
-}
-.compare-body .column p{
-  font-size: clamp(1rem, 1.4vw, 1.25rem); /* keep larger readable size */
-  line-height: 1.55;
-}
-.vex-bar-vertical{
-  width: var(--compare-bar-width, 20px);
-  height: var(--compare-bar-height, 360px);
-  background: var(--compare-bar-gradient);
-  border-radius: 999px;
-}
-@media (max-width: 900px){
-  .compare-body{
-    gap: 2rem;
-    padding: 0 0.5rem;
-  }
+/* ------ Responsive tweaks ------ */
+@media (max-width:900px){
+  .section{min-height:560px;padding:80px 0}
+  .section .section-title{font-size:36px}
+  .hero .section-title{font-size:32px}
 }
 
+@media (max-width:600px){
+  .section{padding:64px 0}
+  .section .section-title{font-size:30px}
+  .section .section-copy{font-size:16px}
+  .cards-viewport{height:460px}
+}
 
-
-/* === Fix vertical bar to span full column height, below headline === */
-.vex-compare{
+.stats-section {
+  text-align: center;
+  margin: 4rem 0;
   position: relative;
 }
-.compare-body{
-  position: relative;
-  align-items: stretch; /* ensure columns stretch equally */
+
+.stats-gradient {
+  height: 6px; /* line thickness */
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: 1000px;
 }
-.vex-bar-vertical{
-  position: relative;
-  align-self: stretch;  /* stretch to full height of .compare-body */
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  height: auto !important;
+.site-footer .logo {
+  background: url('../images/logo.png') center/cover no-repeat;
 }
-
-
-
-/* === Override: make center gradient bar match full column height (not the title) === */
-.vex-compare .compare-body{
-  align-items: stretch !important;   /* stretch items to tallest column */
+.site-footer .footer-copy {
+  font-size: 24px;
+  font-weight: 1000 !important;
+  margin: 0 0 8px 0;
 }
-.vex-compare .vex-bar-vertical{
-  height: auto !important;           /* let flex define the height */
-  align-self: stretch !important;    /* ensure the bar stretches */
-  border-radius: 999px !important;   /* keep pill shape */
+.site-footer .footer-sub {
+  font-size: 18x;
+  font-weight: 1200 !important;
+  line-height: 16px;
+  opacity: 0.8;
+  margin-right: 2px;
 }
-
-
-
-/* === Fix: Ensure vertical bar stretches fully even on thin screens === */
-@media (max-width: 600px){
-  .vex-compare .compare-body{
-    align-items: stretch !important;
-  }
-  .vex-compare .vex-bar-vertical{
-    height: auto !important;
-    min-height: 100% !important;  /* enforce full column height */
-    flex-shrink: 0 !important;
-  }
-}
-
-
-
-/* === Strong override: make the vertical gradient bar match the tallest column === */
-.vex-compare .compare-body{ 
-  align-items: stretch !important;        /* stretch all three items to same height */
-}
-.vex-compare .compare-body .vex-bar-vertical{
-  height: auto !important;                /* cancel fixed var height */
-  align-self: stretch !important;         /* ensure it stretches with the row height */
-  flex: 0 0 var(--compare-bar-width, 20px) !important;  /* fixed width, no shrink */
-  margin-top: 0 !important;               /* ignore offset so it starts with columns */
-  margin-bottom: 0 !important;
-  border-radius: 999px !important;
-}
-/* Tidy paragraph margins so column height is consistent */
-.vex-compare .compare-body .column p{
-  margin: 0 !important;
-}
-
