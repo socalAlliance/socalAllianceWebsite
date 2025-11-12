@@ -72,7 +72,7 @@
   object-fit: cover;
 }.feature::before{
       content:"";position:absolute;inset:0;
-      background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.25));z-index:1
+      z-index:1
     }.feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.95) brightness(.85)}.feature .copy{
       position:relative;z-index:2;color:#fff;padding:26px;display:flex;flex-direction:column;gap:10px;height:100%;justify-content:flex-end
     }.feature h3{font-family:'Tilt Warp',system-ui,sans-serif;font-size:clamp(22px,3.2vw,30px);letter-spacing:.3px}.feature p{opacity:.9;max-width:52ch}/* TIMELINE SECTION *//* 1) Choose one unified X-offset for line & arrows *//* 1) Define shared positions on the .timeline container */.timeline {
@@ -333,4 +333,64 @@
     rgba(240,17,95,0.9) 77%
   );
   border-radius: var(--partnerships-underline-radius, 1000px);
+}
+
+.stats-section {
+  text-align: center;
+  margin: 4rem 0;
+  position: relative;
+}
+
+.stats-gradient {
+  height: 6px; /* line thickness */
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: 1000px;
+}
+.site-footer .logo {
+  background: url('../images/logo.png') center/cover no-repeat;
+}
+.site-footer .footer-copy {
+  font-size: 24px;
+  font-weight: 1000 !important;
+  margin: 0 0 8px 0;
+}
+.site-footer .footer-sub {
+  font-size: 18x;
+  font-weight: 1200 !important;
+  line-height: 16px;
+  opacity: 0.8;
+  margin-right: 2px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+.feature {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+}
+.feature::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: transparent; /* removed dark overlay */
+  z-index:1;
+}
+.feature .copy {
+  justify-content: flex-end;
+  padding: 26px;
+}
+.feature-btn {
+  font-family: 'Tilt Warp', sans-serif;
+  font-size: clamp(22px,3vw,30px);
+  background: rgba(0,0,0,0.4);
+  border-image: linear-gradient(90deg, #F9CB22 23%, #EF7616 50%, #F0115F 77%) 1;
 }
