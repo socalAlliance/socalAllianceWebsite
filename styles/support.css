@@ -153,8 +153,9 @@
   text-align: left;
 }/* buttons row *//* ensure the wrapper exists */.support-buttons {
   display: inline-flex;
-  gap: 1.5rem;               /* keeps space between the two icons */
-  margin: 1.5rem 0;
+  margin-left: 0;
+  gap: 0rem;               /* keeps space between the two icons */
+  margin: 0 0rem;
 }.support-buttons img {
   height: 60px;
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -167,7 +168,8 @@
   }
   .support-buttons {
     flex-direction: column;
-    gap: 1rem;
+    align-items: baseline;
+    gap: 0rem;
   }
 }/* bold the label text & size it */.support-label {
   display: inline-block;
