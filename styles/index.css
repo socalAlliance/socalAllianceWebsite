@@ -183,24 +183,26 @@
 }.hero-text {
   font-family: 'Tilt Warp', sans-serif;
   font-weight: 100;
-  font-size: 48px;   /* smaller global size */
+  font-size: 48px;
   line-height: 1.1;
   position: absolute;
-  top: 5%;
-  right: 20%;
-  left: 20%;
-  bottom: auto;
-  margin: 0;
-  padding: 0.1em 0.1em;
+  left: 50%;
+  top: 15%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 700px;
   text-align: center;
   color: #fff;
-  border-radius: 0px;
   z-index: 2;
-  white-space: normal;
-  max-width: 60vw;
-}@media (max-width: 600px) {
+}
+@media (max-width: 600px) {
   .hero-text {
     font-size: 32px; /* smaller on phones */
+  }
+}@media (max-width: 640px) {
+  .hero-text {
+    font-size: 28px; /* smaller on phones */
+    align-self: center;
   }
 }@media (max-width: 900px) {
   .hero-text {
