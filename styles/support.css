@@ -58,21 +58,28 @@
 }/* WHY SUPPORT US */.support-why {
   background-image:
     linear-gradient(
-      360deg,
-      rgba(0,0,0,0)   -10%,
-      rgba(0,0,0,0.8) 25%,
-      #000            100%
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.4) 70%,
+      rgba(0, 0, 0, 0.2) 100%
     ),
     url('../images/whysupport.png');
-  background-size:    var(--support-bg-size);
-  background-position: var(--support-bg-pos-x) var(--support-bg-pos-y);
-  background-repeat:  no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 
-  padding: 2rem 8% 14rem;
-  text-align: center;
-  position: relative;
   color: #fff;
-}/* ensure your text sits above that gradient layer */.support-why > * {
+  text-align: center;
+  padding: 1rem 5% 4rem; /* added more space at top */
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* move text to top */
+  align-items: center;
+  position: relative;
+}
+/* ensure your text sits above that gradient layer */.support-why > * {
   position: relative;
   z-index: 1;
 }.support-why h2::after {
@@ -217,6 +224,7 @@
   transform: translateY(-4px);
 }.support-tiers .tier h3 {
   font-size: 1.3rem;
+  font-weight: 1000 !important;
   margin-bottom: 0.25rem;
 }.support-tiers .tier-amount {
   font-size: 1.25rem;
@@ -231,7 +239,7 @@
   line-height: 1.4;
   margin: 0;
   padding: 0;
-}/* OUTLINE COLORS */.tier-red { border-color: #E70000; }.tier-yellow { border-color: #F9CB22; }.tier-orange { border-color: #EF7616; }.tier-pink   { border-color: #F0115F; }/* RESPONSIVE STACK */@media (max-width: 700px) {
+}/* OUTLINE COLORS */.tier-onyx { border-color: #2A2A2A; }.tier-gold { border-color: #F9CB22; }.tier-amber { border-color: #EF7616; }.tier-pink   { border-color: #F0115F; }/* RESPONSIVE STACK */@media (max-width: 700px) {
   .support-tiers { flex-direction: column; gap: 1rem; margin: 2rem 4%; }
 }/* SECTION + TITLE */.sponsor-carousel-section {
   margin: 4rem 8%;
@@ -339,3 +347,48 @@
     width: calc(2 * var(--s-logo-w) + 1 * var(--s-gap));
   }
 }/* Tier borders — ensure they win in the cascade */.sponsor-logo.tier-yellow { border-color: #F9CB22 !important; }.sponsor-logo.tier-orange { border-color: #EF7616 !important; }.sponsor-logo.tier-pink   { border-color: #F0115F !important; }/* === Extracted from support.html (style id="nav-left-hotfix") === *//* === NAV alignment + size hotfix (match index fix) === */
+
+.stats-section {
+  text-align: center;
+  margin: 4rem 0;
+  position: relative;
+}
+
+.stats-gradient {
+  height: 6px; /* line thickness */
+  background: linear-gradient(
+    90deg,
+    rgba(249,203,34,0.9) 23%,
+    rgba(239,118,22,0.9) 50%,
+    rgba(240,17,95,0.9) 77%
+  );
+  border-radius: 1000px;
+}
+.site-footer .logo {
+  background: url('../images/logo.png') center/cover no-repeat;
+}
+.site-footer .footer-copy {
+  font-size: 24px;
+  font-weight: 1000 !important;
+  margin: 0 0 8px 0;
+}
+.site-footer .footer-sub {
+  font-size: 18x;
+  font-weight: 1200 !important;
+  line-height: 16px;
+  opacity: 0.8;
+  margin-right: 2px;
+}
+
+.support-hero {
+  background: url('../images/YOUR_IMAGE_NAME.jpg') center center / cover no-repeat;
+  background-attachment: fixed; /* optional for a parallax effect */
+  color: white;
+  padding: 120px 8%; /* adjust spacing around text */
+  min-height: 100vh; /* ensures it fills the viewport */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
