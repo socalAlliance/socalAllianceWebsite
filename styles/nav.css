@@ -27,7 +27,7 @@
     margin-left:0;
   }
   .sca-nav #site-nav a{
-    color:#fff; text-decoration:none; font-weight:900; white-space:nowrap; line-height:1.2;
+    color:#FFFFFF; text-decoration:none; font-weight: 100 !important; white-space:nowrap; line-height:1.2;
     letter-spacing:.02em;
   }
   .sca-nav #site-nav a:hover{ opacity:.8; }
@@ -63,7 +63,7 @@
     justify-content: flex-start !important;
     align-items: center !important;
     margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-right: 40px !important;
     gap: 40px !important;   /* unified link spacing */
   }
 }
@@ -74,13 +74,13 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
     margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-right: 40px !important;
     gap: var(--nav-gap) !important;
     flex: 0 0 auto !important;
   }
   .sca-nav #site-nav > a{
     margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-right: 40px !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
@@ -166,3 +166,16 @@
 /* Safety: the button can never render a bullet */
 .nav-toggle, .nav-toggle *{ list-style: none !important; }
 .nav-toggle::marker{ content: "" !important; }
+
+#site-nav a {
+  margin-right: 15px !important; /* space between links */
+  font-weight: 100 !important;
+}
+#site-nav a:last-child {
+  margin-right: 0; /* optional: remove last gap */
+}
+
+.sca-nav #site-nav a {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 400 !important;
+}
