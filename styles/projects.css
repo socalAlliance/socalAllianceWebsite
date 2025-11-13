@@ -11,11 +11,16 @@
     line-height: 1.2;
   }
 }/* === Projects buttons: consistent fit & alignment === */.features { align-items: stretch; }.feature { position: relative; }/* Ensure inner content uses equal padding and sits on the bottom */.feature .copy{
-  padding: clamp(16px, 4vw, 26px) !important;
+  position: relative;
+  z-index: 2;
+  height: 100%;  
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-end !important;
-  height: 100% !important;
+  justify-content: center !important;   /* ⬅ centers vertically */
+  align-items: center !important;       /* ⬅ centers horizontally */
+  text-align: center !important;
+  gap: 14px;
+  padding: 20px;
 }/* Remove extra spacing around the heading and keep the box centered */.feature h3{ margin: 0 !important; }/* Make the button box fit within its tile with equal padding */.feature-btn{
   display: block !important;
   width: 100% !important;
@@ -395,6 +400,15 @@
   border-image: linear-gradient(90deg, #F9CB22 23%, #EF7616 50%, #F0115F 77%) 1;
 }
 
+.feature .copy p {
+  font-size: 1.15rem !important;       /* smaller text */
+  line-height: 1.25 !important;       /* tighter spacing */
+  max-width: 90% !important;          /* prevent wide paragraphs */
+  margin-top: 6px !important;         /* small spacing from button */
+  text-align: center !important;      /* keep centered below button */
+}
+
+
 @media (max-width: 480px){
   .feature-btn {
     font-size: 1rem !important;      /* caps size so text never overflows */
@@ -404,5 +418,42 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    font-size: 10px !important;
+  }
+}
+
+/* === FINAL MOBILE BUTTON FIX === */
+@media (max-width: 600px){
+  .feature-btn {
+    font-size: 0.85rem !important;   /* smaller text */
+    padding: 0.55em 0.9em !important; /* smaller button box */
+    line-height: 1.15 !important;
+    max-width: 90% !important;        /* keeps long text from stretching */
+    white-space: normal !important;   /* ALWAYS allow wrapping */
+    word-break: break-word !important;
+    font-size: 12px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .feature .copy p {
+    font-size: 0.8rem !important;       /* smaller text */
+    line-height: 1.25 !important;       /* tighter spacing */
+    max-width: 90% !important;          /* prevent wide paragraphs */
+    margin-top: 6px !important;         /* small spacing from button */
+    text-align: center !important;      /* keep centered below button */
+  }
+}
+
+/* ultra-small phones (iPhone SE, Galaxy Mini, etc.) */
+@media (max-width: 380px){
+  .feature-btn {
+    font-size: 0.75rem !important;
+    padding: 0.45em 0.8em !important;
+    font-size: 8px !important;
+  }
+  .feature .copy p {
+    font-size: 0.72rem !important;
+    line-height: 1.2 !important;
   }
 }
