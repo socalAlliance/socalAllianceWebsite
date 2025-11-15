@@ -50,8 +50,8 @@
 <h1>OUR MISSION</h1>
 <div class="mission-line" style="height:6px;background-image:linear-gradient(90deg,rgba(249,203,34,.9) 0%,rgba(239,118,22,.9) 50%,rgba(240,17,95,.9) 100%);border-radius:3px;margin:20px 0;"></div>
 <p>
-        Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
-      </p>
+Founded by student competitors and alumni of the VEX Robotics program, our nonprofit alliance supports schools and robotics teams by providing knowledge-sharing resources, educational videos, and essential funding for our community across VEXU, V5RC, and several other programs. We are dedicated to building a stronger, more inviting community for students one team at a time.
+</p>
 <div class="btn-row">
   <a class="btn-outline" href="../support/index.html">DONATE NOW →</a>
 </div>
@@ -59,11 +59,11 @@
 </section>
 <div class="stats-gradient"></div>
 <!-- Integrated Approach -->
-<div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;">
+<div class="integrated-approach">
+<div class="integrated-bar meet-bar partnerships-banner" style="display:flex;justify-content:center;align-items:center;z-index: 10;">
 <h2>OUR BRANCHES</h2>
 </div>
-<div class="integrated-approach">
-<div class="background-effects"></div>
+<div class="background-effects" style="height: 100vh;"></div>
 <div class="bg-split">
 <div class="bg-split__half bg-split__left"></div>
 <div class="bg-split__half bg-split__right"></div>
@@ -223,10 +223,9 @@
     // add a little breathing room for shadows/padding
     var pad = 100;
     var target = h + pad;
-    bg.style.minHeight = target + 'px';
     if(fx){ fx.style.minHeight = target + 'px'; }
     // also ensure host accommodates content if it used fixed heights
-    host.style.minHeight = target + 'px';
+    host.style.minHeight = Math.min(target, 600) + 'px';
   }
 
   // Observe container size changes

@@ -61,8 +61,7 @@
   margin-bottom: 0 !important;  /* avoid giant gap before next section */
 }/* The animated/hero image element becomes a real background layer */.mission-gif{
   position: absolute !important;
-  top: 0; left: 50%;
-  transform: translateX(-50%);   /* center horizontally */
+  top: 0; left: 25%;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -152,8 +151,8 @@
   left: 50% !important;
   top: 0 !important;
   transform: translateX(-50%) !important;
-  width: 80% !important;   /* scale to 0.8 */
-  height: auto !important; /* keep aspect */
+  width: auto !important;   /* scale to 0.8 */
+  height: 100% !important; /* keep aspect */
   object-fit: contain !important;
   object-position: center center !important;
   z-index: 0 !important;
@@ -304,7 +303,7 @@
       --partnerships-underline-offset:.5rem;
       --bar-left:0px; --bar-top:0px; --bar-width:200px; --bar-height:6px; --bar-radius:3px;
       --bar-gradient:linear-gradient(90deg, rgba(249,203,34,.9) 23%, rgba(239,118,22,.9) 50%, rgba(240,17,95,.9) 77%);
-    }.gradient-bar{ position:absolute; left:var(--bar-left); top:var(--bar-top); width:var(--bar-width); height:var(--bar-height); background:var(--bar-gradient); border-radius:var(--bar-radius); }.mission-section{ position:relative; height:550px; overflow:visible; margin-bottom:4rem; }.mission-gif{ position:absolute; top:-2%; left:var(--mission-gif-offset-x); width:800px; height:auto; filter:blur(4px); opacity:.35; pointer-events:none; z-index:1; }.mission-copy{ position:absolute; top:var(--mission-copy-offset-y); left:var(--mission-copy-offset-x); transform:translate(-50%,-50%); z-index:2; max-width:45%; }.mission-copy .btn-row{ display:flex; flex-direction:column; gap:1.25rem; align-items:flex-start; margin-top:1rem; }.mission-copy h1{ font-family:'Tilt Warp',sans-serif; font-size:60px; line-height:1.2; margin-bottom:1rem; }.mission-copy p{ font-size:24px; line-height:1.4; margin-bottom:1.5rem; }.btn-outline{
+    }.gradient-bar{ position:absolute; left:var(--bar-left); top:var(--bar-top); width:var(--bar-width); height:var(--bar-height); background:var(--bar-gradient); border-radius:var(--bar-radius); }.mission-section{ position:relative; height:auto; overflow:visible; margin-bottom:4rem; }.mission-gif{ position:absolute; top:-2%; left:var(--mission-gif-offset-x); width:800px; height:auto; filter:blur(4px); opacity:.35; pointer-events:none; z-index:1; }.mission-copy{ position:absolute; top:var(--mission-copy-offset-y); left:var(--mission-copy-offset-x); transform:translate(-50%,-50%); z-index:2; max-width:45%; }.mission-copy .btn-row{ display:flex; flex-direction:column; gap:1.25rem; align-items:flex-start; margin-top:1rem; }.mission-copy h1{ font-family:'Tilt Warp',sans-serif; font-size:60px; line-height:1.2; margin-bottom:1rem; }.mission-copy p{ font-size:24px; line-height:1.4; margin-bottom:1.5rem; }.btn-outline{
       position:relative; font-family:'Tilt Warp',sans-serif; font-size:30px;
       text-transform:uppercase; padding:3px; color:#fff; border-radius:8px;
       display:inline-block; background:transparent; border:2px solid transparent;
@@ -464,8 +463,16 @@
         margin-bottom: 2rem !important;
         padding-bottom: 1rem !important;
       }
-    }/* Split background images */.bg-split{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }.bg-split__half{ float:left; width:50%; height:100%; background-size:cover; background-position:center; }.bg-split__left{
-      background-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%), url('../images/spectators.png');
+    }/* Split background images */.bg-split {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; /* Full container height */
+      pointer-events: none;
+      z-index: 0;
+    }.bg-split__half{ float:left; width:50%; height:100%; background-size:cover; background-position:center; }.bg-split__left{
+      background-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 45%), url('../images/spectators.png');
       background-repeat: no-repeat, no-repeat;
       background-position: left center, center;
       background-size: 200% 100%, cover;
@@ -867,7 +874,7 @@
   gap: 1.75rem;
 }.hero-headline {
   position: relative !important;
-  top: auto !important; left: auto !important;
+  top: 20px !important; left: auto !important;
   transform: none !important;
   margin-top: 1rem !important;
   text-align: center !important;
@@ -2033,4 +2040,58 @@
 @media (max-width: 768px) {
   .community-gallery .arrow.prev { left: -40px; }
   .community-gallery .arrow.next { right: -40px; }
+}
+
+/* Make mission section a stacking context so the GIF stays inside it */
+.mission-section {
+  position: relative;
+  overflow: hidden; /* prevents GIF from leaking downward */
+  height: 600px !important;  /* set a height for the mission section */
+}
+
+/* Ensure GIF stays behind ONLY mission content */
+.mission-gif {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0; /* instead of -1 */
+}
+
+/* Raise mission text above the GIF */
+.mission-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.mission-line {
+  height: 6px;
+  border-radius: 3px;
+  margin: 20px 0;
+  background-image: linear-gradient(90deg, #F9CB22, #EF7616, #F0115F);
+}
+
+.integrated-approach,
+.background-effects,
+.bg-split {
+    min-height: 0 !important;
+    top: 0 !important;
+}
+
+.integrated-approach {
+  min-height: auto;
+  padding-bottom: 200px; /* if needed */
+  position: relative;
+}
+
+.background-effects,
+.bg-split {
+    height: 100% !important;
+    top: 0 !important;
+}
+
+.integrated-approach {
+    height: auto !important;
 }
