@@ -2115,11 +2115,27 @@
 }
 
 @media (max-width: 1000px) {
+  .mission-copy h1 { font-size: 2rem !important; }
+  .mission-copy p { font-size: larger !important; }
+  .mission-copy a { font-size: 1.5rem !important; }
+}
+
+@media (max-width: 750px) {
+  .mission-copy h1 { font-size: 1.5rem !important; }
+  .mission-copy a { font-size: 1.15rem !important; } 
   .mission-copy p { font-size: larger !important; }
 }
 
 @media (max-width: 500px) {
-  .mission-copy p { font-size: large !important; }
+  .mission-copy h1 { font-size: 1.35rem !important; }
+  .mission-copy a { font-size: 1.2rem !important; }
+  .mission-copy p { font-size: small !important; }
+}
+
+@media (max-width: 250px) {
+  .mission-copy h1 { font-size: 1.15rem !important; }
+  .mission-copy a { font-size: 1rem !important; }
+  .mission-copy p { font-size: x-small !important; }
 }
 
 @media (max-width: 1000px) {
