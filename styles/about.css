@@ -1,9 +1,4 @@
-/* === Extracted from about.html === *//* stop accidental page-wide sideways scroll */html, body { overflow-x: clip; }/* mission gif: don't exceed viewport width */.mission-gif { width: min(100vw, 780px) !important; }/* triangle section responsive */.triangle-container {
-  width: min(900px, 100%) !important;
-  max-width: 100% !important;
-  overflow: hidden;
-  position: relative;
-}/* labels fix - prevent cut off */.label-text {
+/* === Extracted from about.html === *//* stop accidental page-wide sideways scroll */html, body { overflow-x: clip; }/* mission gif: don't exceed viewport width *//* labels fix - prevent cut off */.label-text {
   font-size: clamp(30px, 2.8vw, 30px);
   white-space: nowrap;
   text-align: center;
@@ -55,25 +50,19 @@
   height:var(--underline-h);
   border-radius: calc(var(--underline-h)/2);
   background-image:linear-gradient(90deg, rgba(249,203,34,.95) 0%, rgba(239,118,22,.95) 50%, rgba(240,17,95,.95) 100%);
-}/* Remove any legacy full-width bars under headings */.mission-line{ display:none !important; }.integrated-bar, .partnerships-banner{ text-align:center; }/* === MISSION SECTION: BACKGROUND BEHIND, CONTENT OVERLAY === */.mission-section{
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 0 !important;  /* avoid giant gap before next section */
-}/* The animated/hero image element becomes a real background layer */.mission-gif{
-  position: absolute !important;
-  top: 0; left: 25%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  pointer-events: none;
-  filter: none !important;        /* keep image original, no dimming */
-}/* Put heading, copy and buttons above the image */.mission-copy{
-  position: relative;
-  z-index: 2;
-  margin-bottom: 0 !important;
-  text-align: center;
-}/* Body text: narrow readable column */.mission-copy p{
+}/* Remove any legacy full-width bars under headings */.mission-line{ display:none !important; }.integrated-bar, .partnerships-banner{ text-align:center; }/* === MISSION SECTION: BACKGROUND BEHIND, CONTENT OVERLAY === */
+/* MISSION SECTION */
+.mission-section {
+    position: relative;
+    overflow: hidden;
+    min-height: 700px;
+    padding: 80px 0;
+    display: flex;
+    justify-content: flex-start; /* keeps left aligned */
+    align-items: center;
+}
+
+/* Body text: narrow readable column */.mission-copy p{
   max-width: 760px;
   margin: 0 auto 16px;
   line-height: 1.45;
@@ -146,24 +135,23 @@
   .tri-mobile .m-arrow::before {
     font-size: 7rem !important;
   }
-}/* === Extracted from about.html (style id="final-overrides") === *//* === FINAL OVERRIDES (alignment, scaling, widths) === *//* 1) Mission background: scale to 0.8 and center */.mission-section { position: relative; overflow: hidden; }.mission-section .mission-gif {
-  position: absolute !important;
-  left: 50% !important;
-  top: 0 !important;
-  transform: translateX(-50%) !important;
-  width: auto !important;   /* scale to 0.8 */
-  height: 100% !important; /* keep aspect */
-  object-fit: contain !important;
-  object-position: center center !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
-}/* Keep the dim overlay */.mission-section::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
+}/* === Extracted from about.html (style id="final-overrides") === *//* === FINAL OVERRIDES (alignment, scaling, widths) === *//* 1) Mission background: scale to 0.8 and center */.mission-section { position: relative; overflow: hidden; }
+.mission-section .mission-gif {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: auto !important;    /* grows properly */
+    height: 100% !important;
 
-  z-index: 1 !important;
-}/* 2) Mission content on top & readable */.mission-copy, .mission-copy * {
+    object-fit: cover !important;
+    object-position: left top !important;
+
+    filter: blur(10px);
+    opacity: 0.45;
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+/* 2) Mission content on top & readable */.mission-copy, .mission-copy * {
   position: relative;
   z-index: 2;
   opacity: 1 !important;
@@ -216,9 +204,6 @@
   top: auto !important;
   left: auto !important;
   transform: none !important;
-  max-width: 760px !important;
-  margin: 0 auto !important;
-  text-align: center !important;
 }.mission-copy .btn-row{
   display: flex !important;
   justify-content: center !important;
@@ -240,19 +225,6 @@
   overflow: visible !important;
   padding-bottom: 24px !important;
   text-align: center !important;
-}/* Keep the GIF behind content, but cap its height responsively.
-   This shrinks it on large screens and prevents spillover. */.mission-gif{
-  position: absolute !important;
-  top: 0 !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: 100% !important;
-  height: auto !important;
-  max-height: clamp(260px, 48vw, 500px) !important; /* smaller on big screens */
-  object-fit: contain !important;
-  object-position: center top !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
 }/* Ensure mission copy sits above and stays centered */.mission-copy{
   position: relative !important;
   z-index: 1 !important;
@@ -291,7 +263,6 @@
   opacity: 1 !important;
   filter: none !important;
   mix-blend-mode: normal !important;
-  text-shadow: 0 0 6px rgba(0,0,0,0.5) !important;
 }/* === Extracted from about.html === *//* — Reset & Base — */* { margin:0; padding:0; box-sizing:border-box; }html, body { width:100%; }body { background:#000; color:#fff; font-family:'Instrument Sans',sans-serif; line-height:1.4; overflow-x:hidden; }a { color:inherit; text-decoration:none; }/* — Sticky Nav — */.logo{ width:81px; height:73px; background:url('../images/logo.png') center/cover no-repeat; margin-right:20px; }nav{ display:flex; gap:40px; }nav a:hover{ opacity:.7; }/* 1) allow transforms on all of these icons *//* 2) scale up on hover *//* 3) preserve your existing Donate hover filter *//* Responsive nav for mobile and tablets *//* —— Mission Section —— */:root{
       --mission-gif-offset-x:10%;
       --mission-copy-offset-x:55%;
@@ -303,7 +274,8 @@
       --partnerships-underline-offset:.5rem;
       --bar-left:0px; --bar-top:0px; --bar-width:200px; --bar-height:6px; --bar-radius:3px;
       --bar-gradient:linear-gradient(90deg, rgba(249,203,34,.9) 23%, rgba(239,118,22,.9) 50%, rgba(240,17,95,.9) 77%);
-    }.gradient-bar{ position:absolute; left:var(--bar-left); top:var(--bar-top); width:var(--bar-width); height:var(--bar-height); background:var(--bar-gradient); border-radius:var(--bar-radius); }.mission-section{ position:relative; height:auto; overflow:visible; margin-bottom:4rem; }.mission-gif{ position:absolute; top:-2%; left:var(--mission-gif-offset-x); width:800px; height:auto; filter:blur(4px); opacity:.35; pointer-events:none; z-index:1; }.mission-copy{ position:absolute; top:var(--mission-copy-offset-y); left:var(--mission-copy-offset-x); transform:translate(-50%,-50%); z-index:2; max-width:45%; }.mission-copy .btn-row{ display:flex; flex-direction:column; gap:1.25rem; align-items:flex-start; margin-top:1rem; }.mission-copy h1{ font-family:'Tilt Warp',sans-serif; font-size:60px; line-height:1.2; margin-bottom:1rem; }.mission-copy p{ font-size:24px; line-height:1.4; margin-bottom:1.5rem; }.btn-outline{
+    }.gradient-bar{ position:absolute; left:var(--bar-left); top:var(--bar-top); width:var(--bar-width); height:var(--bar-height); background:var(--bar-gradient); border-radius:var(--bar-radius); }.mission-section{ position:relative; height:auto; overflow:visible; margin-bottom:4rem; }
+    .mission-copy{ position:absolute; top:var(--mission-copy-offset-y); left:var(--mission-copy-offset-x); transform:translate(-50%,-50%); z-index:2; max-width:45%; }.mission-copy .btn-row{ display:flex; flex-direction:column; gap:1.25rem; align-items:flex-start; margin-top:1rem; }.mission-copy h1{ font-family:'Tilt Warp',sans-serif; font-size:60px; line-height:1.2; margin-bottom:1rem; }.mission-copy p{ font-size:24px; line-height:1.4; margin-bottom:1.5rem; }.btn-outline{
       position:relative; font-family:'Tilt Warp',sans-serif; font-size:30px;
       text-transform:uppercase; padding:3px; color:#fff; border-radius:8px;
       display:inline-block; background:transparent; border:2px solid transparent;
@@ -492,7 +464,6 @@
 
       .mission-section{ height:auto; padding:2rem 1rem; }
       .mission-gif{
-        left:50%; transform:translateX(-50%);
         width:min(120vw,780px); filter:blur(4px);
         position:relative; top:0; margin:0 auto 1rem;
       }
@@ -2046,24 +2017,7 @@
 .mission-section {
   position: relative;
   overflow: hidden; /* prevents GIF from leaking downward */
-  height: 600px !important;  /* set a height for the mission section */
-}
-
-/* Ensure GIF stays behind ONLY mission content */
-.mission-gif {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0; /* instead of -1 */
-}
-
-/* Raise mission text above the GIF */
-.mission-copy {
-  position: relative;
-  z-index: 2;
+  height: 800px !important;  /* set a height for the mission section */
 }
 
 .mission-line {
@@ -2071,13 +2025,6 @@
   border-radius: 3px;
   margin: 20px 0;
   background-image: linear-gradient(90deg, #F9CB22, #EF7616, #F0115F);
-}
-
-.integrated-approach,
-.background-effects,
-.bg-split {
-    min-height: 0 !important;
-    top: 0 !important;
 }
 
 .integrated-approach {
@@ -2094,4 +2041,87 @@
 
 .integrated-approach {
     height: auto !important;
+}
+
+/* --- FINAL MISSION COPY RESET --- */
+.mission-copy {
+    position: relative !important;
+    z-index: 10 !important;
+
+    /* width & alignment like Figma */
+    max-width: 650px !important;
+    width: 100% !important;
+
+    /* push left */
+    margin-left: 5% !important;
+    margin-right: auto !important;
+    text-align: left !important;
+
+    /* remove conflicting transforms */
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+
+    color: white !important;
+}
+
+/* === FINAL FIX FOR MISSION COPY LAYOUT === */
+.mission-copy {
+    position: relative !important;
+    z-index: 2 !important;
+
+    /* ALIGN LEFT LIKE FIGMA */
+    text-align: left !important;
+
+    /* MAKE IT WIDE so it actually expands to the right */
+    max-width: 1100px !important;
+
+    /* SHIFT LEFT */
+    margin-left: 50% !important;
+
+    /* RESET ALL AUTO-CENTERING */
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    transform: none !important;
+}
+
+.mission-copy p {
+    text-align: left !important;
+    max-width: 900px !important;   /* widen the paragraph block */
+    margin-left: 0 !important;      /* push left */
+    margin-right: auto !important;
+    font-size: large !important;
+    width: 100% !important;
+}
+
+.mission-copy {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 10% !important;
+    padding-right: 4rem !important; /* keep spacing away from GIF */
+    text-align: left !important;
+    z-index: 10 !important;
+}
+
+.mission-copy p {
+    max-width: 900px;   /* optional */
+    line-height: 1.55;  /* optional */
+}
+
+@media (min-width: 1000px) {
+  .mission-copy p { font-size: x-large !important; }
+}
+
+@media (max-width: 1000px) {
+  .mission-copy p { font-size: larger !important; }
+}
+
+@media (max-width: 500px) {
+  .mission-copy p { font-size: large !important; }
+}
+
+@media (max-width: 1000px) {
+  .mission-gif { transform: translateX(-20%);}
 }
