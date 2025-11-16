@@ -158,8 +158,8 @@
   filter: none !important;
   mix-blend-mode: normal !important;
   color: #fff !important;
-}/* Body text width: 80% of container */.mission-copy p {
-  width: 80% !important;
+}/* Body text width: 100% of container */.mission-copy p {
+  width: 100% !important;
   max-width: none !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -2091,7 +2091,7 @@
     max-width: 900px !important;   /* widen the paragraph block */
     margin-left: 0 !important;      /* push left */
     margin-right: auto !important;
-    font-size: large !important;
+    font-size: x-large !important;
     width: 100% !important;
 }
 
@@ -2110,34 +2110,64 @@
     line-height: 1.55;  /* optional */
 }
 
-@media (min-width: 1000px) {
-  .mission-copy p { font-size: x-large !important; }
+/* === CLEAN RESPONSIVE MISSION SECTION FIX === */
+@media (max-width: 900px) {
+
+  /* Background image behaves correctly */
+  .mission-gif {
+    height: 100vw !important;
+    width: 100vw !important;
+    left: -100% !important;
+    opacity: 0.35 !important;
+  }
+
+  /* Mission section container */
+  .mission-section {
+    padding: 40px 20px !important;
+    text-align: left !important;
+  }
+
+  /* Text container */
+  .mission-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+
+  /* Heading */
+  .mission-copy h1 {
+    font-size: 4rem !important;
+    text-align: left !important;
+  }
+
+  /* Paragraphs */
+  .mission-copy p {
+    width: 100% !important;
+    font-size: 1.25rem !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+
+  /* Donate button row */
+  .btn-row {
+    justify-content: flex-start !important;
+  }
+
+  .mission-copy a {
+    font-size: 1.5rem !important;
+  }
 }
 
-@media (max-width: 1000px) {
-  .mission-copy h1 { font-size: 2rem !important; }
-  .mission-copy p { font-size: larger !important; }
-  .mission-copy a { font-size: 1.5rem !important; }
-}
-
-@media (max-width: 750px) {
-  .mission-copy h1 { font-size: 1.5rem !important; }
-  .mission-copy a { font-size: 1.15rem !important; } 
-  .mission-copy p { font-size: larger !important; }
-}
-
-@media (max-width: 500px) {
-  .mission-copy h1 { font-size: 1.35rem !important; }
-  .mission-copy a { font-size: 1.2rem !important; }
-  .mission-copy p { font-size: small !important; }
-}
-
-@media (max-width: 250px) {
-  .mission-copy h1 { font-size: 1.15rem !important; }
-  .mission-copy a { font-size: 1rem !important; }
-  .mission-copy p { font-size: x-small !important; }
-}
-
-@media (max-width: 1000px) {
-  .mission-gif { transform: translateX(-20%);}
+@media (max-width: 450px) {
+  .mission-copy p {
+    font-size: 0.8rem !important;
+  }
+  .mission-copy h1 {
+    font-size: 3rem !important;
+  }
+  .mission-copy a {
+    font-size: 1rem !important;
+  }
 }
