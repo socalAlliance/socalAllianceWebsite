@@ -2115,6 +2115,7 @@
 
   /* Background image behaves correctly */
   .mission-gif {
+    max-width: 100% !important;
     height: 100vw !important;
     width: 100vw !important;
     left: -100% !important;
@@ -2169,5 +2170,21 @@
   }
   .mission-copy a {
     font-size: 1rem !important;
+  }
+}
+
+/* FINAL mobile fix — GIF only */
+@media (max-width: 768px) {
+  .mission-section .mission-gif {
+    position: absolute !important;
+    top: 0 !important;
+    left: 15% !important;
+    width: 120% !important;   /* wide enough but not crazy */
+    height: 100% !important;  /* fixes zoom */
+    transform: translateX(-50%) !important;
+    object-fit: cover !important;
+    opacity: 0.35 !important;
+    z-index: 0 !important;
+    overflow: visible !important;
   }
 }
