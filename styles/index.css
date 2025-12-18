@@ -282,7 +282,7 @@
   .sponsor-viewport {
     width: calc(2 * var(--s-logo-w) + 1 * var(--s-gap));
   }
-}/* --- Tier border colors (last in cascade) --- */.sponsor-logo.tier-onyx { border-color: #2A2A2A !important; }.sponsor-logo.tier-amber { border-color: #EF7616 !important; }.sponsor-logo.tier-pink { border-color: #F0115F !important; }/* === Extracted from index.html (style id="nav-left-hotfix") === *//* === NAV alignment + size hotfix (match index fix) === */
+}/* --- Tier border colors (last in cascade) --- */.sponsor-logo.tier-onyx { border-color: #2A2A2A !important; }.sponsor-logo.tier-amber { border-color: #EF7616 !important; }.sponsor-logo.tier-pink { border-color: #F0115F !important; } .sponsor-logo.tier-gold { border-color: #FFD700 !important; }/* === Extracted from index.html (style id="nav-left-hotfix") === *//* === NAV alignment + size hotfix (match index fix) === */
 
 
 /* ====== Founder mobile alignment & spacing (combined fix) ====== */

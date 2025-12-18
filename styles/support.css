@@ -294,7 +294,7 @@
   transform: translateY(0px) scale(1.1);
   box-shadow: 0 8px 20px rgba(0,0,0,.35);
   z-index: 10;
-}/* outlines */.tier-yellow { border-color: #F9CB22; }.tier-orange { border-color: #EF7616; }.tier-pink   { border-color: #F0115F; }/* center title & gradient underline */.carousel-title {
+}/* outlines */.tier-gold { border-color: #FFD700; }.tier-orange { border-color: #EF7616; }.tier-pink   { border-color: #F0115F; }/* center title & gradient underline */.carousel-title {
   display: inline-block;
   position: relative;
   color: #fff;
