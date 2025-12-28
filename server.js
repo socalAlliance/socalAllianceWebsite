@@ -7,6 +7,7 @@ const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
 const allowedOrigins = new Set([
+  "https://socalalliance.org",
   "https://beta.socalalliance.org",
   "https://b1.socalalliance.org",
   "http://localhost:3000",
