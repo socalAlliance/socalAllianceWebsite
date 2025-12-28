@@ -458,3 +458,89 @@
   object-position: 100% center; /* shift the crop toward the right */
 }
 
+.discord-images{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 10px 0 8px;
+  align-items: center; /* helps height:100% behave predictably */
+}
+
+/* Give each grid item a max height so children can use height: 100% */
+.discord-images > *{
+  max-height: 250px;
+}
+
+/* Images + GIFs */
+.discord-img,
+.discord-gif{
+  width: auto;
+  height: 100%;
+  max-height: 250px;
+  max-width: 100%;
+  display: block;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* Videos MUST have width */
+.discord-video{
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  max-width: 100%;
+  display: block;
+  border-radius: 10px;
+  background: #000;
+  object-fit: contain;
+}
+
+/* Desktop tweaks */
+@media (min-width: 1200px){
+  .discord-images{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .discord-images > *{
+    max-height: 180px;
+  }
+
+  .discord-img,
+  .discord-gif,
+  .discord-video{
+    max-height: 180px;
+  }
+}
+
+/* The right newsletter rail */
+.hero-1.hero-split .discord-panel{
+  display: flex;
+  flex-direction: column;
+  min-height: 0;            /* IMPORTANT: allows the child to scroll */
+}
+
+/* The scrolling list */
+.discord-announcements{
+  flex: 1 1 auto;
+  min-height: 0;            /* IMPORTANT: allows overflow scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* choose one of these height caps */
+  max-height: 520px;        /* fixed cap */
+  /* OR: max-height: 70vh;  viewport-based cap */
+
+  padding-right: 6px;
+  scroll-behavior: smooth;
+}
+
+.discord-announcements::-webkit-scrollbar{
+  width: 10px;
+}
+.discord-announcements::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+.discord-announcements::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,0.28);
+}

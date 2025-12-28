@@ -76,6 +76,50 @@ function requireEnv(res) {
   return true;
 }
 
+function getMediaFromMessage(m) {
+  const out = [];
+  const seen = new Set();
+
+  const add = (url, type) => {
+    if (!url || seen.has(url)) return;
+    out.push({ url, type });
+    seen.add(url);
+  };
+
+  // Attachments
+  for (const a of (m.attachments || [])) {
+    const url = a.url;
+    const ct = (a.content_type || "").toLowerCase();
+
+    if (ct.startsWith("image/") || /\.(png|jpe?g|gif|webp)(\?|$)/i.test(url)) {
+      const type = (ct === "image/gif" || /\.gif(\?|$)/i.test(url)) ? "gif" : "image";
+      add(url, type);
+      continue;
+    }
+
+    // Sometimes “gif” comes as mp4/webm attachment
+    if (ct.startsWith("video/") || /\.(mp4|webm)(\?|$)/i.test(url)) {
+      add(url, "video");
+    }
+  }
+
+  // Embeds: prefer video (Tenor/Giphy)
+  for (const e of (m.embeds || [])) {
+    if (e?.video?.url) {
+      add(e.video.url, "video");
+      continue; // ✅ prevents duplicate static image
+    }
+
+    if (e?.image?.url) {
+      add(e.image.url, /\.gif/i.test(e.image.url) ? "gif" : "image");
+    } else if (e?.thumbnail?.url) {
+      add(e.thumbnail.url, /\.gif/i.test(e.thumbnail.url) ? "gif" : "image");
+    }
+  }
+
+  return out;
+}
+
 // ---- routes ----
 
 // Debug: confirm you’re hitting the right channel
@@ -143,9 +187,10 @@ app.get("/api/announcements", async (_req, res) => {
           id: m.id,
           content: sanitizeContent(contentRaw).trim(),
           timestamp: m.timestamp,
+          media: getMediaFromMessage(m),
         };
       })
-      .filter((m) => m.content.length > 0)
+      .filter((m) => (m.content?.length || 0) > 0 || (m.media?.length || 0) > 0)
       .slice(0, 8);
 
     res.setHeader("Cache-Control", "no-store");

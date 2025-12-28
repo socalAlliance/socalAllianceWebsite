@@ -80,9 +80,26 @@
       .replaceAll("'", "&#039;");
   }
 
+  function stripMediaUrls(text) {
+    return String(text)
+      // remove direct image URLs
+      .replace(/https?:\/\/\S+\.(png|jpe?g|gif|webp)(\?\S*)?/gi, "")
+      // remove direct video URLs
+      .replace(/https?:\/\/\S+\.(mp4|webm|mov)(\?\S*)?/gi, "")
+      // remove common gif-host links that you embed anyway (Tenor/Giphy)
+      .replace(/https?:\/\/(www\.)?(tenor\.com|giphy\.com)\S*/gi, "")
+      .trim();
+  }
+
   function linkify(text) {
     const urlRe = /(https?:\/\/[^\s]+)/g;
+
     return String(text).replace(urlRe, (url) => {
+      // If URL looks like an image, do NOT turn it into a link
+      if (/\.(png|jpe?g|gif|webp)(\?|$)/i.test(url)) {
+        return url; // leave as plain text (or remove entirely if you prefer)
+      }
+
       const safeUrl = escapeHtml(url);
       return `<a href="${safeUrl}" target="_blank" rel="noopener">${safeUrl}</a>`;
     });
@@ -109,11 +126,39 @@
       }
 
       box.innerHTML = items.map(m => {
-        const content = linkify(escapeHtml(m.content || ""));
-        const time = new Date(m.timestamp).toLocaleString();
+        const cleanText = stripMediaUrls(m.content || "");
+        const content = linkify(escapeHtml(cleanText));
+
+        // Your API timestamps have 6-digit fractional seconds; normalize for safe parsing
+        const ts = String(m.timestamp || "").replace(/\.\d+/, "");
+        const time = new Date(ts).toLocaleString();
+
+        const media = Array.isArray(m.media) ? m.media : [];
+        const mediaHtml = media.length ? `
+          <div class="discord-images">
+            ${media.map(({ url, type }) => {
+              const safe = escapeHtml(url);
+
+              if (type === "video") {
+                return `
+                  <video class="discord-video" src="${safe}" controls playsinline preload="metadata" poster=""></video>
+                `;
+              }
+
+              return `
+                <a href="${safe}" target="_blank" rel="noopener">
+                  <img class="discord-img ${type === "gif" ? "discord-gif" : ""}"
+                      src="${safe}" loading="lazy" alt="">
+                </a>
+              `;
+            }).join("")}
+          </div>
+        ` : "";
+
         return `
           <div class="discord-post">
-            <p class="discord-text">${content}</p>
+            ${content ? `<p class="discord-text">${content}</p>` : ""}
+            ${mediaHtml}
             <small class="discord-time">${escapeHtml(time)}</small>
           </div>
         `;
