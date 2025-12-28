@@ -1,0 +1,26 @@
+{
+  "name": "discord-announcements-site",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^4.22.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "description": "> [!NOTE]\r > I understand there might be some confusion regarding how to structure these things on the website. I wrote this so everyone can understand a little how the website works under the hood, and how to achieve success while writing new additions to the website.",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/socalAlliance/socalAllianceWebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/socalAlliance/socalAllianceWebsite/issues"
+  },
+  "homepage": "https://github.com/socalAlliance/socalAllianceWebsite#readme"
+}

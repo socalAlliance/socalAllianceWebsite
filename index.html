@@ -53,14 +53,81 @@
 </nav>
 </header>
 <!-- HERO 1 -->
-<section class="hero-1">
-<div class="hero-text">FOUNDED BY COMPETITORS FOR COMPETITORS</div>
-<div class="subhead">
-<p>See how we’re empowering the next generation of engineers through collaboration, resource-sharing, and mutual growth.</p>
-<a class="btn-img" href="../about/index.html">
-<img alt="Learn More" src="../images/Learnmore.png"/>
-</a>
-</div>
+<section class="hero-1 hero-split">
+  <div class="hero-main">
+    <div class="hero-text">FOUNDED BY COMPETITORS FOR COMPETITORS</div>
+
+    <div class="subhead">
+      <p>See how we’re empowering the next generation of engineers through collaboration, resource-sharing, and mutual growth.</p>
+      <a class="btn-img" href="../about/index.html">
+        <img alt="Learn More" src="../images/Learnmore.png"/>
+      </a>
+    </div>
+  </div>
+
+  <aside class="discord-panel" aria-label="Newsletter updates">
+    <h3>Newsletter</h3>
+    <div id="discord-announcements" class="discord-announcements">Loading…</div>
+  </aside>
+
+<script>
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function linkify(text) {
+    const urlRe = /(https?:\/\/[^\s]+)/g;
+    return String(text).replace(urlRe, (url) => {
+      const safeUrl = escapeHtml(url);
+      return `<a href="${safeUrl}" target="_blank" rel="noopener">${safeUrl}</a>`;
+    });
+  }
+
+  async function loadDiscordAnnouncements() {
+    const box = document.getElementById("discord-announcements");
+    box.textContent = "Loading…";
+
+    try {
+      // If the page is NOT being served by the Express app, call the API explicitly on :3000
+      const usingExpress = window.location.port === "3000";
+      const apiBase = usingExpress ? window.location.origin : "http://localhost:3000";
+      const apiUrl = `${apiBase}/api/announcements`;
+
+      const r = await fetch(apiUrl, { cache: "no-store" });
+      if (!r.ok) throw new Error(`API error ${r.status}`);
+
+      const items = await r.json();
+
+      if (!Array.isArray(items) || items.length === 0) {
+        box.textContent = "No announcements yet.";
+        return;
+      }
+
+      box.innerHTML = items.map(m => {
+        const content = linkify(escapeHtml(m.content || ""));
+        const time = new Date(m.timestamp).toLocaleString();
+        return `
+          <div class="discord-post">
+            <p class="discord-text">${content}</p>
+            <small class="discord-time">${escapeHtml(time)}</small>
+          </div>
+        `;
+      }).join("");
+
+    } catch (e) {
+      box.textContent = "Could not load announcements.";
+      console.error("Announcements load failed:", e);
+    }
+  }
+
+  loadDiscordAnnouncements();
+</script>
+
 </section>
 <div class="stats-gradient"></div>
 <!-- STATS BAR IMAGE -->

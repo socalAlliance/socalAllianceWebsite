@@ -35,7 +35,6 @@
       height: 675px;
       background: url('../images/Landing.png') no-repeat;
       background-size: cover;
-      background-position: 50% 15%;
       position: relative;
       display: block; /* Remove flex */
     }.subhead {
@@ -329,3 +328,133 @@
   opacity: 0.8;
   margin-right: 2px;
 }
+/* ===== HERO SPLIT: 80% hero content + 20% newsletter ===== */
+.hero-1.hero-split{
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(260px, 1fr);
+  min-height: 675px;   /* keep minimum height */
+  height: auto;        /* allow newsletter to extend hero */
+  gap: 0;
+}
+
+/* Left column keeps your existing absolute placements */
+.hero-1 .hero-main{
+  position: relative;
+  height: 100%;
+  min-width: 0;
+}
+
+/* Right column becomes a normal grid cell (no overlay) */
+.hero-1.hero-split .discord-panel{
+  position: relative;     /* <- not absolute */
+  top: auto;
+  right: auto;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0,0,0,0.92);
+  border-radius: 0;       /* looks like a clean right rail */
+  padding: 18px 16px;
+
+  z-index: 3;
+}
+
+/* Header stays fixed, list scrolls */
+.hero-1.hero-split .discord-panel h3{
+  flex: 0 0 auto;
+}
+
+/* Keep your existing inner styles (these can stay) */
+.discord-panel h3{
+  margin: 0 0 12px 0;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+}
+
+.discord-announcements{
+  display: flex;
+  gap: 14px;
+  color: #fff;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-right: 6px;
+  scroll-behavior: smooth;
+}
+
+.discord-post{
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 12px;
+}
+
+.discord-post:first-child{
+  border-top: none;
+  padding-top: 0;
+}
+
+.discord-text{
+  margin: 0 0 8px 0;
+  white-space: pre-wrap;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.discord-time{
+  display: block;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* Mobile: stack newsletter below hero */
+@media (max-width: 900px){
+  .hero-1.hero-split{
+    grid-template-columns: 1fr;
+    height: auto; /* let hero grow naturally */
+  }
+
+  .hero-1 .hero-main{
+    height: 675px; /* keep hero image height */
+  }
+
+  .hero-1.hero-split .discord-panel{
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    height: auto;
+    max-height: none;
+    padding: 18px 16px;
+  }
+
+  .hero-1 .subhead{
+    bottom: 0.25rem;   /* was 5rem */
+  }
+}
+
+.discord-panel a{
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.discord-panel a:hover{
+  opacity: 0.85;
+}
+
+.discord-post .discord-text{
+  max-height: 8.5em;     /* about ~6 lines */
+  overflow: hidden;
+}
+
+@media (max-width: 1100px){
+  .hero-1.hero-split{
+    background-position: 75% 15%;
+  }
+}
+
+.hero-1 img {
+  object-position: 100% center; /* shift the crop toward the right */
+}
+
