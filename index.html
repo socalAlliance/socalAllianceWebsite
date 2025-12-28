@@ -95,7 +95,7 @@
     try {
       // If the page is NOT being served by the Express app, call the API explicitly on :3000
       const usingExpress = window.location.port === "3000";
-      const apiBase = usingExpress ? window.location.origin : "http://localhost:3000";
+      const apiBase = window.location.origin;
       const apiUrl = `${apiBase}/api/announcements`;
 
       const r = await fetch(apiUrl, { cache: "no-store" });
