@@ -13,3 +13,7 @@ pnpm-debug.log*
 # OS junk
 .DS_Store
 Thumbs.db
+
+#Keys
+gha_deploy_key.pub
+gha_deploy_key
