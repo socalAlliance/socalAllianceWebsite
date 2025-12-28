@@ -8,6 +8,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Check required secrets
+        run: |
+          test -n "${{ secrets.SERVER_HOST }}" || (echo "SERVER_HOST is missing" && exit 1)
+          test -n "${{ secrets.SERVER_USER }}" || (echo "SERVER_USER is missing" && exit 1)
+          test -n "${{ secrets.SERVER_SSH_KEY }}" || (echo "SERVER_SSH_KEY is missing" && exit 1)
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
