@@ -86,23 +86,6 @@ function getMediaFromMessage(m) {
     seen.add(url);
   };
 
-  // Attachments
-  for (const a of (m.attachments || [])) {
-    const url = a.url;
-    const ct = (a.content_type || "").toLowerCase();
-
-    if (ct.startsWith("image/") || /\.(png|jpe?g|gif|webp)(\?|$)/i.test(url)) {
-      const type = (ct === "image/gif" || /\.gif(\?|$)/i.test(url)) ? "gif" : "image";
-      add(url, type);
-      continue;
-    }
-
-    // Sometimes “gif” comes as mp4/webm attachment
-    if (ct.startsWith("video/") || /\.(mp4|webm)(\?|$)/i.test(url)) {
-      add(url, "video");
-    }
-  }
-
   // Embeds: prefer video (Tenor/Giphy)
   for (const e of (m.embeds || [])) {
     if (e?.video?.url) {
@@ -115,6 +98,30 @@ function getMediaFromMessage(m) {
     } else if (e?.thumbnail?.url) {
       add(e.thumbnail.url, /\.gif/i.test(e.thumbnail.url) ? "gif" : "image");
     }
+  }
+
+  // Attachments
+  for (const a of (m.attachments || [])) {
+    const url = a.url;
+    const ct = (a.content_type || "").toLowerCase();
+    const name = a.filename || "download";
+
+    if (ct.startsWith("image/") || /\.(png|jpe?g|gif|webp)(\?|$)/i.test(url)) {
+      const type = (ct === "image/gif" || /\.gif(\?|$)/i.test(url)) ? "gif" : "image";
+      add(url, type);
+      continue;
+    }
+
+    if (ct.startsWith("video/") || /\.(mp4|webm)(\?|$)/i.test(url)) {
+      add(url, "video");
+      continue;
+    }
+
+    // ✅ everything else: pdfs, docs, zips, etc.
+    add(url, "file");
+    // optionally store name/content type too (better UX)
+    out[out.length - 1].name = name;
+    out[out.length - 1].contentType = ct;
   }
 
   return out;

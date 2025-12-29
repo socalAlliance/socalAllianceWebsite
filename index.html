@@ -136,22 +136,69 @@
         const media = Array.isArray(m.media) ? m.media : [];
         const mediaHtml = media.length ? `
           <div class="discord-images">
-            ${media.map(({ url, type }) => {
-              const safe = escapeHtml(url);
+          ${media.map((m) => {
+            const safe = escapeHtml(m.url);
 
-              if (type === "video") {
+            if (m.type === "file") {
+              const fileName = escapeHtml(m.name || m.url.split("/").pop() || "Download file");
+              return `
+                <a class="discord-file" href="${safe}" target="_blank" rel="noopener">
+                  📄 ${fileName}
+                </a>
+              `;
+            }
+
+            // VIDEOS
+            if (m.type === "video") {
+              const isGifVideo = /\.(mp4|webm)/i.test(safe) &&
+                                /(tenor|giphy|discord)/i.test(safe);
+
+              // Treat "GIF videos" like GIFs
+              if (isGifVideo) {
                 return `
-                  <video class="discord-video" src="${safe}" controls playsinline preload="metadata" poster=""></video>
+                  <video
+                    class="discord-gif-video"
+                    src="${safe}"
+                    autoplay
+                    loop
+                    muted
+                    playsinline>
+                  </video>
                 `;
               }
 
+              // Normal videos
               return `
-                <a href="${safe}" target="_blank" rel="noopener">
-                  <img class="discord-img ${type === "gif" ? "discord-gif" : ""}"
-                      src="${safe}" loading="lazy" alt="">
-                </a>
+                <video
+                  class="discord-video"
+                  src="${safe}"
+                  controls
+                  playsinline
+                  preload="metadata">
+                </video>
               `;
-            }).join("")}
+            }
+
+            // GIFS → real GIF behavior (no video tag)
+            if (m.type === "gif") {
+              return `
+                <img
+                  class="discord-gif"
+                  src="${safe}"
+                  loading="lazy"
+                  alt="">
+              `;
+            }
+
+            // STATIC IMAGES
+            return `
+              <img
+                class="discord-img"
+                src="${safe}"
+                loading="lazy"
+                alt="">
+            `;
+          }).join("")}
           </div>
         ` : "";
 
