@@ -33,8 +33,6 @@
       width: 100%;
       min-height: 320px;
       height: 675px;
-      background: url('../images/Landing.png') no-repeat;
-      background-size: cover;
       position: relative;
       display: block; /* Remove flex */
     }.subhead {
@@ -448,9 +446,9 @@
   overflow: hidden;
 }
 
-@media (max-width: 1100px){
+@media (max-width: 900px){
   .hero-1.hero-split{
-    background-position: center center;   /* or: center 35% */
+    background-position: center 70%;
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -515,7 +513,7 @@
 }
 
 /* Desktop tweaks */
-@media (min-width: 1200px){
+@media (min-width: 900px){
   .discord-images{
     grid-template-columns: 1fr 1fr;
   }
@@ -626,4 +624,12 @@
 
 .discord-file:hover{
   background: rgba(255,255,255,0.14);
+}
+
+.hero-1{
+  background: none; /* IMPORTANT: stop sizing against full section height */
+}
+
+.hero-1 .hero-main{
+  background: url('../images/Landing.png') no-repeat center 70% / cover;
 }
