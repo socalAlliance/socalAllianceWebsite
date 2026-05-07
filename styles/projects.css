@@ -310,7 +310,7 @@
 }.doc-inner iframe {
   display: block;
   width: 100%;
-  height: 600px;
+  height: 1000px;
   border: none;
 }/* Container centers everything */.doc-section {
   text-align: center;
